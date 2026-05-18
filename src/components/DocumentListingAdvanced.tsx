@@ -8,7 +8,7 @@ import { Button } from '@/components/ui/button'
 import { Card, CardContent } from '@/components/ui/card'
 
 interface Document {
-  id: string
+  id: string | number
   title: string
   date: string
   description?: string

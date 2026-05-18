@@ -3,7 +3,7 @@ import { DocumentCard } from '@/components/ui/DocumentCard'
 import { PageHero } from '@/components/PageHero'
 
 interface Document {
-  id: string
+  id: string | number
   title: string
   date: string
   description?: string
