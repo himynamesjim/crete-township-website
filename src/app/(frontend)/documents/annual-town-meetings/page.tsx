@@ -2,6 +2,7 @@ import { Metadata } from 'next'
 import { getPayload } from 'payload'
 import config from '@payload-config'
 import { DocumentListingAdvanced } from '@/components/DocumentListingAdvanced'
+import { transformDocuments } from '@/lib/transformDocument'
 
 export const metadata: Metadata = {
   title: 'Annual Town Meetings | Crete Township',
@@ -11,7 +12,7 @@ export const metadata: Metadata = {
 export default async function AnnualTownMeetingsPage() {
   const payload = await getPayload({ config })
 
-  const { docs: documents } = await payload.find({
+  const { docs } = await payload.find({
     collection: 'board-agendas',
     where: {
       status: { equals: 'published' },
@@ -21,6 +22,9 @@ export default async function AnnualTownMeetingsPage() {
     limit: 100,
     depth: 1,
   })
+
+  // Transform BoardAgenda data to match DocumentListingAdvanced props
+  const documents = transformDocuments(docs)
 
   return (
     <DocumentListingAdvanced

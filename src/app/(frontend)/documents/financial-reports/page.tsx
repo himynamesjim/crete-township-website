@@ -2,6 +2,7 @@ import { Metadata } from 'next'
 import { getPayload } from 'payload'
 import config from '@payload-config'
 import { DocumentListingPage } from '@/components/DocumentListingPage'
+import { transformDocuments } from '@/lib/transformDocument'
 
 export const metadata: Metadata = {
   title: 'Financial Reports | Crete Township',
@@ -11,12 +12,14 @@ export const metadata: Metadata = {
 export default async function FinancialReportsPage() {
   const payload = await getPayload({ config })
 
-  const { docs: reports } = await payload.find({
+  const { docs } = await payload.find({
     collection: 'financial-reports',
     where: { status: { equals: 'published' } },
     sort: '-date',
     limit: 100,
   })
+
+  const reports = transformDocuments(docs)
 
   return (
     <DocumentListingPage

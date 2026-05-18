@@ -2,6 +2,7 @@ import { Metadata } from 'next'
 import { getPayload } from 'payload'
 import config from '@payload-config'
 import { DocumentListingAdvanced } from '@/components/DocumentListingAdvanced'
+import { transformDocuments } from '@/lib/transformDocument'
 
 export const metadata: Metadata = {
   title: 'Meeting Minutes | Crete Township',
@@ -11,13 +12,15 @@ export const metadata: Metadata = {
 export default async function MeetingMinutesPage() {
   const payload = await getPayload({ config })
 
-  const { docs: minutes } = await payload.find({
+  const { docs } = await payload.find({
     collection: 'meeting-minutes',
     where: { status: { equals: 'published' } },
     sort: '-date',
     limit: 100,
     depth: 1,
   })
+
+  const minutes = transformDocuments(docs)
 
   return (
     <DocumentListingAdvanced
