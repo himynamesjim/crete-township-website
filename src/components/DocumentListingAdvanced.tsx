@@ -11,8 +11,8 @@ interface Document {
   id: string | number
   title: string
   date: string
-  description?: string
-  documentType?: string
+  description?: string | null
+  documentType?: string | null
   file: {
     url: string
   }
