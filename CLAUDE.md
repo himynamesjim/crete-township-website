@@ -8,11 +8,27 @@
 
 Government website rebuild for Crete Township, Will County, Illinois.
 Replacing existing WordPress site at cretetownship.com.
-Client assets are in hand. All logins, logos, and documents available.
+Client assets in hand — logos, logins, all existing PDFs accessible.
 
 **Live site (current):** https://www.cretetownship.com
 **Staging (Vercel):** TBD — add URL here once deployed
-**CMS Admin:** TBD — add Railway URL here once deployed
+**CMS Admin:** TBD — will be at /admin on same Vercel deployment
+
+---
+
+## Architecture Decision (Final)
+
+**Payload CMS 3.x embedded inside Next.js 14 — single app, single deployment.**
+
+Payload 3.x ("The One") runs as a Next.js plugin. The admin panel lives
+at /admin on the same Vercel deployment. No separate CMS server needed.
+Database: Neon serverless Postgres (free tier).
+
+Chosen over Payload 2.x monorepo for:
+- Zero monthly operating cost (Vercel free + Neon free + R2 free)
+- Single deployment — simpler client handoff and maintenance
+- Identical CMS admin experience for township staff
+- Same REST API available for Phase 2 FlutterFlow mobile app
 
 ---
 
@@ -20,13 +36,13 @@ Client assets are in hand. All logins, logos, and documents available.
 
 | Layer | Technology | Notes |
 |-------|-----------|-------|
-| Frontend | Next.js 14 (App Router) | TypeScript, server components by default |
-| CMS | Payload CMS 2.x | Headless, REST API, PostgreSQL |
+| Framework | Next.js 14 (App Router) | TypeScript, server components by default |
+| CMS | Payload CMS 3.x | Runs inside Next.js as a plugin |
+| Database | Neon serverless Postgres | Free tier, no server to manage |
 | Styling | Tailwind CSS | Custom tokens defined below |
 | File Storage | Cloudflare R2 | PDF/doc storage, zero egress cost |
-| Frontend Host | Vercel | Free tier, auto-deploy from main |
-| CMS + DB Host | Railway | PostgreSQL + Payload service, ~$5-10/mo |
-| Package Manager | npm workspaces + Turborepo | Monorepo |
+| Hosting | Vercel | Free tier, single deployment |
+| Rich Text | @payloadcms/richtext-lexical | Payload 3.x default editor |
 
 ---
 
@@ -34,26 +50,59 @@ Client assets are in hand. All logins, logos, and documents available.
 
 ```
 crete-township-website/
-├── apps/
-│   ├── web/                  ← Next.js 14 frontend
-│   │   ├── app/              ← App Router pages
-│   │   ├── components/
-│   │   │   ├── layout/       ← Header, Footer, Navigation
-│   │   │   ├── ui/           ← Buttons, Cards, Badges, Pills
-│   │   │   └── sections/     ← Page section components
-│   │   ├── lib/              ← API fetch helpers, utilities
-│   │   └── tailwind.config.ts
-│   └── cms/                  ← Payload CMS
-│       ├── src/
-│       │   ├── collections/  ← All 9 content collections
-│       │   ├── access/       ← Role-based access control
-│       │   └── payload.config.ts
-│       └── Dockerfile
-├── packages/
-│   └── ui/                   ← Shared types and utilities
-├── CLAUDE.md                 ← THIS FILE — project memory
-├── turbo.json
-└── package.json              ← Workspace root
+├── app/
+│   ├── (payload)/                      ← Payload admin — auto-handled by plugin
+│   │   └── admin/[[...segments]]/
+│   ├── (frontend)/                     ← Township website pages
+│   │   ├── layout.tsx                  ← Frontend layout (Header + Footer)
+│   │   ├── page.tsx                    ← Homepage
+│   │   ├── documents/page.tsx
+│   │   ├── events/page.tsx
+│   │   ├── officials/page.tsx
+│   │   ├── about/page.tsx
+│   │   ├── services/page.tsx
+│   │   ├── assessor/page.tsx
+│   │   ├── road-district/page.tsx
+│   │   ├── community-center/page.tsx
+│   │   └── contact/page.tsx
+│   ├── layout.tsx                      ← Root layout with fonts
+│   └── globals.css
+├── collections/                        ← Payload collection definitions
+│   ├── BoardAgendas.ts
+│   ├── MeetingMinutes.ts
+│   ├── FinancialReports.ts
+│   ├── AssessorDocuments.ts
+│   ├── RoadDistrictReports.ts
+│   ├── Newsletters.ts
+│   ├── Events.ts
+│   ├── Announcements.ts
+│   ├── Officials.ts
+│   └── Users.ts
+├── components/
+│   ├── layout/
+│   │   ├── Header.tsx
+│   │   └── Footer.tsx
+│   └── ui/
+│       ├── Button.tsx
+│       ├── Badge.tsx
+│       ├── SectionTitle.tsx
+│       ├── AlertBanner.tsx
+│       ├── DocCard.tsx
+│       ├── EventCard.tsx
+│       └── AnnouncementCard.tsx
+├── lib/
+│   ├── payload.ts                      ← getPayload() helper
+│   └── utils.ts
+├── public/
+│   └── assets/                         ← Logo, seal, static images
+├── payload.config.ts                   ← Payload configuration
+├── next.config.mjs                     ← withPayload() plugin wrapper
+├── tailwind.config.ts
+├── tsconfig.json
+├── .env.local                          ← Never commit
+├── .env.example                        ← Commit this (safe template)
+├── CLAUDE.md                           ← THIS FILE
+└── package.json
 ```
 
 ---
@@ -63,17 +112,12 @@ crete-township-website/
 ### Color Palette
 
 ```css
-/* Primary */
 --navy:        #1B3A5C   /* headers, nav, primary buttons */
 --navy-dark:   #0F2540   /* topbar, footer background */
---navy-light:  #2A5080   /* hover states on navy elements */
-
-/* Accent */
+--navy-light:  #2A5080   /* hover states */
 --gold:        #C8960C   /* CTAs, borders, highlights */
---gold-light:  #E8AE1A   /* hover states on gold elements */
---gold-pale:   #FDF4DC   /* gold-tinted backgrounds, date boxes */
-
-/* Neutrals */
+--gold-light:  #E8AE1A   /* hover gold */
+--gold-pale:   #FDF4DC   /* gold tinted backgrounds, date boxes */
 --cream:       #F8F5F0   /* page background */
 --gray-100:    #F4F6F9
 --gray-200:    #E8EDF3
@@ -82,218 +126,221 @@ crete-township-website/
 --gray-800:    #2C3444   /* headings */
 ```
 
-### Tailwind Config Extension (tailwind.config.ts)
+### Tailwind Config Extension
 
 ```ts
+// tailwind.config.ts
 colors: {
   navy: {
     DEFAULT: '#1B3A5C',
-    dark: '#0F2540',
-    light: '#2A5080',
+    dark:    '#0F2540',
+    light:   '#2A5080',
   },
   gold: {
     DEFAULT: '#C8960C',
-    light: '#E8AE1A',
-    pale: '#FDF4DC',
+    light:   '#E8AE1A',
+    pale:    '#FDF4DC',
   },
   cream: '#F8F5F0',
 },
 fontFamily: {
   display: ['Playfair Display', 'Georgia', 'serif'],
-  body: ['DM Sans', 'system-ui', 'sans-serif'],
+  body:    ['DM Sans', 'system-ui', 'sans-serif'],
 },
 ```
 
-### Typography
+### Typography Scale
 
 | Element | Size | Font | Weight | Color |
 |---------|------|------|--------|-------|
-| h1 (hero) | 42px | display | 700 | white (on navy) |
-| h2 (section) | 26px | display | 700 | navy |
+| h1 hero | 42px | display | 700 | white (on navy) |
+| h2 section | 26px | display | 700 | navy |
 | h3 | 20px | body | 600 | navy |
 | Body | 16px | body | 400 | gray-600 |
-| Small/meta | 12px | body | 400 | gray-400 |
+| Meta/small | 12px | body | 400 | gray-400 |
 | Nav links | 13.5px | body | 500 | gray-600 |
 | Buttons | 14px | body | 600 | — |
 
 ### Component Conventions
 
 ```
-Cards:        bg-white, border border-gray-200, rounded-lg, shadow-sm on hover
-Section wrap: max-w-[1100px] mx-auto px-8
+Cards:         bg-white border border-gray-200 rounded-lg, shadow-sm on hover
+Section wrap:  max-w-[1100px] mx-auto px-8
 Section title: font-display text-2xl font-bold text-navy + 3px gold bar below
-Buttons:      rounded px-6 py-3, primary=bg-navy text-white, outline=border-navy
-Gold accent:  3px solid gold — used under h2 headings and topbar bottom border
-Navy banners: bg-navy-dark text-white — used for topbar, footer, section labels
-Alert banner: bg-navy-dark text-gold-light — emergency/meeting notices, full width
+Buttons:       rounded px-6 py-3, primary=bg-navy text-white, outline=border-navy
+Gold accent:   border-b-[3px] border-gold — topbar bottom, under h2 headings
+Navy banners:  bg-navy-dark text-white — topbar, footer, section labels
+Alert banner:  bg-navy-dark text-gold-light — full width top of page
 ```
 
 ---
 
 ## Payload CMS Collections
 
-### Shared Fields (applied to all document collections)
+### Data Fetching (Payload 3.x — server components)
+```ts
+// Direct DB access in server components — no HTTP overhead
+import { getPayload } from 'payload'
+import config from '@payload-config'
+
+const payload = await getPayload({ config })
+const result = await payload.find({
+  collection: 'board-agendas',
+  where: { status: { equals: 'published' } },
+  sort: '-date',
+  limit: 10,
+})
+
+// REST API also works for Phase 2 FlutterFlow:
+// GET /api/board-agendas?where[status][equals]=published&sort=-date
+```
+
+### Shared Fields (all document collections)
 ```ts
 title:       text      (required)
-date:        date      (required — meeting date or report date)
+date:        date      (required)
 description: textarea  (optional)
 status:      select    ['draft', 'published', 'archived'] default: 'draft'
-publishedAt: date      (auto-set on publish)
+publishedAt: date      (auto-set on publish via beforeChange hook)
 ```
 
-### 1. BoardAgendas
+### 1. BoardAgendas — slug: 'board-agendas'
 ```ts
 documentType: select ['Regular Board Meeting', 'Special Meeting', 'Annual Town Meeting']
-file:         upload  → Cloudflare R2 (PDF)
+file:         upload → Cloudflare R2 (PDF)
 ```
 
-### 2. MeetingMinutes
+### 2. MeetingMinutes — slug: 'meeting-minutes'
 ```ts
 documentType: select ['Regular Board', 'Special Board', 'Assessor Minutes']
-file:         upload  → Cloudflare R2 (PDF)
+file:         upload → Cloudflare R2 (PDF)
 ```
 
-### 3. FinancialReports
+### 3. FinancialReports — slug: 'financial-reports'
 ```ts
 documentType: select ['Audited Statement', 'Cash Balance', 'Budget Ordinance', 'Other']
 fiscalYear:   number
-file:         upload  → Cloudflare R2 (PDF)
+file:         upload → Cloudflare R2 (PDF)
 ```
 
-### 4. AssessorDocuments
+### 4. AssessorDocuments — slug: 'assessor-documents'
 ```ts
 documentType: select ['Assessor Minutes', 'HOA', 'Exemption Forms', 'Other']
-file:         upload  → Cloudflare R2 (PDF)
+file:         upload → Cloudflare R2 (PDF)
 ```
 
-### 5. RoadDistrictReports
+### 5. RoadDistrictReports — slug: 'road-district-reports'
 ```ts
 documentType: select ['Highway Commissioner', 'Environmental', 'Storm Sewer', 'Other']
-file:         upload  → Cloudflare R2 (PDF)
+file:         upload → Cloudflare R2 (PDF)
 ```
 
-### 6. Newsletters
+### 6. Newsletters — slug: 'newsletters'
 ```ts
-file:         upload  → Cloudflare R2 (PDF)
-coverImage:   upload  → Cloudflare R2 (optional)
+file:        upload → Cloudflare R2 (PDF)
+coverImage:  upload → Cloudflare R2 (optional)
 ```
 
-### 7. Events
+### 7. Events — slug: 'events'
 ```ts
-startDate:   date      (required)
-endDate:     date      (optional)
+startDate:   date (required)
+endDate:     date (optional)
 location:    text
-description: richText
-category:    select ['Board Meeting', 'Community', 'Senior Programs', 'Recreational', 'Food Pantry']
+description: richText (lexical)
+category:    select ['Board Meeting','Community','Senior Programs','Recreational','Food Pantry']
 featured:    checkbox
 ```
 
-### 8. Announcements
+### 8. Announcements — slug: 'announcements'
 ```ts
-body:       textarea  (required)
+body:       textarea (required)
 category:   select ['Board', 'Road District', 'Assessor', 'Community', 'General']
-expiresAt:  date      (optional — auto-hide after this date)
-active:     checkbox  (default: true)
+expiresAt:  date (optional — auto-hide after this date)
+active:     checkbox (default: true)
 ```
 
-### 9. Officials
+### 9. Officials — slug: 'officials'
 ```ts
-name:         text    (required)
-title:        text    (required)
-department:   select ['Township Board', 'Assessor', 'Road District', 'Clerk', 'General Assistance']
+name:         text (required)
+title:        text (required)
+department:   select ['Township Board','Assessor','Road District','Clerk','General Assistance']
 phone:        text
 email:        email
-photo:        upload  (optional)
-displayOrder: number  (controls sort order on officials page)
+photo:        upload (optional)
+displayOrder: number
 ```
 
-### Users Collection
+### Users — slug: 'users' (Payload built-in auth)
 ```ts
-email:    email  (required)
-role:     select ['admin', 'editor']
+role: select ['admin', 'editor']
 ```
 
 ---
 
 ## Environment Variables
 
-### apps/web (.env.local)
+### .env.local (never commit)
 ```
-NEXT_PUBLIC_CMS_URL=https://[railway-url]
-NEXT_PUBLIC_SITE_URL=https://cretetownship.com
-```
-
-### apps/cms (.env)
-```
-DATABASE_URI=postgresql://[railway-postgres-url]
+DATABASE_URI=postgresql://[neon-connection-string]
 PAYLOAD_SECRET=[random-32-char-string]
 R2_BUCKET=crete-township-docs
 R2_ACCESS_KEY=[cloudflare-r2-access-key]
 R2_SECRET_KEY=[cloudflare-r2-secret-key]
 R2_ENDPOINT=https://[account-id].r2.cloudflarestorage.com
-R2_PUBLIC_URL=https://[public-bucket-url]
+R2_PUBLIC_URL=https://[public-r2-url]
+NEXT_PUBLIC_SITE_URL=https://cretetownship.com
 ```
 
----
-
-## API Conventions
-
-All data fetched from Payload REST API. Base URL from env.
-
-```ts
-// Fetch helpers live in apps/web/lib/api.ts
-// Always filter by status=published for public pages
-// Always sort documents by date descending (newest first)
-// Always sort events by startDate ascending (next upcoming first)
-
-// Example endpoints:
-GET /api/board-agendas?where[status][equals]=published&sort=-date&limit=10
-GET /api/events?where[startDate][greater_than]=now&sort=startDate&limit=20
-GET /api/announcements?where[active][equals]=true&sort=-createdAt&limit=5
-GET /api/officials?sort=displayOrder
+### .env.example (safe to commit)
 ```
-
-**Important:** REST API must remain clean and well-structured throughout Phase 1.
-Phase 2 (FlutterFlow mobile app) will consume the same API. Do not add frontend-only
-fields to collections — keep the data model clean.
+DATABASE_URI=
+PAYLOAD_SECRET=
+R2_BUCKET=
+R2_ACCESS_KEY=
+R2_SECRET_KEY=
+R2_ENDPOINT=
+R2_PUBLIC_URL=
+NEXT_PUBLIC_SITE_URL=
+```
 
 ---
 
 ## Key Decisions (Do Not Reverse Without Updating This File)
 
-- **No WordPress** — full rebuild, no WP plugins or theme code reused
-- **App Router only** — use Next.js 14 App Router, NOT Pages Router
-- **Server components by default** — only use `'use client'` when interactivity requires it
-- **Payload 2.x** — not 3.x, separate deployment from Next.js frontend
+- **Payload 3.x not 2.x** — single app inside Next.js, one Vercel deployment
+- **Neon for database** — serverless Postgres free tier, no Railway needed
+- **App Router only** — Next.js 14 App Router, NOT Pages Router
+- **Server components by default** — use client only when interactivity required
+- **getPayload() in server components** — direct DB access, no HTTP overhead
+- **REST API preserved** — /api/* endpoints available for Phase 2 FlutterFlow
 - **Tailwind only** — no CSS modules, no styled-components, no inline styles
-- **R2 over S3** — zero egress fees for PDF document serving
-- **No third-party UI library** — build all components from scratch using Tailwind
-- **REST API over GraphQL** — simpler for FlutterFlow Phase 2 integration
-- **TypeScript everywhere** — no .js files in apps/web or apps/cms
+- **No third-party UI library** — all components built from Tailwind
+- **TypeScript strict** — no .js files, avoid any types
+- **Cloudflare R2** — zero egress cost for PDF document serving
 
 ---
 
 ## Pages & Status
 
-| Page | Route | Status | Trello Card |
-|------|-------|--------|-------------|
-| Homepage | / | 🔲 Not started | Pages — Build |
-| Document Library | /documents | 🔲 Not started | Pages — Build |
-| Events | /events | 🔲 Not started | Pages — Build |
-| Offices & Officials | /officials | 🔲 Not started | Pages — Build |
-| About | /about | 🔲 Not started | Interior pages card |
-| Services | /services | 🔲 Not started | Interior pages card |
-| Assessor | /assessor | 🔲 Not started | Interior pages card |
-| Road District | /road-district | 🔲 Not started | Interior pages card |
-| Community Center | /community-center | 🔲 Not started | Interior pages card |
-| Contact | /contact | 🔲 Not started | Interior pages card |
+| Page | Route | Status |
+|------|-------|--------|
+| Homepage | / | 🔲 Not started |
+| Document Library | /documents | 🔲 Not started |
+| Events | /events | 🔲 Not started |
+| Offices & Officials | /officials | 🔲 Not started |
+| About | /about | 🔲 Not started |
+| Services | /services | 🔲 Not started |
+| Assessor | /assessor | 🔲 Not started |
+| Road District | /road-district | 🔲 Not started |
+| Community Center | /community-center | 🔲 Not started |
+| Contact | /contact | 🔲 Not started |
 
 ---
 
 ## Components & Status
 
-| Component | Location | Status |
-|-----------|----------|--------|
+| Component | Path | Status |
+|-----------|------|--------|
 | Tailwind tokens | tailwind.config.ts | 🔲 Not started |
 | Button | components/ui/Button.tsx | 🔲 Not started |
 | Badge / Pill | components/ui/Badge.tsx | 🔲 Not started |
@@ -302,62 +349,59 @@ fields to collections — keep the data model clean.
 | DocCard | components/ui/DocCard.tsx | 🔲 Not started |
 | EventCard | components/ui/EventCard.tsx | 🔲 Not started |
 | AnnouncementCard | components/ui/AnnouncementCard.tsx | 🔲 Not started |
-| Header / Topbar | components/layout/Header.tsx | 🔲 Not started |
-| Navigation | components/layout/Navigation.tsx | 🔲 Not started |
+| Header | components/layout/Header.tsx | 🔲 Not started |
 | Footer | components/layout/Footer.tsx | 🔲 Not started |
 
 ---
 
 ## CMS Collections & Status
 
-| Collection | Status | Notes |
-|------------|--------|-------|
-| BoardAgendas | 🔲 Not started | |
-| MeetingMinutes | 🔲 Not started | |
-| FinancialReports | 🔲 Not started | |
-| AssessorDocuments | 🔲 Not started | |
-| RoadDistrictReports | 🔲 Not started | |
-| Newsletters | 🔲 Not started | |
-| Events | 🔲 Not started | |
-| Announcements | 🔲 Not started | |
-| Officials | 🔲 Not started | |
+| Collection | Status |
+|------------|--------|
+| BoardAgendas | 🔲 Not started |
+| MeetingMinutes | 🔲 Not started |
+| FinancialReports | 🔲 Not started |
+| AssessorDocuments | 🔲 Not started |
+| RoadDistrictReports | 🔲 Not started |
+| Newsletters | 🔲 Not started |
+| Events | 🔲 Not started |
+| Announcements | 🔲 Not started |
+| Officials | 🔲 Not started |
 
 ---
 
 ## Infrastructure & Status
 
-| Item | Status | URL / Notes |
-|------|--------|-------------|
-| GitHub repo | 🔲 Not started | crete-township-website (private) |
-| Vercel project | 🔲 Not started | — |
-| Railway project | 🔲 Not started | — |
-| Cloudflare R2 bucket | 🔲 Not started | crete-township-docs |
-| Monorepo scaffold | 🔲 Not started | — |
-| Domain (existing) | ✅ Have access | cretetownship.com |
-| Client logo/assets | ✅ Have access | InterPeak manages current site |
+| Item | Status | Notes |
+|------|--------|-------|
+| GitHub repo | ✅ Done | crete-township-website (private) |
+| CLAUDE.md | ✅ Done | Committed to main, updated for 3.x |
+| Payload 3.x scaffold | 🔲 In progress | Running now |
+| Neon database | 🔲 Not started | Set up when CMS collections card starts |
+| Vercel project | 🔲 Not started | Set up after scaffold verified |
+| Cloudflare R2 bucket | 🔲 Not started | Set up when CMS collections card starts |
+| Domain access | ✅ Have access | cretetownship.com — manage current WP site |
+| Client assets | ✅ Have access | Logo, seal, all docs — InterPeak manages site |
 | Existing PDFs | ✅ Have access | WP admin + FTP available |
 
 ---
 
 ## Session Log
-> Update this section at the END of every Claude Code session.
-> Format: [Date] — What was built — What's next
 
 | Date | Built | Next |
 |------|-------|------|
-| — | Project initialized | Create GitHub repo + scaffold monorepo |
+| May 2026 | Repo created. CLAUDE.md committed. Payload 2.x scaffold built then scrapped — pivoted to Payload 3.x single-app. | Scaffold Payload 3.x + Next.js 14 |
 
 ---
 
 ## Current Session Goal
-**Active Trello card:** Project Setup — Scaffold monorepo
-**Working on:** GitHub repo creation + Next.js/Payload skeleton
-**Next after this:** Configure Tailwind tokens (Design System list)
+**Active Trello card:** Project Setup — Scaffold (Payload 3.x)
+**Working on:** Payload 3.x + Next.js 14 single-app scaffold
+**Next after this:** Tailwind design tokens (Design System list)
 
 ---
 
 ## How to Start Each Session
-Open Claude Code from the repo root and say:
-> "Read CLAUDE.md. Tell me what was completed last session and what we're building today."
-
-Claude Code will orient from this file before writing any code.
+```
+"Read CLAUDE.md. Tell me what was completed last session and what we are building today."
+```
