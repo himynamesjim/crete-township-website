@@ -10,6 +10,7 @@ import { fileURLToPath } from 'url'
 
 import { anyone } from '../access/anyone'
 import { authenticated } from '../access/authenticated'
+import { isAdminOrSuperAdmin } from '../access'
 
 const filename = fileURLToPath(import.meta.url)
 const dirname = path.dirname(filename)
@@ -17,6 +18,8 @@ const dirname = path.dirname(filename)
 export const Media: CollectionConfig = {
   slug: 'media',
   access: {
+    // Hide from Township Admin - only Admin and Super Admin
+    admin: isAdminOrSuperAdmin,
     create: authenticated,
     delete: authenticated,
     read: anyone,
@@ -39,8 +42,8 @@ export const Media: CollectionConfig = {
     },
   ],
   upload: {
-    // Upload to the public/media directory in Next.js making them publicly accessible even outside of Payload
-    staticDir: path.resolve(dirname, '../../public/media'),
+    // Using Vercel Blob storage
+    // No staticDir needed - using Vercel Blob storage
     adminThumbnail: 'thumbnail',
     focalPoint: true,
     imageSizes: [

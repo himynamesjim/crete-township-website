@@ -43,8 +43,8 @@
   --breakpoint-lg: 64rem;
   --breakpoint-xl: 80rem;
   --breakpoint-2xl: 86rem;
-  --font-mono: var(--font-geist-mono);
-  --font-sans: var(--font-geist-sans);
+  --font-display: var(--font-display);
+  --font-body: var(--font-body);
 }
 
 @layer utilities {
@@ -210,7 +210,10 @@
     @apply border-border outline-ring/50;
   }
   body {
-    @apply bg-background text-foreground min-h-[100vh] flex flex-col;
+    @apply bg-cream text-gray-600 min-h-[100vh] flex flex-col font-body;
+  }
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-display text-navy;
   }
 }
 

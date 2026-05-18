@@ -1,0 +1,72 @@
+
+---Downloaded files---
+The import files for: TownPress Widgets were successfully downloaded!
+Initial max execution time = 120
+Files info:
+Site URL = https://cretetownship.com/new
+Data file = /home/customer/www/cretetownship.com/public_html/new/wp-content/themes/townpress/inc/demo-import/content-blank.xml
+Widget file = /home/customer/www/cretetownship.com/public_html/new/wp-content/themes/townpress/inc/demo-import/widgets.wie
+Customizer file = not defined!
+Redux files:
+not defined!
+
+---Importing widgets---
+Default Left Sidebar : 
+
+TownPress Menu - No Title - Imported
+TownPress Weather - Weather Info - Imported
+LSVR Featured Gallery - Featured Gallery - Imported
+
+Default Right Sidebar : 
+
+LSVR Notices - Notices - Imported
+LSVR Directory - Interesting Places - Imported
+
+Footer Widgets : 
+
+Text - About TownPress - Imported
+LSVR Events - Upcoming Events - Imported
+LSVR Documents - Important Forms - Imported
+Text - Quick Contact - Imported
+
+Dashboard Home : 
+
+TownPress Menu - No Title - Imported
+LSVR Directory - Interesting Places - Imported
+
+Notices : 
+
+LSVR Notice Categories - Notice Categories - Imported
+LSVR Notices - Notices - Imported
+
+Directory : 
+
+LSVR Featured Directory Listing - Featured Listing - Imported
+LSVR Directory - Directory - Imported
+
+Events : 
+
+LSVR Event Filter - Filter Events - Imported
+LSVR Featured Event - Featured Event - Imported
+LSVR Events - Upcoming Events - Imported
+LSVR Event Locations - Locations - Imported
+
+Galleries : 
+
+LSVR Featured Gallery - Featured Gallery - Imported
+LSVR Galleries - Galleries - Imported
+
+Documents : 
+
+LSVR Featured Document - Featured Document - Imported
+LSVR Document Attachments - Attachments - Imported
+
+People : 
+
+LSVR Featured Person - Featured Person - Imported
+LSVR People - People - Imported
+
+
+
+---ocdi/after_import---
+

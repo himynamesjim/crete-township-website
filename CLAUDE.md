@@ -25,7 +25,7 @@ at /admin on the same Vercel deployment. No separate CMS server needed.
 Database: Neon serverless Postgres (free tier).
 
 Chosen over Payload 2.x monorepo for:
-- Zero monthly operating cost (Vercel free + Neon free + R2 free)
+- Zero monthly operating cost (Vercel free + Neon free + Vercel Blob free tier)
 - Single deployment — simpler client handoff and maintenance
 - Identical CMS admin experience for township staff
 - Same REST API available for Phase 2 FlutterFlow mobile app
@@ -40,7 +40,7 @@ Chosen over Payload 2.x monorepo for:
 | CMS | Payload CMS 3.x | Runs inside Next.js as a plugin |
 | Database | Neon serverless Postgres | Free tier, no server to manage |
 | Styling | Tailwind CSS | Custom tokens defined below |
-| File Storage | Cloudflare R2 | PDF/doc storage, zero egress cost |
+| File Storage | Vercel Blob | Integrated file storage for PDFs and images |
 | Hosting | Vercel | Free tier, single deployment |
 | Rich Text | @payloadcms/richtext-lexical | Payload 3.x default editor |
 
@@ -129,7 +129,7 @@ crete-township-website/
 ### Tailwind Config Extension
 
 ```ts
-// tailwind.config.ts
+// tailwind.config.mjs
 colors: {
   navy: {
     DEFAULT: '#1B3A5C',
@@ -144,10 +144,17 @@ colors: {
   cream: '#F8F5F0',
 },
 fontFamily: {
-  display: ['Playfair Display', 'Georgia', 'serif'],
-  body:    ['DM Sans', 'system-ui', 'sans-serif'],
+  // ADA/Section 508 compliant fonts for government websites
+  body:    ['Source Sans 3', 'Source Sans Pro', 'system-ui', 'sans-serif'], // All UI text
+  display: ['Merriweather', 'Georgia', 'serif'], // Headings only (accessible serif)
 },
 ```
+
+**Font Compliance Note:**
+Government websites must use ADA/Section 508 compliant fonts. We use:
+- **Source Sans 3** (formerly Source Sans Pro) for all body text, navigation, and UI elements
+- **Merriweather** for headings only (conservative, accessible serif alternative to decorative fonts)
+- Minimum 16px body text size with strong contrast ratios maintained
 
 ### Typography Scale
 
@@ -207,38 +214,38 @@ publishedAt: date      (auto-set on publish via beforeChange hook)
 ### 1. BoardAgendas — slug: 'board-agendas'
 ```ts
 documentType: select ['Regular Board Meeting', 'Special Meeting', 'Annual Town Meeting']
-file:         upload → Cloudflare R2 (PDF)
+file:         upload → Vercel Blob (PDF)
 ```
 
 ### 2. MeetingMinutes — slug: 'meeting-minutes'
 ```ts
 documentType: select ['Regular Board', 'Special Board', 'Assessor Minutes']
-file:         upload → Cloudflare R2 (PDF)
+file:         upload → Vercel Blob (PDF)
 ```
 
 ### 3. FinancialReports — slug: 'financial-reports'
 ```ts
 documentType: select ['Audited Statement', 'Cash Balance', 'Budget Ordinance', 'Other']
 fiscalYear:   number
-file:         upload → Cloudflare R2 (PDF)
+file:         upload → Vercel Blob (PDF)
 ```
 
 ### 4. AssessorDocuments — slug: 'assessor-documents'
 ```ts
 documentType: select ['Assessor Minutes', 'HOA', 'Exemption Forms', 'Other']
-file:         upload → Cloudflare R2 (PDF)
+file:         upload → Vercel Blob (PDF)
 ```
 
 ### 5. RoadDistrictReports — slug: 'road-district-reports'
 ```ts
 documentType: select ['Highway Commissioner', 'Environmental', 'Storm Sewer', 'Other']
-file:         upload → Cloudflare R2 (PDF)
+file:         upload → Vercel Blob (PDF)
 ```
 
 ### 6. Newsletters — slug: 'newsletters'
 ```ts
-file:        upload → Cloudflare R2 (PDF)
-coverImage:  upload → Cloudflare R2 (optional)
+file:        upload → Vercel Blob (PDF)
+coverImage:  upload → Vercel Blob (optional)
 ```
 
 ### 7. Events — slug: 'events'
@@ -283,11 +290,7 @@ role: select ['admin', 'editor']
 ```
 DATABASE_URI=postgresql://[neon-connection-string]
 PAYLOAD_SECRET=[random-32-char-string]
-R2_BUCKET=crete-township-docs
-R2_ACCESS_KEY=[cloudflare-r2-access-key]
-R2_SECRET_KEY=[cloudflare-r2-secret-key]
-R2_ENDPOINT=https://[account-id].r2.cloudflarestorage.com
-R2_PUBLIC_URL=https://[public-r2-url]
+BLOB_READ_WRITE_TOKEN=[vercel-blob-token]
 NEXT_PUBLIC_SITE_URL=https://cretetownship.com
 ```
 
@@ -295,11 +298,7 @@ NEXT_PUBLIC_SITE_URL=https://cretetownship.com
 ```
 DATABASE_URI=
 PAYLOAD_SECRET=
-R2_BUCKET=
-R2_ACCESS_KEY=
-R2_SECRET_KEY=
-R2_ENDPOINT=
-R2_PUBLIC_URL=
+BLOB_READ_WRITE_TOKEN=
 NEXT_PUBLIC_SITE_URL=
 ```
 
@@ -316,7 +315,7 @@ NEXT_PUBLIC_SITE_URL=
 - **Tailwind only** — no CSS modules, no styled-components, no inline styles
 - **No third-party UI library** — all components built from Tailwind
 - **TypeScript strict** — no .js files, avoid any types
-- **Cloudflare R2** — zero egress cost for PDF document serving
+- **Vercel Blob for file storage** — integrated with Vercel deployment, simpler than R2 configuration
 
 ---
 
@@ -324,8 +323,17 @@ NEXT_PUBLIC_SITE_URL=
 
 | Page | Route | Status |
 |------|-------|--------|
-| Homepage | / | 🔲 Not started |
-| Document Library | /documents | 🔲 Not started |
+| Homepage | / | ✅ Done (static demo version with all sections) |
+| Document Library | /documents | 🔲 Not started (main landing page) |
+| Agendas | /documents/agendas | ✅ Done (advanced listing with filters) |
+| Meeting Minutes | /documents/meeting-minutes | ✅ Done (advanced listing with filters) |
+| Annual Town Meetings | /documents/annual-town-meetings | ✅ Done (advanced listing with filters) |
+| Audited Financial Statements | /documents/audited-financial-statements | ✅ Done (advanced listing with filters) |
+| Cash Balance Reports | /documents/cash-balance-reports | ✅ Done (advanced listing with filters) |
+| Town Fund & Tax Levy Minutes | /documents/town-fund-levy-minutes | ✅ Done (advanced listing with filters) |
+| Assessor Minutes | /documents/assessor-minutes | ✅ Done (advanced listing with filters) |
+| Highway Commissioner Reports | /documents/highway-commissioner | ✅ Done (advanced listing with filters) |
+| Newsletters | /documents/newsletters | ✅ Done (advanced listing with filters) |
 | Events | /events | 🔲 Not started |
 | Offices & Officials | /officials | 🔲 Not started |
 | About | /about | 🔲 Not started |
@@ -341,16 +349,17 @@ NEXT_PUBLIC_SITE_URL=
 
 | Component | Path | Status |
 |-----------|------|--------|
-| Tailwind tokens | tailwind.config.ts | 🔲 Not started |
-| Button | components/ui/Button.tsx | 🔲 Not started |
-| Badge / Pill | components/ui/Badge.tsx | 🔲 Not started |
-| SectionTitle | components/ui/SectionTitle.tsx | 🔲 Not started |
-| AlertBanner | components/ui/AlertBanner.tsx | 🔲 Not started |
-| DocCard | components/ui/DocCard.tsx | 🔲 Not started |
-| EventCard | components/ui/EventCard.tsx | 🔲 Not started |
-| AnnouncementCard | components/ui/AnnouncementCard.tsx | 🔲 Not started |
-| Header | components/layout/Header.tsx | 🔲 Not started |
-| Footer | components/layout/Footer.tsx | 🔲 Not started |
+| Tailwind tokens | tailwind.config.ts | ✅ Done |
+| Button | src/components/ui/button.tsx | ✅ Done (gold primary, navy outline variants) |
+| Badge | src/components/ui/badge.tsx | ✅ Done (category pills + DateBadge) |
+| Card | src/components/ui/card.tsx | ✅ Done (base card with Crete styling) |
+| DocumentCard | src/components/ui/DocumentCard.tsx | ✅ Done (document cards with grid/list view support) |
+| EventCard | src/components/ui/EventCard.tsx | ✅ Done (event cards with date badge) |
+| TownshipHeader | src/components/layout/TownshipHeader.tsx | ✅ Done (sticky nav, Reports dropdown with 8 document types) |
+| HeroSection | src/components/layout/HeroSection.tsx | ✅ Done (hero with upcoming events sidebar) |
+| TownshipFooter | src/components/layout/TownshipFooter.tsx | ✅ Done (4-column footer) |
+| DocumentListingAdvanced | src/components/DocumentListingAdvanced.tsx | ✅ Done (filters sidebar, grid/list toggle, search, year/type filters) |
+| PageHero | src/components/PageHero.tsx | ✅ Done (page hero with breadcrumbs) |
 
 ---
 
@@ -358,15 +367,16 @@ NEXT_PUBLIC_SITE_URL=
 
 | Collection | Status |
 |------------|--------|
-| BoardAgendas | 🔲 Not started |
-| MeetingMinutes | 🔲 Not started |
-| FinancialReports | 🔲 Not started |
-| AssessorDocuments | 🔲 Not started |
-| RoadDistrictReports | 🔲 Not started |
-| Newsletters | 🔲 Not started |
-| Events | 🔲 Not started |
-| Announcements | 🔲 Not started |
+| BoardAgendas | ✅ Done (collection created, role-based access configured) |
+| MeetingMinutes | ✅ Done (collection created, role-based access configured) |
+| FinancialReports | ✅ Done (collection created, role-based access configured) |
+| AssessorDocuments | ✅ Done (collection created, role-based access configured) |
+| RoadDistrictReports | ✅ Done (collection created, role-based access configured) |
+| Newsletters | ✅ Done (collection created, role-based access configured) |
+| Events | ✅ Done (collection created, role-based access configured) |
+| Announcements | ✅ Done (collection created, role-based access configured) |
 | Officials | 🔲 Not started |
+| Users | ✅ Done (5 roles configured: Super Admin, Township Admin, Admin, Editor, Viewer) |
 
 ---
 
@@ -377,12 +387,14 @@ NEXT_PUBLIC_SITE_URL=
 | GitHub repo | ✅ Done | crete-township-website (private) |
 | CLAUDE.md | ✅ Done | Committed to main, updated for 3.x |
 | Payload 3.x scaffold | ✅ Done | Next.js 14 + Payload 3.x, PostgreSQL configured |
-| Neon database | 🔲 Not started | Set up when CMS collections card starts |
+| Neon database | ✅ Done | Connected - schema initialized automatically |
+| Tailwind design system | ✅ Done | Colors, fonts, weights configured per spec |
 | Vercel project | 🔲 Not started | Set up after scaffold verified |
-| Cloudflare R2 bucket | 🔲 Not started | Set up when CMS collections card starts |
+| Vercel Blob storage | ✅ Done | @payloadcms/storage-vercel-blob configured, BLOB_READ_WRITE_TOKEN added |
+| WordPress migration | ✅ Done | 3,316 files sorted, 627 documents renamed with proper dates |
 | Domain access | ✅ Have access | cretetownship.com — manage current WP site |
 | Client assets | ✅ Have access | Logo, seal, all docs — InterPeak manages site |
-| Existing PDFs | ✅ Have access | WP admin + FTP available |
+| Existing PDFs | ✅ Migrated | All files sorted and renamed in ./migration/sorted/ |
 
 ---
 
@@ -390,14 +402,18 @@ NEXT_PUBLIC_SITE_URL=
 
 | Date | Built | Next |
 |------|-------|------|
-| 2026-05-18 | ✅ Payload 3.x scaffold complete: Next.js 14 App Router, Payload 3.x plugin, PostgreSQL adapter, .env files configured. Dev server verified at localhost:3000, /admin route works (requires DB connection to fully start). | Connect Neon PostgreSQL database + build Tailwind design system |
+| 2026-05-18 (AM) | ✅ Payload 3.x scaffold complete: Next.js 14 App Router, Payload 3.x plugin, PostgreSQL adapter, .env files configured. Dev server verified at localhost:3000, /admin route works (requires DB connection to fully start). | Connect Neon PostgreSQL database + build Tailwind design system |
+| 2026-05-18 (PM) | ✅ Neon database connected, admin user created. Tailwind design system complete (navy/gold colors, Playfair Display + DM Sans fonts, all weights). SSL mode fixed to verify-full. | Build UI component library |
+| 2026-05-18 (PM) | ✅ Complete UI component library: Button, Badge, Card, DocCard, EventCard. Built TownshipHeader (blue bg, contact info, nav, search), HeroSection (with stats), TownshipFooter (4-column). Created full static homepage with all sections (Hero, Services grid, Document Library, Events sidebar, Announcements). | Refine homepage layout based on mockup feedback |
+| 2026-05-18 (PM) | ✅ Homepage layout refinements: Widened content containers from 1100px to 1400px. Moved search box inline with nav menu (right side). Added gold 3px border under main header. Active menu items show gold underline (no white bg). Moved Announcements section above Township Services. Added Upcoming Events sidebar in hero section. Font compliance: Changed to Source Sans 3 + Merriweather per ADA/Section 508 requirements. | Begin building CMS collections |
+| 2026-05-18 (PM) | ✅ Implemented Vercel Blob storage using @payloadcms/storage-vercel-blob for all file uploads (documents and media collections). Replaced all Cloudflare R2 references with Vercel Blob. Updated .env.example with BLOB_READ_WRITE_TOKEN. Configured role-based access control with 5 roles: Super Admin, Township Admin (Documents/Content/Site Configs only), Admin, Editor, Viewer. Created comprehensive document collections: BoardAgendas, MeetingMinutes, FinancialReports, AssessorDocuments, RoadDistrictReports, Newsletters, Events, Announcements. Migrated 3,316 WordPress files: sorted by category (568 docs, 2,570 images) and renamed 627 documents with proper date formatting (e.g., "January 13, 2025 - Meeting Minutes.pdf"). Created scripts/sort-media.cjs and scripts/rename-files.cjs for automation. | Upload migrated documents to CMS and build remaining pages |
+| 2026-05-18 (PM - Session 2) | ✅ Built complete document library system: (1) Updated TownshipHeader with "Reports" dropdown containing 8 document types, moved to global layout for all pages. (2) Created DocumentListingAdvanced component with left sidebar filters (search, year, type), grid/list view toggle, document count display. (3) Created all 9 document listing pages: agendas, meeting-minutes, annual-town-meetings, audited-financial-statements, cash-balance-reports, town-fund-levy-minutes, assessor-minutes, highway-commissioner, newsletters. (4) Fixed enum database errors in document queries (changed 'Annual Town Meeting' → 'annual', 'Audited Statement' → 'audited-statement', 'Cash Balance' → 'cash-balance'). (5) Refactored TownshipHeader structure: moved nav outside header wrapper for proper sticky positioning (sticky top-0 z-50). Fixed sidebar sticky positioning in DocumentListingAdvanced (sticky top-24 with proper wrapper). List view set as default. All document pages now use advanced listing interface. | Continue document migration OR build events/officials pages |
 
 ---
 
 ## Current Session Goal
-**Active Trello card:** Project Setup — Scaffold (Payload 3.x)
-**Working on:** Payload 3.x + Next.js 14 single-app scaffold
-**Next after this:** Tailwind design tokens (Design System list)
+**Status:** Document library system complete — all 9 document listing pages built with advanced filters, sticky navigation working correctly
+**Next step:** Upload migrated documents to Payload CMS via admin panel OR build /documents main landing page OR build /events page
 
 ---
 

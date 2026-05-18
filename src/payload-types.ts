@@ -67,11 +67,20 @@ export interface Config {
   };
   blocks: {};
   collections: {
+    'board-agendas': BoardAgenda;
+    'meeting-minutes': MeetingMinute;
+    'financial-reports': FinancialReport;
+    'assessor-documents': AssessorDocument;
+    'road-district-reports': RoadDistrictReport;
+    newsletters: Newsletter;
+    events: Event;
+    announcements: Announcement;
+    documents: Document;
+    users: User;
     pages: Page;
     posts: Post;
     media: Media;
     categories: Category;
-    users: User;
     redirects: Redirect;
     forms: Form;
     'form-submissions': FormSubmission;
@@ -84,11 +93,20 @@ export interface Config {
   };
   collectionsJoins: {};
   collectionsSelect: {
+    'board-agendas': BoardAgendasSelect<false> | BoardAgendasSelect<true>;
+    'meeting-minutes': MeetingMinutesSelect<false> | MeetingMinutesSelect<true>;
+    'financial-reports': FinancialReportsSelect<false> | FinancialReportsSelect<true>;
+    'assessor-documents': AssessorDocumentsSelect<false> | AssessorDocumentsSelect<true>;
+    'road-district-reports': RoadDistrictReportsSelect<false> | RoadDistrictReportsSelect<true>;
+    newsletters: NewslettersSelect<false> | NewslettersSelect<true>;
+    events: EventsSelect<false> | EventsSelect<true>;
+    announcements: AnnouncementsSelect<false> | AnnouncementsSelect<true>;
+    documents: DocumentsSelect<false> | DocumentsSelect<true>;
+    users: UsersSelect<false> | UsersSelect<true>;
     pages: PagesSelect<false> | PagesSelect<true>;
     posts: PostsSelect<false> | PostsSelect<true>;
     media: MediaSelect<false> | MediaSelect<true>;
     categories: CategoriesSelect<false> | CategoriesSelect<true>;
-    users: UsersSelect<false> | UsersSelect<true>;
     redirects: RedirectsSelect<false> | RedirectsSelect<true>;
     forms: FormsSelect<false> | FormsSelect<true>;
     'form-submissions': FormSubmissionsSelect<false> | FormSubmissionsSelect<true>;
@@ -104,10 +122,12 @@ export interface Config {
   };
   fallbackLocale: null;
   globals: {
+    'alert-banner': AlertBanner;
     header: Header;
     footer: Footer;
   };
   globalsSelect: {
+    'alert-banner': AlertBannerSelect<false> | AlertBannerSelect<true>;
     header: HeaderSelect<false> | HeaderSelect<true>;
     footer: FooterSelect<false> | FooterSelect<true>;
   };
@@ -144,6 +164,324 @@ export interface UserAuthOperations {
     email: string;
     password: string;
   };
+}
+/**
+ * Upload and manage board meeting agendas and minutes
+ *
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "board-agendas".
+ */
+export interface BoardAgenda {
+  id: number;
+  title: string;
+  date: string;
+  documentType: 'regular' | 'special' | 'annual';
+  description?: string | null;
+  file: number | Document;
+  status: 'draft' | 'published' | 'archived';
+  publishedAt?: string | null;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "documents".
+ */
+export interface Document {
+  id: number;
+  alt?: string | null;
+  updatedAt: string;
+  createdAt: string;
+  url?: string | null;
+  thumbnailURL?: string | null;
+  filename?: string | null;
+  mimeType?: string | null;
+  filesize?: number | null;
+  width?: number | null;
+  height?: number | null;
+  focalX?: number | null;
+  focalY?: number | null;
+}
+/**
+ * Upload board and committee meeting minutes
+ *
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "meeting-minutes".
+ */
+export interface MeetingMinute {
+  id: number;
+  title: string;
+  date: string;
+  documentType: 'regular-board' | 'special-board' | 'assessor' | 'road-district';
+  description?: string | null;
+  file: number | Document;
+  status: 'draft' | 'published' | 'archived';
+  publishedAt?: string | null;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * Manage audited statements, cash balance reports, and budget documents
+ *
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "financial-reports".
+ */
+export interface FinancialReport {
+  id: number;
+  title: string;
+  date: string;
+  fiscalYear: number;
+  documentType: 'audited-statement' | 'cash-balance' | 'budget-ordinance' | 'tax-levy' | 'other';
+  description?: string | null;
+  file: number | Document;
+  status: 'draft' | 'published' | 'archived';
+  publishedAt?: string | null;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * Manage assessor forms, exemptions, and HOA documents
+ *
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "assessor-documents".
+ */
+export interface AssessorDocument {
+  id: number;
+  title: string;
+  date: string;
+  documentType: 'exemption-form' | 'hoa' | 'assessor-minutes' | 'other';
+  description?: string | null;
+  file: number | Document;
+  status: 'draft' | 'published' | 'archived';
+  publishedAt?: string | null;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * Highway commissioner reports and road district documents
+ *
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "road-district-reports".
+ */
+export interface RoadDistrictReport {
+  id: number;
+  title: string;
+  date: string;
+  documentType: 'highway-commissioner' | 'environmental' | 'storm-sewer' | 'road-bridge-levy' | 'other';
+  description?: string | null;
+  file: number | Document;
+  status: 'draft' | 'published' | 'archived';
+  publishedAt?: string | null;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * Township newsletters and community bulletins
+ *
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "newsletters".
+ */
+export interface Newsletter {
+  id: number;
+  title: string;
+  date: string;
+  description?: string | null;
+  file: number | Document;
+  /**
+   * Optional thumbnail image for the newsletter
+   */
+  coverImage?: (number | null) | Media;
+  status: 'draft' | 'published' | 'archived';
+  publishedAt?: string | null;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "media".
+ */
+export interface Media {
+  id: number;
+  alt?: string | null;
+  caption?: {
+    root: {
+      type: string;
+      children: {
+        type: any;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  } | null;
+  updatedAt: string;
+  createdAt: string;
+  url?: string | null;
+  thumbnailURL?: string | null;
+  filename?: string | null;
+  mimeType?: string | null;
+  filesize?: number | null;
+  width?: number | null;
+  height?: number | null;
+  focalX?: number | null;
+  focalY?: number | null;
+  sizes?: {
+    thumbnail?: {
+      url?: string | null;
+      width?: number | null;
+      height?: number | null;
+      mimeType?: string | null;
+      filesize?: number | null;
+      filename?: string | null;
+    };
+    square?: {
+      url?: string | null;
+      width?: number | null;
+      height?: number | null;
+      mimeType?: string | null;
+      filesize?: number | null;
+      filename?: string | null;
+    };
+    small?: {
+      url?: string | null;
+      width?: number | null;
+      height?: number | null;
+      mimeType?: string | null;
+      filesize?: number | null;
+      filename?: string | null;
+    };
+    medium?: {
+      url?: string | null;
+      width?: number | null;
+      height?: number | null;
+      mimeType?: string | null;
+      filesize?: number | null;
+      filename?: string | null;
+    };
+    large?: {
+      url?: string | null;
+      width?: number | null;
+      height?: number | null;
+      mimeType?: string | null;
+      filesize?: number | null;
+      filename?: string | null;
+    };
+    xlarge?: {
+      url?: string | null;
+      width?: number | null;
+      height?: number | null;
+      mimeType?: string | null;
+      filesize?: number | null;
+      filename?: string | null;
+    };
+    og?: {
+      url?: string | null;
+      width?: number | null;
+      height?: number | null;
+      mimeType?: string | null;
+      filesize?: number | null;
+      filename?: string | null;
+    };
+  };
+}
+/**
+ * Manage township calendar events and meetings
+ *
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "events".
+ */
+export interface Event {
+  id: number;
+  title: string;
+  startDate: string;
+  endDate?: string | null;
+  location?: string | null;
+  description?: {
+    root: {
+      type: string;
+      children: {
+        type: any;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  } | null;
+  category: 'board-meeting' | 'community' | 'senior-programs' | 'recreational' | 'food-pantry' | 'general';
+  /**
+   * Display this event prominently on the homepage
+   */
+  featured?: boolean | null;
+  status: 'draft' | 'published' | 'cancelled' | 'archived';
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * Create announcements to display on the township homepage
+ *
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "announcements".
+ */
+export interface Announcement {
+  id: number;
+  title: string;
+  body: string;
+  category: 'board' | 'road-district' | 'assessor' | 'community' | 'general';
+  /**
+   * Uncheck to hide this announcement from the site
+   */
+  active?: boolean | null;
+  /**
+   * Announcement will auto-hide after this date
+   */
+  expiresAt?: string | null;
+  publishedAt?: string | null;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * Manage users and their access permissions
+ *
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "users".
+ */
+export interface User {
+  id: number;
+  name: string;
+  /**
+   * Super Admin: Full access | Township Admin: Documents, Content, Site Configs only | Admin: Manage content | Editor: Create/edit content | Viewer: Read-only
+   */
+  role: 'super-admin' | 'township-admin' | 'admin' | 'editor' | 'viewer';
+  /**
+   * User's department (optional)
+   */
+  department?: ('board' | 'assessor' | 'road-district' | 'clerk' | 'general-assistance' | 'general') | null;
+  updatedAt: string;
+  createdAt: string;
+  email: string;
+  resetPasswordToken?: string | null;
+  resetPasswordExpiration?: string | null;
+  salt?: string | null;
+  hash?: string | null;
+  loginAttempts?: number | null;
+  lockUntil?: string | null;
+  sessions?:
+    | {
+        id: string;
+        createdAt?: string | null;
+        expiresAt: string;
+      }[]
+    | null;
+  password?: string | null;
+  collection: 'users';
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -266,98 +604,6 @@ export interface Post {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "media".
- */
-export interface Media {
-  id: number;
-  alt?: string | null;
-  caption?: {
-    root: {
-      type: string;
-      children: {
-        type: any;
-        version: number;
-        [k: string]: unknown;
-      }[];
-      direction: ('ltr' | 'rtl') | null;
-      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
-      indent: number;
-      version: number;
-    };
-    [k: string]: unknown;
-  } | null;
-  updatedAt: string;
-  createdAt: string;
-  url?: string | null;
-  thumbnailURL?: string | null;
-  filename?: string | null;
-  mimeType?: string | null;
-  filesize?: number | null;
-  width?: number | null;
-  height?: number | null;
-  focalX?: number | null;
-  focalY?: number | null;
-  sizes?: {
-    thumbnail?: {
-      url?: string | null;
-      width?: number | null;
-      height?: number | null;
-      mimeType?: string | null;
-      filesize?: number | null;
-      filename?: string | null;
-    };
-    square?: {
-      url?: string | null;
-      width?: number | null;
-      height?: number | null;
-      mimeType?: string | null;
-      filesize?: number | null;
-      filename?: string | null;
-    };
-    small?: {
-      url?: string | null;
-      width?: number | null;
-      height?: number | null;
-      mimeType?: string | null;
-      filesize?: number | null;
-      filename?: string | null;
-    };
-    medium?: {
-      url?: string | null;
-      width?: number | null;
-      height?: number | null;
-      mimeType?: string | null;
-      filesize?: number | null;
-      filename?: string | null;
-    };
-    large?: {
-      url?: string | null;
-      width?: number | null;
-      height?: number | null;
-      mimeType?: string | null;
-      filesize?: number | null;
-      filename?: string | null;
-    };
-    xlarge?: {
-      url?: string | null;
-      width?: number | null;
-      height?: number | null;
-      mimeType?: string | null;
-      filesize?: number | null;
-      filename?: string | null;
-    };
-    og?: {
-      url?: string | null;
-      width?: number | null;
-      height?: number | null;
-      mimeType?: string | null;
-      filesize?: number | null;
-      filename?: string | null;
-    };
-  };
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "categories".
  */
 export interface Category {
@@ -379,32 +625,6 @@ export interface Category {
     | null;
   updatedAt: string;
   createdAt: string;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "users".
- */
-export interface User {
-  id: number;
-  name?: string | null;
-  updatedAt: string;
-  createdAt: string;
-  email: string;
-  resetPasswordToken?: string | null;
-  resetPasswordExpiration?: string | null;
-  salt?: string | null;
-  hash?: string | null;
-  loginAttempts?: number | null;
-  lockUntil?: string | null;
-  sessions?:
-    | {
-        id: string;
-        createdAt?: string | null;
-        expiresAt: string;
-      }[]
-    | null;
-  password?: string | null;
-  collection: 'users';
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -939,6 +1159,46 @@ export interface PayloadLockedDocument {
   id: number;
   document?:
     | ({
+        relationTo: 'board-agendas';
+        value: number | BoardAgenda;
+      } | null)
+    | ({
+        relationTo: 'meeting-minutes';
+        value: number | MeetingMinute;
+      } | null)
+    | ({
+        relationTo: 'financial-reports';
+        value: number | FinancialReport;
+      } | null)
+    | ({
+        relationTo: 'assessor-documents';
+        value: number | AssessorDocument;
+      } | null)
+    | ({
+        relationTo: 'road-district-reports';
+        value: number | RoadDistrictReport;
+      } | null)
+    | ({
+        relationTo: 'newsletters';
+        value: number | Newsletter;
+      } | null)
+    | ({
+        relationTo: 'events';
+        value: number | Event;
+      } | null)
+    | ({
+        relationTo: 'announcements';
+        value: number | Announcement;
+      } | null)
+    | ({
+        relationTo: 'documents';
+        value: number | Document;
+      } | null)
+    | ({
+        relationTo: 'users';
+        value: number | User;
+      } | null)
+    | ({
         relationTo: 'pages';
         value: number | Page;
       } | null)
@@ -953,10 +1213,6 @@ export interface PayloadLockedDocument {
     | ({
         relationTo: 'categories';
         value: number | Category;
-      } | null)
-    | ({
-        relationTo: 'users';
-        value: number | User;
       } | null)
     | ({
         relationTo: 'redirects';
@@ -1015,6 +1271,170 @@ export interface PayloadMigration {
   batch?: number | null;
   updatedAt: string;
   createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "board-agendas_select".
+ */
+export interface BoardAgendasSelect<T extends boolean = true> {
+  title?: T;
+  date?: T;
+  documentType?: T;
+  description?: T;
+  file?: T;
+  status?: T;
+  publishedAt?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "meeting-minutes_select".
+ */
+export interface MeetingMinutesSelect<T extends boolean = true> {
+  title?: T;
+  date?: T;
+  documentType?: T;
+  description?: T;
+  file?: T;
+  status?: T;
+  publishedAt?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "financial-reports_select".
+ */
+export interface FinancialReportsSelect<T extends boolean = true> {
+  title?: T;
+  date?: T;
+  fiscalYear?: T;
+  documentType?: T;
+  description?: T;
+  file?: T;
+  status?: T;
+  publishedAt?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "assessor-documents_select".
+ */
+export interface AssessorDocumentsSelect<T extends boolean = true> {
+  title?: T;
+  date?: T;
+  documentType?: T;
+  description?: T;
+  file?: T;
+  status?: T;
+  publishedAt?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "road-district-reports_select".
+ */
+export interface RoadDistrictReportsSelect<T extends boolean = true> {
+  title?: T;
+  date?: T;
+  documentType?: T;
+  description?: T;
+  file?: T;
+  status?: T;
+  publishedAt?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "newsletters_select".
+ */
+export interface NewslettersSelect<T extends boolean = true> {
+  title?: T;
+  date?: T;
+  description?: T;
+  file?: T;
+  coverImage?: T;
+  status?: T;
+  publishedAt?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "events_select".
+ */
+export interface EventsSelect<T extends boolean = true> {
+  title?: T;
+  startDate?: T;
+  endDate?: T;
+  location?: T;
+  description?: T;
+  category?: T;
+  featured?: T;
+  status?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "announcements_select".
+ */
+export interface AnnouncementsSelect<T extends boolean = true> {
+  title?: T;
+  body?: T;
+  category?: T;
+  active?: T;
+  expiresAt?: T;
+  publishedAt?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "documents_select".
+ */
+export interface DocumentsSelect<T extends boolean = true> {
+  alt?: T;
+  updatedAt?: T;
+  createdAt?: T;
+  url?: T;
+  thumbnailURL?: T;
+  filename?: T;
+  mimeType?: T;
+  filesize?: T;
+  width?: T;
+  height?: T;
+  focalX?: T;
+  focalY?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "users_select".
+ */
+export interface UsersSelect<T extends boolean = true> {
+  name?: T;
+  role?: T;
+  department?: T;
+  updatedAt?: T;
+  createdAt?: T;
+  email?: T;
+  resetPasswordToken?: T;
+  resetPasswordExpiration?: T;
+  salt?: T;
+  hash?: T;
+  loginAttempts?: T;
+  lockUntil?: T;
+  sessions?:
+    | T
+    | {
+        id?: T;
+        createdAt?: T;
+        expiresAt?: T;
+      };
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -1297,29 +1717,6 @@ export interface CategoriesSelect<T extends boolean = true> {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "users_select".
- */
-export interface UsersSelect<T extends boolean = true> {
-  name?: T;
-  updatedAt?: T;
-  createdAt?: T;
-  email?: T;
-  resetPasswordToken?: T;
-  resetPasswordExpiration?: T;
-  salt?: T;
-  hash?: T;
-  loginAttempts?: T;
-  lockUntil?: T;
-  sessions?:
-    | T
-    | {
-        id?: T;
-        createdAt?: T;
-        expiresAt?: T;
-      };
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "redirects_select".
  */
 export interface RedirectsSelect<T extends boolean = true> {
@@ -1582,6 +1979,31 @@ export interface PayloadMigrationsSelect<T extends boolean = true> {
   createdAt?: T;
 }
 /**
+ * Emergency or important site-wide notice displayed at the top of every page
+ *
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "alert-banner".
+ */
+export interface AlertBanner {
+  id: number;
+  /**
+   * Toggle to show/hide the alert banner site-wide
+   */
+  enabled?: boolean | null;
+  message: string;
+  type: 'info' | 'warning' | 'emergency' | 'success';
+  link?: {
+    url?: string | null;
+    text?: string | null;
+  };
+  /**
+   * Alert will automatically hide after this date
+   */
+  expiresAt?: string | null;
+  updatedAt?: string | null;
+  createdAt?: string | null;
+}
+/**
  * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "header".
  */
@@ -1638,6 +2060,25 @@ export interface Footer {
     | null;
   updatedAt?: string | null;
   createdAt?: string | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "alert-banner_select".
+ */
+export interface AlertBannerSelect<T extends boolean = true> {
+  enabled?: T;
+  message?: T;
+  type?: T;
+  link?:
+    | T
+    | {
+        url?: T;
+        text?: T;
+      };
+  expiresAt?: T;
+  updatedAt?: T;
+  createdAt?: T;
+  globalType?: T;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema

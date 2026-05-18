@@ -1,0 +1,17 @@
+
+---Downloaded files---
+The import files for: TownPress Customizer were successfully downloaded!
+Initial max execution time = 120
+Files info:
+Site URL = https://cretetownship.com/new
+Data file = /home/customer/www/cretetownship.com/public_html/new/wp-content/themes/townpress/inc/demo-import/content-blank.xml
+Widget file = not defined!
+Customizer file = /home/customer/www/cretetownship.com/public_html/new/wp-content/themes/townpress/inc/demo-import/customizer.dat
+Redux files:
+not defined!
+
+---Importing customizer settings---
+Customizer settings import finished!
+
+---ocdi/after_import---
+

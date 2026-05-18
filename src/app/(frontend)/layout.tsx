@@ -1,13 +1,28 @@
 import type { Metadata } from 'next'
 
 import { cn } from '@/utilities/ui'
-import { GeistMono } from 'geist/font/mono'
-import { GeistSans } from 'geist/font/sans'
+import { Source_Sans_3, Merriweather } from 'next/font/google'
 import React from 'react'
 
-import { AdminBar } from '@/components/AdminBar'
-import { Footer } from '@/Footer/Component'
-import { Header } from '@/Header/Component'
+// Source Sans 3 (formerly Source Sans Pro) - ADA/Section 508 compliant
+// Used for all body text, navigation, and UI elements
+const sourceSans = Source_Sans_3({
+  subsets: ['latin'],
+  weight: ['400', '600', '700'],
+  variable: '--font-body',
+  display: 'swap',
+})
+
+// Merriweather - Accessible serif for headings only (conservative, readable)
+const merriweather = Merriweather({
+  subsets: ['latin'],
+  weight: ['400', '700'],
+  variable: '--font-display',
+  display: 'swap',
+})
+
+import { TownshipHeader } from '@/components/layout/TownshipHeader'
+import { TownshipFooter } from '@/components/layout/TownshipFooter'
 import { Providers } from '@/providers'
 import { InitTheme } from '@/providers/Theme/InitTheme'
 import { mergeOpenGraph } from '@/utilities/mergeOpenGraph'
@@ -20,23 +35,19 @@ export default async function RootLayout({ children }: { children: React.ReactNo
   const { isEnabled } = await draftMode()
 
   return (
-    <html className={cn(GeistSans.variable, GeistMono.variable)} lang="en" suppressHydrationWarning>
+    <html className={cn(sourceSans.variable, merriweather.variable)} lang="en" suppressHydrationWarning>
       <head>
-        <InitTheme />
+        {/* InitTheme disabled - government site uses light theme only */}
         <link href="/favicon.ico" rel="icon" sizes="32x32" />
         <link href="/favicon.svg" rel="icon" type="image/svg+xml" />
       </head>
       <body>
         <Providers>
-          <AdminBar
-            adminBarProps={{
-              preview: isEnabled,
-            }}
-          />
-
-          <Header />
-          {children}
-          <Footer />
+          <TownshipHeader />
+          <main className="flex-1 min-h-screen bg-cream">
+            {children}
+          </main>
+          <TownshipFooter />
         </Providers>
       </body>
     </html>

@@ -1,0 +1,2491 @@
+═══════════════════════════════════════════════════════
+   Crete Township File Rename Report
+   Generated: 5/18/2026, 2:12:10 PM
+═══════════════════════════════════════════════════════
+
+SUMMARY
+───────────────────────────────────────────────────────
+Total files processed:  627
+Successfully renamed:   595
+Skipped:                32
+Errors:                 0
+
+DETAILED LOG
+───────────────────────────────────────────────────────
+
+Original: Assessor-Board-Meeting-10-14-2020.pdf
+     New: October 14, 2020 - Assessor Document.pdf
+  Reason: Successfully renamed
+
+Original: Assessor-Board-Meeting-4-10-2019-1-1.pdf
+     New: April 10, 2019 - Assessor Document.pdf
+  Reason: Successfully renamed
+
+Original: Assessor-Board-Meeting-4-10-2019-1.pdf
+     New: April 10, 2019 - Assessor Document (1).pdf
+  Reason: Renamed with duplicate counter
+
+Original: Assessor-Board-Meeting-4-10-2019.pdf
+     New: April 10, 2019 - Assessor Document (2).pdf
+  Reason: Renamed with duplicate counter
+
+Original: Assessor-Board-Meeting-4-8-2020-1.pdf
+     New: April 8, 2020 - Assessor Document.pdf
+  Reason: Successfully renamed
+
+Original: Assessor-Board-Meeting-4-8-2020-2.pdf
+     New: April 8, 2020 - Assessor Document (1).pdf
+  Reason: Renamed with duplicate counter
+
+Original: Assessor-Board-Meeting-4-8-2020-3.pdf
+     New: April 8, 2020 - Assessor Document (2).pdf
+  Reason: Renamed with duplicate counter
+
+Original: Assessor-Board-Meeting-4-8-2020-4.pdf
+     New: April 8, 2020 - Assessor Document (3).pdf
+  Reason: Renamed with duplicate counter
+
+Original: Assessor-Board-Meeting-4-8-2020-5.pdf
+     New: April 8, 2020 - Assessor Document (4).pdf
+  Reason: Renamed with duplicate counter
+
+Original: Assessor-Board-Meeting-4-8-2020.pdf
+     New: April 8, 2020 - Assessor Document (5).pdf
+  Reason: Renamed with duplicate counter
+
+Original: Assessor-Board-Meeting-5-8-2019-1-1.pdf
+     New: May 8, 2019 - Assessor Document.pdf
+  Reason: Successfully renamed
+
+Original: Assessor-Board-Meeting-5-8-2019-1.pdf
+     New: May 8, 2019 - Assessor Document (1).pdf
+  Reason: Renamed with duplicate counter
+
+Original: Assessor-Board-Meeting-5-8-2019.pdf
+     New: May 8, 2019 - Assessor Document (2).pdf
+  Reason: Renamed with duplicate counter
+
+Original: Assessor-Report-10-9-2019-1.pdf
+     New: October 9, 2019 - Assessor Document.pdf
+  Reason: Successfully renamed
+
+Original: Assessor-Report-10-9-2019.pdf
+     New: October 9, 2019 - Assessor Document (1).pdf
+  Reason: Renamed with duplicate counter
+
+Original: Assessor-board-meeting-11-13-2019-1.pdf
+     New: November 13, 2019 - Assessor Document.pdf
+  Reason: Successfully renamed
+
+Original: Assessor-board-meeting-11-13-2019.pdf
+     New: November 13, 2019 - Assessor Document (1).pdf
+  Reason: Renamed with duplicate counter
+
+Original: Assessor-board-meeting-11-14-2018-1.pdf
+     New: November 14, 2018 - Assessor Document.pdf
+  Reason: Successfully renamed
+
+Original: Assessor-board-meeting-11-14-2018.pdf
+     New: November 14, 2018 - Assessor Document (1).pdf
+  Reason: Renamed with duplicate counter
+
+Original: Assessor-board-meeting-3-13-2019-1.pdf
+     New: March 13, 2019 - Assessor Document.pdf
+  Reason: Successfully renamed
+
+Original: Assessor-board-meeting-3-13-2019-2-1.pdf
+     New: March 13, 2019 - Assessor Document (1).pdf
+  Reason: Renamed with duplicate counter
+
+Original: Assessor-board-meeting-3-13-2019-2.pdf
+     New: March 13, 2019 - Assessor Document (2).pdf
+  Reason: Renamed with duplicate counter
+
+Original: Assessor-board-meeting-3-13-2019.pdf
+     New: March 13, 2019 - Assessor Document (3).pdf
+  Reason: Renamed with duplicate counter
+
+Original: Assessor-board-meeting-6-12-2019-1.pdf
+     New: June 12, 2019 - Assessor Document.pdf
+  Reason: Successfully renamed
+
+Original: Assessor-board-meeting-6-12-2019.pdf
+     New: June 12, 2019 - Assessor Document (1).pdf
+  Reason: Renamed with duplicate counter
+
+Original: Assessor-report-1-9-2019-1.pdf
+     New: January 9, 2019 - Assessor Document.pdf
+  Reason: Successfully renamed
+
+Original: Assessor-report-1-9-2019.pdf
+     New: January 9, 2019 - Assessor Document (1).pdf
+  Reason: Renamed with duplicate counter
+
+Original: Assessors-Report-7-8-2020-1.pdf
+     New: July 8, 2020 - Assessor Document.pdf
+  Reason: Successfully renamed
+
+Original: Assessors-Report-7-8-2020.pdf
+     New: July 8, 2020 - Assessor Document (1).pdf
+  Reason: Renamed with duplicate counter
+
+Original: Assessors-board-meeting-minutes-8-2018.pdf
+     New: 2018 - Assessor Document.pdf
+  Reason: Successfully renamed
+
+Original: Board-Meeting-Minutes-assessor-2-13-2019.pdf
+     New: February 13, 2019 - Assessor Document.pdf
+  Reason: Successfully renamed
+
+Original: OFFICE-OF-THE-ASSESSOR-11-12-2025.pdf
+     New: November 12, 2025 - Assessor Document.pdf
+  Reason: Successfully renamed
+
+Original: OFFICE-OF-THE-ASSESSOR-3-11-2020-1-1.pdf
+     New: March 11, 2020 - Assessor Document.pdf
+  Reason: Successfully renamed
+
+Original: OFFICE-OF-THE-ASSESSOR-3-11-2020-1.pdf
+     New: March 11, 2020 - Assessor Document (1).pdf
+  Reason: Renamed with duplicate counter
+
+Original: OFFICE-OF-THE-ASSESSOR-3-11-2020-2.pdf
+     New: March 11, 2020 - Assessor Document (2).pdf
+  Reason: Renamed with duplicate counter
+
+Original: OFFICE-OF-THE-ASSESSOR-3-11-2020.pdf
+     New: March 11, 2020 - Assessor Document (3).pdf
+  Reason: Renamed with duplicate counter
+
+Original: OFFICE-OF-THE-ASSESSOR-5-11-2022.pdf
+     New: May 11, 2022 - Assessor Document.pdf
+  Reason: Successfully renamed
+
+Original: OFFICE-OF-THE-ASSESSOR-8-14-2024.pdf
+     New: August 14, 2024 - Assessor Document.pdf
+  Reason: Successfully renamed
+
+Original: OFFICE-OF-THE-ASSESSOR-REPORT-8-13-2025.pdf
+     New: August 13, 2025 - Assessor Document.pdf
+  Reason: Successfully renamed
+
+Original: October-2018-Assessor.pdf
+     New: October 2018 - Assessor Document.pdf
+  Reason: Successfully renamed
+
+Original: Office-of-The-Assessor-Report-10-8-2025.pdf
+     New: October 8, 2025 - Assessor Document.pdf
+  Reason: Successfully renamed
+
+Original: Office-of-The-assessor-12-14-2022.pdf
+     New: December 14, 2022 - Assessor Document.pdf
+  Reason: Successfully renamed
+
+Original: Office-of-he-Assessor-12-11-2024.pdf
+     New: December 11, 2024 - Assessor Document.pdf
+  Reason: Successfully renamed
+
+Original: Office-of-the-Accessor-7-10-2019-1.pdf
+     New: July 10, 2019 - Assessor Document.pdf
+  Reason: Successfully renamed
+
+Original: Office-of-the-Accessor-7-10-2019.pdf
+     New: July 10, 2019 - Assessor Document (1).pdf
+  Reason: Renamed with duplicate counter
+
+Original: Office-of-the-Assessor-1-11-2023.pdf
+     New: January 11, 2023 - Assessor Document.pdf
+  Reason: Successfully renamed
+
+Original: Office-of-the-Assessor-1-12-2022-1.pdf
+     New: January 12, 2022 - Assessor Document.pdf
+  Reason: Successfully renamed
+
+Original: Office-of-the-Assessor-1-12-2022.pdf
+     New: January 12, 2022 - Assessor Document (1).pdf
+  Reason: Renamed with duplicate counter
+
+Original: Office-of-the-Assessor-1-13-2021.pdf
+     New: January 13, 2021 - Assessor Document.pdf
+  Reason: Successfully renamed
+
+Original: Office-of-the-Assessor-10-11-2023.pdf
+     New: October 11, 2023 - Assessor Document.pdf
+  Reason: Successfully renamed
+
+Original: Office-of-the-Assessor-10-13-2021-1.pdf
+     New: October 13, 2021 - Assessor Document.pdf
+  Reason: Successfully renamed
+
+Original: Office-of-the-Assessor-10-13-2021.pdf
+     New: October 13, 2021 - Assessor Document (1).pdf
+  Reason: Renamed with duplicate counter
+
+Original: Office-of-the-Assessor-11-10-2021.pdf
+     New: November 10, 2021 - Assessor Document.pdf
+  Reason: Successfully renamed
+
+Original: Office-of-the-Assessor-11-9-2022.pdf
+     New: November 9, 2022 - Assessor Document.pdf
+  Reason: Successfully renamed
+
+Original: Office-of-the-Assessor-12-11-2019-1.pdf
+     New: December 11, 2019 - Assessor Document.pdf
+  Reason: Successfully renamed
+
+Original: Office-of-the-Assessor-12-11-2019.pdf
+     New: December 11, 2019 - Assessor Document (1).pdf
+  Reason: Renamed with duplicate counter
+
+Original: Office-of-the-Assessor-12-8-2021.pdf
+     New: December 8, 2021 - Assessor Document.pdf
+  Reason: Successfully renamed
+
+Original: Office-of-the-Assessor-2-10-2021.pdf
+     New: February 10, 2021 - Assessor Document.pdf
+  Reason: Successfully renamed
+
+Original: Office-of-the-Assessor-2-12-2025.pdf
+     New: February 12, 2025 - Assessor Document.pdf
+  Reason: Successfully renamed
+
+Original: Office-of-the-Assessor-2-8-2023.pdf
+     New: February 8, 2023 - Assessor Document.pdf
+  Reason: Successfully renamed
+
+Original: Office-of-the-Assessor-2-9-2022.pdf
+     New: February 9, 2022 - Assessor Document.pdf
+  Reason: Successfully renamed
+
+Original: Office-of-the-Assessor-3-12-2025.pdf
+     New: March 12, 2025 - Assessor Document.pdf
+  Reason: Successfully renamed
+
+Original: Office-of-the-Assessor-3-8-2023.pdf
+     New: March 8, 2023 - Assessor Document.pdf
+  Reason: Successfully renamed
+
+Original: Office-of-the-Assessor-4-12-2023.pdf
+     New: April 12, 2023 - Assessor Document.pdf
+  Reason: Successfully renamed
+
+Original: Office-of-the-Assessor-4-13-2022.pdf
+     New: April 13, 2022 - Assessor Document.pdf
+  Reason: Successfully renamed
+
+Original: Office-of-the-Assessor-4-14-2021.pdf
+     New: April 14, 2021 - Assessor Document.pdf
+  Reason: Successfully renamed
+
+Original: Office-of-the-Assessor-5-12-2021.pdf
+     New: May 12, 2021 - Assessor Document.pdf
+  Reason: Successfully renamed
+
+Original: Office-of-the-Assessor-6-10-2020-1.pdf
+     New: June 10, 2020 - Assessor Document.pdf
+  Reason: Successfully renamed
+
+Original: Office-of-the-Assessor-6-10-2020.pdf
+     New: June 10, 2020 - Assessor Document (1).pdf
+  Reason: Renamed with duplicate counter
+
+Original: Office-of-the-Assessor-7-10-2024.pdf
+     New: July 10, 2024 - Assessor Document.pdf
+  Reason: Successfully renamed
+
+Original: Office-of-the-Assessor-7-13-2022-1.pdf
+     New: July 13, 2022 - Assessor Document.pdf
+  Reason: Successfully renamed
+
+Original: Office-of-the-Assessor-7-13-2022.pdf
+     New: July 13, 2022 - Assessor Document (1).pdf
+  Reason: Renamed with duplicate counter
+
+Original: Office-of-the-Assessor-7-14-2021.pdf
+     New: July 14, 2021 - Assessor Document.pdf
+  Reason: Successfully renamed
+
+Original: Office-of-the-Assessor-8-10-2022.pdf
+     New: August 10, 2022 - Assessor Document.pdf
+  Reason: Successfully renamed
+
+Original: Office-of-the-Assessor-8-11-2021.pdf
+     New: August 11, 2021 - Assessor Document.pdf
+  Reason: Successfully renamed
+
+Original: Office-of-the-Assessor-9-11-2024.pdf
+     New: September 11, 2024 - Assessor Document.pdf
+  Reason: Successfully renamed
+
+Original: Office-of-the-Assessor-9-14-2022.pdf
+     New: September 14, 2022 - Assessor Document.pdf
+  Reason: Successfully renamed
+
+Original: Office-of-the-Assessor-9-8-2021.pdf
+     New: September 8, 2021 - Assessor Document.pdf
+  Reason: Successfully renamed
+
+Original: Office-of-the-Assessor-Report-2-14-2024.pdf
+     New: February 14, 2024 - Assessor Document.pdf
+  Reason: Successfully renamed
+
+Original: Office-of-the-Assessors-6-14-2023.pdf
+     New: June 14, 2023 - Assessor Document.pdf
+  Reason: Successfully renamed
+
+Original: Office-of-the-assessor-6-12-2024.pdf
+     New: June 12, 2024 - Assessor Document.pdf
+  Reason: Successfully renamed
+
+Original: Office-of-the-assessor-8-12-2020-1.pdf
+     New: August 12, 2020 - Assessor Document.pdf
+  Reason: Successfully renamed
+
+Original: Office-of-the-assessor-8-12-2020.pdf
+     New: August 12, 2020 - Assessor Document (1).pdf
+  Reason: Renamed with duplicate counter
+
+Original: September-2018-Assessor-Report.pdf
+     New: September 2018 - Assessor Document.pdf
+  Reason: Successfully renamed
+
+Original: assessor-8-14-2019-1.pdf
+     New: August 14, 2019 - Assessor Document.pdf
+  Reason: Successfully renamed
+
+Original: assessor-8-14-2019-2.pdf
+     New: August 14, 2019 - Assessor Document (1).pdf
+  Reason: Renamed with duplicate counter
+
+Original: assessor-8-14-2019.pdf
+     New: August 14, 2019 - Assessor Document (2).pdf
+  Reason: Renamed with duplicate counter
+
+Original: assessor-board-meeting-1-8-2020-1.pdf
+     New: January 8, 2020 - Assessor Document.pdf
+  Reason: Successfully renamed
+
+Original: assessor-board-meeting-1-8-2020.pdf
+     New: January 8, 2020 - Assessor Document (1).pdf
+  Reason: Renamed with duplicate counter
+
+Original: assessor-board-meeting-5-13-2020-1.pdf
+     New: May 13, 2020 - Assessor Document.pdf
+  Reason: Successfully renamed
+
+Original: assessor-board-meeting-5-13-2020.pdf
+     New: May 13, 2020 - Assessor Document (1).pdf
+  Reason: Renamed with duplicate counter
+
+Original: assessor-minutes-6-13-2018.pdf
+     New: June 13, 2018 - Assessor Document.pdf
+  Reason: Successfully renamed
+
+Original: assessor-office-7-11-2018.pdf
+     New: July 11, 2018 - Assessor Document.pdf
+  Reason: Successfully renamed
+
+Original: assessors-report-9-11-19-1.pdf
+  Reason: Could not parse date
+
+Original: assessors-report-9-11-19.pdf
+  Reason: Could not parse date
+
+Original: office-of-the-assessor-3-10-2021.pdf
+     New: March 10, 2021 - Assessor Document.pdf
+  Reason: Successfully renamed
+
+Original: office-of-the-assessor-9-9-2020-1.pdf
+     New: September 9, 2020 - Assessor Document.pdf
+  Reason: Successfully renamed
+
+Original: office-of-the-assessor-9-9-2020.pdf
+     New: September 9, 2020 - Assessor Document (1).pdf
+  Reason: Renamed with duplicate counter
+
+Original: 04-10-2023-agenda.docx
+     New: April 10, 2023 - Board Agenda.docx
+  Reason: Successfully renamed
+
+Original: 04-14-2026-Agenda.pdf
+     New: April 14, 2026 - Board Agenda.pdf
+  Reason: Successfully renamed
+
+Original: 3-10-2026-USA-Fest-Agenda.pdf
+     New: March 10, 2026 - Board Agenda.pdf
+  Reason: Successfully renamed
+
+Original: AGENDA-12-8-2021.pdf
+     New: December 8, 2021 - Board Agenda.pdf
+  Reason: Successfully renamed
+
+Original: AGENDA-3-11-2026.pdf
+     New: March 11, 2026 - Board Agenda.pdf
+  Reason: Successfully renamed
+
+Original: AGENDA-5-13-2026.pdf
+     New: May 13, 2026 - Board Agenda.pdf
+  Reason: Successfully renamed
+
+Original: Agenda-1-10-2024.pdf
+     New: January 10, 2024 - Board Agenda.pdf
+  Reason: Successfully renamed
+
+Original: Agenda-11-10-2021.pdf
+     New: November 10, 2021 - Board Agenda.pdf
+  Reason: Successfully renamed
+
+Original: Agenda-2-9-2022-1.pdf
+     New: February 9, 2022 - Board Agenda.pdf
+  Reason: Successfully renamed
+
+Original: Agenda-2-9-2022-2.pdf
+     New: February 9, 2022 - Board Agenda (1).pdf
+  Reason: Renamed with duplicate counter
+
+Original: Agenda-2-9-2022.pdf
+     New: February 9, 2022 - Board Agenda (2).pdf
+  Reason: Renamed with duplicate counter
+
+Original: Agenda-3-8-2023.pdf
+     New: March 8, 2023 - Board Agenda.pdf
+  Reason: Successfully renamed
+
+Original: Agenda-5-10-2023.pdf
+     New: May 10, 2023 - Board Agenda.pdf
+  Reason: Successfully renamed
+
+Original: Agenda-5-11-2022.pdf
+     New: May 11, 2022 - Board Agenda.pdf
+  Reason: Successfully renamed
+
+Original: Agenda-5-12-2021.pdf
+     New: May 12, 2021 - Board Agenda.pdf
+  Reason: Successfully renamed
+
+Original: Agenda-6-7-2021.pdf
+     New: June 7, 2021 - Board Agenda.pdf
+  Reason: Successfully renamed
+
+Original: Agenda-8-11-2021-1.pdf
+     New: August 11, 2021 - Board Agenda.pdf
+  Reason: Successfully renamed
+
+Original: Agenda-8-11-2021.pdf
+     New: August 11, 2021 - Board Agenda (1).pdf
+  Reason: Renamed with duplicate counter
+
+Original: Agenda-8-11-21.pdf
+  Reason: Could not parse date
+
+Original: Agenda-9-8-2021.pdf
+     New: September 8, 2021 - Board Agenda.pdf
+  Reason: Successfully renamed
+
+Original: Agenda-September-14-2022-.pdf
+     New: September 14, 2022 - Board Agenda.pdf
+  Reason: Successfully renamed
+
+Original: AgendaforannualtownhallmeetingApril112023.docx
+  Reason: Could not parse date
+
+Original: AgendaforannualtownhallmeetingApril112023.pdf
+  Reason: Could not parse date
+
+Original: April-72026USAFESTMeetingAgenda_.docx
+     New: April 7, 2026 - Board Agenda.docx
+  Reason: Successfully renamed
+
+Original: April102024BoardMeetingagenda_.pdf
+     New: April 10, 2024 - Board Agenda.pdf
+  Reason: Successfully renamed
+
+Original: April122023Board-Meetingagenda-003.pdf
+     New: April 12, 2023 - Board Agenda.pdf
+  Reason: Successfully renamed
+
+Original: April132022Board-Meetingagenda-1.pdf
+     New: April 13, 2022 - Board Agenda.pdf
+  Reason: Successfully renamed
+
+Original: April32024decennialcommitteeagenda-.pdf
+     New: April 3, 2024 - Board Agenda.pdf
+  Reason: Successfully renamed
+
+Original: April82024Board-Meetingagenda_.pdf
+     New: April 8, 2024 - Board Agenda.pdf
+  Reason: Successfully renamed
+
+Original: April82026BoardMeetingagenda_.docx
+     New: April 8, 2026 - Board Agenda.docx
+  Reason: Successfully renamed
+
+Original: April92025BoardMeetingAgenda_.pdf
+     New: April 9, 2025 - Board Agenda.pdf
+  Reason: Successfully renamed
+
+Original: August102022Board-Meetingagenda_-1.pdf
+     New: August 10, 2022 - Board Agenda.pdf
+  Reason: Successfully renamed
+
+Original: August102022Board-Meetingagenda_.docx
+     New: August 10, 2022 - Board Agenda.docx
+  Reason: Successfully renamed
+
+Original: August102022Board-Meetingagenda_.pdf
+     New: August 10, 2022 - Board Agenda (1).pdf
+  Reason: Renamed with duplicate counter
+
+Original: August132025BoardMeetingAgenda_.pdf
+     New: August 13, 2025 - Board Agenda.pdf
+  Reason: Successfully renamed
+
+Original: August262024decennialcommitteeagenda-.pdf
+     New: August 26, 2024 - Board Agenda.pdf
+  Reason: Successfully renamed
+
+Original: August92023Board-Meetingagenda.pdf
+     New: August 9, 2023 - Board Agenda.pdf
+  Reason: Successfully renamed
+
+Original: BOARD-MEETING-AGENDA-6-8-2022.pdf
+     New: June 8, 2022 - Board Agenda.pdf
+  Reason: Successfully renamed
+
+Original: Board-Meeting-Agenda-1-10-2023.pdf
+     New: January 10, 2023 - Board Agenda.pdf
+  Reason: Successfully renamed
+
+Original: Board-Meeting-Agenda-1-11-2023.pdf
+     New: January 11, 2023 - Board Agenda.pdf
+  Reason: Successfully renamed
+
+Original: Board-Meeting-Agenda-1-8-2025.pdf
+     New: January 8, 2025 - Board Agenda.pdf
+  Reason: Successfully renamed
+
+Original: Board-Meeting-Agenda-10-9-2024.pdf
+     New: October 9, 2024 - Board Agenda.pdf
+  Reason: Successfully renamed
+
+Original: Board-Meeting-Agenda-3-12-2025.pdf
+     New: March 12, 2025 - Board Agenda.pdf
+  Reason: Successfully renamed
+
+Original: Board-Meeting-Agenda-4-12-2023.pdf
+     New: April 12, 2023 - Board Agenda (1).pdf
+  Reason: Renamed with duplicate counter
+
+Original: Board-Meeting-Agenda-5-8-2024.pdf
+     New: May 8, 2024 - Board Agenda.pdf
+  Reason: Successfully renamed
+
+Original: Board-Meeting-Agenda-6-10-2020-1-1.pdf
+     New: June 10, 2020 - Board Agenda.pdf
+  Reason: Successfully renamed
+
+Original: Board-Meeting-Agenda-6-10-2020-1.pdf
+     New: June 10, 2020 - Board Agenda (1).pdf
+  Reason: Renamed with duplicate counter
+
+Original: Board-Meeting-Agenda-6-10-2020.pdf
+     New: June 10, 2020 - Board Agenda (2).pdf
+  Reason: Renamed with duplicate counter
+
+Original: Board-Meeting-Agenda-6-14-2023.pdf
+     New: June 14, 2023 - Board Agenda.pdf
+  Reason: Successfully renamed
+
+Original: Board-of-Trustees-Meeting-Agenda-11-15-2023.pdf
+     New: November 15, 2023 - Board Agenda.pdf
+  Reason: Successfully renamed
+
+Original: December102025BoardMeetingAgenda_.pdf
+     New: December 10, 2025 - Board Agenda.pdf
+  Reason: Successfully renamed
+
+Original: December132023BoardMeetingagenda-1.pdf
+     New: December 13, 2023 - Board Agenda.pdf
+  Reason: Successfully renamed
+
+Original: December132023BoardMeetingagenda.pdf
+     New: December 13, 2023 - Board Agenda (1).pdf
+  Reason: Renamed with duplicate counter
+
+Original: December132023Townshiptaxlevyagenda.pdf
+     New: December 13, 2023 - Board Agenda (2).pdf
+  Reason: Renamed with duplicate counter
+
+Original: Decemember112024BoardMeetingagenda_.pdf
+  Reason: Could not parse date
+
+Original: February102026USAFESTMeetingAgenda_.pdf
+     New: February 10, 2026 - Board Agenda.pdf
+  Reason: Successfully renamed
+
+Original: February112026BoardMeetingagenda_.pdf
+     New: February 11, 2026 - Board Agenda.pdf
+  Reason: Successfully renamed
+
+Original: February122025BoardMeetingagenda_2.pdf
+     New: February 12, 2025 - Board Agenda.pdf
+  Reason: Successfully renamed
+
+Original: February82023Board-Meetingagenda_.pdf
+     New: February 8, 2023 - Board Agenda.pdf
+  Reason: Successfully renamed
+
+Original: Janaury102024BoardMeetingagenda.pdf
+  Reason: Could not parse date
+
+Original: January-12-2022-agenda.pdf
+     New: January 12, 2022 - Board Agenda.pdf
+  Reason: Successfully renamed
+
+Original: January142026BoardMeetingAgenda_.docx
+     New: January 14, 2026 - Board Agenda.docx
+  Reason: Successfully renamed
+
+Original: July132022Board-Meetingagenda-.pdf
+     New: July 13, 2022 - Board Agenda.pdf
+  Reason: Successfully renamed
+
+Original: July92025BoardMeetingAgenda_-1.pdf
+     New: July 92, 251 - Board Agenda.pdf
+  Reason: Successfully renamed
+
+Original: July92025BoardMeetingAgenda_.pdf
+     New: July 9, 2025 - Board Agenda.pdf
+  Reason: Successfully renamed
+
+Original: June122024BoardMeetingagenda_.pdf
+     New: June 12, 2024 - Board Agenda.pdf
+  Reason: Successfully renamed
+
+Original: June92023decennialcommitteeagenda-.pdf
+     New: June 9, 2023 - Board Agenda.pdf
+  Reason: Successfully renamed
+
+Original: March132024BoardMeetingagenda-002-1.pdf
+     New: March 13, 2024 - Board Agenda.pdf
+  Reason: Successfully renamed
+
+Original: March132024BoardMeetingagenda-002.pdf
+     New: March 13, 2024 - Board Agenda (1).pdf
+  Reason: Renamed with duplicate counter
+
+Original: March312025BoardMeetingAgenda_.pdf
+     New: March 31, 2025 - Board Agenda.pdf
+  Reason: Successfully renamed
+
+Original: May112022Board-Meetingagenda.pdf
+     New: May 11, 2022 - Board Agenda (1).pdf
+  Reason: Renamed with duplicate counter
+
+Original: May132024BoardMeetingagenda_.pdf
+     New: May 13, 2024 - Board Agenda.pdf
+  Reason: Successfully renamed
+
+Original: May142025BoardMeetingAgenda_.pdf
+     New: May 14, 2025 - Board Agenda.pdf
+  Reason: Successfully renamed
+
+Original: November132024BoardMeetingagenda_.pdf
+     New: November 13, 2024 - Board Agenda.pdf
+  Reason: Successfully renamed
+
+Original: November42025taxlevyBoardMeetingAgenda_.pdf
+     New: November 4, 2025 - Board Agenda.pdf
+  Reason: Successfully renamed
+
+Original: November92022Board-Meetingagenda_-1.pdf
+     New: November 92, 221 - Board Agenda.pdf
+  Reason: Successfully renamed
+
+Original: November92022Board-Meetingagenda_.pdf
+     New: November 9, 2022 - Board Agenda.pdf
+  Reason: Successfully renamed
+
+Original: October112023BoardMeetingagenda.pdf
+     New: October 11, 2023 - Board Agenda.pdf
+  Reason: Successfully renamed
+
+Original: October122022Board-Meetingagenda_.pdf
+     New: October 12, 2022 - Board Agenda.pdf
+  Reason: Successfully renamed
+
+Original: October82025BoardMeetingAgenda_.pdf
+     New: October 8, 2025 - Board Agenda.pdf
+  Reason: Successfully renamed
+
+Original: September102025BoardMeetingAgenda_.pdf
+     New: September 10, 2025 - Board Agenda.pdf
+  Reason: Successfully renamed
+
+Original: September1124BoardMeetingagenda_-1.pdf
+     New: September 1, 1241 - Board Agenda.pdf
+  Reason: Successfully renamed
+
+Original: September1124BoardMeetingagenda_.pdf
+     New: September 1124 - Board Agenda.pdf
+  Reason: Successfully renamed
+
+Original: September142022Board-Meetingagenda_.pdf
+     New: September 14, 2022 - Board Agenda (1).pdf
+  Reason: Renamed with duplicate counter
+
+Original: UPDATED-AGENDA.pdf
+  Reason: Could not parse date
+
+Original: Update-Agenda-6-12-2024.pdf
+     New: June 12, 2024 - Board Agenda (1).pdf
+  Reason: Renamed with duplicate counter
+
+Original: agenda-3-9-2022-1.pdf
+     New: March 9, 2022 - Board Agenda.pdf
+  Reason: Successfully renamed
+
+Original: agenda-3-9-2022-2.pdf
+     New: March 9, 2022 - Board Agenda (1).pdf
+  Reason: Renamed with duplicate counter
+
+Original: agenda-3-9-2022.pdf
+     New: March 9, 2022 - Board Agenda (2).pdf
+  Reason: Renamed with duplicate counter
+
+Original: agenda-4-14-2021.pdf
+     New: April 14, 2021 - Board Agenda.pdf
+  Reason: Successfully renamed
+
+Original: agenda-7-10-2024.pdf
+     New: July 10, 2024 - Board Agenda.pdf
+  Reason: Successfully renamed
+
+Original: 2015-Crete-Township-Annual-Audited-Financial-Statements-1.pdf
+     New: 2015 - Annual - Financial Report.pdf
+  Reason: Successfully renamed
+
+Original: 2015-Crete-Township-Annual-Audited-Financial-Statements-2.pdf
+     New: 2015 - Annual - Financial Report (1).pdf
+  Reason: Renamed with duplicate counter
+
+Original: 2015-Crete-Township-Annual-Audited-Financial-Statements.pdf
+     New: 2015 - Annual - Financial Report (2).pdf
+  Reason: Renamed with duplicate counter
+
+Original: 2016-Crete-Township-Annual-Audited-Financial-Statements-1.pdf
+     New: 2016 - Annual - Financial Report.pdf
+  Reason: Successfully renamed
+
+Original: 2016-Crete-Township-Annual-Audited-Financial-Statements-2.pdf
+     New: 2016 - Annual - Financial Report (1).pdf
+  Reason: Renamed with duplicate counter
+
+Original: 2016-Crete-Township-Annual-Audited-Financial-Statements.pdf
+     New: 2016 - Annual - Financial Report (2).pdf
+  Reason: Renamed with duplicate counter
+
+Original: 2017-Crete-Township-Annual-Audited-Financial-Statements-1.pdf
+     New: 2017 - Annual - Financial Report.pdf
+  Reason: Successfully renamed
+
+Original: 2017-Crete-Township-Annual-Audited-Financial-Statements-2.pdf
+     New: 2017 - Annual - Financial Report (1).pdf
+  Reason: Renamed with duplicate counter
+
+Original: 2017-Crete-Township-Annual-Audited-Financial-Statements.pdf
+     New: 2017 - Annual - Financial Report (2).pdf
+  Reason: Renamed with duplicate counter
+
+Original: 2018-Crete-Township-Annual-Audited-Financial-Statements-1.pdf
+     New: 2018 - Annual - Financial Report.pdf
+  Reason: Successfully renamed
+
+Original: 2018-Crete-Township-Annual-Audited-Financial-Statements-2.pdf
+     New: 2018 - Annual - Financial Report (1).pdf
+  Reason: Renamed with duplicate counter
+
+Original: 2018-Crete-Township-Annual-Audited-Financial-Statements.pdf
+     New: 2018 - Annual - Financial Report (2).pdf
+  Reason: Renamed with duplicate counter
+
+Original: 2019-Crete-Township-Annual-Audited-Financial-Statements-1.pdf
+     New: 2019 - Annual - Financial Report.pdf
+  Reason: Successfully renamed
+
+Original: 2019-Crete-Township-Annual-Audited-Financial-Statements-2.pdf
+     New: 2019 - Annual - Financial Report (1).pdf
+  Reason: Renamed with duplicate counter
+
+Original: 2019-Crete-Township-Annual-Audited-Financial-Statements.pdf
+     New: 2019 - Annual - Financial Report (2).pdf
+  Reason: Renamed with duplicate counter
+
+Original: 2020-Crete-Township-Annual-Audited-Financial-Statements-1.pdf
+     New: 2020 - Annual - Financial Report.pdf
+  Reason: Successfully renamed
+
+Original: 2020-Crete-Township-Annual-Audited-Financial-Statements-2.pdf
+     New: 2020 - Annual - Financial Report (1).pdf
+  Reason: Renamed with duplicate counter
+
+Original: 2020-Crete-Township-Annual-Audited-Financial-Statements.pdf
+     New: 2020 - Annual - Financial Report (2).pdf
+  Reason: Renamed with duplicate counter
+
+Original: 22-Final-Audit-Crete-Township.pdf
+  Reason: Could not parse date
+
+Original: 23-Final-Audit-Crete-Township.pdf
+  Reason: Could not parse date
+
+Original: BUDGET-MEETING-6-8-2022.pdf
+     New: June 8, 2022 - Financial Report.pdf
+  Reason: Successfully renamed
+
+Original: Board-of-Trustees-Budget-Workshop-4-28-2025.pdf
+     New: April 28, 2025 - Financial Report.pdf
+  Reason: Successfully renamed
+
+Original: Budget-Meeting-7-14-2021.pdf
+     New: July 14, 2021 - Financial Report.pdf
+  Reason: Successfully renamed
+
+Original: CASH-BALANCE-11-10-2021.pdf
+     New: November 10, 2021 - Financial Report.pdf
+  Reason: Successfully renamed
+
+Original: CASH-BALANCE-3-11-2020-1.pdf
+     New: March 11, 2020 - Financial Report.pdf
+  Reason: Successfully renamed
+
+Original: CASH-BALANCE-3-11-2020.pdf
+     New: March 11, 2020 - Financial Report (1).pdf
+  Reason: Renamed with duplicate counter
+
+Original: CASH-BALANCE-5-11-2022.pdf
+     New: May 11, 2022 - Financial Report.pdf
+  Reason: Successfully renamed
+
+Original: CASH-BALANCE-REPORT-11-12-2025.pdf
+     New: November 12, 2025 - Financial Report.pdf
+  Reason: Successfully renamed
+
+Original: CASH-BALANCE-REPORT-8-13-2025.pdf
+     New: August 13, 2025 - Financial Report.pdf
+  Reason: Successfully renamed
+
+Original: CASH-BALANCE-REPORT-8-14-2024.pdf
+     New: August 14, 2024 - Financial Report.pdf
+  Reason: Successfully renamed
+
+Original: CAsh-Balance-Report-10-11-2023.pdf
+     New: October 11, 2023 - Financial Report.pdf
+  Reason: Successfully renamed
+
+Original: Cash-BAlance-Report-2-8-2023.pdf
+     New: February 8, 2023 - Financial Report.pdf
+  Reason: Successfully renamed
+
+Original: Cash-Balance-1-11-2023.pdf
+     New: January 11, 2023 - Financial Report.pdf
+  Reason: Successfully renamed
+
+Original: Cash-Balance-1-12-2022-1.pdf
+     New: January 12, 2022 - Financial Report.pdf
+  Reason: Successfully renamed
+
+Original: Cash-Balance-1-12-2022.pdf
+     New: January 12, 2022 - Financial Report (1).pdf
+  Reason: Renamed with duplicate counter
+
+Original: Cash-Balance-1-13-2021.pdf
+     New: January 13, 2021 - Financial Report.pdf
+  Reason: Successfully renamed
+
+Original: Cash-Balance-1-8-2020-1.pdf
+     New: January 8, 2020 - Financial Report.pdf
+  Reason: Successfully renamed
+
+Original: Cash-Balance-1-8-2020.pdf
+     New: January 8, 2020 - Financial Report (1).pdf
+  Reason: Renamed with duplicate counter
+
+Original: Cash-Balance-10-14-2020-1.pdf
+     New: October 14, 2020 - Financial Report.pdf
+  Reason: Successfully renamed
+
+Original: Cash-Balance-10-14-2020.pdf
+     New: October 14, 2020 - Financial Report (1).pdf
+  Reason: Renamed with duplicate counter
+
+Original: Cash-Balance-10-9-2019-1.pdf
+     New: October 9, 2019 - Financial Report.pdf
+  Reason: Successfully renamed
+
+Original: Cash-Balance-10-9-2019.pdf
+     New: October 9, 2019 - Financial Report (1).pdf
+  Reason: Renamed with duplicate counter
+
+Original: Cash-Balance-11-11-2020.pdf
+     New: November 11, 2020 - Financial Report.pdf
+  Reason: Successfully renamed
+
+Original: Cash-Balance-11-13-2019-1.pdf
+     New: November 13, 2019 - Financial Report.pdf
+  Reason: Successfully renamed
+
+Original: Cash-Balance-11-13-2019.pdf
+     New: November 13, 2019 - Financial Report (1).pdf
+  Reason: Renamed with duplicate counter
+
+Original: Cash-Balance-12-11-2024.pdf
+     New: December 11, 2024 - Financial Report.pdf
+  Reason: Successfully renamed
+
+Original: Cash-Balance-12-8-2021.pdf
+     New: December 8, 2021 - Financial Report.pdf
+  Reason: Successfully renamed
+
+Original: Cash-Balance-12-9-2020.pdf
+     New: December 9, 2020 - Financial Report.pdf
+  Reason: Successfully renamed
+
+Original: Cash-Balance-2-10-2021.pdf
+     New: February 10, 2021 - Financial Report.pdf
+  Reason: Successfully renamed
+
+Original: Cash-Balance-2-12-2020-1.pdf
+     New: February 12, 2020 - Financial Report.pdf
+  Reason: Successfully renamed
+
+Original: Cash-Balance-2-12-2020.pdf
+     New: February 12, 2020 - Financial Report (1).pdf
+  Reason: Renamed with duplicate counter
+
+Original: Cash-Balance-2-9-2022.pdf
+     New: February 9, 2022 - Financial Report.pdf
+  Reason: Successfully renamed
+
+Original: Cash-Balance-3-12-2025.pdf
+     New: March 12, 2025 - Financial Report.pdf
+  Reason: Successfully renamed
+
+Original: Cash-Balance-3-8-2023.pdf
+     New: March 8, 2023 - Financial Report.pdf
+  Reason: Successfully renamed
+
+Original: Cash-Balance-4-10-2019-1.pdf
+     New: April 10, 2019 - Financial Report.pdf
+  Reason: Successfully renamed
+
+Original: Cash-Balance-4-10-2019.pdf
+     New: April 10, 2019 - Financial Report (1).pdf
+  Reason: Renamed with duplicate counter
+
+Original: Cash-Balance-4-12-2023.pdf
+     New: April 12, 2023 - Financial Report.pdf
+  Reason: Successfully renamed
+
+Original: Cash-Balance-4-13-2022-.pdf
+     New: April 13, 2022 - Financial Report.pdf
+  Reason: Successfully renamed
+
+Original: Cash-Balance-4-14-2021.pdf
+     New: April 14, 2021 - Financial Report.pdf
+  Reason: Successfully renamed
+
+Original: Cash-Balance-5-8-2019-1-1.pdf
+     New: May 8, 2019 - Financial Report.pdf
+  Reason: Successfully renamed
+
+Original: Cash-Balance-5-8-2019-1.pdf
+     New: May 8, 2019 - Financial Report (1).pdf
+  Reason: Renamed with duplicate counter
+
+Original: Cash-Balance-5-8-2019.pdf
+     New: May 8, 2019 - Financial Report (2).pdf
+  Reason: Renamed with duplicate counter
+
+Original: Cash-Balance-6-9-2021.pdf
+     New: June 9, 2021 - Financial Report.pdf
+  Reason: Successfully renamed
+
+Original: Cash-Balance-7-10-2019-1.pdf
+     New: July 10, 2019 - Financial Report.pdf
+  Reason: Successfully renamed
+
+Original: Cash-Balance-7-10-2019.pdf
+     New: July 10, 2019 - Financial Report (1).pdf
+  Reason: Renamed with duplicate counter
+
+Original: Cash-Balance-7-10-2024.pdf
+     New: July 10, 2024 - Financial Report.pdf
+  Reason: Successfully renamed
+
+Original: Cash-Balance-7-14-2021.pdf
+     New: July 14, 2021 - Financial Report (1).pdf
+  Reason: Renamed with duplicate counter
+
+Original: Cash-Balance-7-8-2020-1.pdf
+     New: July 8, 2020 - Financial Report.pdf
+  Reason: Successfully renamed
+
+Original: Cash-Balance-7-8-2020.pdf
+     New: July 8, 2020 - Financial Report (1).pdf
+  Reason: Renamed with duplicate counter
+
+Original: Cash-Balance-8-10-2022.pdf
+     New: August 10, 2022 - Financial Report.pdf
+  Reason: Successfully renamed
+
+Original: Cash-Balance-8-11-2021.pdf
+     New: August 11, 2021 - Financial Report.pdf
+  Reason: Successfully renamed
+
+Original: Cash-Balance-9-11-2024.pdf
+     New: September 11, 2024 - Financial Report.pdf
+  Reason: Successfully renamed
+
+Original: Cash-Balance-9-14-2022.pdf
+     New: September 14, 2022 - Financial Report.pdf
+  Reason: Successfully renamed
+
+Original: Cash-Balance-9-8-2021.pdf
+     New: September 8, 2021 - Financial Report.pdf
+  Reason: Successfully renamed
+
+Original: Cash-Balance-9-9-2020-1.pdf
+     New: September 9, 2020 - Financial Report.pdf
+  Reason: Successfully renamed
+
+Original: Cash-Balance-9-9-2020.pdf
+     New: September 9, 2020 - Financial Report (1).pdf
+  Reason: Renamed with duplicate counter
+
+Original: Cash-Balance-Report-10-13-2021.pdf
+     New: October 13, 2021 - Financial Report.pdf
+  Reason: Successfully renamed
+
+Original: Cash-Balance-Report-10-8-2025.pdf
+     New: October 8, 2025 - Financial Report.pdf
+  Reason: Successfully renamed
+
+Original: Cash-Balance-Report-11-9-2022.pdf
+     New: November 9, 2022 - Financial Report.pdf
+  Reason: Successfully renamed
+
+Original: Cash-Balance-Report-12-14-2022.pdf
+     New: December 14, 2022 - Financial Report.pdf
+  Reason: Successfully renamed
+
+Original: Cash-Balance-Report-2-12-2025.pdf
+     New: February 12, 2025 - Financial Report.pdf
+  Reason: Successfully renamed
+
+Original: Cash-Balance-Report-2-14-2024.pdf
+     New: February 14, 2024 - Financial Report.pdf
+  Reason: Successfully renamed
+
+Original: Cash-Balance-Report-6-14-2023.pdf
+     New: June 14, 2023 - Financial Report.pdf
+  Reason: Successfully renamed
+
+Original: Cash-Balance-Report-7-12-2023.pdf
+     New: July 12, 2023 - Financial Report.pdf
+  Reason: Successfully renamed
+
+Original: Cash-Balance-Report-9-13-2023.pdf
+     New: September 13, 2023 - Financial Report.pdf
+  Reason: Successfully renamed
+
+Original: Cash-Balance-board-meeting-11-14-2018-1-1.pdf
+     New: November 14, 2018 - Financial Report.pdf
+  Reason: Successfully renamed
+
+Original: Cash-Balance-board-meeting-11-14-2018-1.pdf
+     New: November 14, 2018 - Financial Report (1).pdf
+  Reason: Renamed with duplicate counter
+
+Original: Cash-Balance-board-meeting-11-14-2018.pdf
+     New: November 14, 2018 - Financial Report (2).pdf
+  Reason: Renamed with duplicate counter
+
+Original: Cash-Blance-Report-6-12-2024.pdf
+     New: June 12, 2024 - Financial Report.pdf
+  Reason: Successfully renamed
+
+Original: Cash-balance-2-13-2019-1.pdf
+     New: February 13, 2019 - Financial Report.pdf
+  Reason: Successfully renamed
+
+Original: Cash-balance-2-13-2019.pdf
+     New: February 13, 2019 - Financial Report (1).pdf
+  Reason: Renamed with duplicate counter
+
+Original: Cash-balance-6-12-2019-1.pdf
+     New: June 12, 2019 - Financial Report.pdf
+  Reason: Successfully renamed
+
+Original: Cash-balance-6-12-2019.pdf
+     New: June 12, 2019 - Financial Report (1).pdf
+  Reason: Renamed with duplicate counter
+
+Original: Cash-balance-8-12-2020-1-1.pdf
+     New: August 12, 2020 - Financial Report.pdf
+  Reason: Successfully renamed
+
+Original: Cash-balance-8-12-2020-1.pdf
+     New: August 12, 2020 - Financial Report (1).pdf
+  Reason: Renamed with duplicate counter
+
+Original: Cash-balance-8-12-2020.pdf
+     New: August 12, 2020 - Financial Report (2).pdf
+  Reason: Renamed with duplicate counter
+
+Original: Cash-balance-Board-Meeting-1-9-2019.pdf
+     New: January 9, 2019 - Financial Report.pdf
+  Reason: Successfully renamed
+
+Original: Cash-balance-Report-4-8-2020.pdf
+     New: April 8, 2020 - Financial Report.pdf
+  Reason: Successfully renamed
+
+Original: Cash-balances-for-meeting-7-11-2018-1.pdf
+     New: July 11, 2018 - Financial Report.pdf
+  Reason: Successfully renamed
+
+Original: Cash-balances-for-meeting-7-11-2018.pdf
+     New: July 11, 2018 - Financial Report (1).pdf
+  Reason: Renamed with duplicate counter
+
+Original: Draft-Town-Fund-Budget-Ordinacne-FY-2022-2023.pdf
+     New: 2022 - Draft - Financial Report.pdf
+  Reason: Successfully renamed
+
+Original: October-2018-Cash-Balances.pdf
+     New: October 2018 - Financial Report.pdf
+  Reason: Successfully renamed
+
+Original: September-2018-cash-balance.pdf
+     New: September 2018 - Financial Report.pdf
+  Reason: Successfully renamed
+
+Original: TOWNSHIP-BUDGET-2022-2023.pdf
+     New: 2022 - Financial Report.pdf
+  Reason: Successfully renamed
+
+Original: Town-Fund-Budget-FY-2021-2022.pdf
+     New: 2021 - Financial Report.pdf
+  Reason: Successfully renamed
+
+Original: cash-balance-3-10-2021.pdf
+     New: March 10, 2021 - Financial Report.pdf
+  Reason: Successfully renamed
+
+Original: cash-balance-5-12-2021.pdf
+     New: May 12, 2021 - Financial Report.pdf
+  Reason: Successfully renamed
+
+Original: cash-balance-5-13-2020-1.pdf
+     New: May 13, 2020 - Financial Report.pdf
+  Reason: Successfully renamed
+
+Original: cash-balance-5-13-2020.pdf
+     New: May 13, 2020 - Financial Report (1).pdf
+  Reason: Renamed with duplicate counter
+
+Original: cash-balance-8-2018.pdf
+     New: 2018 - Financial Report.pdf
+  Reason: Successfully renamed
+
+Original: cash-balance-9-11-19-1.pdf
+  Reason: Could not parse date
+
+Original: cash-balance-9-11-19.pdf
+  Reason: Could not parse date
+
+Original: cash-balance-report-8-14-2019-1.pdf
+     New: August 14, 2019 - Financial Report.pdf
+  Reason: Successfully renamed
+
+Original: cash-balance-report-8-14-2019-2.pdf
+     New: August 14, 2019 - Financial Report (1).pdf
+  Reason: Renamed with duplicate counter
+
+Original: cash-balance-report-8-14-2019.pdf
+     New: August 14, 2019 - Financial Report (2).pdf
+  Reason: Renamed with duplicate counter
+
+Original: 01-11-2026-Minutes.docx
+     New: January 11, 2026 - Meeting Minutes.docx
+  Reason: Successfully renamed
+
+Original: 02-10-2026-USA-Fest-Minutes.docx
+     New: February 10, 2026 - Meeting Minutes.docx
+  Reason: Successfully renamed
+
+Original: 02-11-2026-Minutes.docx
+     New: February 11, 2026 - Meeting Minutes.docx
+  Reason: Successfully renamed
+
+Original: ANNUAL-TOWN-MEETING-MINUTES-4-14-2026-1.pdf
+     New: April 14, 2026 - Annual - Meeting Minutes.pdf
+  Reason: Successfully renamed
+
+Original: Annual-Town-Meeting-Minutes-4-12-2022.pdf
+     New: April 12, 2022 - Annual - Meeting Minutes.pdf
+  Reason: Successfully renamed
+
+Original: April92024annualtownmeetingminutes.pdf
+     New: April 9, 2024 - Annual - Meeting Minutes.pdf
+  Reason: Successfully renamed
+
+Original: BOARD-MEETING-MINUTES-10-13-2021.pdf
+     New: October 13, 2021 - Meeting Minutes.pdf
+  Reason: Successfully renamed
+
+Original: BOARD-MEETING-MINUTES-3-11-2020-1.pdf
+     New: March 11, 2020 - Meeting Minutes.pdf
+  Reason: Successfully renamed
+
+Original: BOARD-MEETING-MINUTES-3-11-2020.pdf
+     New: March 11, 2020 - Meeting Minutes (1).pdf
+  Reason: Renamed with duplicate counter
+
+Original: BOARD-MEETING-MINUTES-7-1-2025.pdf
+     New: July 1, 2025 - Meeting Minutes.pdf
+  Reason: Successfully renamed
+
+Original: BOARD-MEETING-MINUTES-8-14-2024.pdf
+     New: August 14, 2024 - Meeting Minutes.pdf
+  Reason: Successfully renamed
+
+Original: Board-Meeting-12-11-2019-1.pdf
+     New: December 11, 2019 - Meeting Minutes.pdf
+  Reason: Successfully renamed
+
+Original: Board-Meeting-12-11-2019.pdf
+     New: December 11, 2019 - Meeting Minutes (1).pdf
+  Reason: Renamed with duplicate counter
+
+Original: Board-Meeting-7-14-2021-1.pdf
+     New: July 14, 2021 - Meeting Minutes.pdf
+  Reason: Successfully renamed
+
+Original: Board-Meeting-7-14-2021-2.pdf
+     New: July 14, 2021 - Meeting Minutes (1).pdf
+  Reason: Renamed with duplicate counter
+
+Original: Board-Meeting-7-14-2021-3.pdf
+     New: July 14, 2021 - Meeting Minutes (2).pdf
+  Reason: Renamed with duplicate counter
+
+Original: Board-Meeting-7-14-2021-4.pdf
+     New: July 14, 2021 - Meeting Minutes (3).pdf
+  Reason: Renamed with duplicate counter
+
+Original: Board-Meeting-7-14-2021.pdf
+     New: July 14, 2021 - Meeting Minutes (4).pdf
+  Reason: Renamed with duplicate counter
+
+Original: Board-Meeting-Minutes-1-11-2023.pdf
+     New: January 11, 2023 - Meeting Minutes.pdf
+  Reason: Successfully renamed
+
+Original: Board-Meeting-Minutes-1-12-2022-1.pdf
+     New: January 12, 2022 - Meeting Minutes.pdf
+  Reason: Successfully renamed
+
+Original: Board-Meeting-Minutes-1-12-2022.pdf
+     New: January 12, 2022 - Meeting Minutes (1).pdf
+  Reason: Renamed with duplicate counter
+
+Original: Board-Meeting-Minutes-1-13-2021-1.pdf
+     New: January 13, 2021 - Meeting Minutes.pdf
+  Reason: Successfully renamed
+
+Original: Board-Meeting-Minutes-1-13-2021.pdf
+     New: January 13, 2021 - Meeting Minutes (1).pdf
+  Reason: Renamed with duplicate counter
+
+Original: Board-Meeting-Minutes-1-8-2020-1.pdf
+     New: January 8, 2020 - Meeting Minutes.pdf
+  Reason: Successfully renamed
+
+Original: Board-Meeting-Minutes-1-8-2020.pdf
+     New: January 8, 2020 - Meeting Minutes (1).pdf
+  Reason: Renamed with duplicate counter
+
+Original: Board-Meeting-Minutes-10-14-2020-1.pdf
+     New: October 14, 2020 - Meeting Minutes.pdf
+  Reason: Successfully renamed
+
+Original: Board-Meeting-Minutes-10-14-2020.pdf
+     New: October 14, 2020 - Meeting Minutes (1).pdf
+  Reason: Renamed with duplicate counter
+
+Original: Board-Meeting-Minutes-10-8-25.pdf
+  Reason: Could not parse date
+
+Original: Board-Meeting-Minutes-10-9-2019-1.pdf
+     New: October 9, 2019 - Meeting Minutes.pdf
+  Reason: Successfully renamed
+
+Original: Board-Meeting-Minutes-10-9-2019.pdf
+     New: October 9, 2019 - Meeting Minutes (1).pdf
+  Reason: Renamed with duplicate counter
+
+Original: Board-Meeting-Minutes-11-10-2021.pdf
+     New: November 10, 2021 - Meeting Minutes.pdf
+  Reason: Successfully renamed
+
+Original: Board-Meeting-Minutes-11-11-2020.pdf
+     New: November 11, 2020 - Meeting Minutes.pdf
+  Reason: Successfully renamed
+
+Original: Board-Meeting-Minutes-11-13-2019-1.pdf
+     New: November 13, 2019 - Meeting Minutes.pdf
+  Reason: Successfully renamed
+
+Original: Board-Meeting-Minutes-11-13-2019.pdf
+     New: November 13, 2019 - Meeting Minutes (1).pdf
+  Reason: Renamed with duplicate counter
+
+Original: Board-Meeting-Minutes-11-13-2024.pdf
+     New: November 13, 2024 - Meeting Minutes.pdf
+  Reason: Successfully renamed
+
+Original: Board-Meeting-Minutes-12-11-2024.pdf
+     New: December 11, 2024 - Meeting Minutes.pdf
+  Reason: Successfully renamed
+
+Original: Board-Meeting-Minutes-12-8-2021.pdf
+     New: December 8, 2021 - Meeting Minutes.pdf
+  Reason: Successfully renamed
+
+Original: Board-Meeting-Minutes-12-9-2020.pdf
+     New: December 9, 2020 - Meeting Minutes.pdf
+  Reason: Successfully renamed
+
+Original: Board-Meeting-Minutes-2-10-2021-1.pdf
+     New: February 10, 2021 - Meeting Minutes.pdf
+  Reason: Successfully renamed
+
+Original: Board-Meeting-Minutes-2-10-2021-2.pdf
+     New: February 10, 2021 - Meeting Minutes (1).pdf
+  Reason: Renamed with duplicate counter
+
+Original: Board-Meeting-Minutes-2-10-2021.pdf
+     New: February 10, 2021 - Meeting Minutes (2).pdf
+  Reason: Renamed with duplicate counter
+
+Original: Board-Meeting-Minutes-2-12-2020-1-1.pdf
+     New: February 12, 2020 - Meeting Minutes.pdf
+  Reason: Successfully renamed
+
+Original: Board-Meeting-Minutes-2-12-2020-1.pdf
+     New: February 12, 2020 - Meeting Minutes (1).pdf
+  Reason: Renamed with duplicate counter
+
+Original: Board-Meeting-Minutes-2-12-2020.pdf
+     New: February 12, 2020 - Meeting Minutes (2).pdf
+  Reason: Renamed with duplicate counter
+
+Original: Board-Meeting-Minutes-2-12-2025.pdf
+     New: February 12, 2025 - Meeting Minutes.pdf
+  Reason: Successfully renamed
+
+Original: Board-Meeting-Minutes-2-13-2019-1.pdf
+     New: February 13, 2019 - Meeting Minutes.pdf
+  Reason: Successfully renamed
+
+Original: Board-Meeting-Minutes-2-13-2019.pdf
+     New: February 13, 2019 - Meeting Minutes (1).pdf
+  Reason: Renamed with duplicate counter
+
+Original: Board-Meeting-Minutes-2-14-2024.pdf
+     New: February 14, 2024 - Meeting Minutes.pdf
+  Reason: Successfully renamed
+
+Original: Board-Meeting-Minutes-3-10-2021-1.pdf
+     New: March 10, 2021 - Meeting Minutes.pdf
+  Reason: Successfully renamed
+
+Original: Board-Meeting-Minutes-3-10-2021.pdf
+     New: March 10, 2021 - Meeting Minutes (1).pdf
+  Reason: Renamed with duplicate counter
+
+Original: Board-Meeting-Minutes-3-12-2025.pdf
+     New: March 12, 2025 - Meeting Minutes.pdf
+  Reason: Successfully renamed
+
+Original: Board-Meeting-Minutes-3-13-2019-1.pdf
+     New: March 13, 2019 - Meeting Minutes.pdf
+  Reason: Successfully renamed
+
+Original: Board-Meeting-Minutes-3-13-2019-2-1.pdf
+     New: March 13, 2019 - Meeting Minutes (1).pdf
+  Reason: Renamed with duplicate counter
+
+Original: Board-Meeting-Minutes-3-13-2019-2.pdf
+     New: March 13, 2019 - Meeting Minutes (2).pdf
+  Reason: Renamed with duplicate counter
+
+Original: Board-Meeting-Minutes-3-13-2019.pdf
+     New: March 13, 2019 - Meeting Minutes (3).pdf
+  Reason: Renamed with duplicate counter
+
+Original: Board-Meeting-Minutes-3-13-2024.pdf
+     New: March 13, 2024 - Meeting Minutes.pdf
+  Reason: Successfully renamed
+
+Original: Board-Meeting-Minutes-3-8-2023.pdf
+     New: March 8, 2023 - Meeting Minutes.pdf
+  Reason: Successfully renamed
+
+Original: Board-Meeting-Minutes-4-10-2019-1-1.pdf
+     New: April 10, 2019 - Meeting Minutes.pdf
+  Reason: Successfully renamed
+
+Original: Board-Meeting-Minutes-4-10-2019-1.pdf
+     New: April 10, 2019 - Meeting Minutes (1).pdf
+  Reason: Renamed with duplicate counter
+
+Original: Board-Meeting-Minutes-4-10-2019.pdf
+     New: April 10, 2019 - Meeting Minutes (2).pdf
+  Reason: Renamed with duplicate counter
+
+Original: Board-Meeting-Minutes-4-12-2023.pdf
+     New: April 12, 2023 - Meeting Minutes.pdf
+  Reason: Successfully renamed
+
+Original: Board-Meeting-Minutes-4-13-2022.pdf
+     New: April 13, 2022 - Meeting Minutes.pdf
+  Reason: Successfully renamed
+
+Original: Board-Meeting-Minutes-4-14-2021-1.pdf
+     New: April 14, 2021 - Meeting Minutes.pdf
+  Reason: Successfully renamed
+
+Original: Board-Meeting-Minutes-4-14-2021.pdf
+     New: April 14, 2021 - Meeting Minutes (1).pdf
+  Reason: Renamed with duplicate counter
+
+Original: Board-Meeting-Minutes-4-7-14-2021-.pdf
+     New: July 14, 2021 - Meeting Minutes (5).pdf
+  Reason: Renamed with duplicate counter
+
+Original: Board-Meeting-Minutes-4-8-2020.pdf
+     New: April 8, 2020 - Meeting Minutes.pdf
+  Reason: Successfully renamed
+
+Original: Board-Meeting-Minutes-4-9-2025.pdf
+     New: April 9, 2025 - Meeting Minutes.pdf
+  Reason: Successfully renamed
+
+Original: Board-Meeting-Minutes-5-11-2022.pdf
+     New: May 11, 2022 - Meeting Minutes.pdf
+  Reason: Successfully renamed
+
+Original: Board-Meeting-Minutes-5-12-2021-1.pdf
+     New: May 12, 2021 - Meeting Minutes.pdf
+  Reason: Successfully renamed
+
+Original: Board-Meeting-Minutes-5-12-2021.pdf
+     New: May 12, 2021 - Meeting Minutes (1).pdf
+  Reason: Renamed with duplicate counter
+
+Original: Board-Meeting-Minutes-5-14-2025.pdf
+     New: May 14, 2025 - Meeting Minutes.pdf
+  Reason: Successfully renamed
+
+Original: Board-Meeting-Minutes-5-8-2019-1-1.pdf
+     New: May 8, 2019 - Meeting Minutes.pdf
+  Reason: Successfully renamed
+
+Original: Board-Meeting-Minutes-5-8-2019-1.pdf
+     New: May 8, 2019 - Meeting Minutes (1).pdf
+  Reason: Renamed with duplicate counter
+
+Original: Board-Meeting-Minutes-5-8-2019.pdf
+     New: May 8, 2019 - Meeting Minutes (2).pdf
+  Reason: Renamed with duplicate counter
+
+Original: Board-Meeting-Minutes-6-10-2020-1-1.pdf
+     New: June 10, 2020 - Meeting Minutes.pdf
+  Reason: Successfully renamed
+
+Original: Board-Meeting-Minutes-6-10-2020-1.pdf
+     New: June 10, 2020 - Meeting Minutes (1).pdf
+  Reason: Renamed with duplicate counter
+
+Original: Board-Meeting-Minutes-6-10-2020.pdf
+     New: June 10, 2020 - Meeting Minutes (2).pdf
+  Reason: Renamed with duplicate counter
+
+Original: Board-Meeting-Minutes-6-12-2024.pdf
+     New: June 12, 2024 - Meeting Minutes.pdf
+  Reason: Successfully renamed
+
+Original: Board-Meeting-Minutes-6-14-2023.pdf
+     New: June 14, 2023 - Meeting Minutes.pdf
+  Reason: Successfully renamed
+
+Original: Board-Meeting-Minutes-6-9-2021.pdf
+     New: June 9, 2021 - Meeting Minutes.pdf
+  Reason: Successfully renamed
+
+Original: Board-Meeting-Minutes-7-10-2019-1.pdf
+     New: July 10, 2019 - Meeting Minutes.pdf
+  Reason: Successfully renamed
+
+Original: Board-Meeting-Minutes-7-10-2019.pdf
+     New: July 10, 2019 - Meeting Minutes (1).pdf
+  Reason: Renamed with duplicate counter
+
+Original: Board-Meeting-Minutes-7-10-2024.pdf
+     New: July 10, 2024 - Meeting Minutes.pdf
+  Reason: Successfully renamed
+
+Original: Board-Meeting-Minutes-7-12-2023.pdf
+     New: July 12, 2023 - Meeting Minutes.pdf
+  Reason: Successfully renamed
+
+Original: Board-Meeting-Minutes-7-13-2022-1.pdf
+     New: July 13, 2022 - Meeting Minutes.pdf
+  Reason: Successfully renamed
+
+Original: Board-Meeting-Minutes-8-10-2022.pdf
+     New: August 10, 2022 - Meeting Minutes.pdf
+  Reason: Successfully renamed
+
+Original: Board-Meeting-Minutes-8-11-2021.pdf
+     New: August 11, 2021 - Meeting Minutes.pdf
+  Reason: Successfully renamed
+
+Original: Board-Meeting-Minutes-8-12-2020-1-1.pdf
+     New: August 12, 2020 - Meeting Minutes.pdf
+  Reason: Successfully renamed
+
+Original: Board-Meeting-Minutes-8-12-2020-1.pdf
+     New: August 12, 2020 - Meeting Minutes (1).pdf
+  Reason: Renamed with duplicate counter
+
+Original: Board-Meeting-Minutes-8-12-2020.pdf
+     New: August 12, 2020 - Meeting Minutes (2).pdf
+  Reason: Renamed with duplicate counter
+
+Original: Board-Meeting-Minutes-9-11-2024.pdf
+     New: September 11, 2024 - Meeting Minutes.pdf
+  Reason: Successfully renamed
+
+Original: Board-Meeting-Minutes-9-13-2023.pdf
+     New: September 13, 2023 - Meeting Minutes.pdf
+  Reason: Successfully renamed
+
+Original: Board-Meeting-Minutes-9-8-2021-1.pdf
+     New: September 8, 2021 - Meeting Minutes.pdf
+  Reason: Successfully renamed
+
+Original: Board-Meeting-Minutes-9-8-2021.pdf
+     New: September 8, 2021 - Meeting Minutes (1).pdf
+  Reason: Renamed with duplicate counter
+
+Original: Board-Meeting-Minutes-9-9-2020-1.pdf
+     New: September 9, 2020 - Meeting Minutes.pdf
+  Reason: Successfully renamed
+
+Original: Board-Meeting-Minutes-9-9-2020.pdf
+     New: September 9, 2020 - Meeting Minutes (1).pdf
+  Reason: Renamed with duplicate counter
+
+Original: Board-Meeting-minutes-1-9-2019-1.pdf
+     New: January 9, 2019 - Meeting Minutes.pdf
+  Reason: Successfully renamed
+
+Original: Board-Meeting-minutes-1-9-2019.pdf
+     New: January 9, 2019 - Meeting Minutes (1).pdf
+  Reason: Renamed with duplicate counter
+
+Original: Board-Meeting-minutes-12-12-18-1.pdf
+  Reason: Could not parse date
+
+Original: Board-Meeting-minutes-12-12-18.pdf
+  Reason: Could not parse date
+
+Original: Board-Meeting-minutes-7-8-2020-1.pdf
+     New: July 8, 2020 - Meeting Minutes.pdf
+  Reason: Successfully renamed
+
+Original: Board-Meeting-minutes-7-8-2020.pdf
+     New: July 8, 2020 - Meeting Minutes (1).pdf
+  Reason: Renamed with duplicate counter
+
+Original: Board-meeting-4-8-2020-1.pdf
+     New: April 8, 2020 - Meeting Minutes (1).pdf
+  Reason: Renamed with duplicate counter
+
+Original: Board-meeting-4-8-2020-2.pdf
+     New: April 8, 2020 - Meeting Minutes (2).pdf
+  Reason: Renamed with duplicate counter
+
+Original: Board-meeting-4-8-2020.pdf
+     New: April 8, 2020 - Meeting Minutes (3).pdf
+  Reason: Renamed with duplicate counter
+
+Original: Board-meeting-minutes-5-13-2020-1.pdf
+     New: May 13, 2020 - Meeting Minutes.pdf
+  Reason: Successfully renamed
+
+Original: Board-meeting-minutes-5-13-2020.pdf
+     New: May 13, 2020 - Meeting Minutes (1).pdf
+  Reason: Renamed with duplicate counter
+
+Original: Board-of-Trustee-Minutes-10-11-2023.pdf
+     New: October 11, 2023 - Meeting Minutes.pdf
+  Reason: Successfully renamed
+
+Original: MEETING-MINUTES-3-11-2026.pdf
+     New: March 11, 2026 - Meeting Minutes.pdf
+  Reason: Successfully renamed
+
+Original: March092022BODminutes-1.pdf
+     New: March 9, 2022 - Meeting Minutes.pdf
+  Reason: Successfully renamed
+
+Original: Meeting-Minutes-11-9-2022.pdf
+     New: November 9, 2022 - Meeting Minutes.pdf
+  Reason: Successfully renamed
+
+Original: Meeting-Minutes-April-2018.pdf
+     New: April 2018 - Meeting Minutes.pdf
+  Reason: Successfully renamed
+
+Original: Meeting-Minutes-August-13-2025.pdf
+     New: August 13, 2025 - Meeting Minutes.pdf
+  Reason: Successfully renamed
+
+Original: November-12-2025-Minutes.pdf
+     New: November 12, 2025 - Meeting Minutes.pdf
+  Reason: Successfully renamed
+
+Original: October-2018-Board-Meeting-Minutes.pdf
+     New: October 2018 - Meeting Minutes.pdf
+  Reason: Successfully renamed
+
+Original: October92024BODminutes.pdf
+     New: October 9, 2024 - Meeting Minutes.pdf
+  Reason: Successfully renamed
+
+Original: September-14-2022-Minutes.pdf
+     New: September 14, 2022 - Meeting Minutes.pdf
+  Reason: Successfully renamed
+
+Original: Township-Board-Meeting-Minutes-December-2016.pdf
+     New: December 2016 - Meeting Minutes.pdf
+  Reason: Successfully renamed
+
+Original: board-meeting-11-14-2018-1.pdf
+     New: November 14, 2018 - Meeting Minutes.pdf
+  Reason: Successfully renamed
+
+Original: board-meeting-11-14-2018-2.pdf
+     New: November 14, 2018 - Meeting Minutes (1).pdf
+  Reason: Renamed with duplicate counter
+
+Original: board-meeting-11-14-2018-3.pdf
+     New: November 14, 2018 - Meeting Minutes (2).pdf
+  Reason: Renamed with duplicate counter
+
+Original: board-meeting-11-14-2018.pdf
+     New: November 14, 2018 - Meeting Minutes (3).pdf
+  Reason: Renamed with duplicate counter
+
+Original: board-meeting-minutes-12-14-2022.pdf
+     New: December 14, 2022 - Meeting Minutes.pdf
+  Reason: Successfully renamed
+
+Original: board-meeting-minutes-4-8-2020-2.pdf
+     New: April 8, 2020 - Meeting Minutes (4).pdf
+  Reason: Renamed with duplicate counter
+
+Original: board-meeting-minutes-6-12-2019.pdf
+     New: June 12, 2019 - Meeting Minutes.pdf
+  Reason: Successfully renamed
+
+Original: board-meeting-minutes-6-13-2018-1.pdf
+     New: June 13, 2018 - Meeting Minutes.pdf
+  Reason: Successfully renamed
+
+Original: board-meeting-minutes-6-13-2018-2-1.pdf
+     New: June 13, 2018 - Meeting Minutes (1).pdf
+  Reason: Renamed with duplicate counter
+
+Original: board-meeting-minutes-6-13-2018-2.pdf
+     New: June 13, 2018 - Meeting Minutes (2).pdf
+  Reason: Renamed with duplicate counter
+
+Original: board-meeting-minutes-6-13-2018.pdf
+     New: June 13, 2018 - Meeting Minutes (3).pdf
+  Reason: Renamed with duplicate counter
+
+Original: board-meeting-minutes-7-11-2018-1.pdf
+     New: July 11, 2018 - Meeting Minutes.pdf
+  Reason: Successfully renamed
+
+Original: board-meeting-minutes-7-11-2018-2.pdf
+     New: July 11, 2018 - Meeting Minutes (1).pdf
+  Reason: Renamed with duplicate counter
+
+Original: board-meeting-minutes-7-11-2018.pdf
+     New: July 11, 2018 - Meeting Minutes (2).pdf
+  Reason: Renamed with duplicate counter
+
+Original: board-meeting-minutes-8-14-2019-1-1.pdf
+     New: August 14, 2019 - Meeting Minutes.pdf
+  Reason: Successfully renamed
+
+Original: board-meeting-minutes-8-14-2019-1.pdf
+     New: August 14, 2019 - Meeting Minutes (1).pdf
+  Reason: Renamed with duplicate counter
+
+Original: board-meeting-minutes-8-14-2019-2.pdf
+     New: August 14, 2019 - Meeting Minutes (2).pdf
+  Reason: Renamed with duplicate counter
+
+Original: board-meeting-minutes-8-14-2019.pdf
+     New: August 14, 2019 - Meeting Minutes (3).pdf
+  Reason: Renamed with duplicate counter
+
+Original: board-meeting-minutes-8-8-2018-1-1.pdf
+     New: August 8, 2018 - Meeting Minutes.pdf
+  Reason: Successfully renamed
+
+Original: board-meeting-minutes-8-8-2018-1.pdf
+     New: August 8, 2018 - Meeting Minutes (1).pdf
+  Reason: Renamed with duplicate counter
+
+Original: board-meeting-minutes-8-8-2018.pdf
+     New: August 8, 2018 - Meeting Minutes (2).pdf
+  Reason: Renamed with duplicate counter
+
+Original: board-meeting-minutes-9-11-2019-1.pdf
+     New: September 11, 2019 - Meeting Minutes.pdf
+  Reason: Successfully renamed
+
+Original: board-meeting-minutes-9-11-2019.pdf
+     New: September 11, 2019 - Meeting Minutes (1).pdf
+  Reason: Renamed with duplicate counter
+
+Original: board-meeting-minutes-april-2020-2.pdf
+     New: April 2020 - Meeting Minutes.pdf
+  Reason: Successfully renamed
+
+Original: february-2018-board-meeting-minutes.pdf
+     New: February 2018 - Meeting Minutes.pdf
+  Reason: Successfully renamed
+
+Original: january-2018-board-meeting-minutes.pdf
+     New: January 2018 - Meeting Minutes.pdf
+  Reason: Successfully renamed
+
+Original: march-2018-board-meeting-minutes.pdf
+     New: March 2018 - Meeting Minutes.pdf
+  Reason: Successfully renamed
+
+Original: march312025BODminutes.pdf
+     New: March 31, 2025 - Meeting Minutes.pdf
+  Reason: Successfully renamed
+
+Original: may-2017-board-meeting-minutes.pdf
+     New: May 2017 - Meeting Minutes.pdf
+  Reason: Successfully renamed
+
+Original: minutes-Aug-R-and-B-Assesors.pdf
+  Reason: Could not parse date
+
+Original: september-2018-minutes.pdf
+     New: September 2018 - Meeting Minutes.pdf
+  Reason: Successfully renamed
+
+Original: .DS_Store
+  Reason: Could not parse date
+
+Original: 2018-Fall_Winter.pdf
+     New: 2018 - Newsletter.pdf
+  Reason: Successfully renamed
+
+Original: 2019-Fall_Winter.pdf
+     New: 2019 - Newsletter.pdf
+  Reason: Successfully renamed
+
+Original: 2019-Spring-1.pdf
+     New: 2019 - Newsletter (1).pdf
+  Reason: Renamed with duplicate counter
+
+Original: 2019-Summer.pdf
+     New: 2019 - Newsletter (2).pdf
+  Reason: Renamed with duplicate counter
+
+Original: 2020-Spring.pdf
+     New: 2020 - Newsletter.pdf
+  Reason: Successfully renamed
+
+Original: 2020-Summer.pdf
+     New: 2020 - Newsletter (1).pdf
+  Reason: Renamed with duplicate counter
+
+Original: 2020-Winter.pdf
+     New: 2020 - Newsletter (2).pdf
+  Reason: Renamed with duplicate counter
+
+Original: 2021-Spring.pdf
+     New: 2021 - Newsletter.pdf
+  Reason: Successfully renamed
+
+Original: 2021-Summer.pdf
+     New: 2021 - Newsletter (1).pdf
+  Reason: Renamed with duplicate counter
+
+Original: 2021-Winter_Fall.pdf
+     New: 2021 - Newsletter (2).pdf
+  Reason: Renamed with duplicate counter
+
+Original: 2022-Spring.pdf
+     New: 2022 - Newsletter.pdf
+  Reason: Successfully renamed
+
+Original: 2022-Summer.pdf
+     New: 2022 - Newsletter (1).pdf
+  Reason: Renamed with duplicate counter
+
+Original: 2022-Winter_Fall.pdf
+     New: 2022 - Newsletter (2).pdf
+  Reason: Renamed with duplicate counter
+
+Original: 2023Fall_Winter.pdf
+     New: 2023 - Newsletter.pdf
+  Reason: Successfully renamed
+
+Original: 2023SPRING.pdf
+     New: 2023 - Newsletter (1).pdf
+  Reason: Renamed with duplicate counter
+
+Original: 2023SUMMER.pdf
+     New: 2023 - Newsletter (2).pdf
+  Reason: Renamed with duplicate counter
+
+Original: SPRING2024.pdf
+     New: 2024 - Newsletter.pdf
+  Reason: Successfully renamed
+
+Original: SPRING2026-WEB.pdf
+     New: 2026 - Newsletter.pdf
+  Reason: Successfully renamed
+
+Original: Winter_Fall-2025.pdf
+     New: 2025 - Newsletter.pdf
+  Reason: Successfully renamed
+
+Original: Branch-Pick-up-Guidelines-2019-1.pdf
+     New: 2019 - Road District Report.pdf
+  Reason: Successfully renamed
+
+Original: Branch-Pick-up-Guidelines-2019-2.pdf
+     New: 2019 - Road District Report (1).pdf
+  Reason: Renamed with duplicate counter
+
+Original: Branch-Pick-up-Guidelines-2019.pdf
+     New: 2019 - Road District Report (2).pdf
+  Reason: Renamed with duplicate counter
+
+Original: December112024Townroadandbridgetaxlevyagenda.pdf
+     New: December 11, 2024 - Road District Report.pdf
+  Reason: Successfully renamed
+
+Original: December142022Townroadandbridgetaxlevyagenda.pdf
+     New: December 14, 2022 - Road District Report.pdf
+  Reason: Successfully renamed
+
+Original: HIGHWAY-COMMISSIONERS-REPORT-11-12-2025.pdf
+     New: November 12, 2025 - Road District Report.pdf
+  Reason: Successfully renamed
+
+Original: HIGHWAY-COMMISSIONERS-REPORT-2-12-2025.pdf
+     New: February 12, 2025 - Road District Report.pdf
+  Reason: Successfully renamed
+
+Original: HIGHWAY-COMMISSIONERS-REPORT-3-11-2020-1.pdf
+     New: March 11, 2020 - Road District Report.pdf
+  Reason: Successfully renamed
+
+Original: HIGHWAY-COMMISSIONERS-REPORT-3-11-2020.pdf
+     New: March 11, 2020 - Road District Report (1).pdf
+  Reason: Renamed with duplicate counter
+
+Original: HIGHWAY-COMMISSIONERS-REPORT-5-11-2022.pdf
+     New: May 11, 2022 - Road District Report.pdf
+  Reason: Successfully renamed
+
+Original: HIGHWAY-COMMISSIONERS-REPORT-8-14-2024.pdf
+     New: August 14, 2024 - Road District Report.pdf
+  Reason: Successfully renamed
+
+Original: HIghway-Commissioners-Report-4-12-2023.pdf
+     New: April 12, 2023 - Road District Report.pdf
+  Reason: Successfully renamed
+
+Original: HIghway-Commissioners-Report-4-14-2021.pdf
+     New: April 14, 2021 - Road District Report.pdf
+  Reason: Successfully renamed
+
+Original: HIghway-Commissioners-Report-7-10-2024.pdf
+     New: July 10, 2024 - Road District Report.pdf
+  Reason: Successfully renamed
+
+Original: HIghway-Commissioners-Report-8-11-2021.pdf
+     New: August 11, 2021 - Road District Report.pdf
+  Reason: Successfully renamed
+
+Original: Highway-Commissioners-1-13-2021.pdf
+     New: January 13, 2021 - Road District Report.pdf
+  Reason: Successfully renamed
+
+Original: Highway-Commissioners-10-11-2023.pdf
+     New: October 11, 2023 - Road District Report.pdf
+  Reason: Successfully renamed
+
+Original: Highway-Commissioners-11-9-2022.pdf
+     New: November 9, 2022 - Road District Report.pdf
+  Reason: Successfully renamed
+
+Original: Highway-Commissioners-2-13-2019-1.pdf
+     New: February 13, 2019 - Road District Report.pdf
+  Reason: Successfully renamed
+
+Original: Highway-Commissioners-2-13-2019.pdf
+     New: February 13, 2019 - Road District Report (1).pdf
+  Reason: Renamed with duplicate counter
+
+Original: Highway-Commissioners-3-12-2025.pdf
+     New: March 12, 2025 - Road District Report.pdf
+  Reason: Successfully renamed
+
+Original: Highway-Commissioners-4-13-2022.pdf
+     New: April 13, 2022 - Road District Report.pdf
+  Reason: Successfully renamed
+
+Original: Highway-Commissioners-7-8-2020-1.pdf
+     New: July 8, 2020 - Road District Report.pdf
+  Reason: Successfully renamed
+
+Original: Highway-Commissioners-7-8-2020.pdf
+     New: July 8, 2020 - Road District Report (1).pdf
+  Reason: Renamed with duplicate counter
+
+Original: Highway-Commissioners-8-10-2022.pdf
+     New: August 10, 2022 - Road District Report.pdf
+  Reason: Successfully renamed
+
+Original: Highway-Commissioners-9-14-2022.pdf
+     New: September 14, 2022 - Road District Report.pdf
+  Reason: Successfully renamed
+
+Original: Highway-Commissioners-Report-10-13-2021.pdf
+     New: October 13, 2021 - Road District Report.pdf
+  Reason: Successfully renamed
+
+Original: Highway-Commissioners-Report-10-8-2025.pdf
+     New: October 8, 2025 - Road District Report.pdf
+  Reason: Successfully renamed
+
+Original: Highway-Commissioners-Report-10-9-2019-1.pdf
+     New: October 9, 2019 - Road District Report.pdf
+  Reason: Successfully renamed
+
+Original: Highway-Commissioners-Report-10-9-2019.pdf
+     New: October 9, 2019 - Road District Report (1).pdf
+  Reason: Renamed with duplicate counter
+
+Original: Highway-Commissioners-Report-11-13-2019-1.pdf
+     New: November 13, 2019 - Road District Report.pdf
+  Reason: Successfully renamed
+
+Original: Highway-Commissioners-Report-11-13-2019.pdf
+     New: November 13, 2019 - Road District Report (1).pdf
+  Reason: Renamed with duplicate counter
+
+Original: Highway-Commissioners-Report-12-11-2019-1.pdf
+     New: December 11, 2019 - Road District Report.pdf
+  Reason: Successfully renamed
+
+Original: Highway-Commissioners-Report-12-11-2019.pdf
+     New: December 11, 2019 - Road District Report (1).pdf
+  Reason: Renamed with duplicate counter
+
+Original: Highway-Commissioners-Report-12-8-2021.pdf
+     New: December 8, 2021 - Road District Report.pdf
+  Reason: Successfully renamed
+
+Original: Highway-Commissioners-Report-2-10-2021.pdf
+     New: February 10, 2021 - Road District Report.pdf
+  Reason: Successfully renamed
+
+Original: Highway-Commissioners-Report-2-12-2020-1.pdf
+     New: February 12, 2020 - Road District Report.pdf
+  Reason: Successfully renamed
+
+Original: Highway-Commissioners-Report-2-12-2020-2-1.pdf
+     New: February 12, 2020 - Road District Report (1).pdf
+  Reason: Renamed with duplicate counter
+
+Original: Highway-Commissioners-Report-2-12-2020-2.pdf
+     New: February 12, 2020 - Road District Report (2).pdf
+  Reason: Renamed with duplicate counter
+
+Original: Highway-Commissioners-Report-2-12-2020.pdf
+     New: February 12, 2020 - Road District Report (3).pdf
+  Reason: Renamed with duplicate counter
+
+Original: Highway-Commissioners-Report-2-14-2024.pdf
+     New: February 14, 2024 - Road District Report.pdf
+  Reason: Successfully renamed
+
+Original: Highway-Commissioners-Report-2-9-2022.pdf
+     New: February 9, 2022 - Road District Report.pdf
+  Reason: Successfully renamed
+
+Original: Highway-Commissioners-Report-4-8-2020-1.pdf
+     New: April 8, 2020 - Road District Report.pdf
+  Reason: Successfully renamed
+
+Original: Highway-Commissioners-Report-4-8-2020-2.pdf
+     New: April 8, 2020 - Road District Report (1).pdf
+  Reason: Renamed with duplicate counter
+
+Original: Highway-Commissioners-Report-4-8-2020-3.pdf
+     New: April 8, 2020 - Road District Report (2).pdf
+  Reason: Renamed with duplicate counter
+
+Original: Highway-Commissioners-Report-4-8-2020-4.pdf
+     New: April 8, 2020 - Road District Report (3).pdf
+  Reason: Renamed with duplicate counter
+
+Original: Highway-Commissioners-Report-4-8-2020-5.pdf
+     New: April 8, 2020 - Road District Report (4).pdf
+  Reason: Renamed with duplicate counter
+
+Original: Highway-Commissioners-Report-4-8-2020.pdf
+     New: April 8, 2020 - Road District Report (5).pdf
+  Reason: Renamed with duplicate counter
+
+Original: Highway-Commissioners-Report-5-12-2021.pdf
+     New: May 12, 2021 - Road District Report.pdf
+  Reason: Successfully renamed
+
+Original: Highway-Commissioners-Report-6-12-2019-1.pdf
+     New: June 12, 2019 - Road District Report.pdf
+  Reason: Successfully renamed
+
+Original: Highway-Commissioners-Report-6-12-2019.pdf
+     New: June 12, 2019 - Road District Report (1).pdf
+  Reason: Renamed with duplicate counter
+
+Original: Highway-Commissioners-Report-6-12-2024.pdf
+     New: June 12, 2024 - Road District Report.pdf
+  Reason: Successfully renamed
+
+Original: Highway-Commissioners-Report-6-14-2023.pdf
+     New: June 14, 2023 - Road District Report.pdf
+  Reason: Successfully renamed
+
+Original: Highway-Commissioners-Report-6-9-2021.pdf
+     New: June 9, 2021 - Road District Report.pdf
+  Reason: Successfully renamed
+
+Original: Highway-Commissioners-Report-7-10-2019-1.pdf
+     New: July 10, 2019 - Road District Report.pdf
+  Reason: Successfully renamed
+
+Original: Highway-Commissioners-Report-7-10-2019.pdf
+     New: July 10, 2019 - Road District Report (1).pdf
+  Reason: Renamed with duplicate counter
+
+Original: Highway-Commissioners-Report-7-12-2023.pdf
+     New: July 12, 2023 - Road District Report.pdf
+  Reason: Successfully renamed
+
+Original: Highway-Commissioners-Report-7-14-2021-1.pdf
+     New: July 14, 2021 - Road District Report.pdf
+  Reason: Successfully renamed
+
+Original: Highway-Commissioners-Report-7-14-2021-2.pdf
+     New: July 14, 2021 - Road District Report (1).pdf
+  Reason: Renamed with duplicate counter
+
+Original: Highway-Commissioners-Report-7-14-2021.pdf
+     New: July 14, 2021 - Road District Report (2).pdf
+  Reason: Renamed with duplicate counter
+
+Original: Highway-Commissioners-Report-8-13-2025.pdf
+     New: August 13, 2025 - Road District Report.pdf
+  Reason: Successfully renamed
+
+Original: Highway-Commissioners-Report-9-11-2024.pdf
+     New: September 11, 2024 - Road District Report.pdf
+  Reason: Successfully renamed
+
+Original: Highway-Commissioners-Report-9-13-2023.pdf
+     New: September 13, 2023 - Road District Report.pdf
+  Reason: Successfully renamed
+
+Original: Highway-Commissioners-Report-9-8-2021-1.pdf
+     New: September 8, 2021 - Road District Report.pdf
+  Reason: Successfully renamed
+
+Original: Highway-Commissioners-Report-9-8-2021.pdf
+     New: September 8, 2021 - Road District Report (1).pdf
+  Reason: Renamed with duplicate counter
+
+Original: Highway-Commissioners-Report-9-9-2020-1.pdf
+     New: September 9, 2020 - Road District Report.pdf
+  Reason: Successfully renamed
+
+Original: Highway-Commissioners-Report-9-9-2020.pdf
+     New: September 9, 2020 - Road District Report (1).pdf
+  Reason: Renamed with duplicate counter
+
+Original: Highway-Commissioners-report-1-11-2023.pdf
+     New: January 11, 2023 - Road District Report.pdf
+  Reason: Successfully renamed
+
+Original: Highway-Commissioners-report-1-12-2022-1.pdf
+     New: January 12, 2022 - Road District Report.pdf
+  Reason: Successfully renamed
+
+Original: Highway-Commissioners-report-1-12-2022.pdf
+     New: January 12, 2022 - Road District Report (1).pdf
+  Reason: Renamed with duplicate counter
+
+Original: Highway-Commissioners-report-1-8-2020-1.pdf
+     New: January 8, 2020 - Road District Report.pdf
+  Reason: Successfully renamed
+
+Original: Highway-Commissioners-report-1-8-2020.pdf
+     New: January 8, 2020 - Road District Report (1).pdf
+  Reason: Renamed with duplicate counter
+
+Original: Highway-Commissioners-report-11-10-2021.pdf
+     New: November 10, 2021 - Road District Report.pdf
+  Reason: Successfully renamed
+
+Original: Highway-Commissioners-report-11-11-2020.pdf
+     New: November 11, 2020 - Road District Report.pdf
+  Reason: Successfully renamed
+
+Original: Highway-Commissioners-report-12-14-2022.pdf
+     New: December 14, 2022 - Road District Report (1).pdf
+  Reason: Renamed with duplicate counter
+
+Original: Highway-Commissioners-report-2-8-2023.pdf
+     New: February 8, 2023 - Road District Report.pdf
+  Reason: Successfully renamed
+
+Original: Highway-Commissioners-report-3-13-19-1.pdf
+  Reason: Could not parse date
+
+Original: Highway-Commissioners-report-3-13-19-2-1.pdf
+  Reason: Could not parse date
+
+Original: Highway-Commissioners-report-3-13-19-2.pdf
+  Reason: Could not parse date
+
+Original: Highway-Commissioners-report-3-13-19.pdf
+  Reason: Could not parse date
+
+Original: Highway-Commissioners-report-3-8-2023.pdf
+     New: March 8, 2023 - Road District Report.pdf
+  Reason: Successfully renamed
+
+Original: Highway-Commissioners-report-4-10-2019-1.pdf
+     New: April 10, 2019 - Road District Report.pdf
+  Reason: Successfully renamed
+
+Original: Highway-Commissioners-report-4-10-2019.pdf
+     New: April 10, 2019 - Road District Report (1).pdf
+  Reason: Renamed with duplicate counter
+
+Original: Highway-Commissioners-report-5-13-2020-1.pdf
+     New: May 13, 2020 - Road District Report.pdf
+  Reason: Successfully renamed
+
+Original: Highway-Commissioners-report-5-13-2020.pdf
+     New: May 13, 2020 - Road District Report (1).pdf
+  Reason: Renamed with duplicate counter
+
+Original: Highway-Commissioners-report-5-8-2019-1-1.pdf
+     New: May 8, 2019 - Road District Report.pdf
+  Reason: Successfully renamed
+
+Original: Highway-Commissioners-report-5-8-2019-1.pdf
+     New: May 8, 2019 - Road District Report (1).pdf
+  Reason: Renamed with duplicate counter
+
+Original: Highway-Commissioners-report-5-8-2019.pdf
+     New: May 8, 2019 - Road District Report (2).pdf
+  Reason: Renamed with duplicate counter
+
+Original: Highway-Commissioners-report-8-12-2020-1-1.pdf
+     New: August 12, 2020 - Road District Report.pdf
+  Reason: Successfully renamed
+
+Original: Highway-Commissioners-report-8-12-2020-1.pdf
+     New: August 12, 2020 - Road District Report (1).pdf
+  Reason: Renamed with duplicate counter
+
+Original: Highway-Commissioners-report-8-12-2020.pdf
+     New: August 12, 2020 - Road District Report (2).pdf
+  Reason: Renamed with duplicate counter
+
+Original: Highway-Monthly-Report-6-10-2020-1.pdf
+     New: June 10, 2020 - Road District Report.pdf
+  Reason: Successfully renamed
+
+Original: Highway-Monthly-Report-6-10-2020.pdf
+     New: June 10, 2020 - Road District Report (1).pdf
+  Reason: Renamed with duplicate counter
+
+Original: Highway-commissioners-report-1-9-2019-1.pdf
+     New: January 9, 2019 - Road District Report.pdf
+  Reason: Successfully renamed
+
+Original: Highway-commissioners-report-1-9-2019.pdf
+     New: January 9, 2019 - Road District Report (1).pdf
+  Reason: Renamed with duplicate counter
+
+Original: October-2018-Highway.pdf
+     New: October 2018 - Road District Report.pdf
+  Reason: Successfully renamed
+
+Original: RB-board-meeting-11-14-2018.pdf
+     New: November 14, 2018 - Road District Report.pdf
+  Reason: Successfully renamed
+
+Original: ROAD-DISTRICT-BUDGET-2022-2023.pdf
+     New: 2022 - Road District Report.pdf
+  Reason: Successfully renamed
+
+Original: Road-Bridge-Budget-FY-2021-2022.pdf
+     New: 2021 - Road District Report.pdf
+  Reason: Successfully renamed
+
+Original: Road-and-bridge-board-meeting-minutes-8-2018.pdf
+     New: 2018 - Road District Report.pdf
+  Reason: Successfully renamed
+
+Original: STORM-WATER-RUNOFF.pdf
+  Reason: Could not parse date
+
+Original: STORMWATER-MANAGEMENT-PLAN.pdf
+  Reason: Could not parse date
+
+Original: September-2018-Highway-Report.pdf
+     New: September 2018 - Road District Report.pdf
+  Reason: Successfully renamed
+
+Original: highway-Commissioners-Report-12-9-2020.pdf
+     New: December 9, 2020 - Road District Report.pdf
+  Reason: Successfully renamed
+
+Original: highway-commissioners-report-3-10-2021.pdf
+     New: March 10, 2021 - Road District Report.pdf
+  Reason: Successfully renamed
+
+Original: highway-commissioners-report-7-11-2018-1.pdf
+     New: July 11, 2018 - Road District Report.pdf
+  Reason: Successfully renamed
+
+Original: highway-commissioners-report-7-11-2018.pdf
+     New: July 11, 2018 - Road District Report (1).pdf
+  Reason: Renamed with duplicate counter
+
+Original: highway-commissioners-report-8-14-19-1.pdf
+  Reason: Could not parse date
+
+Original: highway-commissioners-report-8-14-19-2.pdf
+  Reason: Could not parse date
+
+Original: highway-commissioners-report-8-14-19.pdf
+  Reason: Could not parse date
+
+Original: highway-commissioners-report-9-11-19-1.pdf
+  Reason: Could not parse date
+
+Original: highway-commissioners-report-9-11-19.pdf
+  Reason: Could not parse date
+
+Original: highwaycommissioners-monthly-rpt-1-10-2018-1.pdf
+     New: January 10, 2018 - Road District Report.pdf
+  Reason: Successfully renamed
+
+Original: highwaycommissioners-monthly-rpt-1-10-2018-2-1.pdf
+     New: January 10, 2018 - Road District Report (1).pdf
+  Reason: Renamed with duplicate counter
+
+Original: highwaycommissioners-monthly-rpt-1-10-2018-2.pdf
+     New: January 10, 2018 - Road District Report (2).pdf
+  Reason: Renamed with duplicate counter
+
+Original: highwaycommissioners-monthly-rpt-1-10-2018.pdf
+     New: January 10, 2018 - Road District Report (3).pdf
+  Reason: Renamed with duplicate counter
+
+Original: highwaycommissioners-monthly-rpt-2-14-2018-1.pdf
+     New: February 14, 2018 - Road District Report.pdf
+  Reason: Successfully renamed
+
+Original: highwaycommissioners-monthly-rpt-2-14-2018.pdf
+     New: February 14, 2018 - Road District Report (1).pdf
+  Reason: Renamed with duplicate counter
+
+Original: highwaycommissioners-monthly-rpt-4-11-2018-1.pdf
+     New: April 11, 2018 - Road District Report.pdf
+  Reason: Successfully renamed
+
+Original: highwaycommissioners-monthly-rpt-4-11-2018.pdf
+     New: April 11, 2018 - Road District Report (1).pdf
+  Reason: Renamed with duplicate counter
+
+Original: highwaycommissioners-monthly-rpt-5-9-18-1.pdf
+  Reason: Could not parse date
+
+Original: highwaycommissioners-monthly-rpt-5-9-18-2-1.pdf
+  Reason: Could not parse date
+
+Original: highwaycommissioners-monthly-rpt-5-9-18-2.pdf
+  Reason: Could not parse date
+
+Original: highwaycommissioners-monthly-rpt-5-9-18.pdf
+  Reason: Could not parse date
+
+Original: April242023SpecialBoard-Meetingagenda.pdf
+     New: April 24, 2023 - Special - Special Meeting.pdf
+  Reason: Successfully renamed
+
+Original: April282025BudgetworkshopAgenda_.pdf
+     New: April 28, 2025 - Special Meeting.pdf
+  Reason: Successfully renamed
+
+Original: August122025SpecialBoardMeetingAgenda_.pdf
+     New: August 12, 2025 - Special - Special Meeting.pdf
+  Reason: Successfully renamed
+
+Original: August52025SpecialBoardMeetingAgenda_.pdf
+     New: August 5, 2025 - Special - Special Meeting.pdf
+  Reason: Successfully renamed
+
+Original: CRETE-TOWNSHIP-SPECIAL-BOARD-MEETING-11-15-2023.pdf
+     New: November 15, 2023 - Special - Special Meeting.pdf
+  Reason: Successfully renamed
+
+Original: July12025SpecialBoardMeetingAgenda_.pdf
+     New: July 1, 2025 - Special - Special Meeting.pdf
+  Reason: Successfully renamed
+
+Original: July222025SpecialBoardMeetingAgenda_.pdf
+     New: July 22, 2025 - Special - Special Meeting.pdf
+  Reason: Successfully renamed
+
+Original: July62021SpecialBoard-Meetingagenda-004.pdf
+     New: July 62, 210 - Special - Special Meeting.pdf
+  Reason: Successfully renamed
+
+Original: July72021SpecialBoard-Meetingagenda.pdf
+     New: July 7, 2021 - Special - Special Meeting.pdf
+  Reason: Successfully renamed
+
+Original: July82025SpecialBoardMeetingAgenda_.pdf
+     New: July 8, 2025 - Special - Special Meeting.pdf
+  Reason: Successfully renamed
+
+Original: June.2.2021-Specialmeeting-002.pdf
+     New: 2021 - Special - Special Meeting.pdf
+  Reason: Successfully renamed
+
+Original: MAY52025BudgetpublishingAgenda_.pdf
+     New: May 5, 2025 - Special Meeting.pdf
+  Reason: Successfully renamed
+
+Original: May22022SpecialBoard-Meetingagenda-1.pdf
+     New: May 22, 221 - Special - Special Meeting.pdf
+  Reason: Successfully renamed
+
+Original: May22022SpecialBoard-Meetingagenda.pdf
+     New: May 2, 2022 - Special - Special Meeting.pdf
+  Reason: Successfully renamed
+
+Original: May52023Budgetmeetingagenda-002.pdf
+     New: May 5, 2023 - Special Meeting.pdf
+  Reason: Successfully renamed
+
+Original: May62024SpecialBoard-Meetingagenda.pdf
+     New: May 6, 2024 - Special - Special Meeting.pdf
+  Reason: Successfully renamed
+
+Original: SPECIAL-BOARD-MEETING-3-24-2026.pdf
+     New: March 24, 2026 - Special - Special Meeting.pdf
+  Reason: Successfully renamed
+
+Original: SPECIAL-BOARD-MEETING-7-22-2025.pdf
+     New: July 22, 2025 - Special - Special Meeting (1).pdf
+  Reason: Renamed with duplicate counter
+
+Original: SPECIAL-BOARD-MEETING-8-5-2025.pdf
+     New: August 5, 2025 - Special - Special Meeting (1).pdf
+  Reason: Renamed with duplicate counter
+
+Original: Special-Board-Meeting-1-1-2023.pdf
+     New: January 1, 2023 - Special - Special Meeting.pdf
+  Reason: Successfully renamed
+
+Original: Special-Board-Meeting-5-6-2024.pdf
+     New: May 6, 2024 - Special - Special Meeting (1).pdf
+  Reason: Renamed with duplicate counter
+
+Original: Special-Board-Meeting-7-29-2025.pdf
+     New: July 29, 2025 - Special - Special Meeting.pdf
+  Reason: Successfully renamed
+
+Original: Special-Board-Meeting-9-23-2025.pdf
+     New: September 23, 2025 - Special - Special Meeting.pdf
+  Reason: Successfully renamed
+
+Original: Special-Fund-Levy-Meeting-12-11-2019.pdf
+     New: December 11, 2019 - Special - Special Meeting.pdf
+  Reason: Successfully renamed
+
+Original: Special-Meeting-of-Electors-6-29-2021.pdf
+     New: June 29, 2021 - Special - Special Meeting.pdf
+  Reason: Successfully renamed
+
+Original: Special-Town-Meeting-05.14.2024-final.pdf
+     New: 2024 - Special - Special Meeting.pdf
+  Reason: Successfully renamed
+
+Original: Special-Town-Meeting-PowerPoint-06.13.2023.pdf
+     New: 2023 - Special - Special Meeting.pdf
+  Reason: Successfully renamed
+
+Original: Special-Township-Meeting-of-the-Electors-6-13-2023.pdf
+     New: June 13, 2023 - Special - Special Meeting.pdf
+  Reason: Successfully renamed
+
+Original: Voting-Results-Crete-Township-Special-Town-Meeting-06.13.2023-1.pdf
+     New: 2023 - Special - Special Meeting (1).pdf
+  Reason: Renamed with duplicate counter
+
+Original: Voting-Results-Crete-Township-Special-Town-Meeting-06.13.2023.pdf
+     New: 2023 - Special - Special Meeting (2).pdf
+  Reason: Renamed with duplicate counter
+

@@ -5,7 +5,10 @@ const Card: React.FC<React.HTMLAttributes<HTMLDivElement>> = ({ className, ...pr
   return (
     <div
       data-slot="card"
-      className={cn('bg-card text-card-foreground rounded-lg border shadow-sm', className)}
+      className={cn(
+        'bg-white border border-gray-200 rounded-lg shadow-sm transition-shadow duration-200 hover:shadow-md',
+        className,
+      )}
       {...props}
     />
   )
@@ -25,7 +28,7 @@ const CardTitle: React.FC<React.HTMLAttributes<HTMLHeadingElement>> = ({ classNa
   return (
     <h3
       data-slot="card-title"
-      className={cn('text-2xl leading-none font-semibold tracking-tight', className)}
+      className={cn('text-xl font-semibold font-display text-navy leading-tight', className)}
       {...props}
     />
   )
@@ -38,7 +41,7 @@ const CardDescription: React.FC<React.HTMLAttributes<HTMLParagraphElement>> = ({
   return (
     <p
       data-slot="card-description"
-      className={cn('text-muted-foreground text-sm', className)}
+      className={cn('text-gray-600 text-sm font-body leading-relaxed', className)}
       {...props}
     />
   )

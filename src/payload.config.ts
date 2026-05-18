@@ -1,4 +1,5 @@
 import { postgresAdapter } from '@payloadcms/db-postgres'
+import { vercelBlobStorage } from '@payloadcms/storage-vercel-blob'
 import sharp from 'sharp'
 import path from 'path'
 import { buildConfig, PayloadRequest } from 'payload'
@@ -9,8 +10,18 @@ import { Media } from './collections/Media'
 import { Pages } from './collections/Pages'
 import { Posts } from './collections/Posts'
 import { Users } from './collections/Users'
+import { Documents } from './collections/Documents'
+import { BoardAgendas } from './collections/BoardAgendas'
+import { MeetingMinutes } from './collections/MeetingMinutes'
+import { FinancialReports } from './collections/FinancialReports'
+import { AssessorDocuments } from './collections/AssessorDocuments'
+import { RoadDistrictReports } from './collections/RoadDistrictReports'
+import { Newsletters } from './collections/Newsletters'
+import { Events } from './collections/Events'
+import { Announcements } from './collections/Announcements'
 import { Footer } from './Footer/config'
 import { Header } from './Header/config'
+import { AlertBanner } from './globals/AlertBanner'
 import { plugins } from './plugins'
 import { defaultLexical } from '@/fields/defaultLexical'
 import { getServerSideURL } from './utilities/getURL'
@@ -20,13 +31,14 @@ const dirname = path.dirname(filename)
 
 export default buildConfig({
   admin: {
+    meta: {
+      titleSuffix: '- Crete Township CMS',
+      favicon: '/favicon.ico',
+      ogImage: '/og-image.png',
+    },
     components: {
-      // The `BeforeLogin` component renders a message that you see while logging into your admin panel.
-      // Feel free to delete this at any time. Simply remove the line below.
-      beforeLogin: ['@/components/BeforeLogin'],
-      // The `BeforeDashboard` component renders the 'welcome' block that you see after logging into your admin panel.
-      // Feel free to delete this at any time. Simply remove the line below.
-      beforeDashboard: ['@/components/BeforeDashboard'],
+      // Custom dashboard for Crete Township
+      beforeDashboard: ['@/components/CustomDashboard'],
     },
     importMap: {
       baseDir: path.resolve(dirname),
@@ -63,15 +75,49 @@ export default buildConfig({
     },
   }),
   collections: [
+    // Township Document Collections
+    BoardAgendas,
+    MeetingMinutes,
+    FinancialReports,
+    AssessorDocuments,
+    RoadDistrictReports,
+    Newsletters,
+    // Township Content Collections
+    Events,
+    Announcements,
+    // System Collections
+    Documents,
+    Users,
+    // Default Payload Collections (can remove if not needed)
     Pages,
     Posts,
     Media,
     Categories,
-    Users,
   ],
   cors: [getServerSideURL()].filter(Boolean),
-  globals: [Header, Footer],
-  plugins,
+  globals: [
+    AlertBanner,
+    Header,
+    Footer,
+  ],
+  plugins: [
+    ...plugins,
+    // Vercel Blob storage for all file uploads
+    vercelBlobStorage({
+      enabled: true,
+      collections: {
+        // PDF documents for township records
+        documents: true,
+        // Images for media library
+        media: true,
+      },
+      token: process.env.BLOB_READ_WRITE_TOKEN || '',
+      // Public Vercel Blob store for township documents
+      baseUrl: 'https://xjwep5ksfdvuumtg.public.blob.vercel-storage.com',
+      // Match your Vercel Blob store configuration
+      access: 'public',
+    }),
+  ],
   secret: process.env.PAYLOAD_SECRET,
   sharp,
   typescript: {
