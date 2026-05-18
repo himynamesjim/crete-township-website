@@ -35,6 +35,14 @@ export const isAdminOrSuperAdmin: Access = ({ req: { user } }) => {
 }
 
 /**
+ * Admin panel access - returns boolean only (for collection.access.admin field)
+ * Use this for the admin field in collection access config
+ */
+export const adminPanelAccess = ({ req: { user } }: any): boolean => {
+  return Boolean(user?.role === 'admin' || user?.role === 'super-admin')
+}
+
+/**
  * Check if user is township admin or super admin
  */
 export const isTownshipAdminOrAbove: Access = ({ req: { user } }) => {

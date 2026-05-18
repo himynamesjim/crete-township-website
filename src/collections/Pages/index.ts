@@ -2,7 +2,7 @@ import type { CollectionConfig } from 'payload'
 
 import { authenticated } from '../../access/authenticated'
 import { authenticatedOrPublished } from '../../access/authenticatedOrPublished'
-import { isAdminOrSuperAdmin } from '../../access'
+import { adminPanelAccess } from '../../access'
 import { Archive } from '../../blocks/ArchiveBlock/config'
 import { CallToAction } from '../../blocks/CallToAction/config'
 import { Content } from '../../blocks/Content/config'
@@ -26,7 +26,7 @@ export const Pages: CollectionConfig<'pages'> = {
   slug: 'pages',
   access: {
     // Hide from Township Admin - only Admin and Super Admin
-    admin: isAdminOrSuperAdmin,
+    admin: adminPanelAccess,
     create: authenticated,
     delete: authenticated,
     read: authenticatedOrPublished,

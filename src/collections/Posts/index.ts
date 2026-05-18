@@ -11,7 +11,7 @@ import {
 
 import { authenticated } from '../../access/authenticated'
 import { authenticatedOrPublished } from '../../access/authenticatedOrPublished'
-import { isAdminOrSuperAdmin } from '../../access'
+import { adminPanelAccess } from '../../access'
 import { Banner } from '../../blocks/Banner/config'
 import { Code } from '../../blocks/Code/config'
 import { MediaBlock } from '../../blocks/MediaBlock/config'
@@ -32,7 +32,7 @@ export const Posts: CollectionConfig<'posts'> = {
   slug: 'posts',
   access: {
     // Hide from Township Admin - only Admin and Super Admin
-    admin: isAdminOrSuperAdmin,
+    admin: adminPanelAccess,
     create: authenticated,
     delete: authenticated,
     read: authenticatedOrPublished,

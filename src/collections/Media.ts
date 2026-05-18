@@ -10,7 +10,7 @@ import { fileURLToPath } from 'url'
 
 import { anyone } from '../access/anyone'
 import { authenticated } from '../access/authenticated'
-import { isAdminOrSuperAdmin } from '../access'
+import { adminPanelAccess } from '../access'
 
 const filename = fileURLToPath(import.meta.url)
 const dirname = path.dirname(filename)
@@ -19,7 +19,7 @@ export const Media: CollectionConfig = {
   slug: 'media',
   access: {
     // Hide from Township Admin - only Admin and Super Admin
-    admin: isAdminOrSuperAdmin,
+    admin: adminPanelAccess,
     create: authenticated,
     delete: authenticated,
     read: anyone,
