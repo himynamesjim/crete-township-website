@@ -8,7 +8,7 @@ interface DocumentCardProps {
   date: string
   type: string
   fileUrl: string
-  description?: string
+  description?: string | null
   viewMode?: 'grid' | 'list'
 }
 
