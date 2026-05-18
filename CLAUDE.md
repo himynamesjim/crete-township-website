@@ -376,7 +376,7 @@ NEXT_PUBLIC_SITE_URL=
 |------|--------|-------|
 | GitHub repo | ✅ Done | crete-township-website (private) |
 | CLAUDE.md | ✅ Done | Committed to main, updated for 3.x |
-| Payload 3.x scaffold | 🔲 In progress | Running now |
+| Payload 3.x scaffold | ✅ Done | Next.js 14 + Payload 3.x, PostgreSQL configured |
 | Neon database | 🔲 Not started | Set up when CMS collections card starts |
 | Vercel project | 🔲 Not started | Set up after scaffold verified |
 | Cloudflare R2 bucket | 🔲 Not started | Set up when CMS collections card starts |
@@ -390,7 +390,7 @@ NEXT_PUBLIC_SITE_URL=
 
 | Date | Built | Next |
 |------|-------|------|
-| May 2026 | Repo created. CLAUDE.md committed. Payload 2.x scaffold built then scrapped — pivoted to Payload 3.x single-app. | Scaffold Payload 3.x + Next.js 14 |
+| 2026-05-18 | ✅ Payload 3.x scaffold complete: Next.js 14 App Router, Payload 3.x plugin, PostgreSQL adapter, .env files configured. Dev server verified at localhost:3000, /admin route works (requires DB connection to fully start). | Connect Neon PostgreSQL database + build Tailwind design system |
 
 ---
 
