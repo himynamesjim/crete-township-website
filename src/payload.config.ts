@@ -111,8 +111,6 @@ export default buildConfig({
       },
       token: process.env.BLOB_READ_WRITE_TOKEN || '',
       // Public Vercel Blob store for township documents
-      baseUrl: 'https://xjwep5ksfdvuumtg.public.blob.vercel-storage.com',
-      // Match your Vercel Blob store configuration
       access: 'public',
     }),
   ],
