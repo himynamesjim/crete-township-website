@@ -33,7 +33,6 @@ export default buildConfig({
   admin: {
     meta: {
       titleSuffix: '- Crete Township CMS',
-      ogImage: '/og-image.png',
     },
     components: {
       // Custom dashboard for Crete Township
