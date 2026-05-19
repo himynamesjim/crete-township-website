@@ -302,6 +302,24 @@ BLOB_READ_WRITE_TOKEN=
 NEXT_PUBLIC_SITE_URL=
 ```
 
+### ⚠️ CRITICAL: System Environment Variable Issue
+**If you get "password authentication failed" errors even after updating `.env.local`:**
+
+There is a `DATABASE_URI` environment variable set at the **system level** that overrides `.env.local` files. This was accidentally set during initial development and causes authentication failures with outdated credentials.
+
+**Workaround:** Always start the dev server with:
+```bash
+unset DATABASE_URI && npm run dev
+```
+
+**Permanent fix:** Find and remove the system-level DATABASE_URI from:
+- Claude Code settings
+- VS Code workspace/user settings (.vscode/settings.json)
+- Terminal profile (~/.zshrc, ~/.bash_profile)
+- macOS LaunchAgents
+
+To check if it's set: `env | grep DATABASE_URI`
+
 ---
 
 ## Key Decisions (Do Not Reverse Without Updating This File)
@@ -408,11 +426,12 @@ NEXT_PUBLIC_SITE_URL=
 | 2026-05-18 (PM) | ✅ Homepage layout refinements: Widened content containers from 1100px to 1400px. Moved search box inline with nav menu (right side). Added gold 3px border under main header. Active menu items show gold underline (no white bg). Moved Announcements section above Township Services. Added Upcoming Events sidebar in hero section. Font compliance: Changed to Source Sans 3 + Merriweather per ADA/Section 508 requirements. | Begin building CMS collections |
 | 2026-05-18 (PM) | ✅ Implemented Vercel Blob storage using @payloadcms/storage-vercel-blob for all file uploads (documents and media collections). Replaced all Cloudflare R2 references with Vercel Blob. Updated .env.example with BLOB_READ_WRITE_TOKEN. Configured role-based access control with 5 roles: Super Admin, Township Admin (Documents/Content/Site Configs only), Admin, Editor, Viewer. Created comprehensive document collections: BoardAgendas, MeetingMinutes, FinancialReports, AssessorDocuments, RoadDistrictReports, Newsletters, Events, Announcements. Migrated 3,316 WordPress files: sorted by category (568 docs, 2,570 images) and renamed 627 documents with proper date formatting (e.g., "January 13, 2025 - Meeting Minutes.pdf"). Created scripts/sort-media.cjs and scripts/rename-files.cjs for automation. | Upload migrated documents to CMS and build remaining pages |
 | 2026-05-18 (PM - Session 2) | ✅ Built complete document library system: (1) Updated TownshipHeader with "Reports" dropdown containing 8 document types, moved to global layout for all pages. (2) Created DocumentListingAdvanced component with left sidebar filters (search, year, type), grid/list view toggle, document count display. (3) Created all 9 document listing pages: agendas, meeting-minutes, annual-town-meetings, audited-financial-statements, cash-balance-reports, town-fund-levy-minutes, assessor-minutes, highway-commissioner, newsletters. (4) Fixed enum database errors in document queries (changed 'Annual Town Meeting' → 'annual', 'Audited Statement' → 'audited-statement', 'Cash Balance' → 'cash-balance'). (5) Refactored TownshipHeader structure: moved nav outside header wrapper for proper sticky positioning (sticky top-0 z-50). Fixed sidebar sticky positioning in DocumentListingAdvanced (sticky top-24 with proper wrapper). List view set as default. All document pages now use advanced listing interface. | Continue document migration OR build events/officials pages |
+| 2026-05-19 (AM) | ✅ **RESOLVED 4-hour database authentication crisis:** Discovered system-level DATABASE_URI environment variable was overriding .env.local file with outdated Neon password. Root cause: System environment variables take precedence over .env files in Node.js. Tried 4 different passwords, deleted .next cache multiple times, killed all processes - none worked until discovering `env \| grep DATABASE` showed old credentials. Solution: `unset DATABASE_URI && npm run dev`. Updated CLAUDE.md with critical warning section about this issue. Removed debug logging from payload.config.ts. Reset Neon production branch password to npg_kfFNrVU6S3TE and updated .env.local. **Local dev environment now fully functional.** | Upload migrated documents to CMS OR build remaining pages |
 
 ---
 
 ## Current Session Goal
-**Status:** Document library system complete — all 9 document listing pages built with advanced filters, sticky navigation working correctly
+**Status:** Local development environment fixed — database connection working after resolving system environment variable conflict
 **Next step:** Upload migrated documents to Payload CMS via admin panel OR build /documents main landing page OR build /events page
 
 ---
