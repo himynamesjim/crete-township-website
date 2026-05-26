@@ -151,7 +151,7 @@ export const BoardAgendas: CollectionConfig = {
               )
             }
           } catch (error) {
-            req.payload.logger.error('Error parsing document metadata:', String(error))
+            req.payload.logger.error({ err: error, message: 'Error parsing document metadata' })
             // Continue without auto-parsing if there's an error
           }
         }
