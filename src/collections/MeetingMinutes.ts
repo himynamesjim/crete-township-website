@@ -139,7 +139,7 @@ export const MeetingMinutes: CollectionConfig = {
               )
             }
           } catch (error) {
-            req.payload.logger.error('Error parsing document metadata:', error)
+            req.payload.logger.error('Error parsing document metadata:', String(error))
             // Continue without auto-parsing if there's an error
           }
         }
