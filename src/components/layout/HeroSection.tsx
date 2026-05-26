@@ -6,11 +6,19 @@ import Link from 'next/link'
 
 export const HeroSection: React.FC = () => {
   return (
-    <section className="relative bg-gradient-to-br from-navy-dark via-navy to-navy-light text-white overflow-hidden">
-      {/* Background Pattern/Texture (optional) */}
-      <div className="absolute inset-0 opacity-5">
-        <div className="absolute inset-0 bg-[url('/pattern.svg')] bg-repeat" />
-      </div>
+    <section className="relative text-white overflow-hidden min-h-[600px] lg:min-h-[700px]">
+      {/* Background Image - Full Coverage */}
+      <div
+        className="absolute inset-0 w-full h-full bg-cover bg-center bg-no-repeat"
+        style={{
+          backgroundImage: "url('/api/media/file/Crete%20Illinois_003-X3.jpg')",
+          backgroundSize: 'cover',
+          backgroundPosition: 'center center'
+        }}
+      />
+
+      {/* Strong Dark Overlay with Gradient for Text Readability */}
+      <div className="absolute inset-0 bg-gradient-to-r from-navy-dark/98 via-navy-dark/90 to-navy-dark/75" />
 
       <div className="relative max-w-[1400px] mx-auto px-8 py-16 lg:py-24">
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
@@ -28,7 +36,7 @@ export const HeroSection: React.FC = () => {
 
             {/* Heading */}
             <h1 className="text-4xl lg:text-5xl font-display font-bold leading-tight mb-6">
-              Welcome to <br />
+              <span className="text-white">Welcome to</span> <br />
               <span className="text-gold">Crete Township</span>
             </h1>
 

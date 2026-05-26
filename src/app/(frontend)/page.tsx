@@ -3,7 +3,8 @@ import { getPayload } from 'payload'
 import config from '@payload-config'
 import { HeroSection } from '@/components/layout/HeroSection'
 import { EventCard } from '@/components/ui/EventCard'
-import { DocumentCard } from '@/components/ui/DocumentCard'
+import { DocumentLibrary } from '@/components/DocumentLibrary'
+import { FacebookFeed } from '@/components/FacebookFeed'
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
@@ -20,8 +21,8 @@ export const metadata: Metadata = {
 export default async function HomePage() {
   const payload = await getPayload({ config })
 
-  // Fetch recent documents from all collections
-  const [boardAgendas, meetingMinutes, financialReports] = await Promise.all([
+  // Fetch recent documents and announcements from all collections
+  const [boardAgendas, meetingMinutes, financialReports, announcements] = await Promise.all([
     payload.find({
       collection: 'board-agendas',
       where: { status: { equals: 'published' } },
@@ -42,6 +43,15 @@ export default async function HomePage() {
       sort: '-date',
       limit: 3,
       depth: 1,
+    }),
+    payload.find({
+      collection: 'announcements',
+      where: {
+        active: { equals: true }
+      },
+      sort: '-createdAt',
+      limit: 5,
+      depth: 0,
     }),
   ])
 
@@ -70,16 +80,7 @@ export default async function HomePage() {
     console.log('First document structure:', JSON.stringify(allRecentDocs[0], null, 2))
     console.log('First document file URL:', typeof allRecentDocs[0].file === 'object' ? allRecentDocs[0].file?.url : allRecentDocs[0].file)
   }
-
-  const formatDate = (dateString: string) => {
-    const date = new Date(dateString)
-    return date.toLocaleDateString('en-US', {
-      year: 'numeric',
-      month: 'long',
-      day: 'numeric',
-    })
-  }
-  // Sample event data
+  // Sample event data (TODO: fetch from CMS Events collection)
   const upcomingEvents = [
     {
       title: 'Senior Coffee Get Together',
@@ -107,30 +108,18 @@ export default async function HomePage() {
     },
   ]
 
-  // Sample announcements
-  const announcements = [
-    {
-      category: 'BOARD',
-      title: 'May 2026 Board Meeting — Zoom Link Available',
-      description:
-        'Join the Crete Township Board Meeting virtually via Zoom. The meeting will cover the FY2027 budget review, road district report, and community center expansion update.',
-      date: 'May 8, 2026',
-    },
-    {
-      category: 'ROAD DISTRICT',
-      title: '2026 Branch Pickup Schedule Now Available',
-      description:
-        'Spring branch pickup begins the week of May 19th. Branches must be placed at the curb by 7 AM on your pickup day. Maximum pile size is 8 feet wide.',
-      date: 'May 5, 2026',
-    },
-    {
-      category: 'COMMUNITY',
-      title: 'FREE Robotics Program for Ages 9–12 — May 23rd',
-      description:
-        'Join us for a hands-on robotics workshop at the Community Center. Learn basic programming and build your own robot! Space is limited, registration required.',
-      date: 'May 1, 2026',
-    },
-  ]
+  // Format date for announcements
+  const formatAnnouncementDate = (dateString: string) => {
+    const date = new Date(dateString)
+    return date.toLocaleDateString('en-US', {
+      year: 'numeric',
+      month: 'long',
+      day: 'numeric',
+    })
+  }
+
+  // Get announcements from CMS query above
+  const cmsAnnouncements = announcements.docs
 
   return (
     <>
@@ -146,36 +135,44 @@ export default async function HomePage() {
               <div className="w-12 h-[3px] bg-gold" />
             </div>
 
-            <div className="space-y-6">
-              {announcements.map((announcement, index) => (
-                <Card key={index}>
-                  <CardContent className="p-6">
-                    <div className="flex items-start gap-4">
-                      <Badge
-                        variant={
-                          announcement.category === 'BOARD'
-                            ? 'board'
-                            : announcement.category === 'ROAD DISTRICT'
-                              ? 'roadDistrict'
-                              : 'community'
-                        }
-                        size="sm"
-                        className="flex-shrink-0"
-                      >
-                        {announcement.category}
-                      </Badge>
-                      <div className="flex-1">
-                        <h3 className="text-lg font-semibold text-navy mb-2">
-                          {announcement.title}
-                        </h3>
-                        <p className="text-sm text-gray-600 mb-2">{announcement.description}</p>
-                        <p className="text-xs text-gray-400">{announcement.date}</p>
+            {cmsAnnouncements.length > 0 ? (
+              <div className="space-y-6">
+                {cmsAnnouncements.map((announcement: any) => (
+                  <Card key={announcement.id}>
+                    <CardContent className="p-6">
+                      <div className="flex items-start gap-4">
+                        <Badge
+                          variant={
+                            announcement.category === 'board'
+                              ? 'board'
+                              : announcement.category === 'road-district'
+                                ? 'roadDistrict'
+                                : 'community'
+                          }
+                          size="sm"
+                          className="flex-shrink-0"
+                        >
+                          {announcement.category === 'road-district'
+                            ? 'ROAD DISTRICT'
+                            : announcement.category.toUpperCase()}
+                        </Badge>
+                        <div className="flex-1">
+                          <h3 className="text-lg font-semibold text-navy mb-2">
+                            {announcement.title}
+                          </h3>
+                          <p className="text-sm text-gray-600 mb-2">{announcement.body}</p>
+                          <p className="text-xs text-gray-400">
+                            {formatAnnouncementDate(announcement.createdAt)}
+                          </p>
+                        </div>
                       </div>
-                    </div>
-                  </CardContent>
-                </Card>
-              ))}
-            </div>
+                    </CardContent>
+                  </Card>
+                ))}
+              </div>
+            ) : (
+              <p className="text-gray-600">No announcements at this time.</p>
+            )}
           </div>
       </section>
 
@@ -303,44 +300,8 @@ export default async function HomePage() {
       <section className="py-16 bg-white">
           <div className="max-w-[1400px] mx-auto px-8">
             <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-              {/* Left: Document Library */}
-              <div className="lg:col-span-2">
-                <div className="flex items-center justify-between mb-8">
-                  <div>
-                    <h2 className="text-3xl font-display font-bold text-navy mb-2">
-                      Document Library
-                    </h2>
-                    <div className="w-12 h-[3px] bg-gold" />
-                  </div>
-                  <Link href="/documents">
-                    <Button variant="link" className="text-gold">
-                      Browse all documents →
-                    </Button>
-                  </Link>
-                </div>
-
-                {/* Recent Documents */}
-                {allRecentDocs.length > 0 ? (
-                  <div className="space-y-4">
-                    {allRecentDocs.map((doc: any) => (
-                      <DocumentCard
-                        key={doc.id}
-                        title={doc.title}
-                        date={formatDate(doc.date)}
-                        type={doc.type}
-                        fileUrl={typeof doc.file === 'object' ? doc.file.url : ''}
-                        description={doc.description}
-                        viewMode="list"
-                      />
-                    ))}
-                  </div>
-                ) : (
-                  <div className="text-center py-12 bg-gray-50 rounded-lg">
-                    <FileText className="w-12 h-12 text-gray-400 mx-auto mb-3" />
-                    <p className="text-gray-600">No documents available yet</p>
-                  </div>
-                )}
-              </div>
+              {/* Left: Document Library with Filter Buttons */}
+              <DocumentLibrary documents={allRecentDocs} />
 
               {/* Right: Sidebar */}
               <div className="space-y-8">
@@ -413,6 +374,24 @@ export default async function HomePage() {
                     </div>
                   </CardContent>
                 </Card>
+
+                {/* Recent News from Facebook */}
+                <div>
+                  <div className="flex items-center justify-between mb-4">
+                    <h3 className="text-xl font-display font-bold text-gold uppercase tracking-wide">
+                      Recent News
+                    </h3>
+                    <Link
+                      href="https://www.facebook.com/profile.php?id=102522678698264"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-sm text-gold hover:text-gold-light"
+                    >
+                      View All →
+                    </Link>
+                  </div>
+                  <FacebookFeed />
+                </div>
               </div>
             </div>
           </div>

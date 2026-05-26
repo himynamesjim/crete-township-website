@@ -2,6 +2,7 @@ import type { CollectionConfig } from 'payload'
 import path from 'path'
 import { fileURLToPath } from 'url'
 import { canCreateOrUpdate, canDelete, canRead } from '../access'
+import { parseDocumentMetadata } from '../utilities/parseDocumentMetadata'
 
 const filename = fileURLToPath(import.meta.url)
 const dirname = path.dirname(filename)
@@ -109,12 +110,47 @@ export const MeetingMinutes: CollectionConfig = {
   ],
   hooks: {
     beforeChange: [
-      ({ req, operation, data }) => {
+      async ({ req, operation, data }) => {
+        // Auto-parse metadata from uploaded file
+        if (operation === 'create' && data.file) {
+          try {
+            // Fetch the document details to get the filename
+            const doc = await req.payload.findByID({
+              collection: 'documents',
+              id: data.file,
+            })
+
+            if (doc?.filename) {
+              const parsed = parseDocumentMetadata(doc.filename)
+
+              // Only auto-fill if fields are empty
+              if (!data.title) {
+                data.title = parsed.title
+              }
+              if (!data.date && parsed.date) {
+                data.date = parsed.date
+              }
+              if (!data.description && parsed.description) {
+                data.description = parsed.description
+              }
+
+              req.payload.logger.info(
+                `Auto-parsed metadata from "${doc.filename}": title="${parsed.title}", date="${parsed.date}"`,
+              )
+            }
+          } catch (error) {
+            req.payload.logger.error('Error parsing document metadata:', error)
+            // Continue without auto-parsing if there's an error
+          }
+        }
+
+        // Auto-set publishedAt when status changes to published
         if (operation === 'create' || operation === 'update') {
           if (data.status === 'published' && !data.publishedAt) {
             data.publishedAt = new Date().toISOString()
           }
         }
+
         return data
       },
     ],

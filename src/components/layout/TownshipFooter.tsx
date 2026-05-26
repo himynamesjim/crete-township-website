@@ -11,7 +11,16 @@ export const TownshipFooter: React.FC = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-12">
           {/* Column 1: About */}
           <div>
-            <h3 className="text-xl font-display font-bold text-white mb-4">Crete Township</h3>
+            <div className="flex items-center gap-3 mb-4">
+              <div className="w-12 h-12 flex-shrink-0">
+                <img
+                  src="/api/media/file/cropped-The-Great-Seal-of-Crete-Township-scaled-1.jpg"
+                  alt="The Great Seal of Crete Township"
+                  className="w-full h-full object-contain"
+                />
+              </div>
+              <h3 className="text-xl font-display font-bold text-white">Crete Township</h3>
+            </div>
             <p className="text-sm text-gray-300 leading-relaxed mb-4">
               Serving the residents of Will County, Illinois since 1848. Township government
               provides essential local services including road maintenance, property assessment,

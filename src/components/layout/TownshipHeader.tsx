@@ -3,7 +3,7 @@
 import React, { useState } from 'react'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
-import { Phone, Mail, Facebook, Twitter, Youtube, Menu, X, ChevronDown } from 'lucide-react'
+import { Phone, Mail, Facebook, Twitter, Youtube, Menu, X, ChevronDown, Printer } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { cn } from '@/utilities/ui'
 
@@ -90,8 +90,12 @@ export const TownshipHeader: React.FC = () => {
           <div className="flex items-center justify-between py-4">
             {/* Logo & Title */}
             <Link href="/" className="flex items-center gap-4 hover:opacity-90 transition-opacity">
-              <div className="w-16 h-16 bg-white rounded-full flex items-center justify-center flex-shrink-0">
-                <span className="text-navy font-display font-bold text-xl">CT</span>
+              <div className="w-16 h-16 flex-shrink-0">
+                <img
+                  src="/api/media/file/cropped-The-Great-Seal-of-Crete-Township-scaled-1.jpg"
+                  alt="The Great Seal of Crete Township"
+                  className="w-full h-full object-contain"
+                />
               </div>
               <div>
                 <h1 className="text-2xl font-display font-bold text-white leading-tight">
@@ -116,7 +120,7 @@ export const TownshipHeader: React.FC = () => {
 
               {/* Fax */}
               <div className="flex items-center gap-2 text-sm text-gray-300">
-                <Mail className="w-4 h-4" />
+                <Printer className="w-4 h-4" />
                 <span>708-672-3327</span>
               </div>
 
