@@ -80,16 +80,19 @@ crete-township-website/
 │   └── Users.ts
 ├── components/
 │   ├── layout/
-│   │   ├── Header.tsx
-│   │   └── Footer.tsx
-│   └── ui/
-│       ├── Button.tsx
-│       ├── Badge.tsx
-│       ├── SectionTitle.tsx
-│       ├── AlertBanner.tsx
-│       ├── DocCard.tsx
-│       ├── EventCard.tsx
-│       └── AnnouncementCard.tsx
+│   │   ├── TownshipHeader.tsx          ← Main header with nav + logo
+│   │   ├── TownshipFooter.tsx          ← 4-column footer
+│   │   └── HeroSection.tsx             ← Homepage hero with background image
+│   ├── ui/
+│   │   ├── Button.tsx
+│   │   ├── Badge.tsx
+│   │   ├── Card.tsx
+│   │   ├── DocumentCard.tsx
+│   │   └── EventCard.tsx
+│   ├── DocumentLibrary.tsx             ← Homepage doc section with filters
+│   ├── DocumentListingAdvanced.tsx     ← Advanced doc listing with sidebar
+│   ├── FacebookFeed.tsx                ← Facebook posts integration
+│   └── PageHero.tsx                    ← Page hero component
 ├── lib/
 │   ├── payload.ts                      ← getPayload() helper
 │   └── utils.ts
@@ -421,7 +424,7 @@ To check if it's set: `env | grep DATABASE_URI`
 | Date | Built | Next |
 |------|-------|------|
 | 2026-05-18 (AM) | ✅ Payload 3.x scaffold complete: Next.js 14 App Router, Payload 3.x plugin, PostgreSQL adapter, .env files configured. Dev server verified at localhost:3000, /admin route works (requires DB connection to fully start). | Connect Neon PostgreSQL database + build Tailwind design system |
-| 2026-05-18 (PM) | ✅ Neon database connected, admin user created. Tailwind design system complete (navy/gold colors, Playfair Display + DM Sans fonts, all weights). SSL mode fixed to verify-full. | Build UI component library |
+| 2026-05-18 (PM) | ✅ Neon database connected: Configured DATABASE_URI with Neon PostgreSQL connection string (ep-young-boat-aj3mnsqb.c-3.us-east-2.aws.neon.tech). Generated secure PAYLOAD_SECRET. Database schema auto-initialized successfully. Dev server running with full database connectivity. | Create first admin user + build Tailwind design system |
 | 2026-05-18 (PM) | ✅ Complete UI component library: Button, Badge, Card, DocCard, EventCard. Built TownshipHeader (blue bg, contact info, nav, search), HeroSection (with stats), TownshipFooter (4-column). Created full static homepage with all sections (Hero, Services grid, Document Library, Events sidebar, Announcements). | Refine homepage layout based on mockup feedback |
 | 2026-05-18 (PM) | ✅ Homepage layout refinements: Widened content containers from 1100px to 1400px. Moved search box inline with nav menu (right side). Added gold 3px border under main header. Active menu items show gold underline (no white bg). Moved Announcements section above Township Services. Added Upcoming Events sidebar in hero section. Font compliance: Changed to Source Sans 3 + Merriweather per ADA/Section 508 requirements. | Begin building CMS collections |
 | 2026-05-18 (PM) | ✅ Implemented Vercel Blob storage using @payloadcms/storage-vercel-blob for all file uploads (documents and media collections). Replaced all Cloudflare R2 references with Vercel Blob. Updated .env.example with BLOB_READ_WRITE_TOKEN. Configured role-based access control with 5 roles: Super Admin, Township Admin (Documents/Content/Site Configs only), Admin, Editor, Viewer. Created comprehensive document collections: BoardAgendas, MeetingMinutes, FinancialReports, AssessorDocuments, RoadDistrictReports, Newsletters, Events, Announcements. Migrated 3,316 WordPress files: sorted by category (568 docs, 2,570 images) and renamed 627 documents with proper date formatting (e.g., "January 13, 2025 - Meeting Minutes.pdf"). Created scripts/sort-media.cjs and scripts/rename-files.cjs for automation. | Upload migrated documents to CMS and build remaining pages |
