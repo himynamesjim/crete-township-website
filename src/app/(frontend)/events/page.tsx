@@ -2,7 +2,7 @@
 
 import React, { useEffect, useState, useCallback } from 'react'
 import { createPortal } from 'react-dom'
-import { Calendar, dateFnsLocalizer, Components } from 'react-big-calendar'
+import { Calendar, dateFnsLocalizer, Components, View } from 'react-big-calendar'
 import { format } from 'date-fns/format'
 import { parse } from 'date-fns/parse'
 import { startOfWeek } from 'date-fns/startOfWeek'
@@ -309,7 +309,7 @@ export default function EventsPage() {
   const [events, setEvents] = useState<CalendarEvent[]>([])
   const [loading, setLoading] = useState(true)
   const [view, setView] = useState<'calendar' | 'list'>('calendar')
-  const [calendarView, setCalendarView] = useState<'month' | 'week' | 'day' | 'agenda'>('month')
+  const [calendarView, setCalendarView] = useState<View>('month')
   const [currentDate, setCurrentDate] = useState(new Date())
   const [selectedEvent, setSelectedEvent] = useState<CalendarEvent | null>(null)
 
