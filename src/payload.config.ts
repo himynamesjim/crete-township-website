@@ -19,6 +19,7 @@ import { RoadDistrictReports } from './collections/RoadDistrictReports'
 import { Newsletters } from './collections/Newsletters'
 import { Events } from './collections/Events'
 import { Announcements } from './collections/Announcements'
+import { Officials } from './collections/Officials'
 import { Footer } from './Footer/config'
 import { Header } from './Header/config'
 import { AlertBanner } from './globals/AlertBanner'
@@ -83,6 +84,7 @@ export default buildConfig({
     // Township Content Collections
     Events,
     Announcements,
+    Officials,
     // System Collections
     Documents,
     Users,

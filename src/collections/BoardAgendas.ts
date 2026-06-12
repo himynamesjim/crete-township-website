@@ -71,6 +71,24 @@ export const BoardAgendas: CollectionConfig = {
       ],
     },
     {
+      name: 'meetingTime',
+      type: 'text',
+      label: 'Meeting Time',
+      admin: {
+        placeholder: 'e.g., 7:00 PM',
+        description: 'Time the meeting starts (e.g., 7:00 PM)',
+      },
+    },
+    {
+      name: 'location',
+      type: 'text',
+      label: 'Meeting Location',
+      admin: {
+        placeholder: 'e.g., Crete Town Hall, 1367 Wood St',
+        description: 'Physical location of the meeting',
+      },
+    },
+    {
       name: 'description',
       type: 'textarea',
       label: 'Description (optional)',

@@ -225,3 +225,38 @@ html[data-theme='dark'],
 html[data-theme='light'] {
   opacity: initial;
 }
+
+/* Calendar event z-index fixes */
+.rbc-event {
+  z-index: 1 !important;
+  position: relative !important;
+}
+
+.rbc-event:hover {
+  z-index: 2 !important;
+}
+
+.rbc-events-container {
+  z-index: auto !important;
+}
+
+.rbc-month-view,
+.rbc-time-view,
+.rbc-agenda-view {
+  position: relative !important;
+  z-index: 1 !important;
+}
+
+.rbc-overlay {
+  z-index: 100 !important;
+}
+
+.rbc-row {
+  position: relative !important;
+  z-index: 1 !important;
+}
+
+.rbc-month-row {
+  position: relative !important;
+  z-index: 1 !important;
+}

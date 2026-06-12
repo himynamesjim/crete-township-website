@@ -23,6 +23,7 @@ const merriweather = Merriweather({
 
 import { TownshipHeader } from '@/components/layout/TownshipHeader'
 import { TownshipFooter } from '@/components/layout/TownshipFooter'
+import { AgendaAlertBarWrapper } from '@/components/layout/AgendaAlertBarWrapper'
 import { Providers } from '@/providers'
 import { InitTheme } from '@/providers/Theme/InitTheme'
 import { mergeOpenGraph } from '@/utilities/mergeOpenGraph'
@@ -43,6 +44,7 @@ export default async function RootLayout({ children }: { children: React.ReactNo
       </head>
       <body>
         <Providers>
+          <AgendaAlertBarWrapper />
           <TownshipHeader />
           <main className="flex-1 min-h-screen bg-cream">
             {children}

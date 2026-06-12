@@ -39,7 +39,7 @@ export const PageHero: React.FC<PageHeroProps> = ({ title, description, breadcru
         </nav>
 
         {/* Title */}
-        <h1 className="text-4xl font-display font-bold mb-3">{title}</h1>
+        <h1 className="text-5xl font-display font-bold mb-3 text-white">{title}</h1>
 
         {/* Description */}
         {description && <p className="text-lg text-gray-200">{description}</p>}

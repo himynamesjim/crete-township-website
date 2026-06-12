@@ -4,7 +4,6 @@ import React, { useState } from 'react'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { Phone, Mail, Facebook, Twitter, Youtube, Menu, X, ChevronDown, Printer } from 'lucide-react'
-import { Button } from '@/components/ui/button'
 import { cn } from '@/utilities/ui'
 
 interface NavItem {
@@ -19,7 +18,7 @@ const navigation: NavItem[] = [
     label: 'About',
     href: '/about',
     children: [
-      { label: 'Township Board', href: '/about/board' },
+      { label: 'Township Board', href: '/officials' },
       { label: 'History', href: '/about/history' },
     ],
   },
@@ -32,7 +31,7 @@ const navigation: NavItem[] = [
     ],
   },
   {
-    label: 'Reports',
+    label: 'Documents',
     href: '/documents',
     children: [
       { label: 'Meeting Agendas', href: '/documents/agendas' },
@@ -69,21 +68,6 @@ export const TownshipHeader: React.FC = () => {
 
   return (
     <>
-      {/* Board Meeting Alert Banner */}
-      <div className="bg-gold text-white border-b-[3px] border-gold-light">
-        <div className="max-w-[1400px] mx-auto px-8">
-          <div className="h-12 flex items-center justify-center text-center">
-            <span className="text-sm font-semibold">
-              <strong>Board Meeting:</strong> May 13, 2026 at 7:00 PM — Crete Town Hall, 1367 Wood
-              St |{' '}
-              <Link href="/documents/board-agendas" className="underline hover:text-white/90">
-                View Agenda →
-              </Link>
-            </span>
-          </div>
-        </div>
-      </div>
-
       {/* Main Header */}
       <header className="bg-navy border-b-[3px] border-gold">
         <div className="max-w-[1400px] mx-auto px-8">

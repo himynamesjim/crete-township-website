@@ -75,6 +75,7 @@ export interface Config {
     newsletters: Newsletter;
     events: Event;
     announcements: Announcement;
+    officials: Official;
     documents: Document;
     users: User;
     pages: Page;
@@ -101,6 +102,7 @@ export interface Config {
     newsletters: NewslettersSelect<false> | NewslettersSelect<true>;
     events: EventsSelect<false> | EventsSelect<true>;
     announcements: AnnouncementsSelect<false> | AnnouncementsSelect<true>;
+    officials: OfficialsSelect<false> | OfficialsSelect<true>;
     documents: DocumentsSelect<false> | DocumentsSelect<true>;
     users: UsersSelect<false> | UsersSelect<true>;
     pages: PagesSelect<false> | PagesSelect<true>;
@@ -176,6 +178,14 @@ export interface BoardAgenda {
   title: string;
   date: string;
   documentType: 'regular' | 'special' | 'annual';
+  /**
+   * Time the meeting starts (e.g., 7:00 PM)
+   */
+  meetingTime?: string | null;
+  /**
+   * Physical location of the meeting
+   */
+  location?: string | null;
   description?: string | null;
   file: number | Document;
   status: 'draft' | 'published' | 'archived';
@@ -444,6 +454,30 @@ export interface Announcement {
    */
   expiresAt?: string | null;
   publishedAt?: string | null;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "officials".
+ */
+export interface Official {
+  id: number;
+  name: string;
+  title: string;
+  department: 'board' | 'assessor' | 'road-district' | 'clerk' | 'collector' | 'general-assistance';
+  /**
+   * e.g., "Mosquito and Youth" or "Senior and Special Events"
+   */
+  responsibilities?: string | null;
+  photo?: (number | null) | Media;
+  phone?: string | null;
+  email?: string | null;
+  /**
+   * Lower numbers appear first. Use for custom ordering within departments.
+   */
+  displayOrder?: number | null;
+  status: 'draft' | 'published' | 'archived';
   updatedAt: string;
   createdAt: string;
 }
@@ -1191,6 +1225,10 @@ export interface PayloadLockedDocument {
         value: number | Announcement;
       } | null)
     | ({
+        relationTo: 'officials';
+        value: number | Official;
+      } | null)
+    | ({
         relationTo: 'documents';
         value: number | Document;
       } | null)
@@ -1280,6 +1318,8 @@ export interface BoardAgendasSelect<T extends boolean = true> {
   title?: T;
   date?: T;
   documentType?: T;
+  meetingTime?: T;
+  location?: T;
   description?: T;
   file?: T;
   status?: T;
@@ -1390,6 +1430,23 @@ export interface AnnouncementsSelect<T extends boolean = true> {
   active?: T;
   expiresAt?: T;
   publishedAt?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "officials_select".
+ */
+export interface OfficialsSelect<T extends boolean = true> {
+  name?: T;
+  title?: T;
+  department?: T;
+  responsibilities?: T;
+  photo?: T;
+  phone?: T;
+  email?: T;
+  displayOrder?: T;
+  status?: T;
   updatedAt?: T;
   createdAt?: T;
 }

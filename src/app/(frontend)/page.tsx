@@ -5,6 +5,8 @@ import { HeroSection } from '@/components/layout/HeroSection'
 import { EventCard } from '@/components/ui/EventCard'
 import { DocumentLibrary } from '@/components/DocumentLibrary'
 import { FacebookFeed } from '@/components/FacebookFeed'
+import { NextBoardMeeting } from '@/components/NextBoardMeeting'
+import { CalendarEvents } from '@/components/CalendarEvents'
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
@@ -21,8 +23,12 @@ export const metadata: Metadata = {
 export default async function HomePage() {
   const payload = await getPayload({ config })
 
-  // Fetch recent documents and announcements from all collections
-  const [boardAgendas, meetingMinutes, financialReports, announcements] = await Promise.all([
+  // Get current date at midnight for comparison
+  const today = new Date()
+  today.setHours(0, 0, 0, 0)
+
+  // Fetch recent documents, announcements, and upcoming agenda
+  const [boardAgendas, meetingMinutes, financialReports, announcements, upcomingAgenda] = await Promise.all([
     payload.find({
       collection: 'board-agendas',
       where: { status: { equals: 'published' } },
@@ -53,9 +59,29 @@ export default async function HomePage() {
       limit: 5,
       depth: 0,
     }),
+    // Fetch upcoming agenda for Next Board Meeting box
+    payload.find({
+      collection: 'board-agendas',
+      where: {
+        and: [
+          {
+            status: {
+              equals: 'published',
+            },
+          },
+          {
+            date: {
+              greater_than_equal: today.toISOString(),
+            },
+          },
+        ],
+      },
+      sort: 'date',
+      limit: 1,
+    }),
   ])
 
-  // Combine and sort all documents by date
+  // Combine documents - Board Agendas first, then Meeting Minutes, then Financial Reports
   const allRecentDocs = [
     ...boardAgendas.docs.map((doc: any) => ({
       ...doc,
@@ -70,7 +96,17 @@ export default async function HomePage() {
       type: doc.documentType || 'Financial Report',
     })),
   ]
-    .sort((a: any, b: any) => new Date(b.date).getTime() - new Date(a.date).getTime())
+    .sort((a: any, b: any) => {
+      // First sort by type priority (Board Agendas first)
+      const typeOrder = { 'Board Agenda': 0, 'Meeting Minutes': 1 }
+      const typeA = typeOrder[a.type as keyof typeof typeOrder] ?? 2
+      const typeB = typeOrder[b.type as keyof typeof typeOrder] ?? 2
+
+      if (typeA !== typeB) return typeA - typeB
+
+      // Then sort by date within the same type (newest first)
+      return new Date(b.date).getTime() - new Date(a.date).getTime()
+    })
     .slice(0, 6) // Get the 6 most recent documents
 
   // Debug: Log document count and file structure
@@ -120,6 +156,16 @@ export default async function HomePage() {
 
   // Get announcements from CMS query above
   const cmsAnnouncements = announcements.docs
+
+  // Prepare upcoming agenda data for Next Board Meeting component
+  const nextBoardMeetingAgenda = upcomingAgenda.docs.length > 0
+    ? {
+        title: upcomingAgenda.docs[0].title || 'Township Board Meeting',
+        date: upcomingAgenda.docs[0].date || '',
+        meetingTime: upcomingAgenda.docs[0].meetingTime,
+        location: upcomingAgenda.docs[0].location,
+      }
+    : null
 
   return (
     <>
@@ -296,105 +342,178 @@ export default async function HomePage() {
           </div>
       </section>
 
-      {/* Two Column: Document Library + Sidebar */}
+      {/* Document Library (left) + Recent News (right) */}
       <section className="py-16 bg-white">
-          <div className="max-w-[1400px] mx-auto px-8">
-            <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-              {/* Left: Document Library with Filter Buttons */}
+        <div className="max-w-[1400px] mx-auto px-8">
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+            {/* Left: Document Library (2/3 width) */}
+            <div className="lg:col-span-2">
               <DocumentLibrary documents={allRecentDocs} />
+            </div>
 
-              {/* Right: Sidebar */}
-              <div className="space-y-8">
-                {/* Upcoming Events */}
-                <div>
-                  <div className="flex items-center justify-between mb-4">
-                    <h3 className="text-xl font-display font-bold text-gold uppercase tracking-wide">
-                      Upcoming Events
-                    </h3>
-                    <Link href="/events" className="text-sm text-gold hover:text-gold-light">
-                      View All →
-                    </Link>
-                  </div>
-                  <div className="space-y-3">
-                    {upcomingEvents.map((event, index) => (
-                      <EventCard key={index} {...event} />
-                    ))}
+            {/* Right: Recent News from Facebook (1/3 width) */}
+            <div>
+              <div className="mb-6">
+                <div className="flex items-center justify-between mb-4">
+                  <div>
+                    <h2 className="text-2xl font-display font-bold text-navy mb-2">Recent News</h2>
+                    <div className="w-12 h-[3px] bg-gold" />
                   </div>
                 </div>
-
-                {/* Next Board Meeting Card */}
-                <Card className="bg-navy-dark text-white border-none">
-                  <CardContent className="p-6">
-                    <h3 className="text-lg font-display font-bold text-gold uppercase tracking-wide mb-4">
-                      Next Board Meeting
-                    </h3>
-                    <div className="mb-4">
-                      <div className="text-2xl font-display font-bold mb-1">
-                        Township Board Meeting
-                      </div>
-                      <div className="text-sm text-gray-300">
-                        7:00 PM – 8:30 PM
-                        <br />
-                        Crete Town Hall
-                      </div>
-                    </div>
-                    <Button variant="navy" className="w-full bg-gold hover:bg-gold-light">
-                      📹 Join via Zoom
-                    </Button>
-                    <p className="text-xs text-gray-400 mt-2">Meeting ID: 850 1300 5638</p>
-                  </CardContent>
-                </Card>
-
-                {/* Quick Contact */}
-                <Card>
-                  <CardContent className="p-6">
-                    <h3 className="text-lg font-display font-bold text-gold uppercase tracking-wide mb-4">
-                      Quick Contact
-                    </h3>
-                    <div className="space-y-3 text-sm">
-                      <div>
-                        <div className="font-semibold text-navy">Main Office</div>
-                        <a href="tel:708-672-8279" className="text-gold hover:text-gold-light">
-                          708-672-8279
-                        </a>
-                      </div>
-                      <div>
-                        <div className="font-semibold text-navy">Fax</div>
-                        <span className="text-gray-600">708-672-3327</span>
-                      </div>
-                      <div>
-                        <div className="font-semibold text-navy">Email</div>
-                        <a
-                          href="mailto:administrator@cretetownship.com"
-                          className="text-gold hover:text-gold-light break-words"
-                        >
-                          administrator@cretetownship.com
-                        </a>
-                      </div>
-                    </div>
-                  </CardContent>
-                </Card>
-
-                {/* Recent News from Facebook */}
-                <div>
-                  <div className="flex items-center justify-between mb-4">
-                    <h3 className="text-xl font-display font-bold text-gold uppercase tracking-wide">
-                      Recent News
-                    </h3>
-                    <Link
-                      href="https://www.facebook.com/profile.php?id=102522678698264"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="text-sm text-gold hover:text-gold-light"
-                    >
-                      View All →
-                    </Link>
-                  </div>
-                  <FacebookFeed />
-                </div>
+              </div>
+              <div className="w-full">
+                <FacebookFeed width={400} height={800} />
+              </div>
+              <div className="mt-4 text-center">
+                <Link
+                  href="https://www.facebook.com/profile.php?id=102522678698264"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-sm text-gold hover:text-gold-light font-medium"
+                >
+                  View All on Facebook →
+                </Link>
               </div>
             </div>
           </div>
+        </div>
+      </section>
+
+      {/* Will County & Community Resources */}
+      <section className="py-16 bg-cream">
+        <div className="max-w-[1400px] mx-auto px-8">
+          <div className="mb-8">
+            <h2 className="text-3xl font-display font-bold text-navy mb-2">Will County & Community Resources</h2>
+            <div className="w-12 h-[3px] bg-gold" />
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {/* Animal Control */}
+            <Card className="hover:border-gold transition-colors">
+              <CardContent className="p-5">
+                <h3 className="font-semibold text-navy mb-2">Animal Control</h3>
+                <a href="tel:815-462-5633" className="text-gold hover:text-gold-light font-medium">
+                  815-462-5633
+                </a>
+              </CardContent>
+            </Card>
+
+            {/* Record of Deeds */}
+            <Card className="hover:border-gold transition-colors">
+              <CardContent className="p-5">
+                <h3 className="font-semibold text-navy mb-2">Record of Deeds</h3>
+                <a href="tel:815-740-4637" className="text-gold hover:text-gold-light font-medium">
+                  815-740-4637
+                </a>
+              </CardContent>
+            </Card>
+
+            {/* DHFS - Public Aid */}
+            <Card className="hover:border-gold transition-colors">
+              <CardContent className="p-5">
+                <h3 className="font-semibold text-navy mb-2">DHFS - Public Aid</h3>
+                <a href="tel:815-740-5350" className="text-gold hover:text-gold-light font-medium">
+                  815-740-5350
+                </a>
+              </CardContent>
+            </Card>
+
+            {/* Veteran Affairs */}
+            <Card className="hover:border-gold transition-colors">
+              <CardContent className="p-5">
+                <h3 className="font-semibold text-navy mb-2">Veteran Affairs</h3>
+                <a href="tel:815-740-8389" className="text-gold hover:text-gold-light font-medium">
+                  815-740-8389
+                </a>
+              </CardContent>
+            </Card>
+
+            {/* Center of Community Concerns */}
+            <Card className="hover:border-gold transition-colors">
+              <CardContent className="p-5">
+                <h3 className="font-semibold text-navy mb-2">Center of Community Concerns</h3>
+                <a href="tel:815-722-0722" className="text-gold hover:text-gold-light font-medium">
+                  815-722-0722
+                </a>
+              </CardContent>
+            </Card>
+
+            {/* Building/Permits/Zoning */}
+            <Card className="hover:border-gold transition-colors">
+              <CardContent className="p-5">
+                <h3 className="font-semibold text-navy mb-2">Building/Permits/Zoning</h3>
+                <a href="tel:815-727-8634" className="text-gold hover:text-gold-light font-medium">
+                  815-727-8634
+                </a>
+              </CardContent>
+            </Card>
+
+            {/* Social Security */}
+            <Card className="hover:border-gold transition-colors">
+              <CardContent className="p-5">
+                <h3 className="font-semibold text-navy mb-2">Social Security</h3>
+                <a href="tel:866-783-7302" className="text-gold hover:text-gold-light font-medium">
+                  866-783-7302
+                </a>
+              </CardContent>
+            </Card>
+
+            {/* Senior Services */}
+            <Card className="hover:border-gold transition-colors">
+              <CardContent className="p-5">
+                <h3 className="font-semibold text-navy mb-2">Senior Services</h3>
+                <a href="tel:815-723-9713" className="text-gold hover:text-gold-light font-medium">
+                  815-723-9713
+                </a>
+              </CardContent>
+            </Card>
+
+            {/* Daybreak/Catholic Charities */}
+            <Card className="hover:border-gold transition-colors">
+              <CardContent className="p-5">
+                <h3 className="font-semibold text-navy mb-2">Daybreak / Catholic Charities</h3>
+                <a href="tel:815-723-4663" className="text-gold hover:text-gold-light font-medium">
+                  815-723-4663
+                </a>
+              </CardContent>
+            </Card>
+
+            {/* Will County Sheriff */}
+            <Card className="hover:border-gold transition-colors">
+              <CardContent className="p-5">
+                <h3 className="font-semibold text-navy mb-2">Will County Sheriff</h3>
+                <p className="text-xs text-gray-500 mb-1">Non-Emergency</p>
+                <a href="tel:815-727-8575" className="text-gold hover:text-gold-light font-medium">
+                  815-727-8575
+                </a>
+              </CardContent>
+            </Card>
+
+            {/* Will County Board Admin */}
+            <Card className="hover:border-gold transition-colors">
+              <CardContent className="p-5">
+                <h3 className="font-semibold text-navy mb-2">Will County Board</h3>
+                <p className="text-xs text-gray-500 mb-1">Admin Office</p>
+                <a href="tel:815-740-4602" className="text-gold hover:text-gold-light font-medium">
+                  815-740-4602
+                </a>
+              </CardContent>
+            </Card>
+
+            {/* Will County DOT */}
+            <Card className="hover:border-gold transition-colors md:col-span-2 lg:col-span-1">
+              <CardContent className="p-5">
+                <h3 className="font-semibold text-navy mb-2">Will County Transportation</h3>
+                <p className="text-xs text-gray-500 mb-2">
+                  For Exchange St, Crete-Monee Rd (west of IL RTE 1), Goodenow Rd (west of IL RTE 394)
+                </p>
+                <a href="tel:815-727-8476" className="text-gold hover:text-gold-light font-medium">
+                  815-727-8476
+                </a>
+              </CardContent>
+            </Card>
+          </div>
+        </div>
       </section>
     </>
   )

@@ -76,7 +76,7 @@ export function DocumentLibrary({ documents }: DocumentLibraryProps) {
           </h2>
           <div className="w-12 h-[3px] bg-gold" />
         </div>
-        <Link href="/documents">
+        <Link href="/documents/all">
           <Button variant="link" className="text-gold">
             Browse all documents →
           </Button>
@@ -105,7 +105,7 @@ export function DocumentLibrary({ documents }: DocumentLibraryProps) {
         <div className="space-y-4">
           {filteredDocuments.map((doc: any) => (
             <DocumentCard
-              key={doc.id}
+              key={`${doc.collection || doc.type}-${doc.id}`}
               title={doc.title}
               date={formatDate(doc.date)}
               type={doc.type}

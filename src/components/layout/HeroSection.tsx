@@ -1,8 +1,11 @@
+'use client'
+
 import React from 'react'
 import { Button } from '@/components/ui/button'
 import { Badge } from '@/components/ui/badge'
 import { Calendar, FileText } from 'lucide-react'
 import Link from 'next/link'
+import { CalendarEvents } from '@/components/CalendarEvents'
 
 export const HeroSection: React.FC = () => {
   return (
@@ -48,7 +51,7 @@ export const HeroSection: React.FC = () => {
 
             {/* CTA Buttons */}
             <div className="flex flex-wrap gap-4 mb-16">
-              <Link href="/documents/board-agendas">
+              <Link href="/documents">
                 <Button size="lg" className="gap-2">
                   <FileText className="w-5 h-5" />
                   View Board Documents
@@ -90,62 +93,7 @@ export const HeroSection: React.FC = () => {
           {/* Right: Upcoming Events Sidebar */}
           <div className="lg:col-span-1">
             <div className="bg-navy-light/30 backdrop-blur-sm border border-white/20 rounded-lg p-6">
-              <div className="flex items-center justify-between mb-6">
-                <h3 className="text-xl font-display font-bold text-white">UPCOMING EVENTS</h3>
-                <Link href="/events" className="text-sm text-gold hover:text-gold-light font-semibold">
-                  View All →
-                </Link>
-              </div>
-
-              <div className="space-y-4">
-                {/* Event 1 */}
-                <div className="flex gap-4">
-                  <div className="flex flex-col items-center justify-center w-14 h-14 bg-gold text-white rounded flex-shrink-0">
-                    <span className="text-[10px] font-medium uppercase">MAY</span>
-                    <span className="text-2xl font-bold leading-none">11</span>
-                  </div>
-                  <div className="flex-1">
-                    <h4 className="text-white font-semibold text-sm mb-1">Senior Coffee Get Together</h4>
-                    <p className="text-gray-300 text-xs">9:00 AM – 11:00 AM · Community Center</p>
-                  </div>
-                </div>
-
-                {/* Event 2 */}
-                <div className="flex gap-4">
-                  <div className="flex flex-col items-center justify-center w-14 h-14 bg-gold text-white rounded flex-shrink-0">
-                    <span className="text-[10px] font-medium uppercase">MAY</span>
-                    <span className="text-2xl font-bold leading-none">13</span>
-                  </div>
-                  <div className="flex-1">
-                    <h4 className="text-white font-semibold text-sm mb-1">Crete Food Pantry Distribution</h4>
-                    <p className="text-gray-300 text-xs">9:00 AM – 11:00 AM · Town Hall</p>
-                  </div>
-                </div>
-
-                {/* Event 3 */}
-                <div className="flex gap-4">
-                  <div className="flex flex-col items-center justify-center w-14 h-14 bg-gold text-white rounded flex-shrink-0">
-                    <span className="text-[10px] font-medium uppercase">MAY</span>
-                    <span className="text-2xl font-bold leading-none">13</span>
-                  </div>
-                  <div className="flex-1">
-                    <h4 className="text-white font-semibold text-sm mb-1">Township Board Meeting</h4>
-                    <p className="text-gray-300 text-xs">7:00 PM – 8:30 PM · Crete Town Hall</p>
-                  </div>
-                </div>
-
-                {/* Event 4 */}
-                <div className="flex gap-4">
-                  <div className="flex flex-col items-center justify-center w-14 h-14 bg-gold text-white rounded flex-shrink-0">
-                    <span className="text-[10px] font-medium uppercase">MAY</span>
-                    <span className="text-2xl font-bold leading-none">23</span>
-                  </div>
-                  <div className="flex-1">
-                    <h4 className="text-white font-semibold text-sm mb-1">FREE Robotics Program Ages 9–12</h4>
-                    <p className="text-gray-300 text-xs">10:00 AM – Noon · Community Center</p>
-                  </div>
-                </div>
-              </div>
+              <CalendarEvents limit={4} showViewAll={true} variant="hero" />
             </div>
           </div>
         </div>
