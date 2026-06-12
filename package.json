@@ -68,6 +68,7 @@
     "@types/escape-html": "^1.0.2",
     "@types/node": "24.12.3",
     "@types/react": "19.2.14",
+    "@types/react-big-calendar": "^1.16.3",
     "@types/react-dom": "19.2.3",
     "@vitejs/plugin-react": "4.5.2",
     "autoprefixer": "^10.4.19",
