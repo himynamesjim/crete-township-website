@@ -286,46 +286,62 @@ export const TownshipHeader: React.FC = () => {
           </button>
         </div>
 
-          {/* Mobile Navigation */}
-          {mobileMenuOpen && (
-            <div className="lg:hidden py-4">
-              <ul className="space-y-1">
-                {navigation.map((item) => (
-                  <li key={item.href}>
-                    <Link
-                      href={item.href}
-                      className={cn(
-                        "block px-4 py-3 text-sm rounded transition-colors",
-                        item.festive
-                          ? "font-bold text-red-600 hover:bg-red-600 hover:text-white"
-                          : "font-medium text-gray-600 hover:text-navy hover:bg-white"
-                      )}
-                      onClick={() => setMobileMenuOpen(false)}
-                    >
-                      {item.festive ? `★ ${item.label} ★` : item.label}
-                    </Link>
-                    {item.children && (
-                      <ul className="ml-4 mt-1 space-y-1">
-                        {item.children.map((child) => (
-                          <li key={child.label}>
-                            <Link
-                              href={child.href}
-                              className="block px-4 py-2 text-xs text-gray-500 hover:text-navy hover:bg-white rounded transition-colors"
-                              onClick={() => setMobileMenuOpen(false)}
-                            >
-                              {child.label}
-                            </Link>
-                          </li>
-                        ))}
-                      </ul>
-                    )}
-                  </li>
-                ))}
-              </ul>
-            </div>
-          )}
         </div>
       </nav>
+
+      {/* Mobile Navigation — full-screen fixed overlay so it's always scrollable */}
+      {mobileMenuOpen && (
+        <div className="lg:hidden fixed inset-0 z-[70] flex flex-col bg-cream overflow-hidden">
+          {/* Overlay header */}
+          <div className="bg-navy border-b-[3px] border-gold flex items-center justify-between px-6 py-4 flex-shrink-0">
+            <span className="font-display font-bold text-white text-lg">Crete Township</span>
+            <button
+              onClick={() => setMobileMenuOpen(false)}
+              className="p-2 text-white hover:bg-navy-light rounded"
+              aria-label="Close menu"
+            >
+              <X className="w-6 h-6" />
+            </button>
+          </div>
+
+          {/* Scrollable menu list */}
+          <div className="overflow-y-auto flex-1 py-4 px-4">
+            <ul className="space-y-1">
+              {navigation.map((item) => (
+                <li key={item.href}>
+                  <Link
+                    href={item.href}
+                    className={cn(
+                      "block px-4 py-3 text-sm rounded transition-colors",
+                      item.festive
+                        ? "font-bold text-red-600 hover:bg-red-600 hover:text-white"
+                        : "font-medium text-gray-700 hover:text-navy hover:bg-white"
+                    )}
+                    onClick={() => setMobileMenuOpen(false)}
+                  >
+                    {item.festive ? `★ ${item.label} ★` : item.label}
+                  </Link>
+                  {item.children && (
+                    <ul className="ml-4 mt-1 space-y-1 border-l-2 border-gray-200 pl-2">
+                      {item.children.map((child) => (
+                        <li key={child.label}>
+                          <Link
+                            href={child.href}
+                            className="block px-3 py-2 text-xs text-gray-500 hover:text-navy hover:bg-white rounded transition-colors"
+                            onClick={() => setMobileMenuOpen(false)}
+                          >
+                            {child.label}
+                          </Link>
+                        </li>
+                      ))}
+                    </ul>
+                  )}
+                </li>
+              ))}
+            </ul>
+          </div>
+        </div>
+      )}
 
       <SearchModal open={searchOpen} onClose={() => setSearchOpen(false)} />
     </>
