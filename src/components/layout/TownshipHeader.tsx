@@ -38,13 +38,14 @@ const navigation: NavItem[] = [
     label: 'Documents',
     href: '/documents',
     children: [
+      { label: 'Documents & Reports', href: '/documents' },
       { label: 'Meeting Agendas', href: '/documents/agendas' },
       { label: 'Meeting Minutes', href: '/documents/meeting-minutes' },
       { label: 'Annual Town Meetings', href: '/documents/annual-town-meetings' },
       { label: 'Assessor Minutes', href: '/documents/assessor-minutes' },
       { label: 'Audited Financial Statements', href: '/documents/audited-financial-statements' },
       { label: 'Cash Balance Reports', href: '/documents/cash-balance-reports' },
-      { label: 'Highway Commissioner Reports', href: '/documents/highway-commissioner-reports' },
+      { label: 'Highway Commissioner Reports', href: '/documents/highway-commissioner' },
       { label: 'Town Fund and Road & Bridge Tax Levy Minutes', href: '/documents/town-fund-levy-minutes' },
       { label: 'Newsletters', href: '/documents/newsletters' },
     ],
@@ -73,7 +74,7 @@ const navigation: NavItem[] = [
       { label: 'Road District Home', href: '/road-district' },
       { label: 'Environment & Storm Sewer', href: '/road-district/environment' },
       { label: '2026 Branch Pickup', href: '/road-district/branch-pickup' },
-      { label: 'Highway Commissioner Reports', href: '/documents/highway-commissioner-reports' },
+      { label: 'Highway Commissioner Reports', href: '/documents/highway-commissioner' },
     ],
   },
   { label: 'Events', href: '/events' },
@@ -160,21 +161,27 @@ export const TownshipHeader: React.FC = () => {
               {/* Social Icons */}
               <div className="flex items-center gap-2 pl-4 border-l border-navy-light">
                 <a
-                  href="#"
+                  href="https://www.facebook.com/CreteTownship"
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="w-8 h-8 rounded bg-navy-light hover:bg-gold transition-colors flex items-center justify-center"
                   aria-label="Facebook"
                 >
                   <Facebook className="w-4 h-4 text-white" />
                 </a>
                 <a
-                  href="#"
+                  href="https://x.com/CreteTownship"
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="w-8 h-8 rounded bg-navy-light hover:bg-gold transition-colors flex items-center justify-center"
-                  aria-label="Twitter"
+                  aria-label="X (Twitter)"
                 >
                   <Twitter className="w-4 h-4 text-white" />
                 </a>
                 <a
-                  href="#"
+                  href="https://www.youtube.com/channel/UC7V0wd9lWygqVESLg5kPT5A"
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="w-8 h-8 rounded bg-navy-light hover:bg-gold transition-colors flex items-center justify-center"
                   aria-label="YouTube"
                 >

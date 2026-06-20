@@ -262,7 +262,7 @@ export default async function EnvironmentPage() {
                         Road District Home
                       </a>
                       <a
-                        href="/documents/highway-commissioner-reports"
+                        href="/documents/highway-commissioner"
                         className="flex items-center gap-2 text-sm text-gray-700 hover:text-gold transition-colors"
                       >
                         <FileText className="w-3.5 h-3.5 text-gold flex-shrink-0" />

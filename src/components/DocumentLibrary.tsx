@@ -55,10 +55,10 @@ export function DocumentLibrary({ documents }: DocumentLibraryProps) {
       default:
         return true
     }
-  })
+  }).slice(0, 8)
 
   const filterButtons = [
-    { label: 'All Documents', value: 'all' as FilterType },
+    { label: 'Recent Documents', value: 'all' as FilterType },
     { label: 'Meeting Minutes', value: 'minutes' as FilterType },
     { label: 'Board Agendas', value: 'agendas' as FilterType },
     { label: 'Financial Reports', value: 'financial' as FilterType },

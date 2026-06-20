@@ -34,21 +34,21 @@ export default async function HomePage() {
       collection: 'board-agendas',
       where: { status: { equals: 'published' } },
       sort: '-date',
-      limit: 3,
+      limit: 8,
       depth: 1,
     }),
     payload.find({
       collection: 'meeting-minutes',
       where: { status: { equals: 'published' } },
       sort: '-date',
-      limit: 3,
+      limit: 8,
       depth: 1,
     }),
     payload.find({
       collection: 'financial-reports',
       where: { status: { equals: 'published' } },
       sort: '-date',
-      limit: 3,
+      limit: 8,
       depth: 1,
     }),
     payload.find({
@@ -108,7 +108,7 @@ export default async function HomePage() {
       // Then sort by date within the same type (newest first)
       return new Date(b.date).getTime() - new Date(a.date).getTime()
     })
-    .slice(0, 6) // Get the 6 most recent documents
+    // No slice here — DocumentLibrary caps each filter at 8 client-side
 
   // Debug: Log document count and file structure
   console.log('=== HOMEPAGE DEBUG ===')
