@@ -76,7 +76,7 @@ export function DocumentLibrary({ documents }: DocumentLibraryProps) {
           </h2>
           <div className="w-12 h-[3px] bg-gold" />
         </div>
-        <Link href="/documents/all">
+        <Link href="/documents">
           <Button variant="link" className="text-gold">
             Browse all documents →
           </Button>

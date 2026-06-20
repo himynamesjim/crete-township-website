@@ -14,5 +14,11 @@ export const redirects: NextConfig['redirects'] = async () => {
     source: '/:path((?!ie-incompatible.html$).*)', // all pages except the incompatibility page
   }
 
-  return [internetExplorerRedirect]
+  const documentsAllRedirect = {
+    source: '/documents/all',
+    destination: '/documents',
+    permanent: true,
+  }
+
+  return [internetExplorerRedirect, documentsAllRedirect]
 }
