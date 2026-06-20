@@ -1,6 +1,7 @@
 import type { CollectionConfig } from 'payload'
 import { lexicalEditor } from '@payloadcms/richtext-lexical'
 import { canCreateOrUpdate, canDelete, canRead } from '../access'
+import { notifySubscribers } from '../lib/notifySubscribers'
 
 export const Events: CollectionConfig = {
   slug: 'events',
@@ -135,4 +136,26 @@ export const Events: CollectionConfig = {
       },
     },
   ],
+  hooks: {
+    afterChange: [
+      async ({ doc, previousDoc, operation, req }) => {
+        if (
+          doc.status === 'published' &&
+          (operation === 'create' || previousDoc?.status !== 'published')
+        ) {
+          notifySubscribers({
+            payload: req.payload,
+            category: 'events',
+            collectionLabel: 'Township Event',
+            title: doc.title,
+            date: doc.startDate,
+            description: doc.location ? `Location: ${doc.location}` : undefined,
+            viewPath: '/events',
+          }).catch((err) =>
+            req.payload.logger.error({ err, message: '[Notify] events failed' }),
+          )
+        }
+      },
+    ],
+  },
 }

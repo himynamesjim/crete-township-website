@@ -1,5 +1,6 @@
 import type { CollectionConfig } from 'payload'
 import { canCreateOrUpdate, canDelete, canRead } from '../access'
+import { notifySubscribers } from '../lib/notifySubscribers'
 
 export const Announcements: CollectionConfig = {
   slug: 'announcements',
@@ -108,6 +109,26 @@ export const Announcements: CollectionConfig = {
           data.publishedAt = new Date().toISOString()
         }
         return data
+      },
+    ],
+    afterChange: [
+      async ({ doc, previousDoc, operation, req }) => {
+        if (
+          doc.active === true &&
+          doc.status === 'published' &&
+          (operation === 'create' || previousDoc?.status !== 'published')
+        ) {
+          notifySubscribers({
+            payload: req.payload,
+            category: 'announcements',
+            collectionLabel: 'Township Announcement',
+            title: doc.title || 'New Announcement',
+            description: doc.body,
+            viewPath: '/',
+          }).catch((err) =>
+            req.payload.logger.error({ err, message: '[Notify] announcements failed' }),
+          )
+        }
       },
     ],
   },

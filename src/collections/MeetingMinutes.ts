@@ -3,6 +3,7 @@ import path from 'path'
 import { fileURLToPath } from 'url'
 import { canCreateOrUpdate, canDelete, canRead } from '../access'
 import { parseDocumentMetadata } from '../utilities/parseDocumentMetadata'
+import { notifySubscribers } from '../lib/notifySubscribers'
 
 const filename = fileURLToPath(import.meta.url)
 const dirname = path.dirname(filename)
@@ -152,6 +153,26 @@ export const MeetingMinutes: CollectionConfig = {
         }
 
         return data
+      },
+    ],
+    afterChange: [
+      async ({ doc, previousDoc, operation, req }) => {
+        if (
+          doc.status === 'published' &&
+          (operation === 'create' || previousDoc?.status !== 'published')
+        ) {
+          notifySubscribers({
+            payload: req.payload,
+            category: 'meeting-minutes',
+            collectionLabel: 'Meeting Minutes',
+            title: doc.title,
+            date: doc.date,
+            description: doc.description,
+            viewPath: '/documents/meeting-minutes',
+          }).catch((err) =>
+            req.payload.logger.error({ err, message: '[Notify] meeting-minutes failed' }),
+          )
+        }
       },
     ],
   },

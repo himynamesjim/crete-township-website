@@ -2,6 +2,7 @@ import type { CollectionConfig } from 'payload'
 import path from 'path'
 import { fileURLToPath } from 'url'
 import { canCreateOrUpdate, canDelete, canRead } from '../access'
+import { notifySubscribers } from '../lib/notifySubscribers'
 
 const filename = fileURLToPath(import.meta.url)
 const dirname = path.dirname(filename)
@@ -129,6 +130,26 @@ export const FinancialReports: CollectionConfig = {
           }
         }
         return data
+      },
+    ],
+    afterChange: [
+      async ({ doc, previousDoc, operation, req }) => {
+        if (
+          doc.status === 'published' &&
+          (operation === 'create' || previousDoc?.status !== 'published')
+        ) {
+          notifySubscribers({
+            payload: req.payload,
+            category: 'financial-reports',
+            collectionLabel: 'Financial Report',
+            title: doc.title,
+            date: doc.date,
+            description: doc.description,
+            viewPath: '/documents/audited-financial-statements',
+          }).catch((err) =>
+            req.payload.logger.error({ err, message: '[Notify] financial-reports failed' }),
+          )
+        }
       },
     ],
   },

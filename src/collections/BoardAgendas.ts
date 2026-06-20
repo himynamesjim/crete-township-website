@@ -3,6 +3,7 @@ import path from 'path'
 import { fileURLToPath } from 'url'
 import { canCreateOrUpdate, canDelete, canRead } from '../access'
 import { parseDocumentMetadata } from '../utilities/parseDocumentMetadata'
+import { notifySubscribers } from '../lib/notifySubscribers'
 
 const filename = fileURLToPath(import.meta.url)
 const dirname = path.dirname(filename)
@@ -182,6 +183,26 @@ export const BoardAgendas: CollectionConfig = {
         }
 
         return data
+      },
+    ],
+    afterChange: [
+      async ({ doc, previousDoc, operation, req }) => {
+        if (
+          doc.status === 'published' &&
+          (operation === 'create' || previousDoc?.status !== 'published')
+        ) {
+          notifySubscribers({
+            payload: req.payload,
+            category: 'board-agendas',
+            collectionLabel: 'Board Agenda',
+            title: doc.title,
+            date: doc.date,
+            description: doc.description,
+            viewPath: '/documents/agendas',
+          }).catch((err) =>
+            req.payload.logger.error({ err, message: '[Notify] board-agendas failed' }),
+          )
+        }
       },
     ],
   },
