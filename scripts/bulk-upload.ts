@@ -21,12 +21,24 @@
  *   annual-town-meetings → migration/sorted/annual-town-meeting/
  */
 
-import 'dotenv/config'
+// dotenv and path/fs are safe to import statically (no env-var side effects)
+import { config as loadEnv } from 'dotenv'
 import path from 'path'
 import fs from 'fs'
-import { getPayload } from 'payload'
-import config from '../src/payload.config'
+import { fileURLToPath } from 'url'
+
+// Resolve the project root from this script's location (scripts/ → ../)
+const __filename = fileURLToPath(import.meta.url)
+const __dirname = path.dirname(__filename)
+
+// MUST run before payload.config is imported — it reads DATABASE_URI, PAYLOAD_SECRET, etc.
+loadEnv({ path: path.resolve(__dirname, '../.env.local') })
+
+// Safe to import statically — pure utility with no env-var reads
 import { parseDocumentMetadata } from '../src/utilities/parseDocumentMetadata'
+
+// getPayload and payload.config are imported dynamically inside run() so they
+// execute after loadEnv() has populated process.env.
 
 // ── Collection config ────────────────────────────────────────────────────────
 
@@ -187,7 +199,11 @@ async function run() {
     return
   }
 
-  const payload = await getPayload({ config })
+  // Dynamic imports — run after loadEnv() so process.env is fully populated
+  const { getPayload } = await import('payload')
+  const { default: payloadConfig } = await import('../src/payload.config')
+
+  const payload = await getPayload({ config: payloadConfig })
 
   let created = 0
   let skipped = 0
