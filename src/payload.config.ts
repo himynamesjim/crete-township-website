@@ -42,10 +42,8 @@ export default buildConfig({
   admin: {
     meta: {
       titleSuffix: '- Crete Township CMS',
-      titleTemplate: '%s - Crete Township CMS',
       description: 'Content management system for Crete Township, Will County, Illinois.',
     },
-    css: path.resolve(dirname, 'css/admin-custom.css'),
     components: {
       graphics: {
         Logo: '@/components/Logo/Logo#Logo',

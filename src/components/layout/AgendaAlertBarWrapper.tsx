@@ -30,7 +30,7 @@ export async function AgendaAlertBarWrapper() {
     // Resolve CMS alert banner
     let cmsAlert: React.ReactNode = null
     if (alertBannerResult.status === 'fulfilled') {
-      const banner = alertBannerResult.value as Record<string, unknown>
+      const banner = alertBannerResult.value as unknown as Record<string, unknown>
       const enabled = banner.enabled as boolean
       const expiresAt = banner.expiresAt as string | null
       const notExpired = !expiresAt || new Date(expiresAt) > new Date()

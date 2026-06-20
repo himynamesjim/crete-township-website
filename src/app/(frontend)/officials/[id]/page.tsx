@@ -92,7 +92,7 @@ export default async function OfficialProfilePage({ params }: Props) {
               <Card>
                 <CardContent className="p-6">
                   {/* Photo */}
-                  {official.photo?.url ? (
+                  {typeof official.photo === 'object' && official.photo?.url ? (
                     <div className="mb-6">
                       <div className="w-48 h-48 mx-auto rounded-full overflow-hidden bg-gray-200 border-4 border-gold">
                         <Image
