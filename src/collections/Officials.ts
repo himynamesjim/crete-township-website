@@ -73,6 +73,14 @@ export const Officials: CollectionConfig = {
       label: 'Email Address',
     },
     {
+      name: 'bio',
+      type: 'textarea',
+      label: 'Biography / Excerpt',
+      admin: {
+        description: 'Short bio or description (optional)',
+      },
+    },
+    {
       name: 'displayOrder',
       type: 'number',
       label: 'Display Order',

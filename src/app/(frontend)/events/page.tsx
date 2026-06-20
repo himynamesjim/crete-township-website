@@ -494,6 +494,11 @@ export default function EventsPage() {
                 <div className="text-center py-16">
                   <p className="text-gray-600">Loading events...</p>
                 </div>
+              ) : events.length === 0 ? (
+                <div className="bg-white rounded-lg shadow-sm p-12 text-center">
+                  <p className="text-navy font-display text-xl font-bold mb-2">No events to display yet</p>
+                  <p className="text-gray-500 text-sm">Events from the township calendar will appear here once the calendar is connected. Board meeting agendas can also be published through the CMS admin panel.</p>
+                </div>
               ) : view === 'calendar' ? (
                 <div className="bg-white rounded-lg shadow-sm p-6">
                   <Calendar

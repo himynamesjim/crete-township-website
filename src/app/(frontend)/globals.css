@@ -226,6 +226,48 @@ html[data-theme='light'] {
   opacity: initial;
 }
 
+/* ── ADA Accessibility overrides ────────────────────────────────── */
+
+/* Text size scaling */
+html.ada-text-lg   { font-size: 110% !important; }
+html.ada-text-xl   { font-size: 125% !important; }
+html.ada-text-2xl  { font-size: 140% !important; }
+
+/* High contrast */
+html.ada-contrast  { filter: contrast(2) brightness(1.05); }
+
+/* Grayscale */
+html.ada-grayscale { filter: grayscale(1); }
+
+/* Both contrast + grayscale */
+html.ada-contrast.ada-grayscale { filter: contrast(2) brightness(1.05) grayscale(1); }
+
+/* Dyslexia-friendly typography */
+html.ada-dyslexia body,
+html.ada-dyslexia p,
+html.ada-dyslexia li,
+html.ada-dyslexia a,
+html.ada-dyslexia span,
+html.ada-dyslexia td,
+html.ada-dyslexia th,
+html.ada-dyslexia label,
+html.ada-dyslexia button {
+  font-family: 'Arial', 'Helvetica', sans-serif !important;
+  letter-spacing: 0.1em !important;
+  word-spacing: 0.18em !important;
+  line-height: 1.85 !important;
+}
+
+/* Reduce motion */
+html.ada-reduce-motion *,
+html.ada-reduce-motion *::before,
+html.ada-reduce-motion *::after {
+  animation-duration: 0.001ms !important;
+  animation-iteration-count: 1 !important;
+  transition-duration: 0.001ms !important;
+  scroll-behavior: auto !important;
+}
+
 /* Calendar event z-index fixes */
 .rbc-event {
   z-index: 1 !important;

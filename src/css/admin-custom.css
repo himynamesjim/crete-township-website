@@ -1,0 +1,41 @@
+/* Crete Township — Payload Admin Customizations */
+
+/* Login page background */
+[class*='login'] body,
+body:has([class*='login__form']),
+[class*='template-minimal'],
+[class*='minimalTemplate'] {
+  background-color: #0F2540 !important;
+  background-image:
+    linear-gradient(rgba(15, 37, 64, 0.82), rgba(15, 37, 64, 0.92)),
+    url('/crete-town-hall.jpg') !important;
+  background-size: cover !important;
+  background-position: center center !important;
+  background-attachment: fixed !important;
+}
+
+/* Login form card */
+[class*='login__form'],
+[class*='form-state'] {
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4) !important;
+  border-radius: 12px !important;
+  border: 1px solid rgba(200, 150, 12, 0.25) !important;
+}
+
+/* Gold login button */
+[class*='login'] [class*='submit'] button,
+[class*='login'] button[type='submit'] {
+  background-color: #1B3A5C !important;
+  border-color: #1B3A5C !important;
+}
+
+[class*='login'] [class*='submit'] button:hover,
+[class*='login'] button[type='submit']:hover {
+  background-color: #C8960C !important;
+  border-color: #C8960C !important;
+}
+
+/* Admin nav accent */
+[class*='nav'] [class*='logo'] {
+  padding: 16px 20px !important;
+}

@@ -67,6 +67,35 @@ export const RoadDistrictReports: CollectionConfig = {
           label: 'Road & Bridge Levy',
           value: 'road-bridge-levy',
         },
+        // Environmental / Storm Sewer sub-types
+        {
+          label: 'Storm Water Pollution',
+          value: 'storm-water-pollution',
+        },
+        {
+          label: 'Storm Water Runoff',
+          value: 'storm-water-runoff',
+        },
+        {
+          label: 'Maintaining Your Septic System',
+          value: 'maintaining-septic-system',
+        },
+        {
+          label: 'NPDES – NOI',
+          value: 'npdes-noi',
+        },
+        {
+          label: 'NPDES – Storm Water Management',
+          value: 'npdes-storm-water-management',
+        },
+        {
+          label: 'NPDES – Annual Facility Report',
+          value: 'npdes-annual-facility-report',
+        },
+        {
+          label: 'Environmental Justice',
+          value: 'environmental-justice',
+        },
         {
           label: 'Other Road District Document',
           value: 'other',

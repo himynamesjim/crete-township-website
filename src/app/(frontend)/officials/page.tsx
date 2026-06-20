@@ -5,6 +5,8 @@ import { PageHero } from '@/components/PageHero'
 import { Card, CardContent } from '@/components/ui/card'
 import { Phone, Mail } from 'lucide-react'
 import Image from 'next/image'
+import Link from 'next/link'
+import { SidebarWidgets } from '@/components/SidebarWidgets'
 import type { Metadata } from 'next'
 
 export const metadata: Metadata = {
@@ -25,6 +27,7 @@ interface Official {
   }
   phone?: string
   email?: string
+  bio?: string
   displayOrder: number
 }
 
@@ -79,15 +82,23 @@ export default async function OfficialsPage() {
 
       <section className="py-16 bg-white">
         <div className="max-w-[1400px] mx-auto px-8">
-          {/* Introduction */}
-          <div className="mb-12 max-w-3xl">
-            <p className="text-lg text-gray-700 leading-relaxed">
-              Crete Township is governed by elected officials who are dedicated to serving the
-              residents of our community. Our Board of Trustees, along with other elected officials,
-              work together to provide quality services and maintain the high standards our residents
-              expect.
-            </p>
-          </div>
+          <div className="grid grid-cols-1 lg:grid-cols-[300px_1fr] gap-10 items-start">
+            {/* Sidebar — sticky, managed from /admin/globals/sidebar-widgets */}
+            <div className="lg:sticky lg:top-24 order-2 lg:order-1">
+              <SidebarWidgets />
+            </div>
+
+            {/* Main content */}
+            <div className="order-1 lg:order-2">
+              {/* Introduction */}
+              <div className="mb-12">
+                <p className="text-lg text-gray-700 leading-relaxed">
+                  Crete Township is governed by elected officials who are dedicated to serving the
+                  residents of our community. Our Board of Trustees, along with other elected officials,
+                  work together to provide quality services and maintain the high standards our residents
+                  expect.
+                </p>
+              </div>
 
           {/* Officials by Department */}
           <div className="space-y-16">
@@ -105,8 +116,9 @@ export default async function OfficialsPage() {
 
                   <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                     {deptOfficials.map((official) => (
-                      <Card key={official.id} className="hover:border-gold transition-colors">
-                        <CardContent className="p-6">
+                      <Link key={official.id} href={`/officials/${official.id}`}>
+                        <Card className="hover:border-gold hover:shadow-lg transition-all cursor-pointer h-full">
+                          <CardContent className="p-6">
                           {/* Photo */}
                           {official.photo?.url ? (
                             <div className="mb-4">
@@ -146,6 +158,15 @@ export default async function OfficialsPage() {
                             )}
                           </div>
 
+                          {/* Bio Excerpt */}
+                          {official.bio && (
+                            <div className="mb-4 text-center">
+                              <p className="text-sm text-gray-600 line-clamp-3">
+                                {official.bio}
+                              </p>
+                            </div>
+                          )}
+
                           {/* Contact Info */}
                           {(official.phone || official.email) && (
                             <div className="space-y-2 pt-4 border-t border-gray-200">
@@ -175,6 +196,7 @@ export default async function OfficialsPage() {
                           )}
                         </CardContent>
                       </Card>
+                      </Link>
                     ))}
                   </div>
                 </div>
@@ -185,7 +207,7 @@ export default async function OfficialsPage() {
           {/* Contact Section */}
           <div className="mt-16 pt-16 border-t border-gray-200">
             <div className="bg-navy-dark text-white rounded-lg p-8">
-              <h2 className="text-2xl font-display font-bold mb-4">General Contact Information</h2>
+              <h2 className="text-2xl font-display font-bold text-white mb-4">General Contact Information</h2>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div>
                   <h3 className="font-semibold text-gold mb-2">Main Office</h3>
@@ -213,6 +235,8 @@ export default async function OfficialsPage() {
               </div>
             </div>
           </div>
+            </div>{/* end main content */}
+          </div>{/* end grid */}
         </div>
       </section>
     </>

@@ -76,6 +76,12 @@ export interface Config {
     events: Event;
     announcements: Announcement;
     officials: Official;
+    'foia-requests': FoiaRequest;
+    'ga-inquiries': GaInquiry;
+    'newsletter-subscribers': NewsletterSubscriber;
+    'contact-topics': ContactTopic;
+    'contact-inquiries': ContactInquiry;
+    'community-center-surveys': CommunityCenterSurvey;
     documents: Document;
     users: User;
     pages: Page;
@@ -103,6 +109,12 @@ export interface Config {
     events: EventsSelect<false> | EventsSelect<true>;
     announcements: AnnouncementsSelect<false> | AnnouncementsSelect<true>;
     officials: OfficialsSelect<false> | OfficialsSelect<true>;
+    'foia-requests': FoiaRequestsSelect<false> | FoiaRequestsSelect<true>;
+    'ga-inquiries': GaInquiriesSelect<false> | GaInquiriesSelect<true>;
+    'newsletter-subscribers': NewsletterSubscribersSelect<false> | NewsletterSubscribersSelect<true>;
+    'contact-topics': ContactTopicsSelect<false> | ContactTopicsSelect<true>;
+    'contact-inquiries': ContactInquiriesSelect<false> | ContactInquiriesSelect<true>;
+    'community-center-surveys': CommunityCenterSurveysSelect<false> | CommunityCenterSurveysSelect<true>;
     documents: DocumentsSelect<false> | DocumentsSelect<true>;
     users: UsersSelect<false> | UsersSelect<true>;
     pages: PagesSelect<false> | PagesSelect<true>;
@@ -125,11 +137,15 @@ export interface Config {
   fallbackLocale: null;
   globals: {
     'alert-banner': AlertBanner;
+    'site-settings': SiteSetting;
+    'sidebar-widgets': SidebarWidget;
     header: Header;
     footer: Footer;
   };
   globalsSelect: {
     'alert-banner': AlertBannerSelect<false> | AlertBannerSelect<true>;
+    'site-settings': SiteSettingsSelect<false> | SiteSettingsSelect<true>;
+    'sidebar-widgets': SidebarWidgetsSelect<false> | SidebarWidgetsSelect<true>;
     header: HeaderSelect<false> | HeaderSelect<true>;
     footer: FooterSelect<false> | FooterSelect<true>;
   };
@@ -277,7 +293,19 @@ export interface RoadDistrictReport {
   id: number;
   title: string;
   date: string;
-  documentType: 'highway-commissioner' | 'environmental' | 'storm-sewer' | 'road-bridge-levy' | 'other';
+  documentType:
+    | 'highway-commissioner'
+    | 'environmental'
+    | 'storm-sewer'
+    | 'road-bridge-levy'
+    | 'storm-water-pollution'
+    | 'storm-water-runoff'
+    | 'maintaining-septic-system'
+    | 'npdes-noi'
+    | 'npdes-storm-water-management'
+    | 'npdes-annual-facility-report'
+    | 'environmental-justice'
+    | 'other';
   description?: string | null;
   file: number | Document;
   status: 'draft' | 'published' | 'archived';
@@ -474,10 +502,226 @@ export interface Official {
   phone?: string | null;
   email?: string | null;
   /**
+   * Short bio or description (optional)
+   */
+  bio?: string | null;
+  /**
    * Lower numbers appear first. Use for custom ordering within departments.
    */
   displayOrder?: number | null;
   status: 'draft' | 'published' | 'archived';
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "foia-requests".
+ */
+export interface FoiaRequest {
+  id: number;
+  submittedAt?: string | null;
+  status: 'new' | 'in-review' | 'pending' | 'fulfilled' | 'denied';
+  fullName: string;
+  organization?: string | null;
+  email: string;
+  phone?: string | null;
+  preferredFormat: 'electronic' | 'paper' | 'inspect';
+  street?: string | null;
+  city?: string | null;
+  state?: string | null;
+  zipCode?: string | null;
+  /**
+   * Please be as specific as possible about the records you are requesting. Include details such as subject matter, document types, departments, officials involved, etc.
+   */
+  recordsDescription: string;
+  /**
+   * Earliest date for records
+   */
+  dateRangeStart: string;
+  /**
+   * Latest date for records
+   */
+  dateRangeEnd: string;
+  /**
+   * Upload any supporting documents that may help clarify your request
+   */
+  supportingDocuments?: (number | null) | Media;
+  /**
+   * Commercial purpose means using records for sale, resale, or solicitation/advertising for sales or services.
+   */
+  commercialPurpose: 'yes' | 'no';
+  feeWaiverRequested?: boolean | null;
+  /**
+   * Explain how releasing these records serves the public interest
+   */
+  feeWaiverJustification?: string | null;
+  acknowledgment: boolean;
+  /**
+   * For staff use only - not visible to requester
+   */
+  internalNotes?: string | null;
+  responseDate?: string | null;
+  assignedTo?: string | null;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "ga-inquiries".
+ */
+export interface GaInquiry {
+  id: number;
+  submittedAt?: string | null;
+  status: 'new' | 'contacted' | 'referred' | 'closed';
+  fullName: string;
+  phone: string;
+  email: string;
+  streetAddress: string;
+  city: string;
+  /**
+   * e.g. "2 years", "8 months"
+   */
+  residencyDuration: string;
+  assistanceType: 'general' | 'emergency';
+  /**
+   * Applicant-provided description of their need. Do not record SSNs, financial account details, or income figures here — those are collected on the formal paper application.
+   */
+  description: string;
+  consentGiven: boolean;
+  /**
+   * For staff use only — not visible to applicant
+   */
+  internalNotes?: string | null;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * Manage email subscribers for document notification updates
+ *
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "newsletter-subscribers".
+ */
+export interface NewsletterSubscriber {
+  id: number;
+  /**
+   * Subscriber email address
+   */
+  email: string;
+  /**
+   * Optional - for personalized emails
+   */
+  firstName?: string | null;
+  /**
+   * Optional - for personalized emails
+   */
+  lastName?: string | null;
+  /**
+   * Select which types of documents to receive notifications for
+   */
+  categories: (
+    | 'all'
+    | 'board-agendas'
+    | 'meeting-minutes'
+    | 'financial-reports'
+    | 'assessor-documents'
+    | 'road-district-reports'
+    | 'newsletters'
+    | 'events'
+    | 'announcements'
+  )[];
+  /**
+   * Subscription status
+   */
+  status: 'active' | 'unsubscribed' | 'bounced';
+  subscribedAt: string;
+  unsubscribedAt?: string | null;
+  unsubscribeToken?: string | null;
+  /**
+   * IP address at time of signup
+   */
+  ipAddress?: string | null;
+  /**
+   * Internal notes about this subscriber (not visible to subscriber)
+   */
+  notes?: string | null;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * Departments and topics shown in the Contact Us form dropdown
+ *
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "contact-topics".
+ */
+export interface ContactTopic {
+  id: number;
+  label: string;
+  /**
+   * Shown as a subtitle in the dropdown to help residents pick the right department
+   */
+  description?: string | null;
+  /**
+   * Form submissions for this topic are sent to this address
+   */
+  email: string;
+  phone?: string | null;
+  active?: boolean | null;
+  displayOrder?: number | null;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * Submissions from the website contact form
+ *
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "contact-inquiries".
+ */
+export interface ContactInquiry {
+  id: number;
+  name: string;
+  email: string;
+  phone?: string | null;
+  /**
+   * Label of the topic selected in the form
+   */
+  topic: string;
+  /**
+   * Email address the notification was sent to
+   */
+  routedTo?: string | null;
+  message: string;
+  submittedAt?: string | null;
+  status: 'new' | 'read' | 'replied' | 'archived';
+  /**
+   * Staff only — not visible to the public
+   */
+  internalNotes?: string | null;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * Resident survey responses for the Crete Township Community Center
+ *
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "community-center-surveys".
+ */
+export interface CommunityCenterSurvey {
+  id: number;
+  residentStatus?: ('resident' | 'non-resident') | null;
+  visitFrequency?: ('first' | 'few-year' | 'monthly' | 'weekly' | 'daily') | null;
+  facilitiesUsed?: string | null;
+  overallRating?: ('5' | '4' | '3' | '2' | '1') | null;
+  cleanlinessRating?: ('5' | '4' | '3' | '2' | '1') | null;
+  staffRating?: ('5' | '4' | '3' | '2' | '1') | null;
+  valuePricingRating?: ('5' | '4' | '3' | '2' | '1') | null;
+  programsInterest?: string | null;
+  wouldRecommend?: ('yes' | 'no' | 'maybe') | null;
+  improvements?: string | null;
+  additionalComments?: string | null;
+  wantsUpdates?: boolean | null;
+  name?: string | null;
+  email?: string | null;
+  submittedAt?: string | null;
   updatedAt: string;
   createdAt: string;
 }
@@ -1229,6 +1473,30 @@ export interface PayloadLockedDocument {
         value: number | Official;
       } | null)
     | ({
+        relationTo: 'foia-requests';
+        value: number | FoiaRequest;
+      } | null)
+    | ({
+        relationTo: 'ga-inquiries';
+        value: number | GaInquiry;
+      } | null)
+    | ({
+        relationTo: 'newsletter-subscribers';
+        value: number | NewsletterSubscriber;
+      } | null)
+    | ({
+        relationTo: 'contact-topics';
+        value: number | ContactTopic;
+      } | null)
+    | ({
+        relationTo: 'contact-inquiries';
+        value: number | ContactInquiry;
+      } | null)
+    | ({
+        relationTo: 'community-center-surveys';
+        value: number | CommunityCenterSurvey;
+      } | null)
+    | ({
         relationTo: 'documents';
         value: number | Document;
       } | null)
@@ -1445,8 +1713,131 @@ export interface OfficialsSelect<T extends boolean = true> {
   photo?: T;
   phone?: T;
   email?: T;
+  bio?: T;
   displayOrder?: T;
   status?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "foia-requests_select".
+ */
+export interface FoiaRequestsSelect<T extends boolean = true> {
+  submittedAt?: T;
+  status?: T;
+  fullName?: T;
+  organization?: T;
+  email?: T;
+  phone?: T;
+  preferredFormat?: T;
+  street?: T;
+  city?: T;
+  state?: T;
+  zipCode?: T;
+  recordsDescription?: T;
+  dateRangeStart?: T;
+  dateRangeEnd?: T;
+  supportingDocuments?: T;
+  commercialPurpose?: T;
+  feeWaiverRequested?: T;
+  feeWaiverJustification?: T;
+  acknowledgment?: T;
+  internalNotes?: T;
+  responseDate?: T;
+  assignedTo?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "ga-inquiries_select".
+ */
+export interface GaInquiriesSelect<T extends boolean = true> {
+  submittedAt?: T;
+  status?: T;
+  fullName?: T;
+  phone?: T;
+  email?: T;
+  streetAddress?: T;
+  city?: T;
+  residencyDuration?: T;
+  assistanceType?: T;
+  description?: T;
+  consentGiven?: T;
+  internalNotes?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "newsletter-subscribers_select".
+ */
+export interface NewsletterSubscribersSelect<T extends boolean = true> {
+  email?: T;
+  firstName?: T;
+  lastName?: T;
+  categories?: T;
+  status?: T;
+  subscribedAt?: T;
+  unsubscribedAt?: T;
+  unsubscribeToken?: T;
+  ipAddress?: T;
+  notes?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "contact-topics_select".
+ */
+export interface ContactTopicsSelect<T extends boolean = true> {
+  label?: T;
+  description?: T;
+  email?: T;
+  phone?: T;
+  active?: T;
+  displayOrder?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "contact-inquiries_select".
+ */
+export interface ContactInquiriesSelect<T extends boolean = true> {
+  name?: T;
+  email?: T;
+  phone?: T;
+  topic?: T;
+  routedTo?: T;
+  message?: T;
+  submittedAt?: T;
+  status?: T;
+  internalNotes?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "community-center-surveys_select".
+ */
+export interface CommunityCenterSurveysSelect<T extends boolean = true> {
+  residentStatus?: T;
+  visitFrequency?: T;
+  facilitiesUsed?: T;
+  overallRating?: T;
+  cleanlinessRating?: T;
+  staffRating?: T;
+  valuePricingRating?: T;
+  programsInterest?: T;
+  wouldRecommend?: T;
+  improvements?: T;
+  additionalComments?: T;
+  wantsUpdates?: T;
+  name?: T;
+  email?: T;
+  submittedAt?: T;
   updatedAt?: T;
   createdAt?: T;
 }
@@ -2062,6 +2453,87 @@ export interface AlertBanner {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "site-settings".
+ */
+export interface SiteSetting {
+  id: number;
+  /**
+   * Email address where FOIA request notifications will be sent (e.g., administrator@cretetownship.com)
+   */
+  foiaNotificationEmail: string;
+  /**
+   * Displayed on the form to set expectations
+   */
+  foiaResponseTime?: string | null;
+  /**
+   * Additional text to display on the FOIA request form
+   */
+  foiaInstructions?: string | null;
+  mainPhone?: string | null;
+  mainEmail?: string | null;
+  address?: {
+    street?: string | null;
+    city?: string | null;
+    state?: string | null;
+    zipCode?: string | null;
+  };
+  updatedAt?: string | null;
+  createdAt?: string | null;
+}
+/**
+ * Configure the widgets that appear in page sidebars across the site.
+ *
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "sidebar-widgets".
+ */
+export interface SidebarWidget {
+  id: number;
+  widgets?:
+    | (
+        | {
+            title: string;
+            links?:
+              | {
+                  label: string;
+                  url: string;
+                  newTab?: boolean | null;
+                  id?: string | null;
+                }[]
+              | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'quick-links';
+          }
+        | {
+            title: string;
+            office?: string | null;
+            address?: string | null;
+            cityStateZip?: string | null;
+            phone?: string | null;
+            fax?: string | null;
+            email?: string | null;
+            hours?: string | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'contact-card';
+          }
+        | {
+            title: string;
+            body: string;
+            style?: ('info' | 'warning' | 'alert' | 'neutral') | null;
+            linkLabel?: string | null;
+            linkUrl?: string | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'announcement-alert';
+          }
+      )[]
+    | null;
+  updatedAt?: string | null;
+  createdAt?: string | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "header".
  */
 export interface Header {
@@ -2133,6 +2605,81 @@ export interface AlertBannerSelect<T extends boolean = true> {
         text?: T;
       };
   expiresAt?: T;
+  updatedAt?: T;
+  createdAt?: T;
+  globalType?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "site-settings_select".
+ */
+export interface SiteSettingsSelect<T extends boolean = true> {
+  foiaNotificationEmail?: T;
+  foiaResponseTime?: T;
+  foiaInstructions?: T;
+  mainPhone?: T;
+  mainEmail?: T;
+  address?:
+    | T
+    | {
+        street?: T;
+        city?: T;
+        state?: T;
+        zipCode?: T;
+      };
+  updatedAt?: T;
+  createdAt?: T;
+  globalType?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "sidebar-widgets_select".
+ */
+export interface SidebarWidgetsSelect<T extends boolean = true> {
+  widgets?:
+    | T
+    | {
+        'quick-links'?:
+          | T
+          | {
+              title?: T;
+              links?:
+                | T
+                | {
+                    label?: T;
+                    url?: T;
+                    newTab?: T;
+                    id?: T;
+                  };
+              id?: T;
+              blockName?: T;
+            };
+        'contact-card'?:
+          | T
+          | {
+              title?: T;
+              office?: T;
+              address?: T;
+              cityStateZip?: T;
+              phone?: T;
+              fax?: T;
+              email?: T;
+              hours?: T;
+              id?: T;
+              blockName?: T;
+            };
+        'announcement-alert'?:
+          | T
+          | {
+              title?: T;
+              body?: T;
+              style?: T;
+              linkLabel?: T;
+              linkUrl?: T;
+              id?: T;
+              blockName?: T;
+            };
+      };
   updatedAt?: T;
   createdAt?: T;
   globalType?: T;

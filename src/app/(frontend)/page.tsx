@@ -7,6 +7,7 @@ import { DocumentLibrary } from '@/components/DocumentLibrary'
 import { FacebookFeed } from '@/components/FacebookFeed'
 import { NextBoardMeeting } from '@/components/NextBoardMeeting'
 import { CalendarEvents } from '@/components/CalendarEvents'
+import { NewsletterSignup } from '@/components/NewsletterSignup'
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
@@ -243,16 +244,16 @@ export default async function HomePage() {
                   </CardDescription>
                   <div className="space-y-1">
                     <Link
-                      href="/services/marriage-licenses"
+                      href="/services/foia"
                       className="block text-sm text-gold hover:text-gold-light font-medium"
                     >
-                      Marriage Licenses →
+                      FOIA / Public Records →
                     </Link>
                     <Link
-                      href="/services/planning-commission"
+                      href="/services/general-assistance"
                       className="block text-sm text-gold hover:text-gold-light font-medium"
                     >
-                      Planning Commission →
+                      General Assistance →
                     </Link>
                   </div>
                 </CardContent>
@@ -270,16 +271,22 @@ export default async function HomePage() {
                   </CardDescription>
                   <div className="space-y-1">
                     <Link
-                      href="/property-exemptions"
+                      href="/assessor"
                       className="block text-sm text-gold hover:text-gold-light font-medium"
                     >
                       Property Exemptions →
                     </Link>
                     <Link
-                      href="/hoa-information"
+                      href="/assessor/hoa"
                       className="block text-sm text-gold hover:text-gold-light font-medium"
                     >
                       HOA Information →
+                    </Link>
+                    <Link
+                      href="/assessor/will-county-phones"
+                      className="block text-sm text-gold hover:text-gold-light font-medium"
+                    >
+                      Will County Contacts →
                     </Link>
                   </div>
                 </CardContent>
@@ -297,16 +304,22 @@ export default async function HomePage() {
                   </CardDescription>
                   <div className="space-y-1">
                     <Link
-                      href="/branch-pickup"
+                      href="/road-district/branch-pickup"
                       className="block text-sm text-gold hover:text-gold-light font-medium"
                     >
                       Branch Pickup Guidelines →
                     </Link>
                     <Link
-                      href="/storm-sewer"
+                      href="/road-district/environment"
                       className="block text-sm text-gold hover:text-gold-light font-medium"
                     >
                       Storm Sewer System →
+                    </Link>
+                    <Link
+                      href="/documents/highway-commissioner-reports"
+                      className="block text-sm text-gold hover:text-gold-light font-medium"
+                    >
+                      Commissioner Reports →
                     </Link>
                   </div>
                 </CardContent>
@@ -324,16 +337,16 @@ export default async function HomePage() {
                   </CardDescription>
                   <div className="space-y-1">
                     <Link
-                      href="/polling-places"
+                      href="/clerk/polling-places"
                       className="block text-sm text-gold hover:text-gold-light font-medium"
                     >
                       Polling Places →
                     </Link>
                     <Link
-                      href="/public-notices"
+                      href="/clerk"
                       className="block text-sm text-gold hover:text-gold-light font-medium"
                     >
-                      Public Notices →
+                      Board Meeting Info →
                     </Link>
                   </div>
                 </CardContent>
@@ -382,12 +395,14 @@ export default async function HomePage() {
       {/* Will County & Community Resources */}
       <section className="py-16 bg-cream">
         <div className="max-w-[1400px] mx-auto px-8">
-          <div className="mb-8">
-            <h2 className="text-3xl font-display font-bold text-navy mb-2">Will County & Community Resources</h2>
-            <div className="w-12 h-[3px] bg-gold" />
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+            {/* Left: Contact Grid */}
+            <div>
+              <div className="mb-8">
+                <h2 className="text-3xl font-display font-bold text-navy mb-2">Will County & Community Resources</h2>
+                <div className="w-12 h-[3px] bg-gold" />
+              </div>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             {/* Animal Control */}
             <Card className="hover:border-gold transition-colors">
               <CardContent className="p-5">
@@ -501,7 +516,7 @@ export default async function HomePage() {
             </Card>
 
             {/* Will County DOT */}
-            <Card className="hover:border-gold transition-colors md:col-span-2 lg:col-span-1">
+            <Card className="hover:border-gold transition-colors">
               <CardContent className="p-5">
                 <h3 className="font-semibold text-navy mb-2">Will County Transportation</h3>
                 <p className="text-xs text-gray-500 mb-2">
@@ -512,6 +527,17 @@ export default async function HomePage() {
                 </a>
               </CardContent>
             </Card>
+            </div>
+            </div>
+
+            {/* Right: Newsletter Signup */}
+            <div>
+              <div className="mb-8">
+                <h2 className="text-3xl font-display font-bold text-navy mb-2">Stay Informed</h2>
+                <div className="w-12 h-[3px] bg-gold" />
+              </div>
+              <NewsletterSignup variant="default" showCategories={true} />
+            </div>
           </div>
         </div>
       </section>

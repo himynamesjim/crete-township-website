@@ -3,8 +3,35 @@ import ICAL from 'ical.js'
 import { getPayload } from 'payload'
 import config from '@payload-config'
 
-const TOWNSHIP_EVENTS_URL = 'https://calendar.google.com/calendar/ical/cretetownshipevents%40gmail.com/public/basic.ics'
-const HOLIDAYS_URL = 'https://calendar.google.com/calendar/ical/en.usa%23holiday%40group.v.calendar.google.com/public/basic.ics'
+const TOWNSHIP_EVENTS_URL = process.env.GOOGLE_CALENDAR_ICS_URL || ''
+
+// US federal holidays — actual calendar dates (not observed/shifted dates)
+const US_HOLIDAYS: { date: string; name: string }[] = [
+  // 2026
+  { date: '2026-01-01', name: "New Year's Day" },
+  { date: '2026-01-19', name: 'Martin Luther King Jr. Day' },
+  { date: '2026-02-16', name: "Presidents' Day" },
+  { date: '2026-05-25', name: 'Memorial Day' },
+  { date: '2026-06-19', name: 'Juneteenth National Independence Day' },
+  { date: '2026-07-04', name: 'Independence Day' },
+  { date: '2026-09-07', name: 'Labor Day' },
+  { date: '2026-10-12', name: 'Columbus Day' },
+  { date: '2026-11-11', name: 'Veterans Day' },
+  { date: '2026-11-26', name: 'Thanksgiving Day' },
+  { date: '2026-12-25', name: 'Christmas Day' },
+  // 2027
+  { date: '2027-01-01', name: "New Year's Day" },
+  { date: '2027-01-18', name: 'Martin Luther King Jr. Day' },
+  { date: '2027-02-15', name: "Presidents' Day" },
+  { date: '2027-05-31', name: 'Memorial Day' },
+  { date: '2027-06-19', name: 'Juneteenth National Independence Day' },
+  { date: '2027-07-04', name: 'Independence Day' },
+  { date: '2027-09-06', name: 'Labor Day' },
+  { date: '2027-10-11', name: 'Columbus Day' },
+  { date: '2027-11-11', name: 'Veterans Day' },
+  { date: '2027-11-25', name: 'Thanksgiving Day' },
+  { date: '2027-12-25', name: 'Christmas Day' },
+]
 
 export async function GET(request: Request) {
   try {
@@ -12,18 +39,20 @@ export async function GET(request: Request) {
     const { searchParams } = new URL(request.url)
     const includePast = searchParams.get('includePast') === 'true'
 
-    // Fetch both calendars and board agendas in parallel
-    const [townshipResponse, holidaysResponse] = await Promise.all([
-      fetch(TOWNSHIP_EVENTS_URL),
-      fetch(HOLIDAYS_URL),
-    ])
-
-    const [townshipICS, holidaysICS] = await Promise.all([
-      townshipResponse.text(),
-      holidaysResponse.text(),
-    ])
-
     const now = new Date()
+
+    // Fetch township ICS calendar
+    const townshipResult = await Promise.allSettled([
+      fetch(TOWNSHIP_EVENTS_URL).then(async (r) => {
+        const text = await r.text()
+        console.log('[calendar] township HTTP', r.status, 'starts-with:', text.slice(0, 60))
+        return text
+      }),
+    ])
+
+    const townshipICS = townshipResult[0].status === 'fulfilled' ? townshipResult[0].value : null
+    if (townshipResult[0].status === 'rejected') console.error('[calendar] township fetch error:', (townshipResult[0] as PromiseRejectedResult).reason)
+
     const allEvents: any[] = []
 
     // Fetch board agendas from Payload CMS
@@ -93,9 +122,19 @@ export async function GET(request: Request) {
     })
 
     // Parse township events
-    const townshipJCal = ICAL.parse(townshipICS)
-    const townshipComp = new ICAL.Component(townshipJCal)
-    const townshipVEvents = townshipComp.getAllSubcomponents('vevent')
+    const townshipVEvents: any[] = []
+    if (townshipICS && townshipICS.trim().startsWith('BEGIN:VCALENDAR')) {
+      try {
+        const townshipJCal = ICAL.parse(townshipICS)
+        const townshipComp = new ICAL.Component(townshipJCal)
+        townshipVEvents.push(...townshipComp.getAllSubcomponents('vevent'))
+        console.log('[calendar] township parsed', townshipVEvents.length, 'events')
+      } catch (e) {
+        console.error('[calendar] township ICS parse error:', e)
+      }
+    } else {
+      console.warn('[calendar] township ICS not valid — skipping. Got:', townshipICS?.slice(0, 120))
+    }
 
     // Get events for the next 12 months
     const endDate = new Date(now)
@@ -154,22 +193,18 @@ export async function GET(request: Request) {
       }
     })
 
-    // Parse holidays
-    const holidaysJCal = ICAL.parse(holidaysICS)
-    const holidaysComp = new ICAL.Component(holidaysJCal)
-    const holidaysVEvents = holidaysComp.getAllSubcomponents('vevent')
-
-    holidaysVEvents.forEach((vevent) => {
-      const event = new ICAL.Event(vevent)
-      const startDate = event.startDate.toJSDate()
-
-      // Only include future holidays or holidays happening today
-      if (startDate >= new Date(now.getFullYear(), now.getMonth(), now.getDate())) {
+    // Add hardcoded US federal holidays (actual dates, not observed/shifted)
+    US_HOLIDAYS.forEach((h) => {
+      // Parse at noon local time to avoid any UTC-midnight timezone shift
+      const holidayDate = new Date(h.date + 'T12:00:00')
+      if (holidayDate >= startOfToday) {
+        const nextDay = new Date(holidayDate)
+        nextDay.setDate(nextDay.getDate() + 1)
         allEvents.push({
-          title: event.summary || 'Holiday',
-          description: event.description || '',
-          startDate: startDate.toISOString(),
-          endDate: event.endDate.toJSDate().toISOString(),
+          title: h.name,
+          description: '',
+          startDate: holidayDate.toISOString(),
+          endDate: nextDay.toISOString(),
           location: '',
           category: 'Holiday',
           isHoliday: true,

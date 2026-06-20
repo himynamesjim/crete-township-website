@@ -20,9 +20,17 @@ import { Newsletters } from './collections/Newsletters'
 import { Events } from './collections/Events'
 import { Announcements } from './collections/Announcements'
 import { Officials } from './collections/Officials'
+import { FOIARequests } from './collections/FOIARequests'
+import { GAInquiries } from './collections/GAInquiries'
+import { NewsletterSubscribers } from './collections/NewsletterSubscribers'
+import { ContactTopics } from './collections/ContactTopics'
+import { ContactInquiries } from './collections/ContactInquiries'
+import { CommunityCenterSurveys } from './collections/CommunityCenterSurveys'
 import { Footer } from './Footer/config'
 import { Header } from './Header/config'
 import { AlertBanner } from './globals/AlertBanner'
+import { SiteSettings } from './globals/SiteSettings'
+import { SidebarWidgets } from './globals/SidebarWidgets'
 import { plugins } from './plugins'
 import { defaultLexical } from '@/fields/defaultLexical'
 import { getServerSideURL } from './utilities/getURL'
@@ -34,8 +42,16 @@ export default buildConfig({
   admin: {
     meta: {
       titleSuffix: '- Crete Township CMS',
+      titleTemplate: '%s - Crete Township CMS',
+      description: 'Content management system for Crete Township, Will County, Illinois.',
     },
+    css: path.resolve(dirname, 'css/admin-custom.css'),
     components: {
+      graphics: {
+        Logo: '@/components/Logo/Logo#Logo',
+        Icon: '@/components/Logo/Logo#Icon',
+      },
+      beforeLogin: ['@/components/BeforeLogin/index#default'],
       // Custom dashboard for Crete Township
       beforeDashboard: ['@/components/CustomDashboard'],
     },
@@ -85,6 +101,12 @@ export default buildConfig({
     Events,
     Announcements,
     Officials,
+    FOIARequests,
+    GAInquiries,
+    NewsletterSubscribers,
+    ContactTopics,
+    ContactInquiries,
+    CommunityCenterSurveys,
     // System Collections
     Documents,
     Users,
@@ -97,6 +119,8 @@ export default buildConfig({
   cors: [getServerSideURL()].filter(Boolean),
   globals: [
     AlertBanner,
+    SiteSettings,
+    SidebarWidgets,
     Header,
     Footer,
   ],

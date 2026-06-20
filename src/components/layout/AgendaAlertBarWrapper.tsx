@@ -1,62 +1,83 @@
 import React from 'react'
 import { getPayload } from 'payload'
 import config from '@payload-config'
+import { unstable_noStore as noStore } from 'next/cache'
 import { AgendaAlertBar } from './AgendaAlertBar'
+import { CMSAlertBanner } from './CMSAlertBanner'
 
 export async function AgendaAlertBarWrapper() {
+  noStore()
   try {
     const payload = await getPayload({ config })
-
-    // Get current date at midnight for comparison
     const today = new Date()
     today.setHours(0, 0, 0, 0)
 
-    // Fetch the most recent upcoming agenda
-    const result = await payload.find({
-      collection: 'board-agendas',
-      where: {
-        and: [
-          {
-            status: {
-              equals: 'published',
-            },
-          },
-          {
-            date: {
-              greater_than_equal: today.toISOString(),
-            },
-          },
-        ],
-      },
-      sort: 'date',
-      limit: 1,
-    })
+    const [alertBannerResult, agendaResult] = await Promise.allSettled([
+      payload.findGlobal({ slug: 'alert-banner' }),
+      payload.find({
+        collection: 'board-agendas',
+        where: {
+          and: [
+            { status: { equals: 'published' } },
+            { date: { greater_than_equal: today.toISOString() } },
+          ],
+        },
+        sort: 'date',
+        limit: 1,
+      }),
+    ])
 
-    if (!result.docs || result.docs.length === 0) {
-      return null
+    // Resolve CMS alert banner
+    let cmsAlert: React.ReactNode = null
+    if (alertBannerResult.status === 'fulfilled') {
+      const banner = alertBannerResult.value as Record<string, unknown>
+      const enabled = banner.enabled as boolean
+      const expiresAt = banner.expiresAt as string | null
+      const notExpired = !expiresAt || new Date(expiresAt) > new Date()
+      if (enabled && notExpired) {
+        const link = banner.link as { url?: string; text?: string } | null
+        cmsAlert = (
+          <CMSAlertBanner
+            message={banner.message as string}
+            type={(banner.type as 'info' | 'warning' | 'emergency' | 'success') ?? 'info'}
+            linkUrl={link?.url ?? null}
+            linkText={link?.text ?? null}
+          />
+        )
+      }
     }
 
-    const agenda = result.docs[0]
-
-    // Get the file URL
-    let fileUrl = ''
-    if (agenda.file && typeof agenda.file === 'object' && 'url' in agenda.file) {
-      fileUrl = agenda.file.url || ''
+    // Resolve agenda bar
+    let agendaBar: React.ReactNode = null
+    if (agendaResult.status === 'fulfilled' && agendaResult.value.docs?.length > 0) {
+      const agenda = agendaResult.value.docs[0]
+      let fileUrl = ''
+      if (agenda.file && typeof agenda.file === 'object' && 'url' in agenda.file) {
+        fileUrl = (agenda.file as { url?: string }).url || ''
+      }
+      agendaBar = (
+        <AgendaAlertBar
+          agenda={{
+            title: agenda.title || 'Board Meeting Agenda',
+            date: agenda.date || '',
+            fileUrl,
+            meetingTime: (agenda.meetingTime as string) || undefined,
+            location: (agenda.location as string) || undefined,
+          }}
+        />
+      )
     }
+
+    if (!cmsAlert && !agendaBar) return null
 
     return (
-      <AgendaAlertBar
-        agenda={{
-          title: agenda.title || 'Board Meeting Agenda',
-          date: agenda.date || '',
-          fileUrl,
-          meetingTime: agenda.meetingTime || undefined,
-          location: agenda.location || undefined,
-        }}
-      />
+      <>
+        {cmsAlert}
+        {agendaBar}
+      </>
     )
   } catch (error) {
-    console.error('Error fetching upcoming agenda:', error)
+    console.error('Error fetching alert banners:', error)
     return null
   }
 }

@@ -14,6 +14,16 @@ Client assets in hand — logos, logins, all existing PDFs accessible.
 **Staging (Vercel):** TBD — add URL here once deployed
 **CMS Admin:** TBD — will be at /admin on same Vercel deployment
 
+## Dev server rules
+- Do NOT start `npm run dev` / `next dev` yourself. I run the dev server
+  manually in my own terminal tab.
+- Next.js hot-reloads on save, so there is no need to restart it after
+  editing files.
+- Only restart the dev server when next.config.js, .env, or installed
+  packages change — and if so, ask me first rather than spawning one.
+- Never run more than one dev server. If you think one is needed, check
+  for an existing process first with `lsof -i :3000`.
+  
 ---
 
 ## Architecture Decision (Final)
@@ -278,8 +288,48 @@ responsibilities: text (optional - e.g., "Mosquito and Youth")
 photo:           upload → media collection (optional)
 phone:           text
 email:           email
+bio:             textarea (optional - biography/excerpt for profile page)
 displayOrder:    number
 status:          select ['draft', 'published', 'archived'] default: 'published'
+```
+
+### 10. FOIARequests — slug: 'foia-requests'
+```ts
+fullName:          text (required)
+organization:      text (optional)
+email:             email (required)
+phone:             text (optional)
+preferredFormat:   select ['electronic', 'paper', 'inspect'] default: 'electronic'
+street:            text (conditional - required if paper)
+city:              text (conditional - required if paper)
+state:             text (conditional - required if paper)
+zipCode:           text (conditional - required if paper)
+recordsDescription: textarea (required)
+dateRangeStart:    date (required)
+dateRangeEnd:      date (required)
+commercialPurpose: select ['yes', 'no'] (required)
+feeWaiverRequested: checkbox
+feeWaiverJustification: textarea (conditional)
+acknowledgment:    checkbox (required)
+status:            select ['new', 'in-review', 'pending', 'fulfilled', 'denied'] default: 'new'
+submittedAt:       date (auto-set)
+internalNotes:     textarea (admin only)
+responseDate:      date (optional)
+assignedTo:        text (optional)
+```
+
+### 11. NewsletterSubscribers — slug: 'newsletter-subscribers'
+```ts
+email:             email (required, unique)
+firstName:         text (optional)
+lastName:          text (optional)
+categories:        select (multiple) ['all', 'board-agendas', 'meeting-minutes', 'financial-reports', 'assessor-documents', 'road-district-reports', 'newsletters', 'events', 'announcements']
+status:            select ['active', 'unsubscribed', 'bounced'] default: 'active'
+subscribedAt:      date (auto-set)
+unsubscribedAt:    date (optional)
+unsubscribeToken:  text (auto-generated)
+ipAddress:         text (auto-captured)
+notes:             textarea (admin only)
 ```
 
 ### Users — slug: 'users' (Payload built-in auth)
@@ -358,13 +408,15 @@ To check if it's set: `env | grep DATABASE_URI`
 | Highway Commissioner Reports | /documents/highway-commissioner | ✅ Done (advanced listing with filters) |
 | Newsletters | /documents/newsletters | ✅ Done (advanced listing with filters) |
 | Events | /events | ✅ Done (calendar view with filtering) |
-| Offices & Officials | /officials | ✅ Done (officials grid with photos & contact info) |
+| Offices & Officials | /officials | ✅ Done (officials grid with photos, contact info, bio excerpts, clickable cards) |
+| Official Profile | /officials/[id] | ✅ Done (individual profile pages with full bio and contact details) |
+| FOIA Request Form | /services/foia | ✅ Done (public records request form with conditional fields and email notifications) |
 | About | /about | 🔲 Not started |
 | Services | /services | 🔲 Not started |
-| Assessor | /assessor | 🔲 Not started |
-| Road District | /road-district | 🔲 Not started |
+| Assessor | /assessor | ✅ Done (profile card for Mary Margaret Tamez, responsibilities, exemptions, FAQ, Public Act 101-635 downloads) |
+| Road District | /road-district | ✅ Done (profile card for Tony Recupito, duties list, permit info, contact) |
 | Community Center | /community-center | 🔲 Not started |
-| Contact | /contact | 🔲 Not started |
+| Contact | /contact | ✅ Done (2-column layout: office info/hours/map left, department-routed form right; CMS-managed topics) |
 
 ---
 
@@ -378,10 +430,13 @@ To check if it's set: `env | grep DATABASE_URI`
 | Card | src/components/ui/card.tsx | ✅ Done (base card with Crete styling) |
 | DocumentCard | src/components/ui/DocumentCard.tsx | ✅ Done (document cards with grid/list view support) |
 | EventCard | src/components/ui/EventCard.tsx | ✅ Done (event cards with date badge) |
-| TownshipHeader | src/components/layout/TownshipHeader.tsx | ✅ Done (sticky nav, Documents dropdown, Officials link) |
+| TownshipHeader | src/components/layout/TownshipHeader.tsx | ✅ Done (sticky nav with scroll logo, search modal, Services dropdown with FOIA) |
+| NewsletterSignup | src/components/NewsletterSignup.tsx | ✅ Done (email subscription form with category selection, 3 variants: default/compact/sidebar) |
 | HeroSection | src/components/layout/HeroSection.tsx | ✅ Done (hero with upcoming events sidebar, CTA buttons) |
 | FacebookFeed | src/components/FacebookFeed.tsx | ✅ Done (Facebook Page Plugin embed) |
-| TownshipFooter | src/components/layout/TownshipFooter.tsx | ✅ Done (4-column footer) |
+| TownshipFooter | src/components/layout/TownshipFooter.tsx | ✅ Done (4-column footer, social links: Facebook/X/YouTube) |
+| CMSAlertBanner | src/components/layout/CMSAlertBanner.tsx | ✅ Done (CMS-driven site-wide alert with type styles, dismiss button, noStore cache bypass) |
+| ContactForm | src/components/ContactForm.tsx | ✅ Done (department dropdown, status states, email routing) |
 | DocumentListingAdvanced | src/components/DocumentListingAdvanced.tsx | ✅ Done (filters sidebar, grid/list toggle, search, year/type filters) |
 | PageHero | src/components/PageHero.tsx | ✅ Done (page hero with breadcrumbs) |
 
@@ -399,7 +454,11 @@ To check if it's set: `env | grep DATABASE_URI`
 | Newsletters | ✅ Done (collection created, role-based access configured) |
 | Events | ✅ Done (collection created, role-based access configured) |
 | Announcements | ✅ Done (collection created, role-based access configured) |
-| Officials | ✅ Done (collection created, role-based access configured) |
+| Officials | ✅ Done (collection with bio field, role-based access configured) |
+| FOIARequests | ✅ Done (public records request collection with status tracking and internal notes) |
+| NewsletterSubscribers | ✅ Done (email subscription collection with category preferences and unsubscribe tokens) |
+| ContactTopics | ✅ Done (CMS-managed department list for contact form routing, with label/email/phone/displayOrder) |
+| ContactInquiries | ✅ Done (stores contact form submissions with status tracking and internal notes) |
 | Users | ✅ Done (5 roles configured: Super Admin, Township Admin, Admin, Editor, Viewer) |
 
 ---
@@ -434,12 +493,22 @@ To check if it's set: `env | grep DATABASE_URI`
 | 2026-05-18 (PM - Session 2) | ✅ Built complete document library system: (1) Updated TownshipHeader with "Reports" dropdown containing 8 document types, moved to global layout for all pages. (2) Created DocumentListingAdvanced component with left sidebar filters (search, year, type), grid/list view toggle, document count display. (3) Created all 9 document listing pages: agendas, meeting-minutes, annual-town-meetings, audited-financial-statements, cash-balance-reports, town-fund-levy-minutes, assessor-minutes, highway-commissioner, newsletters. (4) Fixed enum database errors in document queries (changed 'Annual Town Meeting' → 'annual', 'Audited Statement' → 'audited-statement', 'Cash Balance' → 'cash-balance'). (5) Refactored TownshipHeader structure: moved nav outside header wrapper for proper sticky positioning (sticky top-0 z-50). Fixed sidebar sticky positioning in DocumentListingAdvanced (sticky top-24 with proper wrapper). List view set as default. All document pages now use advanced listing interface. | Continue document migration OR build events/officials pages |
 | 2026-05-19 (AM) | ✅ **RESOLVED 4-hour database authentication crisis:** Discovered system-level DATABASE_URI environment variable was overriding .env.local file with outdated Neon password. Root cause: System environment variables take precedence over .env files in Node.js. Tried 4 different passwords, deleted .next cache multiple times, killed all processes - none worked until discovering `env \| grep DATABASE` showed old credentials. Solution: `unset DATABASE_URI && npm run dev`. Updated CLAUDE.md with critical warning section about this issue. Removed debug logging from payload.config.ts. Reset Neon production branch password to npg_kfFNrVU6S3TE and updated .env.local. **Local dev environment now fully functional.** | Upload migrated documents to CMS OR build remaining pages |
 | 2026-06-12 (PM) | ✅ **Homepage redesign & Officials page:** (1) Fixed calendar API to filter past events - added `includePast` query param: upcoming events show only future, calendar view shows 6 months history. (2) Simplified Facebook feed integration - switched from API approach to Facebook Page Plugin (no tokens needed). Updated FacebookFeed component to use embedded iframe. Added Facebook section to homepage sidebar next to Document Library. (3) Reorganized homepage layout: removed Events+Contact section, moved Facebook feed to sidebar (400px width), added Will County & Community Resources section (12 contacts in 3-column grid) below Document Library. (4) Created Officials collection with fields: name, title, department, responsibilities, photo, phone, email, displayOrder, status. Downloaded 7 official photos from current website. Built /officials page with responsive 3-column grid, round profile photos, contact info, grouped by department. Updated TownshipHeader nav: "Township Board" now links to /officials. Updated hero CTA buttons: "View Board Documents" → /documents, "Upcoming Events" → /events. | Add officials data to CMS + remaining pages (Services, Assessor, Road District, Community Center, Contact) |
+| 2026-06-20 (PM) | ✅ **FOIA, Newsletter Subscription, Officials Enhancement, Navigation Improvements:** (1) **FOIA Request System**: Created FOIARequests collection with full form at /services/foia. Conditional address fields (only for paper copies), required date range with calendar pickers (start/end dates with smart validation). Dual email notifications (township staff + requester confirmation). Created SiteSettings global for configurable FOIA notification email. Added to Services dropdown in navigation. (2) **Newsletter Subscription**: Created NewsletterSubscribers collection. Built NewsletterSignup component with 3 variants (default/compact/sidebar). Category-based subscriptions (residents select which document types to be notified about). Unsubscribe token system. Positioned newsletter form next to Will County contacts on homepage in 2-column layout. Added "Stay Informed" section header matching design. (3) **Officials Enhancement**: Added bio/excerpt field to Officials collection. Made official cards clickable linking to individual profile pages. Created dynamic route /officials/[id] with full profile pages (2-column layout: photo/contact left, biography right). Cards show bio preview (3-line clamp), phone, email. Profile pages include back button, breadcrumbs, larger photos. (4) **Navigation Improvements**: Replaced search box with search icon that opens modal. Search modal with ESC key support, click-outside-to-close, auto-focus. Logo in sticky nav only appears after scrolling 120px (when main header scrolled past). Menu links left-aligned. Fixed Will County Transportation card sizing to match others. (5) **Critical Issue Resolved**: 11 background dev servers were accidentally created causing massive resource conflicts, routing failures, and 404 errors. Required system reboot to fully clear. All features now working with clean environment. | Configure FOIA notification email in CMS, test newsletter signup, add official bios via admin panel |
+| 2026-06-20 (PM - Session 2) | ✅ **Newsletter viewer, Footer fixes, ADA widget, Privacy/Sitemap/Accessibility pages, Functional search, Contact page:** (1) **Newsletter flip viewer**: CSS 3D page-flip animation (no library), mobile browse/read dual-state with 100dvh iframe, desktop sidebar + filmstrip. CMS-driven (no static PDFs). (2) **Footer**: All links corrected to match nav exactly. Removed Download App box. Added missing document links (audited financials, cash balance, FOIA, town fund levy minutes, environment, branch pickup). (3) **ADA Accessibility Widget**: Fixed bottom-right position, ISA wheelchair icon, CSS filter-based options (high contrast, grayscale, dyslexia font, reduce motion), localStorage persistence, reset button. Compliance statement at /accessibility. (4) **Privacy Policy** at /privacy-policy — Illinois government-specific. (5) **Sitemap** at /sitemap — card grid of all 8 sections. (6) **Search modal** made fully functional — `/api/search` queries 9 Payload collections in parallel, plus parses Google Calendar ICS feed (GOOGLE_CALENDAR_ICS_URL env var, never committed) to find events like "Food Pantry". 300ms debounce, grouped results with icons, keyboard navigation. (7) **Contact page** at /contact — 3-column layout: township hall photo/address, office hours, department list on left; CMS-driven department select form on right with email routing (ContactTopics + ContactInquiries collections). Google Maps embed. Empty-state if no topics configured in CMS yet. | Add Contact Topics in CMS admin, configure FOIA email in site settings, add official bios, build About/Services/Assessor/Road District/Community Center pages |
+| 2026-06-20 (PM - Session 3) | ✅ **Clerk page, Alert Banner fix, SEO, Favicon, Social Links:** (1) **Clerk page**: Added Jim Buiter profile card (photo, title, email jim.buiter@cretetownship.com, phone, address) matching assessor/road-district pattern. Sidebar moved to left column. (2) **CMS Alert Banner**: Fixed `AgendaAlertBarWrapper` to fetch `alert-banner` global in parallel with agenda bar. Created `CMSAlertBanner` client component with 4 type styles (info/warning/emergency/success), dismiss button, `noStore()` to prevent Next.js caching so CMS toggle takes effect immediately. (3) **SEO overhaul**: Updated `mergeOpenGraph.ts` from Payload template branding to Crete Township (title, description, OG image → crete-logo.jpeg). Added `GovernmentOrganization` JSON-LD structured data in layout (address, phone, hours, logo). Fixed `twitter` metadata handle to `@CreteTownship`. Added `robots` metadata with Google crawl directives. Added `keywords`, `authors`, `creator`, `publisher` to layout metadata. Added `title.template` for consistent page title suffix. Created `public/robots.txt` (blocks /admin, /api, /next; references sitemap). Created `src/app/sitemap.ts` — XML sitemap at /sitemap.xml with 35 routes, priorities, and change frequencies. Added FOIA page metadata via `services/foia/layout.tsx` (needed because foia/page.tsx is 'use client'). (4) **Favicon**: Converted Great Seal JPEG (2312×2313) to 256×256 PNG using sharp. Placed as `src/app/icon.png` and `src/app/apple-icon.png` — Next.js auto-injects favicon link tags. Replaced Payload template SVG in public/favicon.svg with navy+gold bell icon. (5) **Hero image**: Switched homepage hero background from old media API URL to `/crete-town-hall.jpg`. (6) **Social links**: Added Facebook, X (Twitter), YouTube icon buttons to footer column 1 below address. Gold hover state, navy-dark background at rest. | Build About page, Services landing, Community Center; add Contact Topics in CMS admin; configure FOIA notification email in site settings |
 
 ---
 
 ## Current Session Goal
-**Status:** Homepage redesigned with Facebook feed, Will County contacts, Officials page complete
-**Next step:** Add officials data via admin panel OR build remaining pages (Services, Assessor, Road District, Community Center, Contact)
+**Status:** Clerk page (Jim Buiter), CMS Alert Banner fix, full SEO overhaul (favicon/OG/JSON-LD/sitemap/robots), social links in footer all complete.
+**Next step:** (1) Add Contact Topics in CMS admin (/admin/collections/contact-topics) — Township Board, Assessor's Office, Road District, Township Clerk, General Assistance — each with notification email; (2) Configure FOIA notification email in site settings (/admin/globals/site-settings); (3) Add official bios via admin panel; (4) Build remaining pages: About, Services landing, Community Center
+
+## Social Media Accounts
+| Platform | URL | Handle |
+|----------|-----|--------|
+| Facebook | https://www.facebook.com/CreteTownship | CreteTownship |
+| X (Twitter) | https://x.com/CreteTownship | @CreteTownship |
+| YouTube | https://www.youtube.com/channel/UC7V0wd9lWygqVESLg5kPT5A | — |
 
 ---
 

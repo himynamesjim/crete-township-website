@@ -14,7 +14,7 @@ export const HeroSection: React.FC = () => {
       <div
         className="absolute inset-0 w-full h-full bg-cover bg-center bg-no-repeat"
         style={{
-          backgroundImage: "url('/api/media/file/Crete%20Illinois_003-X3.jpg')",
+          backgroundImage: "url('/crete-town-hall.jpg')",
           backgroundSize: 'cover',
           backgroundPosition: 'center center'
         }}
@@ -52,13 +52,13 @@ export const HeroSection: React.FC = () => {
             {/* CTA Buttons */}
             <div className="flex flex-wrap gap-4 mb-16">
               <Link href="/documents">
-                <Button size="lg" className="gap-2">
+                <Button size="lg" className="gap-2 cursor-pointer">
                   <FileText className="w-5 h-5" />
                   View Board Documents
                 </Button>
               </Link>
               <Link href="/events">
-                <Button variant="outline" size="lg" className="gap-2 border-white text-white hover:bg-white hover:text-navy">
+                <Button variant="outline" size="lg" className="gap-2 border-white text-white hover:bg-white hover:text-navy cursor-pointer">
                   <Calendar className="w-5 h-5" />
                   Upcoming Events
                 </Button>
