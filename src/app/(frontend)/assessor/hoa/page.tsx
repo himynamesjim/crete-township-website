@@ -21,15 +21,18 @@ interface HOA {
   name: string
   address?: string
   contacts: HOAContact[]
+  note?: string
 }
 
 const associations: HOA[] = [
   {
     name: 'Balmoral Heights Improvement Association',
-    address: 'Crete, Illinois 60417',
+    address: 'PO Box 85, Crete, IL 60417',
     contacts: [
-      { name: 'Valerie Borio', role: 'Treasurer', phone: '815-351-4522' },
+      { name: 'Valerie Borio', role: 'President', phone: '815-351-4522', email: 'Valerie.Borio@gmail.com' },
+      { name: 'Lori Perry', role: 'Treasurer', phone: '708-203-5885' },
     ],
+    note: 'Water and trash is handled by the association. Please call or text to set up an account.',
   },
   {
     name: 'Willowbrook Homeowners Association #1 – 2 – 3',
@@ -175,6 +178,11 @@ export default function HOAPage() {
                         </div>
                       ))}
                     </div>
+                    {hoa.note && (
+                      <p className="mt-4 pt-4 border-t border-gray-100 text-xs text-gray-600 leading-relaxed bg-gold-pale/50 -mx-5 -mb-5 px-5 py-3 rounded-b-lg">
+                        {hoa.note}
+                      </p>
+                    )}
                   </CardContent>
                 </Card>
               ))}
