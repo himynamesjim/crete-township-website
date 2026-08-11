@@ -3,7 +3,7 @@ import { getPayload } from 'payload'
 import config from '@payload-config'
 import { PageHero } from '@/components/PageHero'
 import { Card, CardContent } from '@/components/ui/card'
-import { Phone, Mail, ArrowLeft } from 'lucide-react'
+import { Phone, Mail, ArrowLeft, Users } from 'lucide-react'
 import Image from 'next/image'
 import Link from 'next/link'
 import { notFound } from 'next/navigation'
@@ -54,6 +54,21 @@ export default async function OfficialProfilePage({ params }: Props) {
     notFound()
   }
 
+  // Random selection of other published officials for the sidebar
+  const othersResult = await payload.find({
+    collection: 'officials',
+    where: {
+      status: { equals: 'published' },
+      id: { not_equals: official.id },
+    },
+    limit: 100,
+  })
+  const otherOfficials = othersResult.docs
+    .map((doc) => ({ doc, sortKey: Math.random() }))
+    .sort((a, b) => a.sortKey - b.sortKey)
+    .slice(0, 5)
+    .map(({ doc }) => doc)
+
   const departmentLabels: Record<string, string> = {
     board: 'Board of Trustees',
     assessor: "Assessor's Office",
@@ -76,7 +91,7 @@ export default async function OfficialProfilePage({ params }: Props) {
       />
 
       <section className="py-16 bg-white">
-        <div className="max-w-[1000px] mx-auto px-8">
+        <div className="max-w-[1200px] mx-auto px-8">
           {/* Back Button */}
           <Link
             href="/officials"
@@ -86,7 +101,7 @@ export default async function OfficialProfilePage({ params }: Props) {
             Back to All Officials
           </Link>
 
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 lg:grid-cols-4 gap-8">
             {/* Left Column - Photo & Contact */}
             <div className="lg:col-span-1">
               <Card>
@@ -186,6 +201,65 @@ export default async function OfficialProfilePage({ params }: Props) {
                 </CardContent>
               </Card>
             </div>
+
+            {/* Sidebar - Other Officials */}
+            {otherOfficials.length > 0 && (
+              <div className="lg:col-span-1">
+                <Card>
+                  <CardContent className="p-6">
+                    <div className="flex items-center gap-2 mb-5 pb-3 border-b-[3px] border-gold">
+                      <Users className="w-5 h-5 text-navy" />
+                      <h2 className="text-sm font-bold text-navy uppercase tracking-wide">
+                        Other Officials
+                      </h2>
+                    </div>
+                    <ul className="space-y-5">
+                      {otherOfficials.map((other) => (
+                        <li key={other.id}>
+                          <Link
+                            href={`/officials/${other.id}`}
+                            className="flex items-center gap-3 group"
+                          >
+                            {typeof other.photo === 'object' && other.photo?.url ? (
+                              <div className="w-12 h-12 rounded-full overflow-hidden bg-gray-200 border-2 border-gold flex-shrink-0">
+                                <Image
+                                  src={other.photo.url}
+                                  alt={other.photo.alt || other.name}
+                                  width={48}
+                                  height={48}
+                                  className="w-full h-full object-cover"
+                                />
+                              </div>
+                            ) : (
+                              <div className="w-12 h-12 rounded-full bg-navy flex items-center justify-center border-2 border-gold flex-shrink-0">
+                                <span className="text-sm font-display font-bold text-white">
+                                  {other.name
+                                    .split(' ')
+                                    .map((n) => n[0])
+                                    .join('')}
+                                </span>
+                              </div>
+                            )}
+                            <div className="min-w-0">
+                              <p className="text-sm font-semibold text-navy group-hover:text-gold transition-colors truncate">
+                                {other.name}
+                              </p>
+                              <p className="text-xs text-gray-600">{other.title}</p>
+                            </div>
+                          </Link>
+                        </li>
+                      ))}
+                    </ul>
+                    <Link
+                      href="/officials"
+                      className="block mt-6 pt-4 border-t border-gray-200 text-sm font-medium text-gold hover:text-gold-light transition-colors"
+                    >
+                      View All Officials →
+                    </Link>
+                  </CardContent>
+                </Card>
+              </div>
+            )}
           </div>
         </div>
       </section>

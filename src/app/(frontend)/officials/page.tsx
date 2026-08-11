@@ -44,30 +44,21 @@ export default async function OfficialsPage() {
 
   const officials = officialsResult.docs as unknown as Official[]
 
-  // Group officials by department
-  const groupedOfficials: Record<string, Official[]> = {
-    board: [],
-    assessor: [],
-    'road-district': [],
-    clerk: [],
-    collector: [],
-    'general-assistance': [],
-  }
+  // Two sections: the board (trustees + clerk) and everyone else.
+  // Single-person offices (assessor, road district, collector, general
+  // assistance) share one grid so the page isn't a stack of one-card sections.
+  const boardOfficials = [
+    ...officials.filter((o) => o.department === 'board'),
+    ...officials.filter((o) => o.department === 'clerk'),
+  ]
+  const otherOfficials = officials.filter(
+    (o) => !['board', 'clerk'].includes(o.department),
+  )
 
-  officials.forEach((official) => {
-    if (groupedOfficials[official.department]) {
-      groupedOfficials[official.department].push(official)
-    }
-  })
-
-  const departmentTitles: Record<string, string> = {
-    board: 'Board of Trustees',
-    assessor: "Assessor's Office",
-    'road-district': 'Road & Bridge',
-    clerk: 'Township Clerk',
-    collector: 'Township Collector',
-    'general-assistance': 'General Assistance',
-  }
+  const sections: Array<{ title: string; members: Official[] }> = [
+    { title: 'Board of Trustees', members: boardOfficials },
+    { title: 'Township Officials', members: otherOfficials },
+  ]
 
   return (
     <>
@@ -100,22 +91,22 @@ export default async function OfficialsPage() {
                 </p>
               </div>
 
-          {/* Officials by Department */}
+          {/* Officials by Section */}
           <div className="space-y-16">
-            {Object.entries(groupedOfficials).map(([department, deptOfficials]) => {
-              if (deptOfficials.length === 0) return null
+            {sections.map(({ title, members }) => {
+              if (members.length === 0) return null
 
               return (
-                <div key={department}>
+                <div key={title}>
                   <div className="mb-8">
                     <h2 className="text-3xl font-display font-bold text-navy mb-2">
-                      {departmentTitles[department]}
+                      {title}
                     </h2>
                     <div className="w-12 h-[3px] bg-gold" />
                   </div>
 
                   <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                    {deptOfficials.map((official) => (
+                    {members.map((official) => (
                       <Link key={official.id} href={`/officials/${official.id}`}>
                         <Card className="hover:border-gold hover:shadow-lg transition-all cursor-pointer h-full">
                           <CardContent className="p-6">
