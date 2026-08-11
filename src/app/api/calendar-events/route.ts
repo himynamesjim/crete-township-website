@@ -33,6 +33,46 @@ const US_HOLIDAYS: { date: string; name: string }[] = [
   { date: '2027-12-25', name: 'Christmas Day' },
 ]
 
+/**
+ * Convert a wall-clock time in America/Chicago to the correct UTC instant,
+ * regardless of the server's timezone (Vercel runs in UTC). Handles DST.
+ */
+function centralTimeToUTC(
+  year: number,
+  month: number,
+  day: number,
+  hours: number,
+  minutes: number,
+): Date {
+  const desired = Date.UTC(year, month, day, hours, minutes)
+  let ts = desired
+  // Two passes converge on the right offset, including DST boundaries
+  for (let i = 0; i < 2; i++) {
+    const parts = Object.fromEntries(
+      new Intl.DateTimeFormat('en-US', {
+        timeZone: 'America/Chicago',
+        hour12: false,
+        year: 'numeric',
+        month: '2-digit',
+        day: '2-digit',
+        hour: '2-digit',
+        minute: '2-digit',
+      })
+        .formatToParts(new Date(ts))
+        .map((p) => [p.type, p.value]),
+    )
+    const actual = Date.UTC(
+      Number(parts.year),
+      Number(parts.month) - 1,
+      Number(parts.day),
+      Number(parts.hour) % 24,
+      Number(parts.minute),
+    )
+    ts += desired - actual
+  }
+  return new Date(ts)
+}
+
 export async function GET(request: Request) {
   try {
     // Check if we should include past events (for calendar view)
@@ -84,29 +124,32 @@ export async function GET(request: Request) {
     boardAgendas.docs.forEach((agenda: any) => {
       const agendaDate = new Date(agenda.date)
 
-      // If meeting time is specified, parse it and set the time
-      let startDate = new Date(agendaDate)
-      let endDate = new Date(agendaDate)
+      // The date field is day-only and anchored to UTC, so the UTC components
+      // are the intended calendar date. Combine with the meeting time in
+      // America/Chicago — never the server's timezone (Vercel runs in UTC).
+      const year = agendaDate.getUTCFullYear()
+      const month = agendaDate.getUTCMonth()
+      const day = agendaDate.getUTCDate()
+
+      // Default to 7:00 PM for board meetings without a specified time
+      let hours = 19
+      let minutes = 0
 
       if (agenda.meetingTime) {
-        // Parse time like "7:00 PM" and set it on the date
+        // Parse time like "7:00 PM"
         const timeParts = agenda.meetingTime.match(/(\d+):(\d+)\s*(AM|PM)/i)
         if (timeParts) {
-          let hours = parseInt(timeParts[1])
-          const minutes = parseInt(timeParts[2])
+          hours = parseInt(timeParts[1])
+          minutes = parseInt(timeParts[2])
           const isPM = timeParts[3].toUpperCase() === 'PM'
 
           if (isPM && hours !== 12) hours += 12
           if (!isPM && hours === 12) hours = 0
-
-          startDate.setHours(hours, minutes, 0, 0)
-          endDate.setHours(hours + 2, minutes, 0, 0) // 2-hour duration
         }
-      } else {
-        // Default to 7:00 PM for board meetings without specified time
-        startDate.setHours(19, 0, 0, 0)
-        endDate.setHours(21, 0, 0, 0)
       }
+
+      const startDate = centralTimeToUTC(year, month, day, hours, minutes)
+      const endDate = centralTimeToUTC(year, month, day, hours + 2, minutes) // 2-hour duration
 
       allEvents.push({
         title: `Board Meeting - ${agenda.documentType === 'regular' ? 'Regular' : agenda.documentType === 'special' ? 'Special' : 'Annual Town'} Meeting`,

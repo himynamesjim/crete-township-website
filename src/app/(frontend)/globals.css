@@ -268,9 +268,15 @@ html.ada-reduce-motion *::after {
   scroll-behavior: auto !important;
 }
 
-/* Calendar event z-index fixes */
+/* Calendar event z-index fixes.
+   NOTE: position:relative must be scoped to month view only — week/day
+   views position events absolutely (top: N%), and forcing relative there
+   makes events render hours later than their actual time. */
 .rbc-event {
   z-index: 1 !important;
+}
+
+.rbc-month-view .rbc-event {
   position: relative !important;
 }
 
