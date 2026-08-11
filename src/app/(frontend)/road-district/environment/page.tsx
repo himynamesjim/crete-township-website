@@ -6,6 +6,11 @@ import { Card, CardContent } from '@/components/ui/card'
 import { Phone, Mail, FileText, AlertTriangle, Leaf, Droplets, ExternalLink } from 'lucide-react'
 import type { Metadata } from 'next'
 
+// Revalidate every 5 minutes so CMS changes appear without a redeploy,
+// while one render serves all traffic in between (ISR)
+export const revalidate = 300
+
+
 export const metadata: Metadata = {
   title: 'Environment & Storm Sewer | Crete Township Road District',
   description:

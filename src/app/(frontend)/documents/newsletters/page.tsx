@@ -4,6 +4,11 @@ import config from '@payload-config'
 import { BookOpen } from 'lucide-react'
 import NewsletterFlipViewer, { YearGroup } from './NewsletterFlipViewer'
 
+// Revalidate every 5 minutes so CMS changes appear without a redeploy,
+// while one render serves all traffic in between (ISR)
+export const revalidate = 300
+
+
 export const metadata: Metadata = {
   title: 'Newsletters | Crete Township',
   description: 'Browse and read Crete Township newsletters — flip through editions like a magazine.',

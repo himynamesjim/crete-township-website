@@ -13,6 +13,11 @@ import { generateMeta } from '@/utilities/generateMeta'
 import PageClient from './page.client'
 import { LivePreviewListener } from '@/components/LivePreviewListener'
 
+// Revalidate every 5 minutes so CMS changes appear without a redeploy,
+// while one render serves all traffic in between (ISR)
+export const revalidate = 300
+
+
 export async function generateStaticParams() {
   const payload = await getPayload({ config: configPromise })
   const pages = await payload.find({

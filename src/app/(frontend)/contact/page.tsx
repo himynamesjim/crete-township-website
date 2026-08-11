@@ -4,6 +4,11 @@ import config from '@payload-config'
 import { Phone, Mail, Printer, MapPin, Clock, ExternalLink } from 'lucide-react'
 import ContactForm, { ContactTopic } from '@/components/ContactForm'
 
+// Revalidate every 5 minutes so CMS changes appear without a redeploy,
+// while one render serves all traffic in between (ISR)
+export const revalidate = 300
+
+
 export const metadata: Metadata = {
   title: 'Contact Us | Crete Township',
   description: 'Contact Crete Township offices. Send a message to the right department or visit us at 1367 Wood Street, Crete, IL.',

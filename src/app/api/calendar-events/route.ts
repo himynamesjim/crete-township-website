@@ -292,10 +292,20 @@ export async function GET(request: Request) {
     // Sort events by start date (earliest first)
     allEvents.sort((a, b) => new Date(a.startDate).getTime() - new Date(b.startDate).getTime())
 
-    return NextResponse.json({
-      events: allEvents,
-      count: allEvents.length,
-    })
+    return NextResponse.json(
+      {
+        events: allEvents,
+        count: allEvents.length,
+      },
+      {
+        headers: {
+          // Vercel CDN caches the response per-URL for 5 minutes and serves
+          // stale for up to 10 more while revalidating in the background —
+          // one ICS fetch + DB query serves all traffic in between
+          'Cache-Control': 'public, s-maxage=300, stale-while-revalidate=600',
+        },
+      },
+    )
   } catch (error) {
     console.error('Error fetching calendar events:', error)
     return NextResponse.json(

@@ -15,6 +15,11 @@ import { Users, FileText, Landmark, Truck, Home } from 'lucide-react'
 import Link from 'next/link'
 import type { Metadata } from 'next'
 
+// Revalidate every 5 minutes so CMS changes appear without a redeploy,
+// while one render serves all traffic in between (ISR)
+export const revalidate = 300
+
+
 export const metadata: Metadata = {
   title: 'Crete Township | Will County, Illinois',
   description:

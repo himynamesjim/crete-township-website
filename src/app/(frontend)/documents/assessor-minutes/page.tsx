@@ -4,6 +4,11 @@ import config from '@payload-config'
 import { DocumentListingAdvanced } from '@/components/DocumentListingAdvanced'
 import { transformDocuments } from '@/lib/transformDocument'
 
+// Revalidate every 5 minutes so CMS changes appear without a redeploy,
+// while one render serves all traffic in between (ISR)
+export const revalidate = 300
+
+
 export const metadata: Metadata = {
   title: 'Assessor Documents | Crete Township',
   description: 'View and download Crete Township assessor minutes and related documents.',

@@ -9,6 +9,11 @@ import Link from 'next/link'
 import { SidebarWidgets } from '@/components/SidebarWidgets'
 import type { Metadata } from 'next'
 
+// Revalidate every 5 minutes so CMS changes appear without a redeploy,
+// while one render serves all traffic in between (ISR)
+export const revalidate = 300
+
+
 export const metadata: Metadata = {
   title: 'Township Board & Officials | Crete Township',
   description:
