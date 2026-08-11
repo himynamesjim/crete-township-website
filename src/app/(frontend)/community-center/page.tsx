@@ -47,6 +47,33 @@ const policies = [
   'Usage fees are subject to change or waiver at the sole discretion of the Crete Township Board.',
 ]
 
+const generalRules = [
+  'Trash taken to the outside dumpster and outside area picked up.',
+  'Tables & chairs replaced to their original location.',
+  'Floors swept clean of debris.',
+  'Turn off all lights.',
+  'No alcohol allowed anywhere on Crete Township property.',
+  'No smoking allowed in the Community Center.',
+  'No animals allowed in the Community Center.',
+  'No nails, tape, and/or pins in the walls or fixtures.',
+  'Do not leave children unattended.',
+  'No firearms and/or weapons of any kind are allowed on Township property.',
+]
+
+const bookingTerms = [
+  'Usage is first-come, first-serve and is not valid until the Usage Agreement is approved by the Crete Township Board.',
+  'Full payment and deposit are due in their entirety with the completed Usage Agreement form.',
+  'The usage fee and security deposit are paid by two separate checks payable to "Crete Township." The security deposit is returned upon final inspection provided the Community Center is clean, in good order, and sustained no damage.',
+  'Availability is by appointment only, on a reserved-time basis approved by the Township Board.',
+  'Tables and chairs are set up by the User and must be returned to their original storage area — violations are subject to a $250 return-to-storage fee.',
+  'The space must be left clean with all trash taken to the outside dumpsters — violations are subject to a $250 cleaning fee.',
+  'The Community Center may not be used as a business venue; charging admission or profit-making use is restricted. Charitable events or benefits require prior approval and documentation of proceeds.',
+  'Caucuses organized by recognized political parties may meet without charge, but an application and prior Board approval are still required.',
+  'All health department regulations must be followed for any food and beverage service; the Township is not responsible for required permits or licenses.',
+  'Use of amplified sound systems is prohibited unless expressly approved by the Township Board, and Users must comply with all Will County noise ordinances.',
+  'Crete Township reserves the right to terminate the agreement at its sole discretion at any time without notice.',
+]
+
 const liabilityRequirements = [
   'A current Certificate of Insurance (COI) with coverage of at least $300,000 must be provided before occupying or using the property.',
   'The COI must name Crete Township as Additional Insured and remain current for the entire term of the Usage Agreement.',
@@ -209,6 +236,34 @@ export default function CommunityCenterPage() {
                         ))}
                       </div>
                     </div>
+                  </div>
+                </div>
+
+                {/* Booking & payment terms */}
+                <div>
+                  <h2 className="font-display text-2xl font-bold text-navy mb-2">Booking &amp; Payment Terms</h2>
+                  <div className="w-16 h-[3px] bg-gold mb-6" />
+                  <ul className="space-y-2.5">
+                    {bookingTerms.map((term, i) => (
+                      <li key={i} className="text-sm text-gray-700 leading-relaxed flex items-start gap-2">
+                        <ChevronRight className="w-3.5 h-3.5 text-gold flex-shrink-0 mt-1" />
+                        {term}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+
+                {/* General rules of use */}
+                <div>
+                  <h2 className="font-display text-2xl font-bold text-navy mb-2">General Rules of Use</h2>
+                  <div className="w-16 h-[3px] bg-gold mb-6" />
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-2.5">
+                    {generalRules.map((rule, i) => (
+                      <div key={i} className="text-sm text-gray-700 leading-relaxed flex items-start gap-2">
+                        <span className="text-gold font-bold mt-0.5 flex-shrink-0">·</span>
+                        {rule}
+                      </div>
+                    ))}
                   </div>
                 </div>
 
