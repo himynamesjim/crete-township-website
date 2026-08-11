@@ -78,7 +78,6 @@ const navigation: NavItem[] = [
     ],
   },
   { label: 'Events', href: '/events' },
-  { label: 'USA Fest', href: '/usa-fest', festive: true },
   {
     label: 'Community Center',
     href: '/community-center',
