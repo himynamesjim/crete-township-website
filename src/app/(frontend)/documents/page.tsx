@@ -115,8 +115,9 @@ export default function DocumentsPage() {
           })}
         </div>
 
-        {/* Information Section */}
-        <div className="mt-12 bg-white border border-gray-200 rounded-lg p-8">
+        {/* Document Information + Stay Informed side by side */}
+        <div className="mt-12 grid grid-cols-1 lg:grid-cols-2 gap-8 items-start">
+        <div className="bg-white border border-gray-200 rounded-lg p-8">
           <h2 className="text-xl font-display font-bold text-navy mb-4">
             Document Information
           </h2>
@@ -149,12 +150,13 @@ export default function DocumentsPage() {
         </div>
 
         {/* Stay Informed - newsletter signup */}
-        <div className="mt-12 max-w-[800px]">
-          <div className="mb-8">
-            <h2 className="text-3xl font-display font-bold text-navy mb-2">Stay Informed</h2>
+        <div>
+          <div className="mb-6">
+            <h2 className="text-2xl font-display font-bold text-navy mb-2">Stay Informed</h2>
             <div className="w-12 h-[3px] bg-gold" />
           </div>
           <NewsletterSignup variant="default" showCategories={true} />
+        </div>
         </div>
       </div>
     </div>
