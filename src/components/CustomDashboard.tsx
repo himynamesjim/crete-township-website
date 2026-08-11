@@ -284,6 +284,9 @@ const DashboardCard: React.FC<{
   )
 }
 
+// Payload's importMap resolves this path as a default export
+export default CustomDashboard
+
 const QuickLink: React.FC<{ href: string; text: string }> = ({ href, text }) => {
   return (
     <a
