@@ -19,6 +19,7 @@ export const NextBoardMeeting: React.FC<NextBoardMeetingProps> = ({ agenda }) =>
   const formatDate = (dateString: string) => {
     const date = new Date(dateString)
     return date.toLocaleDateString('en-US', {
+      timeZone: 'UTC', // day-only dates are stored anchored to UTC midnight
       weekday: 'long',
       month: 'long',
       day: 'numeric',

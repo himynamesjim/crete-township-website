@@ -118,6 +118,7 @@ function generateDescription(title: string, date: string | null): string {
   if (date) {
     const dateObj = new Date(date)
     const formattedDate = dateObj.toLocaleDateString('en-US', {
+      timeZone: 'UTC', // "YYYY-MM-DD" parses as UTC midnight — format in UTC to avoid day shift
       year: 'numeric',
       month: 'long',
       day: 'numeric',

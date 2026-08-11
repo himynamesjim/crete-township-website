@@ -78,6 +78,7 @@ export const DocumentListingAdvanced: React.FC<DocumentListingAdvancedProps> = (
   const formatDate = (dateString: string) => {
     const date = new Date(dateString)
     return date.toLocaleDateString('en-US', {
+      timeZone: 'UTC', // day-only dates are stored anchored to UTC midnight
       year: 'numeric',
       month: 'long',
       day: 'numeric',

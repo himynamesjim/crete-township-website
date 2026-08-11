@@ -21,6 +21,7 @@ export const DocCard: React.FC<DocCardProps> = ({
   className,
 }) => {
   const formattedDate = date.toLocaleDateString('en-US', {
+    timeZone: 'UTC', // day-only dates are stored anchored to UTC midnight
     month: 'long',
     day: 'numeric',
     year: 'numeric',
