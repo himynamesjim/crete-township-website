@@ -3,6 +3,7 @@ import { vercelBlobStorage } from '@payloadcms/storage-vercel-blob'
 import sharp from 'sharp'
 import path from 'path'
 import { buildConfig, PayloadRequest } from 'payload'
+import { payloadTotp } from 'payload-totp'
 import { mailgunAdapter } from './lib/mailgunAdapter'
 import { fileURLToPath } from 'url'
 
@@ -138,6 +139,19 @@ export default buildConfig({
       token: process.env.BLOB_READ_WRITE_TOKEN || '',
       // Public Vercel Blob store for township documents
       access: 'public',
+    }),
+    // TOTP multi-factor authentication for the admin panel.
+    // MUST stay last in this array (it wraps all collections).
+    // disableAccessWrapper keeps public REST/local API reads unaffected —
+    // MFA gates the admin panel itself.
+    payloadTotp({
+      collection: 'users',
+      forceSetup: true,
+      disableAccessWrapper: true,
+      forceWhiteBackgroundOnQrCode: true,
+      totp: {
+        issuer: 'Crete Township CMS',
+      },
     }),
   ],
   secret: process.env.PAYLOAD_SECRET,

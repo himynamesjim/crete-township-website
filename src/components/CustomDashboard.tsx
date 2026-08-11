@@ -1,7 +1,158 @@
 'use client'
 
-import React from 'react'
+import React, { useRef, useState } from 'react'
 import { Banner } from '@payloadcms/ui'
+
+const UPLOAD_CATEGORIES = [
+  { value: 'board-agenda', label: 'Board Meeting Agenda' },
+  { value: 'special-agenda', label: 'Special Meeting Agenda' },
+  { value: 'annual-town-meeting', label: 'Annual Town Meeting' },
+  { value: 'meeting-minutes', label: 'Meeting Minutes' },
+  { value: 'special-minutes', label: 'Special Meeting Minutes' },
+  { value: 'assessor-minutes', label: 'Assessor Minutes' },
+  { value: 'highway-commissioner', label: 'Highway Commissioner Report' },
+  { value: 'cash-balance', label: 'Cash Balance Report' },
+  { value: 'audited-statement', label: 'Audited Financial Statement' },
+  { value: 'newsletter', label: 'Newsletter' },
+]
+
+type UploadStatus = { name: string; state: 'uploading' | 'done' | 'error'; message: string }
+
+const QuickUpload: React.FC = () => {
+  const [category, setCategory] = useState('board-agenda')
+  const [date, setDate] = useState('')
+  const [statuses, setStatuses] = useState<UploadStatus[]>([])
+  const [dragOver, setDragOver] = useState(false)
+  const inputRef = useRef<HTMLInputElement>(null)
+
+  const uploadFiles = async (files: FileList | File[]) => {
+    for (const file of Array.from(files)) {
+      setStatuses((prev) => [...prev, { name: file.name, state: 'uploading', message: 'Uploading…' }])
+      const update = (state: UploadStatus['state'], message: string) =>
+        setStatuses((prev) => prev.map((s) => (s.name === file.name ? { ...s, state, message } : s)))
+      try {
+        const formData = new FormData()
+        formData.append('file', file)
+        formData.append('category', category)
+        if (date) formData.append('date', date)
+        const res = await fetch('/api/quick-upload', { method: 'POST', body: formData, credentials: 'include' })
+        const data = await res.json()
+        if (res.ok) {
+          update('done', `Published as "${data.title}"`)
+        } else {
+          update('error', data.error || 'Upload failed')
+        }
+      } catch {
+        update('error', 'Upload failed — network error')
+      }
+    }
+  }
+
+  return (
+    <div
+      style={{
+        marginBottom: '2rem',
+        padding: '1.5rem',
+        background: 'white',
+        borderRadius: '8px',
+        border: '2px solid #C8960C',
+      }}
+    >
+      <h2 style={{ fontSize: '1.25rem', fontWeight: 600, marginBottom: '0.25rem', color: '#1B3A5C' }}>
+        ⚡ Quick Upload
+      </h2>
+      <p style={{ fontSize: '0.85rem', color: '#5A6478', marginBottom: '1rem' }}>
+        Drop a PDF or Word file, pick a category, done. The meeting date is read from the filename
+        (e.g. &quot;Board Meeting Minutes 8-13-2025.pdf&quot;), the title is generated automatically,
+        Word files are converted to PDF, and the document is published immediately.
+      </p>
+
+      <div style={{ display: 'flex', gap: '1rem', flexWrap: 'wrap', marginBottom: '1rem' }}>
+        <label style={{ fontSize: '0.85rem', color: '#2C3444' }}>
+          Category{' '}
+          <select
+            value={category}
+            onChange={(e) => setCategory(e.target.value)}
+            style={{ padding: '0.4rem', borderRadius: '4px', border: '1px solid #E8EDF3', marginLeft: '0.25rem' }}
+          >
+            {UPLOAD_CATEGORIES.map((c) => (
+              <option key={c.value} value={c.value}>
+                {c.label}
+              </option>
+            ))}
+          </select>
+        </label>
+        <label style={{ fontSize: '0.85rem', color: '#2C3444' }}>
+          Meeting date (only if not in the filename){' '}
+          <input
+            type="date"
+            value={date}
+            onChange={(e) => setDate(e.target.value)}
+            style={{ padding: '0.35rem', borderRadius: '4px', border: '1px solid #E8EDF3', marginLeft: '0.25rem' }}
+          />
+        </label>
+      </div>
+
+      <div
+        onClick={() => inputRef.current?.click()}
+        onDragOver={(e) => {
+          e.preventDefault()
+          setDragOver(true)
+        }}
+        onDragLeave={() => setDragOver(false)}
+        onDrop={(e) => {
+          e.preventDefault()
+          setDragOver(false)
+          if (e.dataTransfer.files.length) uploadFiles(e.dataTransfer.files)
+        }}
+        style={{
+          padding: '2rem',
+          border: `2px dashed ${dragOver ? '#C8960C' : '#9BA5B5'}`,
+          borderRadius: '8px',
+          textAlign: 'center',
+          cursor: 'pointer',
+          background: dragOver ? '#FDF4DC' : '#F8F5F0',
+          color: '#5A6478',
+          fontSize: '0.95rem',
+        }}
+      >
+        Drag &amp; drop PDF or Word files here, or click to choose
+        <input
+          ref={inputRef}
+          type="file"
+          accept=".pdf,.doc,.docx"
+          multiple
+          style={{ display: 'none' }}
+          onChange={(e) => {
+            if (e.target.files?.length) uploadFiles(e.target.files)
+            e.target.value = ''
+          }}
+        />
+      </div>
+
+      {statuses.length > 0 && (
+        <ul style={{ listStyle: 'none', padding: 0, marginTop: '1rem' }}>
+          {statuses.map((s, i) => (
+            <li
+              key={`${s.name}-${i}`}
+              style={{
+                padding: '0.5rem 0.75rem',
+                marginBottom: '0.25rem',
+                borderRadius: '4px',
+                fontSize: '0.85rem',
+                background: s.state === 'error' ? '#FEF2F2' : s.state === 'done' ? '#F0FDF4' : '#F4F6F9',
+                color: s.state === 'error' ? '#991B1B' : s.state === 'done' ? '#166534' : '#2C3444',
+              }}
+            >
+              {s.state === 'uploading' ? '⏳' : s.state === 'done' ? '✅' : '❌'} <strong>{s.name}</strong> —{' '}
+              {s.message}
+            </li>
+          ))}
+        </ul>
+      )}
+    </div>
+  )
+}
 
 export const CustomDashboard: React.FC = () => {
   return (
@@ -25,6 +176,8 @@ export const CustomDashboard: React.FC = () => {
           Welcome to your content management system. Manage documents, events, and announcements for Crete Township.
         </p>
       </div>
+
+      <QuickUpload />
 
       <div style={{
         display: 'grid',

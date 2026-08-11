@@ -20,7 +20,11 @@ export const Users: CollectionConfig = {
     useAsTitle: 'name',
     description: 'Manage users and their access permissions',
   },
-  auth: true,
+  auth: {
+    // Lock the account for 10 minutes after 5 failed login attempts
+    maxLoginAttempts: 5,
+    lockTime: 10 * 60 * 1000,
+  },
   fields: [
     {
       name: 'name',

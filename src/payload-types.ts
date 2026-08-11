@@ -191,7 +191,10 @@ export interface UserAuthOperations {
  */
 export interface BoardAgenda {
   id: number;
-  title: string;
+  /**
+   * Auto-generated from Meeting Date and Document Type when left blank (e.g., "August 12, 2026 - Agenda")
+   */
+  title?: string | null;
   date: string;
   documentType: 'regular' | 'special' | 'annual';
   /**
@@ -742,6 +745,8 @@ export interface User {
    * User's department (optional)
    */
   department?: ('board' | 'assessor' | 'road-district' | 'clerk' | 'general-assistance' | 'general') | null;
+  totpSecret?: string | null;
+  hasTotp?: boolean | null;
   updatedAt: string;
   createdAt: string;
   email: string;
@@ -1867,6 +1872,8 @@ export interface UsersSelect<T extends boolean = true> {
   name?: T;
   role?: T;
   department?: T;
+  totpSecret?: T;
+  hasTotp?: T;
   updatedAt?: T;
   createdAt?: T;
   email?: T;
