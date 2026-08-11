@@ -4,6 +4,7 @@ import { Metadata } from 'next'
 import { PageHero } from '@/components/PageHero'
 import { Card } from '@/components/ui/card'
 import { FileText, Calendar, DollarSign, File, Newspaper } from 'lucide-react'
+import { NewsletterSignup } from '@/components/NewsletterSignup'
 
 export const metadata: Metadata = {
   title: 'Documents & Reports | Crete Township',
@@ -145,6 +146,15 @@ export default function DocumentsPage() {
               .
             </p>
           </div>
+        </div>
+
+        {/* Stay Informed - newsletter signup */}
+        <div className="mt-12 max-w-[800px]">
+          <div className="mb-8">
+            <h2 className="text-3xl font-display font-bold text-navy mb-2">Stay Informed</h2>
+            <div className="w-12 h-[3px] bg-gold" />
+          </div>
+          <NewsletterSignup variant="default" showCategories={true} />
         </div>
       </div>
     </div>

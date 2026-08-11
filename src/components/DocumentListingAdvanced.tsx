@@ -6,6 +6,7 @@ import { PageHero } from '@/components/PageHero'
 import { LayoutGrid, List, Search, Filter, Calendar, FileText } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent } from '@/components/ui/card'
+import { NewsletterSignup } from '@/components/NewsletterSignup'
 
 interface Document {
   id: string | number
@@ -189,6 +190,11 @@ export const DocumentListingAdvanced: React.FC<DocumentListingAdvancedProps> = (
                 )}
                 </CardContent>
               </Card>
+
+              {/* Stay Informed - subscribe for new document notifications */}
+              <div className="mt-6">
+                <NewsletterSignup variant="sidebar" />
+              </div>
             </div>
           </aside>
 
