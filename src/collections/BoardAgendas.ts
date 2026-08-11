@@ -34,10 +34,11 @@ export const BoardAgendas: CollectionConfig = {
     {
       name: 'title',
       type: 'text',
-      required: true,
       label: 'Document Title',
       admin: {
-        placeholder: 'e.g., May 2026 Board Meeting Agenda',
+        placeholder: 'Leave blank to auto-generate from the meeting date',
+        description:
+          'Auto-generated from Meeting Date and Document Type when left blank (e.g., "August 12, 2026 - Agenda")',
       },
     },
     {
@@ -75,6 +76,7 @@ export const BoardAgendas: CollectionConfig = {
       name: 'meetingTime',
       type: 'text',
       label: 'Meeting Time',
+      defaultValue: '7:00 PM',
       admin: {
         placeholder: 'e.g., 7:00 PM',
         description: 'Time the meeting starts (e.g., 7:00 PM)',
@@ -84,6 +86,7 @@ export const BoardAgendas: CollectionConfig = {
       name: 'location',
       type: 'text',
       label: 'Meeting Location',
+      defaultValue: 'Crete Town Hall, 1367 Wood St',
       admin: {
         placeholder: 'e.g., Crete Town Hall, 1367 Wood St',
         description: 'Physical location of the meeting',
@@ -140,6 +143,29 @@ export const BoardAgendas: CollectionConfig = {
     },
   ],
   hooks: {
+    beforeValidate: [
+      async ({ data }) => {
+        // Auto-generate the title from Meeting Date + Document Type when
+        // left blank, e.g. "August 12, 2026 - Agenda". Runs before
+        // validation so the title field can stay empty in the form.
+        if (data && !data.title && data.date) {
+          const dateLabel = new Date(data.date).toLocaleDateString('en-US', {
+            timeZone: 'UTC',
+            month: 'long',
+            day: 'numeric',
+            year: 'numeric',
+          })
+          const suffix =
+            data.documentType === 'special'
+              ? 'Special Meeting Agenda'
+              : data.documentType === 'annual'
+                ? 'Annual Town Meeting Agenda'
+                : 'Agenda'
+          data.title = `${dateLabel} - ${suffix}`
+        }
+        return data
+      },
+    ],
     beforeChange: [
       async ({ req, operation, data }) => {
         // Auto-parse metadata from uploaded file
