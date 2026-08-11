@@ -4,6 +4,7 @@ import React, { useRef, useState } from 'react'
 import { Banner } from '@payloadcms/ui'
 
 const UPLOAD_CATEGORIES = [
+  { value: 'auto', label: 'Auto-detect from filename' },
   { value: 'board-agenda', label: 'Board Meeting Agenda' },
   { value: 'special-agenda', label: 'Special Meeting Agenda' },
   { value: 'annual-town-meeting', label: 'Annual Town Meeting' },
@@ -19,7 +20,7 @@ const UPLOAD_CATEGORIES = [
 type UploadStatus = { name: string; state: 'uploading' | 'done' | 'error'; message: string }
 
 const QuickUpload: React.FC = () => {
-  const [category, setCategory] = useState('board-agenda')
+  const [category, setCategory] = useState('auto')
   const [date, setDate] = useState('')
   const [statuses, setStatuses] = useState<UploadStatus[]>([])
   const [dragOver, setDragOver] = useState(false)
@@ -62,9 +63,10 @@ const QuickUpload: React.FC = () => {
         ⚡ Quick Upload
       </h2>
       <p style={{ fontSize: '0.85rem', color: '#5A6478', marginBottom: '1rem' }}>
-        Drop a PDF or Word file, pick a category, done. The meeting date is read from the filename
-        (e.g. &quot;Board Meeting Minutes 8-13-2025.pdf&quot;), the title is generated automatically,
-        Word files are converted to PDF, and the document is published immediately.
+        Drop a PDF or Word file and it publishes immediately. The document type and meeting date are
+        read from the filename (e.g. &quot;Board Meeting Minutes 8-13-2025.pdf&quot;), the title is
+        generated automatically, and Word files are converted to PDF. If the filename and a manually
+        chosen category disagree, the upload is refused so nothing gets filed in the wrong place.
       </p>
 
       <div style={{ display: 'flex', gap: '1rem', flexWrap: 'wrap', marginBottom: '1rem' }}>

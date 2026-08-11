@@ -43,6 +43,34 @@ const CATEGORIES: Record<
   newsletter: { collection: 'newsletters', titleSuffix: 'Newsletter' },
 }
 
+/** Guess the category from words in the filename. */
+function detectCategory(filename: string): string | null {
+  const f = filename.toLowerCase()
+  if (f.includes('minutes')) {
+    if (f.includes('assessor')) return 'assessor-minutes'
+    if (f.includes('special') || f.includes('budget')) return 'special-minutes'
+    return 'meeting-minutes'
+  }
+  if (f.includes('agenda')) {
+    if (f.includes('annual')) return 'annual-town-meeting'
+    if (f.includes('special') || f.includes('budget')) return 'special-agenda'
+    return 'board-agenda'
+  }
+  if (f.includes('cash') && f.includes('balance')) return 'cash-balance'
+  if (f.includes('highway') || f.includes('commissioner')) return 'highway-commissioner'
+  if (f.includes('assessor')) return 'assessor-minutes'
+  if (f.includes('newsletter')) return 'newsletter'
+  if (f.includes('audit')) return 'audited-statement'
+  return null
+}
+
+/** Broad family of a category — used to catch agenda/minutes mix-ups. */
+function familyOf(category: string): string {
+  if (['board-agenda', 'special-agenda', 'annual-town-meeting'].includes(category)) return 'agenda'
+  if (['meeting-minutes', 'special-minutes', 'assessor-minutes'].includes(category)) return 'minutes'
+  return category
+}
+
 const MONTHS = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']
 const longDate = (iso: string) => {
   const [y, m, d] = iso.split('-').map(Number)
@@ -61,11 +89,41 @@ export async function POST(request: NextRequest) {
 
     const formData = await request.formData()
     const file = formData.get('file') as File | null
-    const category = formData.get('category') as string | null
+    let category = formData.get('category') as string | null
     const dateOverride = (formData.get('date') as string | null) || null
 
-    if (!file || !category || !CATEGORIES[category]) {
-      return NextResponse.json({ error: 'Missing file or invalid category' }, { status: 400 })
+    if (!file || !category) {
+      return NextResponse.json({ error: 'Missing file or category' }, { status: 400 })
+    }
+
+    const detected = file ? detectCategory(file.name) : null
+
+    if (category === 'auto') {
+      if (!detected) {
+        return NextResponse.json(
+          { error: `Could not tell what "${file.name}" is from its name — pick a category and retry.` },
+          { status: 422 },
+        )
+      }
+      category = detected
+    } else if (
+      detected &&
+      CATEGORIES[category] &&
+      familyOf(detected) !== familyOf(category) &&
+      ['agenda', 'minutes'].includes(familyOf(detected))
+    ) {
+      // The filename says one thing, the dropdown another (e.g. a file named
+      // "...MINUTES..." with the Agenda category selected) — refuse rather
+      // than silently filing it in the wrong collection.
+      const detectedLabel = familyOf(detected) === 'minutes' ? 'Meeting Minutes' : 'an Agenda'
+      return NextResponse.json(
+        { error: `"${file.name}" looks like ${detectedLabel}, but a different category was selected. Double-check the category and retry.` },
+        { status: 422 },
+      )
+    }
+
+    if (!CATEGORIES[category]) {
+      return NextResponse.json({ error: 'Invalid category' }, { status: 400 })
     }
     const cfg = CATEGORIES[category]
 
