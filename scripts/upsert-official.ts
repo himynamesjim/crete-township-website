@@ -154,7 +154,7 @@ Past and Present positions held by Michael Liccar:
     department: 'clerk',
     email: 'jim.buiter@cretetownship.com',
     photoPath: 'public/assets/officials/buiter.jpeg',
-    displayOrder: 0,
+    displayOrder: 5,
     status: 'published',
     bio: `Jim Buiter is now the new Crete Township Clerk. He currently resides in Crete, IL. He currently works as an independent financial advisor and CPA in Crete, IL. He has owned his tax practice for 10 years and has worked as a financial advisor for 23 years.
 

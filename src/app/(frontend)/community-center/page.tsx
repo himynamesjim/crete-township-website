@@ -1,7 +1,7 @@
 import type { Metadata } from 'next'
 import { PageHero } from '@/components/PageHero'
 import { JotFormEmbed } from '@/components/JotFormEmbed'
-import { MapPin, Phone, Clock, Users, Building2, ChevronRight } from 'lucide-react'
+import { MapPin, Phone, Clock, Users, Building2, ChevronRight, FileText, ShieldAlert } from 'lucide-react'
 import { Card, CardContent } from '@/components/ui/card'
 
 export const metadata: Metadata = {
@@ -42,7 +42,18 @@ const policies = [
   'Governmental bodies (Township, Schools, Fire Districts, etc.) have priority in scheduling.',
   'Tools, drop-cords, projectors, and coffee pots will NOT be provided at any time.',
   'All fees are payable in advance.',
+  'NO REFUNDS — all usage fees, staffing fees, and deposits are non-refundable once approved by the Board and payment is received.',
+  'Events must end by 10:00 PM.',
   'Usage fees are subject to change or waiver at the sole discretion of the Crete Township Board.',
+]
+
+const liabilityRequirements = [
+  'A current Certificate of Insurance (COI) with coverage of at least $300,000 must be provided before occupying or using the property.',
+  'The COI must name Crete Township as Additional Insured and remain current for the entire term of the Usage Agreement.',
+  'Failure to provide or maintain a valid COI is a default under the Agreement and may result in immediate suspension or termination of use privileges.',
+  'The User agrees to indemnify and hold Crete Township (including the Road District) harmless from all claims arising out of use of the Community Center, and releases the Township from liability for personal injuries related to that use.',
+  'The User is responsible for all costs of repair, clean-up, and replacement for any damage caused by their use; invoices are payable within 10 days.',
+  'For events of 100 people or more, the User must provide security and traffic control at their sole expense, approved by the Township Board.',
 ]
 
 export default function CommunityCenterPage() {
@@ -201,6 +212,28 @@ export default function CommunityCenterPage() {
                   </div>
                 </div>
 
+                {/* Insurance & liability requirements */}
+                <div>
+                  <h2 className="font-display text-2xl font-bold text-navy mb-2">Insurance &amp; Liability Requirements</h2>
+                  <div className="w-16 h-[3px] bg-gold mb-6" />
+                  <div className="bg-gold-pale border border-gold/40 rounded-lg p-6">
+                    <div className="flex items-center gap-2 mb-4">
+                      <ShieldAlert className="w-5 h-5 text-gold flex-shrink-0" />
+                      <p className="text-sm font-semibold text-navy">
+                        Required for all bookings (revised July 2026)
+                      </p>
+                    </div>
+                    <ul className="space-y-2.5">
+                      {liabilityRequirements.map((req, i) => (
+                        <li key={i} className="text-sm text-gray-700 leading-relaxed flex items-start gap-2">
+                          <span className="text-gold font-bold mt-0.5 flex-shrink-0">·</span>
+                          {req}
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                </div>
+
               </div>
             </div>
           </div>
@@ -211,10 +244,19 @@ export default function CommunityCenterPage() {
           <div className="max-w-[1400px] mx-auto px-8">
             <h2 className="font-display text-2xl font-bold text-navy mb-2">Building Usage Application</h2>
             <div className="w-16 h-[3px] bg-gold mb-4" />
-            <p className="text-gray-600 text-sm mb-8">
+            <p className="text-gray-600 text-sm mb-4">
               Complete and submit the form below. You will receive a confirmation once your request
               has been reviewed by the Township Office.
             </p>
+            <a
+              href="/forms/community-center-usage-agreement.pdf"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 bg-navy text-white text-sm font-semibold px-5 py-3 rounded hover:bg-navy-light transition-colors mb-8"
+            >
+              <FileText className="w-4 h-4 text-gold" />
+              Download the Building Usage Agreement (Revised July 2026)
+            </a>
             <div className="bg-white rounded-xl border border-gray-200 shadow-sm overflow-hidden">
               <JotFormEmbed
                 formId="253628126405051"

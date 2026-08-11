@@ -47,10 +47,9 @@ export default async function OfficialsPage() {
   // Two sections: the board (trustees + clerk) and everyone else.
   // Single-person offices (assessor, road district, collector, general
   // assistance) share one grid so the page isn't a stack of one-card sections.
-  const boardOfficials = [
-    ...officials.filter((o) => o.department === 'board'),
-    ...officials.filter((o) => o.department === 'clerk'),
-  ]
+  const boardOfficials = officials
+    .filter((o) => ['board', 'clerk'].includes(o.department))
+    .sort((a, b) => a.displayOrder - b.displayOrder)
   const otherOfficials = officials.filter(
     (o) => !['board', 'clerk'].includes(o.department),
   )
