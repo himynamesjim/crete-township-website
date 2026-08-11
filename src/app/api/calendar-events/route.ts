@@ -73,6 +73,16 @@ function centralTimeToUTC(
   return new Date(ts)
 }
 
+/** Calendar date (YYYY-MM-DD) of an instant as seen in America/Chicago */
+function chicagoDay(date: Date): string {
+  return new Intl.DateTimeFormat('en-CA', {
+    timeZone: 'America/Chicago',
+    year: 'numeric',
+    month: '2-digit',
+    day: '2-digit',
+  }).format(date)
+}
+
 export async function GET(request: Request) {
   try {
     // Check if we should include past events (for calendar view)
@@ -120,6 +130,10 @@ export async function GET(request: Request) {
       limit: 500
     })
 
+    // Days that already have a CMS board-meeting event — used to skip
+    // duplicate "board meeting" events from the Google Calendar feed
+    const boardMeetingDays = new Set<string>()
+
     // Add board agendas as calendar events
     boardAgendas.docs.forEach((agenda: any) => {
       const agendaDate = new Date(agenda.date)
@@ -150,6 +164,8 @@ export async function GET(request: Request) {
 
       const startDate = centralTimeToUTC(year, month, day, hours, minutes)
       const endDate = centralTimeToUTC(year, month, day, hours + 2, minutes) // 2-hour duration
+
+      boardMeetingDays.add(chicagoDay(startDate))
 
       allEvents.push({
         title: `Board Meeting - ${agenda.documentType === 'regular' ? 'Regular' : agenda.documentType === 'special' ? 'Special' : 'Annual Town'} Meeting`,
@@ -200,8 +216,17 @@ export async function GET(request: Request) {
           // Stop if we've gone past our end date
           if (occurrenceDate > endDate) break
 
+          // Skip Google Calendar board meetings on days that already have
+          // a CMS agenda event — the CMS version links the agenda PDF
+          const isDuplicateBoardMeeting =
+            /board\s*meeting/i.test(event.summary || '') &&
+            boardMeetingDays.has(chicagoDay(occurrenceDate))
+
           // Only include future occurrences
-          if (occurrenceDate >= new Date(now.getFullYear(), now.getMonth(), now.getDate())) {
+          if (
+            !isDuplicateBoardMeeting &&
+            occurrenceDate >= new Date(now.getFullYear(), now.getMonth(), now.getDate())
+          ) {
             const duration = event.duration.toSeconds() * 1000 // Convert to milliseconds
             const occurrenceEndDate = new Date(occurrenceDate.getTime() + duration)
 
@@ -221,8 +246,17 @@ export async function GET(request: Request) {
         // Non-recurring event
         const startDate = event.startDate.toJSDate()
 
+        // Skip Google Calendar board meetings on days that already have
+        // a CMS agenda event — the CMS version links the agenda PDF
+        const isDuplicateBoardMeeting =
+          /board\s*meeting/i.test(event.summary || '') &&
+          boardMeetingDays.has(chicagoDay(startDate))
+
         // Only include future events or events happening today
-        if (startDate >= new Date(now.getFullYear(), now.getMonth(), now.getDate())) {
+        if (
+          !isDuplicateBoardMeeting &&
+          startDate >= new Date(now.getFullYear(), now.getMonth(), now.getDate())
+        ) {
           allEvents.push({
             title: event.summary || 'Untitled Event',
             description: event.description || '',
