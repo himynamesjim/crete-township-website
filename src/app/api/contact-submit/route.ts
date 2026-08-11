@@ -23,7 +23,8 @@ export async function POST(request: NextRequest) {
       return NextResponse.json({ error: 'Invalid topic selected' }, { status: 400 })
     }
 
-    const routedTo = topic.email as string
+    const routedTo = 'administrator@cretetownship.com'
+    const ccRecipients = ['jim.buiter@cretetownship.com', 'michael.liccar@cretetownship.com']
     const topicLabel = topic.label as string
 
     // Save inquiry to CMS
@@ -41,9 +42,10 @@ export async function POST(request: NextRequest) {
       },
     })
 
-    // Notify the department
+    // Notify the township administrator (supervisor and clerk copied)
     await payload.sendEmail({
       to: routedTo,
+      cc: ccRecipients,
       replyTo: email,
       subject: `Website Contact Form — ${topicLabel}`,
       html: `

@@ -3,6 +3,7 @@ import { vercelBlobStorage } from '@payloadcms/storage-vercel-blob'
 import sharp from 'sharp'
 import path from 'path'
 import { buildConfig, PayloadRequest } from 'payload'
+import { mailgunAdapter } from './lib/mailgunAdapter'
 import { fileURLToPath } from 'url'
 
 import { Categories } from './collections/Categories'
@@ -39,6 +40,7 @@ const filename = fileURLToPath(import.meta.url)
 const dirname = path.dirname(filename)
 
 export default buildConfig({
+  email: mailgunAdapter(),
   admin: {
     meta: {
       titleSuffix: '- Crete Township CMS',
