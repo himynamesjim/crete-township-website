@@ -278,6 +278,9 @@ html.ada-reduce-motion *::after {
 
 .rbc-month-view .rbc-event {
   position: relative !important;
+  /* Compact chips so ~3 events fit per day cell in month view */
+  padding: 1px 4px !important;
+  margin-bottom: 1px;
 }
 
 .rbc-event:hover {

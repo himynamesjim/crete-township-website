@@ -510,7 +510,9 @@ export default function EventsPage() {
                     view={calendarView}
                     onView={(newView) => setCalendarView(newView)}
                     onNavigate={(date) => setCurrentDate(date)}
-                    style={{ height: 700 }}
+                    // Month view needs taller rows so ~3 events fit per day
+                    // cell before rbc collapses them into a "+N more" link
+                    style={{ height: calendarView === 'month' ? 1000 : 700 }}
                     views={['month', 'week', 'day', 'agenda']}
                     onSelectEvent={handleSelectEvent}
                     components={{
