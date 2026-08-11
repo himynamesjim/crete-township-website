@@ -162,9 +162,20 @@ export const TownshipFooter: React.FC = () => {
 
         {/* Bottom Bar */}
         <div className="border-t border-white/10 mt-12 pt-8 flex flex-col md:flex-row justify-between items-center gap-4 text-sm text-gray-400">
-          <p>
-            © {currentYear} Crete Township, Will County, Illinois. All rights reserved.
-          </p>
+          <div className="text-center md:text-left">
+            <p>© {currentYear} Crete Township, Will County, Illinois. All rights reserved.</p>
+            <p className="mt-1 text-xs text-gray-500">
+              Website designed and hosted by{' '}
+              <a
+                href="https://interpeakmsp.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="hover:text-gold transition-colors underline underline-offset-2"
+              >
+                InterPeak Technology Solutions
+              </a>
+            </p>
+          </div>
           <div className="flex gap-6">
             <Link href="/privacy-policy" className="hover:text-gold transition-colors">
               Privacy Policy
