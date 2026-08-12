@@ -26,6 +26,35 @@ export const metadata: Metadata = {
     'Official website of Crete Township, Will County, Illinois. Your local government resource for meeting documents, township services, community events, and resident assistance.',
 }
 
+// Announcement bodies are plain textareas in the CMS — render URLs as links
+// while whitespace-pre-line on the container preserves paragraphs/line breaks.
+function AnnouncementBody({ text }: { text: string }) {
+  const parts = text.split(/(https?:\/\/[^\s]+)/g)
+  return (
+    <p className="text-sm text-gray-600 mb-2 whitespace-pre-line leading-relaxed">
+      {parts.map((part, i) => {
+        if (!/^https?:\/\//.test(part)) return part
+        // Keep trailing sentence punctuation out of the link target
+        const url = part.replace(/[.,;:)]+$/, '')
+        const trailing = part.slice(url.length)
+        return (
+          <React.Fragment key={i}>
+            <a
+              href={url}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-navy font-semibold underline hover:text-gold transition-colors break-all"
+            >
+              {url}
+            </a>
+            {trailing}
+          </React.Fragment>
+        )
+      })}
+    </p>
+  )
+}
+
 export default async function HomePage() {
   const payload = await getPayload({ config })
 
@@ -260,7 +289,7 @@ export default async function HomePage() {
                           <h3 className="text-lg font-semibold text-navy mb-2">
                             {announcement.title}
                           </h3>
-                          <p className="text-sm text-gray-600 mb-2">{announcement.body}</p>
+                          <AnnouncementBody text={announcement.body} />
                           <p className="text-xs text-gray-400">
                             {formatAnnouncementDate(announcement.createdAt)}
                           </p>
