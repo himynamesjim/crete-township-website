@@ -26,8 +26,8 @@ export const DocumentCard: React.FC<DocumentCardProps> = ({
     return (
       <div className="group bg-white border border-gray-200 rounded-lg p-4 hover:shadow-lg transition-shadow duration-200">
         <div className="flex items-center gap-4">
-          {/* PDF Icon */}
-          <div className="flex-shrink-0 w-10 h-10 bg-navy/10 rounded-lg flex items-center justify-center group-hover:bg-navy/20 transition-colors">
+          {/* PDF Icon — hidden on phones to give the title room */}
+          <div className="hidden sm:flex flex-shrink-0 w-10 h-10 bg-navy/10 rounded-lg items-center justify-center group-hover:bg-navy/20 transition-colors">
             <svg
               className="w-5 h-5 text-navy"
               fill="none"
@@ -43,26 +43,26 @@ export const DocumentCard: React.FC<DocumentCardProps> = ({
             </svg>
           </div>
 
-          {/* Content */}
+          {/* Content — stacks on phones, single row on sm+ */}
           <div className="flex-1 min-w-0">
-            <div className="flex items-start justify-between gap-4">
+            <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-3 sm:gap-4">
               <div className="flex-1 min-w-0">
-                <div className="flex items-center gap-2 mb-1">
-                  <span className="inline-flex items-center px-2 py-0.5 rounded-full text-xs font-medium bg-gold-pale text-navy">
+                <div className="flex flex-wrap items-center gap-x-2 gap-y-1 mb-1">
+                  <span className="inline-flex items-center px-2 py-0.5 rounded-full text-xs font-medium bg-gold-pale text-navy whitespace-nowrap">
                     {type}
                   </span>
-                  <span className="text-xs text-gray-400">{date}</span>
+                  <span className="text-xs text-gray-400 whitespace-nowrap">{date}</span>
                 </div>
-                <h3 className="text-base font-semibold text-navy group-hover:text-navy-light transition-colors truncate">
+                <h3 className="text-base font-semibold text-navy group-hover:text-navy-light transition-colors sm:truncate">
                   {title}
                 </h3>
               </div>
 
-              {/* Actions */}
+              {/* Actions — full-width tap targets on phones */}
               <div className="flex gap-2 flex-shrink-0">
                 <button
                   onClick={() => setIsModalOpen(true)}
-                  className="inline-flex items-center gap-1 px-3 py-1.5 bg-navy text-white text-xs font-medium rounded hover:bg-navy-light transition-colors cursor-pointer"
+                  className="flex-1 sm:flex-none justify-center inline-flex items-center gap-1 px-3 py-2 sm:py-1.5 bg-navy text-white text-xs font-medium rounded hover:bg-navy-light transition-colors cursor-pointer"
                 >
                   <svg
                     className="w-3.5 h-3.5"
@@ -88,7 +88,7 @@ export const DocumentCard: React.FC<DocumentCardProps> = ({
                 <a
                   href={fileUrl}
                   download
-                  className="inline-flex items-center gap-1 px-3 py-1.5 border border-navy text-navy text-xs font-medium rounded hover:bg-navy-light hover:text-white hover:border-navy-light transition-colors"
+                  className="flex-1 sm:flex-none justify-center inline-flex items-center gap-1 px-3 py-2 sm:py-1.5 border border-navy text-navy text-xs font-medium rounded hover:bg-navy-light hover:text-white hover:border-navy-light transition-colors"
                 >
                   <svg
                     className="w-3.5 h-3.5"
