@@ -28,15 +28,6 @@ export const MeetingMinutes: CollectionConfig = {
   },
   fields: [
     {
-      name: 'title',
-      type: 'text',
-      required: true,
-      label: 'Document Title',
-      admin: {
-        placeholder: 'e.g., May 2026 Board Meeting Minutes',
-      },
-    },
-    {
       name: 'date',
       type: 'date',
       required: true,
@@ -45,6 +36,16 @@ export const MeetingMinutes: CollectionConfig = {
         date: {
           pickerAppearance: 'dayOnly',
         },
+      },
+    },
+    {
+      name: 'title',
+      type: 'text',
+      required: false,
+      label: 'Document Title (auto-generated)',
+      admin: {
+        placeholder: 'Leave blank to auto-generate from date and document type',
+        description: 'Title will be auto-generated when you save (e.g., "June 13, 2026 - Meeting Minutes"). You can also enter a custom title.',
       },
     },
     {
@@ -111,9 +112,31 @@ export const MeetingMinutes: CollectionConfig = {
   ],
   hooks: {
     beforeChange: [
-      async ({ req, operation, data }) => {
-        // Auto-parse metadata from uploaded file
-        if (operation === 'create' && data.file) {
+      async ({ req, operation, data, originalDoc }) => {
+        // Auto-generate title from date and documentType if title is empty
+        if (data.date && data.documentType && !data.title) {
+          const dateObj = new Date(data.date)
+          const formattedDate = dateObj.toLocaleDateString('en-US', {
+            year: 'numeric',
+            month: 'long',
+            day: 'numeric',
+          })
+
+          const typeLabels: Record<string, string> = {
+            'regular-board': 'Meeting Minutes',
+            'special-board': 'Special Meeting Minutes',
+            'assessor': 'Assessor Minutes',
+            'road-district': 'Road District Minutes',
+          }
+
+          const generatedTitle = `${formattedDate} - ${typeLabels[data.documentType] || 'Meeting Minutes'}`
+          data.title = generatedTitle
+
+          req.payload.logger.info(`Auto-generated title: "${generatedTitle}"`)
+        }
+
+        // Auto-parse metadata from uploaded file (fallback)
+        if (operation === 'create' && data.file && !data.title) {
           try {
             // Fetch the document details to get the filename
             const doc = await req.payload.findByID({

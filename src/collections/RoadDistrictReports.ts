@@ -27,15 +27,6 @@ export const RoadDistrictReports: CollectionConfig = {
   },
   fields: [
     {
-      name: 'title',
-      type: 'text',
-      required: true,
-      label: 'Document Title',
-      admin: {
-        placeholder: 'e.g., Highway Commissioner Report May 2026',
-      },
-    },
-    {
       name: 'date',
       type: 'date',
       required: true,
@@ -44,6 +35,16 @@ export const RoadDistrictReports: CollectionConfig = {
         date: {
           pickerAppearance: 'dayOnly',
         },
+      },
+    },
+    {
+      name: 'title',
+      type: 'text',
+      required: false,
+      label: 'Document Title (auto-generated)',
+      admin: {
+        placeholder: 'Leave blank to auto-generate (e.g., "June 13, 2026 - Highway Commissioner Report")',
+        description: 'Title will be auto-generated from date and document type when you save.',
       },
     },
     {
@@ -144,6 +145,36 @@ export const RoadDistrictReports: CollectionConfig = {
   hooks: {
     beforeChange: [
       ({ req, operation, data }) => {
+        // Auto-generate title from date and documentType if title is empty
+        if (data.date && data.documentType && !data.title) {
+          const dateObj = new Date(data.date)
+          const formattedDate = dateObj.toLocaleDateString('en-US', {
+            year: 'numeric',
+            month: 'long',
+            day: 'numeric',
+          })
+
+          const typeLabels: Record<string, string> = {
+            'highway-commissioner': 'Highway Commissioner Report',
+            'environmental': 'Environmental Report',
+            'storm-sewer': 'Storm Sewer Report',
+            'road-bridge-levy': 'Road & Bridge Levy',
+            'storm-water-pollution': 'Storm Water Pollution Report',
+            'storm-water-runoff': 'Storm Water Runoff Report',
+            'maintaining-septic-system': 'Maintaining Your Septic System',
+            'npdes-noi': 'NPDES – NOI',
+            'npdes-storm-water-management': 'NPDES – Storm Water Management',
+            'npdes-annual-facility-report': 'NPDES – Annual Facility Report',
+            'environmental-justice': 'Environmental Justice Report',
+            'other': 'Road District Report',
+          }
+
+          const generatedTitle = `${formattedDate} - ${typeLabels[data.documentType] || 'Road District Report'}`
+          data.title = generatedTitle
+
+          req.payload.logger.info(`Auto-generated title: "${generatedTitle}"`)
+        }
+
         if (operation === 'create' || operation === 'update') {
           if (data.status === 'published' && !data.publishedAt) {
             data.publishedAt = new Date().toISOString()

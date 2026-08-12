@@ -239,8 +239,11 @@ export interface Document {
  */
 export interface MeetingMinute {
   id: number;
-  title: string;
   date: string;
+  /**
+   * Title will be auto-generated when you save (e.g., "June 13, 2026 - Meeting Minutes"). You can also enter a custom title.
+   */
+  title?: string | null;
   documentType: 'regular-board' | 'special-board' | 'assessor' | 'road-district';
   description?: string | null;
   file: number | Document;
@@ -257,9 +260,12 @@ export interface MeetingMinute {
  */
 export interface FinancialReport {
   id: number;
-  title: string;
-  date: string;
   fiscalYear: number;
+  date: string;
+  /**
+   * Title will be auto-generated from fiscal year and document type when you save.
+   */
+  title?: string | null;
   documentType: 'audited-statement' | 'cash-balance' | 'budget-ordinance' | 'tax-levy' | 'other';
   description?: string | null;
   file: number | Document;
@@ -276,8 +282,11 @@ export interface FinancialReport {
  */
 export interface AssessorDocument {
   id: number;
-  title: string;
   date: string;
+  /**
+   * Title will be auto-generated from date and document type when you save.
+   */
+  title?: string | null;
   documentType: 'exemption-form' | 'hoa' | 'assessor-minutes' | 'other';
   description?: string | null;
   file: number | Document;
@@ -294,8 +303,11 @@ export interface AssessorDocument {
  */
 export interface RoadDistrictReport {
   id: number;
-  title: string;
   date: string;
+  /**
+   * Title will be auto-generated from date and document type when you save.
+   */
+  title?: string | null;
   documentType:
     | 'highway-commissioner'
     | 'environmental'
@@ -1605,8 +1617,8 @@ export interface BoardAgendasSelect<T extends boolean = true> {
  * via the `definition` "meeting-minutes_select".
  */
 export interface MeetingMinutesSelect<T extends boolean = true> {
-  title?: T;
   date?: T;
+  title?: T;
   documentType?: T;
   description?: T;
   file?: T;
@@ -1620,9 +1632,9 @@ export interface MeetingMinutesSelect<T extends boolean = true> {
  * via the `definition` "financial-reports_select".
  */
 export interface FinancialReportsSelect<T extends boolean = true> {
-  title?: T;
-  date?: T;
   fiscalYear?: T;
+  date?: T;
+  title?: T;
   documentType?: T;
   description?: T;
   file?: T;
@@ -1636,8 +1648,8 @@ export interface FinancialReportsSelect<T extends boolean = true> {
  * via the `definition` "assessor-documents_select".
  */
 export interface AssessorDocumentsSelect<T extends boolean = true> {
-  title?: T;
   date?: T;
+  title?: T;
   documentType?: T;
   description?: T;
   file?: T;
@@ -1651,8 +1663,8 @@ export interface AssessorDocumentsSelect<T extends boolean = true> {
  * via the `definition` "road-district-reports_select".
  */
 export interface RoadDistrictReportsSelect<T extends boolean = true> {
-  title?: T;
   date?: T;
+  title?: T;
   documentType?: T;
   description?: T;
   file?: T;

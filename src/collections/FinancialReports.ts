@@ -27,12 +27,12 @@ export const FinancialReports: CollectionConfig = {
   },
   fields: [
     {
-      name: 'title',
-      type: 'text',
+      name: 'fiscalYear',
+      type: 'number',
       required: true,
-      label: 'Document Title',
+      label: 'Fiscal Year',
       admin: {
-        placeholder: 'e.g., FY 2026 Audited Financial Statement',
+        placeholder: '2026',
       },
     },
     {
@@ -47,12 +47,13 @@ export const FinancialReports: CollectionConfig = {
       },
     },
     {
-      name: 'fiscalYear',
-      type: 'number',
-      required: true,
-      label: 'Fiscal Year',
+      name: 'title',
+      type: 'text',
+      required: false,
+      label: 'Document Title (auto-generated)',
       admin: {
-        placeholder: '2026',
+        placeholder: 'Leave blank to auto-generate (e.g., "FY 2026 - Audited Financial Statement")',
+        description: 'Title will be auto-generated from fiscal year and document type when you save.',
       },
     },
     {
@@ -124,6 +125,22 @@ export const FinancialReports: CollectionConfig = {
   hooks: {
     beforeChange: [
       ({ req, operation, data }) => {
+        // Auto-generate title from fiscalYear and documentType if title is empty
+        if (data.fiscalYear && data.documentType && !data.title) {
+          const typeLabels: Record<string, string> = {
+            'audited-statement': 'Audited Financial Statement',
+            'cash-balance': 'Cash Balance Report',
+            'budget-ordinance': 'Budget Ordinance',
+            'tax-levy': 'Tax Levy',
+            'other': 'Financial Document',
+          }
+
+          const generatedTitle = `FY ${data.fiscalYear} - ${typeLabels[data.documentType] || 'Financial Report'}`
+          data.title = generatedTitle
+
+          req.payload.logger.info(`Auto-generated title: "${generatedTitle}"`)
+        }
+
         if (operation === 'create' || operation === 'update') {
           if (data.status === 'published' && !data.publishedAt) {
             data.publishedAt = new Date().toISOString()

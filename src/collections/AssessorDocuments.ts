@@ -27,15 +27,6 @@ export const AssessorDocuments: CollectionConfig = {
   },
   fields: [
     {
-      name: 'title',
-      type: 'text',
-      required: true,
-      label: 'Document Title',
-      admin: {
-        placeholder: 'e.g., Homeowner Exemption Form 2026',
-      },
-    },
-    {
       name: 'date',
       type: 'date',
       required: true,
@@ -44,6 +35,16 @@ export const AssessorDocuments: CollectionConfig = {
         date: {
           pickerAppearance: 'dayOnly',
         },
+      },
+    },
+    {
+      name: 'title',
+      type: 'text',
+      required: false,
+      label: 'Document Title (auto-generated)',
+      admin: {
+        placeholder: 'Leave blank to auto-generate (e.g., "June 13, 2026 - Exemption Form")',
+        description: 'Title will be auto-generated from date and document type when you save.',
       },
     },
     {
@@ -111,6 +112,28 @@ export const AssessorDocuments: CollectionConfig = {
   hooks: {
     beforeChange: [
       ({ req, operation, data }) => {
+        // Auto-generate title from date and documentType if title is empty
+        if (data.date && data.documentType && !data.title) {
+          const dateObj = new Date(data.date)
+          const formattedDate = dateObj.toLocaleDateString('en-US', {
+            year: 'numeric',
+            month: 'long',
+            day: 'numeric',
+          })
+
+          const typeLabels: Record<string, string> = {
+            'exemption-form': 'Exemption Form',
+            'hoa': 'HOA Document',
+            'assessor-minutes': 'Assessor Minutes',
+            'other': 'Assessor Document',
+          }
+
+          const generatedTitle = `${formattedDate} - ${typeLabels[data.documentType] || 'Assessor Document'}`
+          data.title = generatedTitle
+
+          req.payload.logger.info(`Auto-generated title: "${generatedTitle}"`)
+        }
+
         if (operation === 'create' || operation === 'update') {
           if (data.status === 'published' && !data.publishedAt) {
             data.publishedAt = new Date().toISOString()
