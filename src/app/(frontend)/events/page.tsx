@@ -34,6 +34,7 @@ interface CalendarEvent {
   isHoliday: boolean
   agendaId?: number
   agendaUrl?: string
+  zoomUrl?: string
 }
 
 // Custom Toolbar component
@@ -252,6 +253,21 @@ const CustomEvent = ({
           <p className="text-xs text-gray-600 line-clamp-1">
             <span className="text-gold">{'📍'}</span> {evt.location}
           </p>
+        )}
+
+        {evt.zoomUrl && (
+          <a
+            href={evt.zoomUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            onClick={(e) => {
+              e.stopPropagation()
+              setShowPopup(false)
+            }}
+            className="block w-full bg-navy-dark text-white text-xs py-2 rounded hover:bg-navy-light transition-colors font-semibold text-center"
+          >
+            📹 Join via Zoom
+          </a>
         )}
 
         <div className="flex gap-2">
@@ -792,7 +808,19 @@ export default function EventsPage() {
               )}
 
               {/* Action Buttons */}
-              <div className="pt-4 border-t flex gap-3">
+              {selectedEvent.zoomUrl && (
+                <div className="pt-4 border-t">
+                  <a
+                    href={selectedEvent.zoomUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="block w-full bg-navy-dark text-white px-6 py-3 rounded-lg font-semibold hover:bg-navy-light transition-colors text-center"
+                  >
+                    📹 Join via Zoom
+                  </a>
+                </div>
+              )}
+              <div className={`${selectedEvent.zoomUrl ? 'pt-3' : 'pt-4 border-t'} flex gap-3`}>
                 {selectedEvent.agendaUrl && (
                   <a
                     href={selectedEvent.agendaUrl}

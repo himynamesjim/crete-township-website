@@ -3,6 +3,7 @@
 import React from 'react'
 import { Card, CardContent } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
+import { BOARD_MEETING_ZOOM_URL, BOARD_MEETING_ZOOM_ID } from '@/lib/meetingInfo'
 
 interface NextBoardMeetingProps {
   agenda: {
@@ -27,8 +28,8 @@ export const NextBoardMeeting: React.FC<NextBoardMeetingProps> = ({ agenda }) =>
     })
   }
 
-  const zoomLink = 'https://us06web.zoom.us/j/88684426493?pwd=4MajrSPKJ1nMKpzpDeF0jeBGxppatf.1'
-  const meetingId = '886 8442 6493'
+  const zoomLink = BOARD_MEETING_ZOOM_URL
+  const meetingId = BOARD_MEETING_ZOOM_ID
 
   return (
     <Card className="bg-navy-dark text-white border-none">

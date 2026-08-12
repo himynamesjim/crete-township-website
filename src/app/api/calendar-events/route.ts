@@ -2,6 +2,7 @@ import { NextResponse } from 'next/server'
 import ICAL from 'ical.js'
 import { getPayload } from 'payload'
 import config from '@payload-config'
+import { BOARD_MEETING_ZOOM_URL } from '@/lib/meetingInfo'
 
 const TOWNSHIP_EVENTS_URL = process.env.GOOGLE_CALENDAR_ICS_URL || ''
 
@@ -177,6 +178,7 @@ export async function GET(request: Request) {
         isHoliday: false,
         agendaId: agenda.id,
         agendaUrl: typeof agenda.file === 'object' ? agenda.file?.url : null,
+        zoomUrl: BOARD_MEETING_ZOOM_URL,
       })
     })
 

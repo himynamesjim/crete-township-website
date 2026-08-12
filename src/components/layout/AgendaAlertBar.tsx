@@ -3,6 +3,7 @@
 import React, { useState } from 'react'
 import Link from 'next/link'
 import { PDFModal } from '@/components/ui/PDFModal'
+import { BOARD_MEETING_ZOOM_URL } from '@/lib/meetingInfo'
 
 interface AgendaAlertBarProps {
   agenda: {
@@ -48,7 +49,16 @@ export const AgendaAlertBar: React.FC<AgendaAlertBarProps> = ({ agenda }) => {
                 className="underline hover:text-white/90 cursor-pointer"
               >
                 View Agenda →
-              </button>
+              </button>{' '}
+              |{' '}
+              <a
+                href={BOARD_MEETING_ZOOM_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="underline hover:text-white/90"
+              >
+                Join via Zoom
+              </a>
             </span>
           </div>
         </div>
