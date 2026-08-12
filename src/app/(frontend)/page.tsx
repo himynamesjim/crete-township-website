@@ -159,17 +159,8 @@ export default async function HomePage() {
       type: 'Newsletter',
     })),
   ]
-    .sort((a: any, b: any) => {
-      // First sort by type priority (Board Agendas first)
-      const typeOrder = { 'Board Agenda': 0, 'Meeting Minutes': 1 }
-      const typeA = typeOrder[a.type as keyof typeof typeOrder] ?? 2
-      const typeB = typeOrder[b.type as keyof typeof typeOrder] ?? 2
-
-      if (typeA !== typeB) return typeA - typeB
-
-      // Then sort by date within the same type (newest first)
-      return new Date(b.date).getTime() - new Date(a.date).getTime()
-    })
+    // Newest first across all collections, so "Recent Documents" is truly recent
+    .sort((a: any, b: any) => new Date(b.date).getTime() - new Date(a.date).getTime())
     // No slice here — DocumentLibrary caps each filter at 8 client-side
 
   // Debug: Log document count and file structure
