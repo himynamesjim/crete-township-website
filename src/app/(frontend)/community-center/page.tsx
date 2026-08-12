@@ -1,7 +1,7 @@
 import type { Metadata } from 'next'
 import { PageHero } from '@/components/PageHero'
 import { JotFormEmbed } from '@/components/JotFormEmbed'
-import { MapPin, Phone, Clock, Users, Building2, ChevronRight, FileText, ShieldAlert } from 'lucide-react'
+import { MapPin, Phone, Clock, Users, Building2, ChevronRight, FileText, ShieldAlert, Mail, Music, Dumbbell, CalendarDays, Briefcase, HeartHandshake } from 'lucide-react'
 import { Card, CardContent } from '@/components/ui/card'
 
 export const metadata: Metadata = {
@@ -36,6 +36,45 @@ const nonResidentFees = [
   { space: 'Exterior Park Area', rate: '$350/day' },
 ]
 
+const offerings = [
+  {
+    icon: HeartHandshake,
+    title: 'Senior Programs',
+    description:
+      'Weekly coffee get-togethers, bingo, pinochle club, seasonal luncheons, and wellness programs offered in partnership with Catholic Charities, including fitness and relaxation classes.',
+  },
+  {
+    icon: Music,
+    title: 'Youth & Family Programs',
+    description:
+      'Rock Revolution, a youth music program for ages 11–18 with lessons in guitar, drums, keyboard, bass, and vocals from professional musicians, plus activity days for young learners ages 2–5 and their parents.',
+  },
+  {
+    icon: CalendarDays,
+    title: 'Expos & Community Events',
+    description:
+      'Township-hosted expo events including collectibles shows, art & antiques, craft shows, and home & garden shows, along with community celebrations held at the Center and its grounds.',
+  },
+  {
+    icon: Dumbbell,
+    title: "On the Move Women's Fitness",
+    description:
+      'A complete women’s fitness program featuring hydraulic resistance machines, wellness mats, metabolic recovery boards, a stretching station, and a walking club. Open weekday mornings and select afternoons.',
+  },
+  {
+    icon: Users,
+    title: 'Meeting & Event Space',
+    description:
+      'Rooms of every size — from conference rooms to the large multi-purpose room and the exterior park area — available to civic organizations, non-profits, government bodies, and community groups.',
+  },
+  {
+    icon: Briefcase,
+    title: 'Office Space',
+    description:
+      'Select rooms are available for weekly or monthly office usage, giving local organizations an affordable home base inside the Center.',
+  },
+]
+
 const policies = [
   'Forms that are NOT complete — including signatures, dates, and times — will be returned.',
   'Two copies should be submitted to the Township Office; one copy will be returned when approved.',
@@ -43,7 +82,6 @@ const policies = [
   'Tools, drop-cords, projectors, and coffee pots will NOT be provided at any time.',
   'All fees are payable in advance.',
   'NO REFUNDS — all usage fees, staffing fees, and deposits are non-refundable once approved by the Board and payment is received.',
-  'Events must end by 10:00 PM.',
   'Usage fees are subject to change or waiver at the sole discretion of the Crete Township Board.',
 ]
 
@@ -113,20 +151,27 @@ export default function CommunityCenterPage() {
                   </div>
                   <CardContent className="p-5 space-y-3">
                     <a
-                      href="tel:7086728279"
+                      href="tel:7087221857"
                       className="flex items-center gap-3 text-sm text-gray-700 hover:text-gold transition-colors"
                     >
                       <Phone className="w-4 h-4 text-gold flex-shrink-0" />
-                      708-672-8279
+                      708-722-1857
                     </a>
                     <div className="flex items-start gap-3 text-sm text-gray-700">
                       <MapPin className="w-4 h-4 text-gold flex-shrink-0 mt-0.5" />
-                      <span>1367 Wood Street<br />Crete, Illinois 60417</span>
+                      <span>25930 S Cottage Grove Ave<br />Crete, Illinois 60417</span>
                     </div>
                     <div className="flex items-start gap-3 text-sm text-gray-700">
                       <Clock className="w-4 h-4 text-gold flex-shrink-0 mt-0.5" />
-                      <span>Mon – Fri: 8:00 AM – 4:30 PM</span>
+                      <span>Mon – Fri: 8:00 AM – 4:00 PM</span>
                     </div>
+                    <a
+                      href="mailto:carol.millsap@cretetownship.com"
+                      className="flex items-start gap-3 text-sm text-gray-700 hover:text-gold transition-colors"
+                    >
+                      <Mail className="w-4 h-4 text-gold flex-shrink-0 mt-0.5" />
+                      <span>Carol Millsap<br />carol.millsap@cretetownship.com</span>
+                    </a>
                   </CardContent>
                 </Card>
 
@@ -176,15 +221,49 @@ export default function CommunityCenterPage() {
                   <h2 className="font-display text-2xl font-bold text-navy mb-2">About the Community Center</h2>
                   <div className="w-16 h-[3px] bg-gold mb-6" />
                   <p className="text-gray-700 leading-relaxed mb-4">
-                    The Crete Township Community Center offers a variety of rooms and outdoor spaces available
-                    for reservation by civic organizations, non-profits, government bodies, and community
-                    groups. From intimate conference rooms to the large multi-purpose room, we have a space
-                    to fit your needs.
+                    Located at 25930 S Cottage Grove Ave in Crete, the Crete Township Community Center is
+                    the home of the Township&apos;s growing lineup of programs, events, and services. The
+                    Center hosts senior gatherings, youth and family programs, fitness classes, and
+                    Township-hosted expos and community celebrations throughout the year.
+                  </p>
+                  <p className="text-gray-700 leading-relaxed mb-4">
+                    The Center also offers a variety of rooms and outdoor spaces available for reservation
+                    by civic organizations, non-profits, government bodies, and community groups. From
+                    intimate conference rooms to the large multi-purpose room and the exterior park area,
+                    there is a space to fit your needs — for a single event, a recurring meeting, or
+                    ongoing office usage.
                   </p>
                   <p className="text-gray-700 leading-relaxed">
                     To reserve a space, complete the Building Usage Application below. Completed applications
                     must be submitted to the Township Office. Requests are subject to approval by the
-                    Crete Township Board of Trustees.
+                    Crete Township Board of Trustees. The Center is open Monday through Friday from
+                    8:00 AM to 4:00 PM.
+                  </p>
+                </div>
+
+                {/* What the Center offers */}
+                <div>
+                  <h2 className="font-display text-2xl font-bold text-navy mb-2">What the Center Offers</h2>
+                  <div className="w-16 h-[3px] bg-gold mb-6" />
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+                    {offerings.map((offering) => (
+                      <Card key={offering.title}>
+                        <CardContent className="p-5">
+                          <div className="flex items-center gap-3 mb-2">
+                            <div className="w-9 h-9 rounded-lg bg-gold-pale flex items-center justify-center flex-shrink-0">
+                              <offering.icon className="w-5 h-5 text-gold" />
+                            </div>
+                            <h3 className="text-base font-semibold text-navy">{offering.title}</h3>
+                          </div>
+                          <p className="text-sm text-gray-600 leading-relaxed">{offering.description}</p>
+                        </CardContent>
+                      </Card>
+                    ))}
+                  </div>
+                  <p className="text-xs text-gray-500 mt-4 italic">
+                    Program schedules change seasonally — check the{' '}
+                    <a href="/events" className="text-navy font-semibold hover:text-gold transition-colors">Events calendar</a>{' '}
+                    or call 708-722-1857 for current dates and times.
                   </p>
                 </div>
 
