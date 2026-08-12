@@ -1,5 +1,5 @@
 # Crete Township Website — Claude Code Project Memory
-> InterPeak Managed Services | Last updated: June 2026
+> InterPeak Managed Services | Last updated: August 2026
 > **Read this file at the start of every session before writing any code.**
 
 ---
@@ -10,9 +10,9 @@ Government website rebuild for Crete Township, Will County, Illinois.
 Replacing existing WordPress site at cretetownship.com.
 Client assets in hand — logos, logins, all existing PDFs accessible.
 
-**Live site (current):** https://www.cretetownship.com
-**Staging (Vercel):** TBD — add URL here once deployed
-**CMS Admin:** TBD — will be at /admin on same Vercel deployment
+**Live site:** https://www.cretetownship.com (aliased to the Vercel deployment as of Aug 2026 — the new site is live on the township domain)
+**Vercel URL:** https://crete-township-website.vercel.app
+**CMS Admin:** https://www.cretetownship.com/admin (TOTP MFA required)
 
 ## Dev server rules
 - Do NOT start `npm run dev` / `next dev` yourself. I run the dev server
@@ -28,7 +28,8 @@ Client assets in hand — logos, logins, all existing PDFs accessible.
 
 ## Architecture Decision (Final)
 
-**Payload CMS 3.x embedded inside Next.js 14 — single app, single deployment.**
+**Payload CMS 3.x embedded inside Next.js — single app, single deployment.**
+(Originally scaffolded on Next.js 14; upgraded to Next.js 16 as of Aug 2026.)
 
 Payload 3.x ("The One") runs as a Next.js plugin. The admin panel lives
 at /admin on the same Vercel deployment. No separate CMS server needed.
@@ -46,7 +47,7 @@ Chosen over Payload 2.x monorepo for:
 
 | Layer | Technology | Notes |
 |-------|-----------|-------|
-| Framework | Next.js 14 (App Router) | TypeScript, server components by default |
+| Framework | Next.js 16 (App Router) | TypeScript, server components by default; Turbopack builds |
 | CMS | Payload CMS 3.x | Runs inside Next.js as a plugin |
 | Database | Neon serverless Postgres | Free tier, no server to manage |
 | Styling | Tailwind CSS | Custom tokens defined below |
@@ -381,7 +382,7 @@ To check if it's set: `env | grep DATABASE_URI`
 
 - **Payload 3.x not 2.x** — single app inside Next.js, one Vercel deployment
 - **Neon for database** — serverless Postgres free tier, no Railway needed
-- **App Router only** — Next.js 14 App Router, NOT Pages Router
+- **App Router only** — Next.js App Router (currently Next 16), NOT Pages Router
 - **Server components by default** — use client only when interactivity required
 - **getPayload() in server components** — direct DB access, no HTTP overhead
 - **REST API preserved** — /api/* endpoints available for Phase 2 FlutterFlow
@@ -507,6 +508,9 @@ To check if it's set: `env | grep DATABASE_URI`
 **Next step:** (1) Add Contact Topics in CMS admin (`/admin/collections/contact-topics`) — Township Board, Assessor's Office, Road District, Township Clerk, General Assistance — each with notification email; (2) Configure FOIA notification email in site settings (`/admin/globals/site-settings`); (3) Add official bios via admin panel; (4) Run bulk upload script for all document collections (`unset DATABASE_URI && npx tsx scripts/bulk-upload.ts --collection board-agendas`); (5) Build remaining pages: About, Services landing, Community Center
 
 ## Known Gotchas
+- **Next.js 16, not 14**: the app was upgraded — don't consult Next 14 docs for caching/rendering behavior. `middleware.ts` → `proxy.ts` rename is pending (Next 16 deprecation warning at build).
+- **Vercel Turbopack build-cache corruption**: if a deploy fails with `Can't resolve '@vercel/turbopack-next/internal/font/google/font'`, the restored build cache is corrupt — redeploy without cache (`vercel deploy --prod --force` or uncheck "Use existing Build Cache" in the dashboard).
+- **Caching architecture (Aug 2026)**: all frontend pages are static/ISR (`revalidate = 300`); the alert banner is cached 60s via `unstable_cache` in `AgendaAlertBarWrapper` — NEVER add `noStore()`/`cookies()`/`headers()` to the frontend layout or a shared layout component, it forces every page dynamic. CMS changes appear within ~1–5 minutes.
 - **Highway Commissioner route**: `/documents/highway-commissioner` (no `-reports` suffix) — correct slug used in nav and all internal links
 - **Document Library filter cap**: Each filter tab shows max 8 docs; homepage fetches 8 per collection (agendas/minutes/financial)
 - **scripts/ excluded from tsconfig**: bulk-upload.ts has a `CollectionSlug` type that doesn't match Payload's internal types — excluded via `tsconfig.json` `exclude` array to prevent Vercel build failures
