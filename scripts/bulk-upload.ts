@@ -56,6 +56,10 @@ interface CollectionConfig {
   sourceDir: string
   formatTitle: (date: string | null, filename: string) => string
   extraFields?: (date: string | null, filename: string) => Record<string, unknown>
+  // Explicit filename → title/date mapping. When present, only manifest files are
+  // processed (including "(1)"-suffixed ones the auto-filter would drop) and the
+  // manifest title/date win over filename parsing.
+  manifest?: Record<string, { title: string; date: string }>
 }
 
 const MONTH_NAMES = [
@@ -126,6 +130,29 @@ const COLLECTIONS: Record<CollectionSlug, CollectionConfig> = {
       const base = filename.replace(/\.pdf$/i, '').replace(/[-_]/g, ' ').trim()
       return base || 'Newsletter'
     },
+    // Seasons identified from each PDF's cover letter ("From the Supervisor").
+    // Filenames are year-only, so dates are approximate publication dates.
+    manifest: {
+      '2018 - Newsletter.pdf': { title: '2018 - Fall Newsletter', date: '2018-10-01' },
+      '2019 - Newsletter (1).pdf': { title: '2019 - Spring Newsletter', date: '2019-04-01' },
+      '2019 - Newsletter (2).pdf': { title: '2019 - Summer Newsletter', date: '2019-07-01' },
+      '2019 - Newsletter.pdf': { title: '2019 - Fall Newsletter', date: '2019-10-01' },
+      '2020 - Newsletter.pdf': { title: '2020 - Spring Newsletter', date: '2020-04-01' },
+      '2020 - Newsletter (1).pdf': { title: '2020 - Summer Newsletter', date: '2020-07-01' },
+      '2020 - Newsletter (2).pdf': { title: '2020 - Winter Newsletter', date: '2020-12-01' },
+      '2021 - Newsletter.pdf': { title: '2021 - Spring Newsletter', date: '2021-04-01' },
+      '2021 - Newsletter (1).pdf': { title: '2021 - Summer Newsletter', date: '2021-07-01' },
+      '2021 - Newsletter (2).pdf': { title: '2021 - Fall Newsletter', date: '2021-10-01' },
+      '2022 - Newsletter.pdf': { title: '2022 - Spring Newsletter', date: '2022-04-01' },
+      '2022 - Newsletter (1).pdf': { title: '2022 - Summer Newsletter', date: '2022-07-01' },
+      '2022 - Newsletter (2).pdf': { title: '2022 - Winter Newsletter', date: '2022-12-01' },
+      '2023 - Newsletter (1).pdf': { title: '2023 - Winter Newsletter', date: '2023-01-15' },
+      '2023 - Newsletter (2).pdf': { title: '2023 - Summer Newsletter', date: '2023-07-01' },
+      '2023 - Newsletter.pdf': { title: '2023 - Fall Newsletter', date: '2023-10-01' },
+      '2024 - Newsletter.pdf': { title: '2024 - Winter Newsletter', date: '2024-01-15' },
+      '2025 - Newsletter.pdf': { title: '2025 - Fall Newsletter', date: '2025-10-01' },
+      '2026 - Spring Newsletter.pdf': { title: '2026 - Spring Newsletter', date: '2026-02-28' },
+    },
   },
   'annual-town-meetings': {
     slug: 'board-agendas',
@@ -167,12 +194,29 @@ async function run() {
     process.exit(1)
   }
 
-  // Only process PDFs; skip duplicates like "(1)"
+  // Only process PDFs. Without a manifest, skip "(1)"-style duplicates; with a
+  // manifest, process exactly the listed files (numbered ones are real editions).
   const allFiles = fs.readdirSync(rootDir)
   const pdfFiles = allFiles
     .filter((f) => f.toLowerCase().endsWith('.pdf'))
-    .filter((f) => !/ \(\d+\)\.pdf$/i.test(f)) // skip "(1)" duplicates
+    .filter((f) => (cfg.manifest ? f in cfg.manifest : !/ \(\d+\)\.pdf$/i.test(f)))
     .sort()
+
+  if (cfg.manifest) {
+    const missing = Object.keys(cfg.manifest).filter((f) => !allFiles.includes(f))
+    const unlisted = allFiles.filter((f) => f.toLowerCase().endsWith('.pdf') && !(f in cfg.manifest!))
+    if (missing.length) console.warn(`⚠️   Manifest files not found on disk: ${missing.join(', ')}`)
+    if (unlisted.length) console.warn(`⚠️   PDFs on disk not in manifest (skipped): ${unlisted.join(', ')}`)
+  }
+
+  const resolveMeta = (filename: string) => {
+    const parsed = parseDocumentMetadata(filename)
+    const manifestEntry = cfg.manifest?.[filename]
+    return {
+      date: manifestEntry?.date ?? parsed.date,
+      title: manifestEntry?.title ?? cfg.formatTitle(parsed.date, filename),
+    }
+  }
 
   console.log(`\n📂  Source: ${rootDir}`)
   console.log(`📄  PDFs found: ${pdfFiles.length} (skipping ${allFiles.filter(f => / \(\d+\)/.test(f)).length} duplicates)`)
@@ -186,8 +230,8 @@ async function run() {
     const slice = pdfFiles.slice(startFrom, startFrom + 10)
     console.log(`Preview (first ${slice.length} of ${pdfFiles.length}):\n`)
     for (const filename of slice) {
-      const meta = parseDocumentMetadata(filename)
-      const title = cfg.formatTitle(meta.date, filename)
+      const meta = resolveMeta(filename)
+      const title = meta.title
       const extra = cfg.extraFields?.(meta.date, filename) ?? {}
       console.log(`  File:  ${filename}`)
       console.log(`  Title: ${title}`)
@@ -212,8 +256,8 @@ async function run() {
   for (let i = startFrom; i < pdfFiles.length; i++) {
     const filename = pdfFiles[i]
     const filePath = path.join(rootDir, filename)
-    const meta = parseDocumentMetadata(filename)
-    const title = cfg.formatTitle(meta.date, filename)
+    const meta = resolveMeta(filename)
+    const title = meta.title
 
     process.stdout.write(`[${i + 1}/${pdfFiles.length}] ${filename} → "${title}" ... `)
 

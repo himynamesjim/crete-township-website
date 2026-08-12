@@ -11,6 +11,7 @@ interface Document {
   title: string
   date: string
   type: string
+  collection?: string
   file: any
   description?: string
 }
@@ -34,28 +35,20 @@ export function DocumentLibrary({ documents }: DocumentLibraryProps) {
     })
   }
 
+  // Each filter maps to the Payload collection the document came from
+  const filterCollections: Record<Exclude<FilterType, 'all'>, string> = {
+    minutes: 'meeting-minutes',
+    agendas: 'board-agendas',
+    financial: 'financial-reports',
+    assessor: 'assessor-documents',
+    'road-district': 'road-district-reports',
+    newsletters: 'newsletters',
+  }
+
   // Filter documents based on active filter
   const filteredDocuments = documents.filter((doc) => {
     if (activeFilter === 'all') return true
-
-    const docType = doc.type.toLowerCase()
-
-    switch (activeFilter) {
-      case 'minutes':
-        return docType.includes('meeting minutes') || docType.includes('minutes')
-      case 'agendas':
-        return docType.includes('agenda')
-      case 'financial':
-        return docType.includes('financial')
-      case 'assessor':
-        return docType.includes('assessor')
-      case 'road-district':
-        return docType.includes('road') || docType.includes('highway')
-      case 'newsletters':
-        return docType.includes('newsletter')
-      default:
-        return true
-    }
+    return doc.collection === filterCollections[activeFilter]
   }).slice(0, 8)
 
   const filterButtons = [

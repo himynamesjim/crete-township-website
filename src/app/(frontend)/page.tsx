@@ -34,7 +34,7 @@ export default async function HomePage() {
   today.setHours(0, 0, 0, 0)
 
   // Fetch recent documents, announcements, and upcoming agenda
-  const [boardAgendas, meetingMinutes, financialReports, announcements, upcomingAgenda] = await Promise.all([
+  const [boardAgendas, meetingMinutes, financialReports, assessorDocuments, roadDistrictReports, newsletters, announcements, upcomingAgenda] = await Promise.all([
     payload.find({
       collection: 'board-agendas',
       where: { status: { equals: 'published' } },
@@ -51,6 +51,27 @@ export default async function HomePage() {
     }),
     payload.find({
       collection: 'financial-reports',
+      where: { status: { equals: 'published' } },
+      sort: '-date',
+      limit: 8,
+      depth: 1,
+    }),
+    payload.find({
+      collection: 'assessor-documents',
+      where: { status: { equals: 'published' } },
+      sort: '-date',
+      limit: 8,
+      depth: 1,
+    }),
+    payload.find({
+      collection: 'road-district-reports',
+      where: { status: { equals: 'published' } },
+      sort: '-date',
+      limit: 8,
+      depth: 1,
+    }),
+    payload.find({
+      collection: 'newsletters',
       where: { status: { equals: 'published' } },
       sort: '-date',
       limit: 8,
@@ -87,19 +108,55 @@ export default async function HomePage() {
     }),
   ])
 
-  // Combine documents - Board Agendas first, then Meeting Minutes, then Financial Reports
+  // Combine documents - Board Agendas first, then Meeting Minutes, then the rest.
+  // Each doc carries its source collection slug so DocumentLibrary can filter reliably.
+  const financialTypeLabels: Record<string, string> = {
+    'audited-statement': 'Audited Financial Statement',
+    'cash-balance': 'Cash Balance Report',
+    'budget-ordinance': 'Budget Ordinance',
+    'tax-levy': 'Tax Levy',
+  }
+  const assessorTypeLabels: Record<string, string> = {
+    'exemption-form': 'Exemption Form',
+    'hoa': 'HOA Document',
+    'assessor-minutes': 'Assessor Minutes',
+  }
+  const roadDistrictTypeLabels: Record<string, string> = {
+    'highway-commissioner': 'Highway Commissioner Report',
+    'environmental': 'Environmental Report',
+    'storm-sewer': 'Storm Sewer Report',
+    'road-bridge-levy': 'Road & Bridge Levy',
+  }
   const allRecentDocs = [
     ...boardAgendas.docs.map((doc: any) => ({
       ...doc,
+      collection: 'board-agendas',
       type: 'Board Agenda',
     })),
     ...meetingMinutes.docs.map((doc: any) => ({
       ...doc,
+      collection: 'meeting-minutes',
       type: 'Meeting Minutes',
     })),
     ...financialReports.docs.map((doc: any) => ({
       ...doc,
-      type: doc.documentType || 'Financial Report',
+      collection: 'financial-reports',
+      type: financialTypeLabels[doc.documentType] || 'Financial Report',
+    })),
+    ...assessorDocuments.docs.map((doc: any) => ({
+      ...doc,
+      collection: 'assessor-documents',
+      type: assessorTypeLabels[doc.documentType] || 'Assessor Document',
+    })),
+    ...roadDistrictReports.docs.map((doc: any) => ({
+      ...doc,
+      collection: 'road-district-reports',
+      type: roadDistrictTypeLabels[doc.documentType] || 'Road District Report',
+    })),
+    ...newsletters.docs.map((doc: any) => ({
+      ...doc,
+      collection: 'newsletters',
+      type: 'Newsletter',
     })),
   ]
     .sort((a: any, b: any) => {
