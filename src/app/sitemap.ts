@@ -31,6 +31,9 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: `${BASE}/road-district`,                   lastModified: now, changeFrequency: 'monthly', priority: 0.8 },
     { url: `${BASE}/road-district/branch-pickup`,     lastModified: now, changeFrequency: 'yearly',  priority: 0.6 },
     { url: `${BASE}/road-district/environment`,       lastModified: now, changeFrequency: 'monthly', priority: 0.6 },
+    { url: `${BASE}/community-center`,                lastModified: now, changeFrequency: 'monthly', priority: 0.8 },
+    { url: `${BASE}/community-center/application`,    lastModified: now, changeFrequency: 'yearly',  priority: 0.7 },
+    { url: `${BASE}/community-center/survey`,         lastModified: now, changeFrequency: 'yearly',  priority: 0.5 },
     // Services
     { url: `${BASE}/services/foia`,                   lastModified: now, changeFrequency: 'yearly',  priority: 0.7 },
     { url: `${BASE}/services/general-assistance`,     lastModified: now, changeFrequency: 'monthly', priority: 0.7 },

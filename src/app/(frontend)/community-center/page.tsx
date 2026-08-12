@@ -140,8 +140,8 @@ export default function CommunityCenterPage() {
           <div className="max-w-[1400px] mx-auto px-8">
             <div className="grid grid-cols-1 lg:grid-cols-3 gap-10">
 
-              {/* Sidebar */}
-              <div className="space-y-5">
+              {/* Sidebar — sticky so it follows the reader down the page */}
+              <div className="space-y-5 lg:sticky lg:top-24 lg:self-start lg:max-h-[calc(100vh-7rem)] lg:overflow-y-auto">
 
                 {/* Contact card */}
                 <Card className="overflow-hidden">

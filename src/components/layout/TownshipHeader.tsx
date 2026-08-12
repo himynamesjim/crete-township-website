@@ -83,7 +83,7 @@ const navigation: NavItem[] = [
     href: '/community-center',
     children: [
       { label: 'Community Center Home', href: '/community-center' },
-      { label: 'Building Usage Application', href: '/community-center' },
+      { label: 'Building Usage Application', href: '/community-center/application' },
       { label: 'Resident Survey', href: '/community-center/survey' },
     ],
   },
