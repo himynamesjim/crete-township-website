@@ -8,6 +8,7 @@ import { FacebookFeed } from '@/components/FacebookFeed'
 import { NextBoardMeeting } from '@/components/NextBoardMeeting'
 import { CalendarEvents } from '@/components/CalendarEvents'
 import { NewsletterSignup } from '@/components/NewsletterSignup'
+import { AnnouncementBody } from '@/components/AnnouncementBody'
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
@@ -26,34 +27,8 @@ export const metadata: Metadata = {
     'Official website of Crete Township, Will County, Illinois. Your local government resource for meeting documents, township services, community events, and resident assistance.',
 }
 
-// Announcement bodies are plain textareas in the CMS — render URLs as links
-// while whitespace-pre-line on the container preserves paragraphs/line breaks.
-function AnnouncementBody({ text }: { text: string }) {
-  const parts = text.split(/(https?:\/\/[^\s]+)/g)
-  return (
-    <p className="text-sm text-gray-600 mb-2 whitespace-pre-line leading-relaxed">
-      {parts.map((part, i) => {
-        if (!/^https?:\/\//.test(part)) return part
-        // Keep trailing sentence punctuation out of the link target
-        const url = part.replace(/[.,;:)]+$/, '')
-        const trailing = part.slice(url.length)
-        return (
-          <React.Fragment key={i}>
-            <a
-              href={url}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-navy font-semibold underline hover:text-gold transition-colors break-all"
-            >
-              {url}
-            </a>
-            {trailing}
-          </React.Fragment>
-        )
-      })}
-    </p>
-  )
-}
+// AnnouncementBody (client component) linkifies URLs, preserves line
+// breaks, and collapses long bodies behind a "View more" toggle.
 
 export default async function HomePage() {
   const payload = await getPayload({ config })
