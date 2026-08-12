@@ -38,19 +38,29 @@ export const AgendaAlertBar: React.FC<AgendaAlertBarProps> = ({ agenda }) => {
   return (
     <>
       <div className="bg-gold text-white border-b-[3px] border-gold-light">
-        <div className="max-w-[1400px] mx-auto px-8">
-          <div className="h-12 flex items-center justify-center text-center">
-            <span className="text-sm font-semibold">
-              <strong>Upcoming Board Meeting Agenda:</strong> {formatDate(agenda.date)}
+        <div className="max-w-[1400px] mx-auto px-4 sm:px-8">
+          <div className="py-2 min-h-12 flex flex-col sm:flex-row flex-wrap items-center justify-center gap-y-1 gap-x-2 text-center text-sm font-semibold">
+            <span>
+              <strong>
+                <span className="sm:hidden">Board Meeting:</span>
+                <span className="hidden sm:inline">Upcoming Board Meeting Agenda:</span>
+              </strong>{' '}
+              {formatDate(agenda.date)}
               {agenda.meetingTime && ` at ${agenda.meetingTime}`}
-              {agenda.location && ` — ${agenda.location}`} |{' '}
+              {/* Location adds too much length for small screens */}
+              {agenda.location && <span className="hidden md:inline"> — {agenda.location}</span>}
+            </span>
+            <span className="flex items-center gap-2 whitespace-nowrap">
+              <span className="hidden sm:inline" aria-hidden>
+                |
+              </span>
               <button
                 onClick={handleViewAgenda}
                 className="underline hover:text-white/90 cursor-pointer"
               >
                 View Agenda →
-              </button>{' '}
-              |{' '}
+              </button>
+              <span aria-hidden>|</span>
               <a
                 href={BOARD_MEETING_ZOOM_URL}
                 target="_blank"
