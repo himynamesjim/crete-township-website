@@ -21,6 +21,7 @@ const merriweather = Merriweather({
   display: 'swap',
 })
 
+import { Analytics } from '@vercel/analytics/next'
 import { TownshipHeader } from '@/components/layout/TownshipHeader'
 import { TownshipFooter } from '@/components/layout/TownshipFooter'
 import { AgendaAlertBarWrapper } from '@/components/layout/AgendaAlertBarWrapper'
@@ -83,6 +84,7 @@ export default async function RootLayout({ children }: { children: React.ReactNo
           <TownshipFooter />
           <ADAAccessibilityWidget />
         </Providers>
+        <Analytics />
       </body>
     </html>
   )
