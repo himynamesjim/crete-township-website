@@ -4,6 +4,6 @@
  * agenda alert bar, and board meeting items on the events calendar.
  */
 export const BOARD_MEETING_ZOOM_URL =
-  'https://us02web.zoom.us/j/82899673080?pwd=TWZxOTdWVFpOT1daUEh6azh1RjlJQT09'
+  'https://us06web.zoom.us/j/89894874846?pwd=zQBhJsG2jBEFZeBGXsEeLo8vjk3Fw6.1'
 
-export const BOARD_MEETING_ZOOM_ID = '828 9967 3080'
+export const BOARD_MEETING_ZOOM_ID = '898 9487 4846'
