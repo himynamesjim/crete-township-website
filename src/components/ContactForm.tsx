@@ -8,6 +8,7 @@ export interface ContactTopic {
   label: string
   description?: string | null
   phone?: string | null
+  email?: string | null
 }
 
 interface Props {

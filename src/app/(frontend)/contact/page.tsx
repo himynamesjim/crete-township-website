@@ -29,6 +29,7 @@ export default async function ContactPage() {
     label: doc.label as string,
     description: (doc.description as string) ?? null,
     phone: (doc.phone as string) ?? null,
+    email: (doc.email as string) ?? null,
   }))
 
   return (
@@ -129,8 +130,15 @@ export default async function ContactPage() {
                       <p className="text-sm font-semibold text-navy">{t.label}</p>
                       {t.description && <p className="text-xs text-gray-500 mt-0.5">{t.description}</p>}
                       {t.phone && (
-                        <a href={`tel:${t.phone}`} className="text-xs text-navy hover:text-gold transition-colors mt-0.5 block">
+                        <a href={`tel:${t.phone.replace(/[^0-9+]/g, '')}`} className="flex items-center gap-1.5 text-xs text-navy hover:text-gold-dark transition-colors mt-1">
+                          <Phone className="w-3 h-3 text-gold flex-shrink-0" aria-hidden="true" />
                           {t.phone}
+                        </a>
+                      )}
+                      {t.email && (
+                        <a href={`mailto:${t.email}`} className="flex items-center gap-1.5 text-xs text-navy hover:text-gold-dark transition-colors mt-1 break-all">
+                          <Mail className="w-3 h-3 text-gold flex-shrink-0" aria-hidden="true" />
+                          {t.email}
                         </a>
                       )}
                     </div>
