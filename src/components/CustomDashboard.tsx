@@ -32,19 +32,39 @@ const QuickUpload: React.FC = () => {
       const update = (state: UploadStatus['state'], message: string) =>
         setStatuses((prev) => prev.map((s) => (s.name === file.name ? { ...s, state, message } : s)))
       try {
-        const formData = new FormData()
-        formData.append('file', file)
-        formData.append('category', category)
-        if (date) formData.append('date', date)
-        const res = await fetch('/api/quick-upload', { method: 'POST', body: formData, credentials: 'include' })
-        const data = await res.json()
+        // Stage the file in Vercel Blob straight from the browser — direct
+        // multipart POSTs 413 on large PDFs at the platform body-size limit
+        const { upload } = await import('@vercel/blob/client')
+        const blob = await upload(`quick-upload/${file.name}`, file, {
+          access: 'public',
+          handleUploadUrl: '/api/quick-upload/blob-token',
+          multipart: true,
+        })
+
+        const res = await fetch('/api/quick-upload', {
+          method: 'POST',
+          credentials: 'include',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            blobUrl: blob.url,
+            filename: file.name,
+            category,
+            date: date || undefined,
+          }),
+        })
+        let data: any = null
+        try {
+          data = await res.json()
+        } catch {
+          // non-JSON error page from the platform
+        }
         if (res.ok) {
           update('done', `Published as "${data.title}"`)
         } else {
-          update('error', data.error || 'Upload failed')
+          update('error', data?.error || `Upload failed (HTTP ${res.status})`)
         }
-      } catch {
-        update('error', 'Upload failed — network error')
+      } catch (err) {
+        update('error', err instanceof Error ? `Upload failed — ${err.message}` : 'Upload failed — network error')
       }
     }
   }

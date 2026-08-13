@@ -1,4 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server'
+import { del } from '@vercel/blob'
 import { getPayload } from 'payload'
 import config from '@payload-config'
 import { parseDocumentMetadata } from '@/utilities/parseDocumentMetadata'
@@ -87,21 +88,48 @@ export async function POST(request: NextRequest) {
       return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
     }
 
-    const formData = await request.formData()
-    const file = formData.get('file') as File | null
-    let category = formData.get('category') as string | null
-    const dateOverride = (formData.get('date') as string | null) || null
+    // Two intake modes: JSON {blobUrl, filename, ...} for large files staged
+    // in Vercel Blob by the browser (bypasses the request body size limit),
+    // or legacy multipart form-data with the file inline.
+    let filename: string
+    let category: string | null
+    let dateOverride: string | null
+    let blobUrl: string | null = null
+    let inlineFile: File | null = null
 
-    if (!file || !category) {
-      return NextResponse.json({ error: 'Missing file or category' }, { status: 400 })
+    if ((request.headers.get('content-type') || '').includes('application/json')) {
+      const body = await request.json()
+      blobUrl = (body.blobUrl as string) || null
+      filename = (body.filename as string) || ''
+      category = (body.category as string) || null
+      dateOverride = (body.date as string) || null
+
+      if (!blobUrl || !filename || !category) {
+        return NextResponse.json({ error: 'Missing blobUrl, filename, or category' }, { status: 400 })
+      }
+      // Only ingest from Vercel Blob storage — never arbitrary URLs
+      const host = new URL(blobUrl).hostname
+      if (!host.endsWith('.blob.vercel-storage.com')) {
+        return NextResponse.json({ error: 'Invalid file URL' }, { status: 400 })
+      }
+    } else {
+      const formData = await request.formData()
+      inlineFile = formData.get('file') as File | null
+      category = formData.get('category') as string | null
+      dateOverride = (formData.get('date') as string | null) || null
+
+      if (!inlineFile || !category) {
+        return NextResponse.json({ error: 'Missing file or category' }, { status: 400 })
+      }
+      filename = inlineFile.name
     }
 
-    const detected = file ? detectCategory(file.name) : null
+    const detected = detectCategory(filename)
 
     if (category === 'auto') {
       if (!detected) {
         return NextResponse.json(
-          { error: `Could not tell what "${file.name}" is from its name — pick a category and retry.` },
+          { error: `Could not tell what "${filename}" is from its name — pick a category and retry.` },
           { status: 422 },
         )
       }
@@ -117,7 +145,7 @@ export async function POST(request: NextRequest) {
       // than silently filing it in the wrong collection.
       const detectedLabel = familyOf(detected) === 'minutes' ? 'Meeting Minutes' : 'an Agenda'
       return NextResponse.json(
-        { error: `"${file.name}" looks like ${detectedLabel}, but a different category was selected. Double-check the category and retry.` },
+        { error: `"${filename}" looks like ${detectedLabel}, but a different category was selected. Double-check the category and retry.` },
         { status: 422 },
       )
     }
@@ -128,18 +156,18 @@ export async function POST(request: NextRequest) {
     const cfg = CATEGORIES[category]
 
     // Date: explicit override wins, else parse from the filename
-    const parsed = parseDocumentMetadata(file.name)
+    const parsed = parseDocumentMetadata(filename)
     const date = dateOverride || parsed.date
     if (!date && cfg.collection !== 'newsletters') {
       return NextResponse.json(
-        { error: `Could not detect a date in "${file.name}" — pick a meeting date and retry.` },
+        { error: `Could not detect a date in "${filename}" — pick a meeting date and retry.` },
         { status: 422 },
       )
     }
 
     const title =
       cfg.collection === 'newsletters'
-        ? file.name.replace(/\.(pdf|docx?)$/i, '').replace(/[-_]/g, ' ').trim() || 'Newsletter'
+        ? filename.replace(/\.(pdf|docx?)$/i, '').replace(/[-_]/g, ' ').trim() || 'Newsletter'
         : `${longDate(date!)} - ${cfg.titleSuffix}`
 
     // Duplicate guard
@@ -152,9 +180,20 @@ export async function POST(request: NextRequest) {
       return NextResponse.json({ error: `"${title}" already exists — skipped.` }, { status: 409 })
     }
 
+    // Get the file bytes — from the staged blob (large files) or the inline upload
+    let buffer: Buffer
+    if (blobUrl) {
+      const blobRes = await fetch(blobUrl)
+      if (!blobRes.ok) {
+        return NextResponse.json({ error: 'Could not read the uploaded file — try again.' }, { status: 502 })
+      }
+      buffer = Buffer.from(await blobRes.arrayBuffer())
+    } else {
+      buffer = Buffer.from(await inlineFile!.arrayBuffer())
+    }
+
     // Convert .docx to PDF
-    let buffer = Buffer.from(await file.arrayBuffer())
-    if (/\.docx$/i.test(file.name)) {
+    if (/\.docx$/i.test(filename)) {
       buffer = await convertDocxToPdf(buffer)
     }
 
@@ -176,6 +215,11 @@ export async function POST(request: NextRequest) {
         ...(cfg.extraFields?.(date) ?? {}),
       } as any,
     })
+
+    // The staged blob was re-uploaded into Payload's own storage — clean it up
+    if (blobUrl) {
+      await del(blobUrl).catch((err) => console.warn('Quick upload: temp blob cleanup failed', err))
+    }
 
     return NextResponse.json({
       success: true,
