@@ -101,7 +101,7 @@ export default function DocumentsPage() {
                       <Icon className={`w-6 h-6 ${category.color} group-hover:text-white`} />
                     </div>
                     <div className="flex-1">
-                      <h3 className="text-lg font-semibold text-navy mb-2 group-hover:text-gold transition-colors duration-200">
+                      <h3 className="text-lg font-semibold text-navy mb-2 group-hover:text-gold-dark transition-colors duration-200">
                         {category.title}
                       </h3>
                       <p className="text-sm text-gray-600 leading-relaxed">
@@ -134,13 +134,13 @@ export default function DocumentsPage() {
             <p>
               If you need assistance locating a specific document or require a document that is not
               available online, please contact the Township Office at{' '}
-              <a href="tel:708-672-8279" className="text-gold hover:text-gold-light">
+              <a href="tel:708-672-8279" className="text-gold-dark underline hover:text-navy">
                 708-672-8279
               </a>{' '}
               or email{' '}
               <a
                 href="mailto:administrator@cretetownship.com"
-                className="text-gold hover:text-gold-light"
+                className="text-gold-dark underline hover:text-navy"
               >
                 administrator@cretetownship.com
               </a>

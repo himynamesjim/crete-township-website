@@ -51,7 +51,7 @@ export const NextBoardMeeting: React.FC<NextBoardMeetingProps> = ({ agenda }) =>
           </div>
         </div>
         <a href={zoomLink} target="_blank" rel="noopener noreferrer">
-          <Button variant="navy" className="w-full bg-gold hover:bg-gold-light">
+          <Button className="w-full">
             📹 Join via Zoom
           </Button>
         </a>

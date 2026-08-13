@@ -37,7 +37,8 @@ export const AgendaAlertBar: React.FC<AgendaAlertBarProps> = ({ agenda }) => {
 
   return (
     <>
-      <div className="bg-gold text-white border-b-[3px] border-gold-light">
+      {/* Navy text on gold: white-on-gold is 2.7:1 and fails WCAG AA */}
+      <div className="bg-gold text-navy-dark border-b-[3px] border-gold-light">
         <div className="max-w-[1400px] mx-auto px-4 sm:px-8">
           <div className="py-2 min-h-12 flex flex-col sm:flex-row flex-wrap items-center justify-center gap-y-1 gap-x-2 text-center text-sm font-semibold">
             <span>
@@ -56,7 +57,7 @@ export const AgendaAlertBar: React.FC<AgendaAlertBarProps> = ({ agenda }) => {
               </span>
               <button
                 onClick={handleViewAgenda}
-                className="underline hover:text-white/90 cursor-pointer"
+                className="underline hover:text-navy cursor-pointer"
               >
                 View Agenda →
               </button>
@@ -65,7 +66,7 @@ export const AgendaAlertBar: React.FC<AgendaAlertBarProps> = ({ agenda }) => {
                 href={BOARD_MEETING_ZOOM_URL}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="underline hover:text-white/90"
+                className="underline hover:text-navy"
               >
                 Join via Zoom
               </a>

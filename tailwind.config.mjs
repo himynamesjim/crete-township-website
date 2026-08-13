@@ -16,6 +16,9 @@ const config = {
           DEFAULT: '#C8960C',
           light: '#E8AE1A',
           pale: '#FDF4DC',
+          // WCAG AA-compliant gold for text on white/cream (≥4.5:1);
+          // DEFAULT gold is decorative-only on light backgrounds (2.7:1)
+          dark: '#8A6508',
         },
         cream: '#F8F5F0',
         gray: {

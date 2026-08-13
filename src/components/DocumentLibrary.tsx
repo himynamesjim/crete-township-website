@@ -71,7 +71,7 @@ export function DocumentLibrary({ documents }: DocumentLibraryProps) {
           <div className="w-12 h-[3px] bg-gold" />
         </div>
         <Link href="/documents">
-          <Button variant="link" className="text-gold">
+          <Button variant="link" className="text-gold-dark">
             Browse all documents →
           </Button>
         </Link>
@@ -85,8 +85,8 @@ export function DocumentLibrary({ documents }: DocumentLibraryProps) {
             onClick={() => setActiveFilter(button.value)}
             className={`px-4 py-2 rounded-lg text-sm font-medium transition-all ${
               activeFilter === button.value
-                ? 'bg-gold text-white shadow-md'
-                : 'bg-white text-gray-600 border border-gray-200 hover:border-gold hover:text-gold'
+                ? 'bg-gold text-navy-dark shadow-md'
+                : 'bg-white text-gray-600 border border-gray-200 hover:border-gold hover:text-gold-dark'
             }`}
           >
             {button.label}

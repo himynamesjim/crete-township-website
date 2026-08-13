@@ -75,10 +75,16 @@ export default async function RootLayout({ children }: { children: React.ReactNo
             }),
           }}
         />
+        <a
+          href="#main-content"
+          className="sr-only focus:not-sr-only focus:fixed focus:top-2 focus:left-2 focus:z-[100] focus:bg-navy focus:text-white focus:px-4 focus:py-2 focus:rounded focus:outline-2 focus:outline-gold"
+        >
+          Skip to main content
+        </a>
         <Providers>
           <AgendaAlertBarWrapper />
           <TownshipHeader />
-          <main className="flex-1 min-h-screen bg-cream">
+          <main id="main-content" className="flex-1 min-h-screen bg-cream">
             {children}
           </main>
           <TownshipFooter />

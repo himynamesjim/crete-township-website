@@ -105,7 +105,7 @@ export function CalendarEvents({ limit = 10, showViewAll = true, variant = 'defa
 
             return (
               <div key={index} className="flex gap-4">
-                <div className="flex flex-col items-center justify-center w-14 h-14 bg-gold text-white rounded flex-shrink-0">
+                <div className="flex flex-col items-center justify-center w-14 h-14 bg-gold text-navy-dark rounded flex-shrink-0">
                   <span className="text-[10px] font-medium uppercase">{month}</span>
                   <span className="text-2xl font-bold leading-none">{day}</span>
                 </div>

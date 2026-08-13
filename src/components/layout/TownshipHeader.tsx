@@ -193,9 +193,10 @@ export const TownshipHeader: React.FC = () => {
             <button
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
               className="lg:hidden p-2 text-white hover:bg-navy-light rounded"
-              aria-label="Toggle menu"
+              aria-label={mobileMenuOpen ? 'Close menu' : 'Open menu'}
+              aria-expanded={mobileMenuOpen}
             >
-              {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+              {mobileMenuOpen ? <X className="w-6 h-6" aria-hidden="true" /> : <Menu className="w-6 h-6" aria-hidden="true" />}
             </button>
           </div>
         </div>
@@ -235,17 +236,19 @@ export const TownshipHeader: React.FC = () => {
                 <li key={item.href} className="relative group">
                   {item.children ? (
                     <>
-                      <button className={cn(
+                      <button
+                        aria-haspopup="true"
+                        className={cn(
                         "px-4 py-4 text-[13.5px] font-medium transition-colors flex items-center gap-1",
                         isActive
                           ? "text-navy border-b-[3px] border-gold"
                           : "text-gray-600 hover:text-navy hover:bg-white"
                       )}>
                         {item.label}
-                        <ChevronDown className="w-3 h-3" />
+                        <ChevronDown className="w-3 h-3" aria-hidden="true" />
                       </button>
-                      {/* Dropdown */}
-                      <ul className="absolute left-0 top-full min-w-[200px] bg-white border border-gray-200 shadow-lg rounded-b opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all z-50">
+                      {/* Dropdown — visible on hover AND keyboard focus so tab users can reach child links */}
+                      <ul className="absolute left-0 top-full min-w-[200px] bg-white border border-gray-200 shadow-lg rounded-b opacity-0 invisible group-hover:opacity-100 group-hover:visible group-focus-within:opacity-100 group-focus-within:visible transition-all z-50">
                         {item.children.map((child) => (
                           <li key={child.label}>
                             <Link

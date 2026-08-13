@@ -8,16 +8,16 @@ const buttonVariants = cva(
   {
     variants: {
       variant: {
-        // Gold primary - main CTA button
-        default: 'bg-gold text-white shadow-sm hover:bg-gold-light focus:outline-none focus:ring-2 focus:ring-gold focus:ring-offset-2',
+        // Gold primary - main CTA button (navy text: white-on-gold is 2.7:1, fails WCAG AA)
+        default: 'bg-gold text-navy-dark shadow-sm hover:bg-gold-light focus:outline-none focus:ring-2 focus:ring-gold focus:ring-offset-2',
         // Navy outline - secondary actions
         outline: 'border-2 border-navy bg-transparent text-navy hover:bg-navy hover:text-white focus:outline-none focus:ring-2 focus:ring-navy focus:ring-offset-2',
         // Navy solid - alternate primary
         navy: 'bg-navy text-white shadow-sm hover:bg-navy-light focus:outline-none focus:ring-2 focus:ring-navy focus:ring-offset-2',
         // Ghost - minimal actions
         ghost: 'hover:bg-gray-100 text-gray-600 hover:text-navy',
-        // Link style
-        link: 'text-gold underline-offset-4 hover:underline hover:text-gold-light',
+        // Link style (gold-dark: brand gold fails contrast as text on light backgrounds)
+        link: 'text-gold-dark underline-offset-4 hover:underline hover:text-navy',
       },
       size: {
         clear: '',

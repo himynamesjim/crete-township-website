@@ -9,14 +9,14 @@ const badgeVariants = cva(
       variant: {
         // Category pills for announcements, events
         default: 'bg-gray-200 text-gray-800 hover:bg-gray-300',
-        board: 'bg-gold-pale text-gold border border-gold/30',
+        board: 'bg-gold-pale text-gold-dark border border-gold/30',
         roadDistrict: 'bg-navy/10 text-navy border border-navy/30',
         assessor: 'bg-blue-50 text-blue-700 border border-blue-200',
         community: 'bg-green-50 text-green-700 border border-green-200',
         general: 'bg-gray-100 text-gray-700 border border-gray-300',
 
-        // Date box for events calendar
-        dateBox: 'flex-col bg-gold text-white items-center justify-center rounded-md shadow-sm',
+        // Date box for events calendar (navy text: white-on-gold fails WCAG AA contrast)
+        dateBox: 'flex-col bg-gold text-navy-dark items-center justify-center rounded-md shadow-sm',
       },
       size: {
         sm: 'px-2 py-0.5 text-xs rounded',
@@ -51,7 +51,7 @@ const DateBadge: React.FC<DateBadgeProps> = ({ month, day, className, ...props }
   return (
     <div
       className={cn(
-        'flex flex-col items-center justify-center w-14 h-14 bg-gold text-white rounded-md shadow-sm',
+        'flex flex-col items-center justify-center w-14 h-14 bg-gold text-navy-dark rounded-md shadow-sm',
         className,
       )}
       {...props}

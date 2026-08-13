@@ -142,7 +142,7 @@ export function PrecinctLookup({ precincts }: PrecinctLookupProps) {
                 <p className="text-white text-sm font-semibold">Address not found</p>
                 <p className="text-white/60 text-xs mt-1 leading-relaxed">
                   Try including city and state (e.g. "1367 Wood St, Crete, IL") or call{' '}
-                  <a href="tel:7086728279" className="text-gold hover:underline">708-672-8279</a>.
+                  <a href="tel:7086728279" className="text-gold-dark underline hover:text-navy">708-672-8279</a>.
                 </p>
                 <button onClick={handleReset} className="mt-2 text-xs text-white/50 hover:text-white transition-colors underline underline-offset-2">Try again</button>
               </div>
@@ -156,7 +156,7 @@ export function PrecinctLookup({ precincts }: PrecinctLookupProps) {
                 <p className="text-white text-sm font-semibold">Address may be outside township boundaries</p>
                 <p className="text-white/60 text-xs mt-1 leading-relaxed">
                   Contact the Township Office at{' '}
-                  <a href="tel:7086728279" className="text-gold hover:underline">708-672-8279</a> to confirm.
+                  <a href="tel:7086728279" className="text-gold-dark underline hover:text-navy">708-672-8279</a> to confirm.
                 </p>
                 <button onClick={handleReset} className="mt-2 text-xs text-white/50 hover:text-white transition-colors underline underline-offset-2">Try a different address</button>
               </div>
@@ -169,7 +169,7 @@ export function PrecinctLookup({ precincts }: PrecinctLookupProps) {
               <div>
                 <p className="text-white text-sm font-semibold">Lookup service unavailable</p>
                 <p className="text-white/60 text-xs mt-1 leading-relaxed">
-                  Please call <a href="tel:7086728279" className="text-gold hover:underline">708-672-8279</a>.
+                  Please call <a href="tel:7086728279" className="text-gold-dark underline hover:text-navy">708-672-8279</a>.
                 </p>
                 <button onClick={handleReset} className="mt-2 text-xs text-white/50 hover:text-white transition-colors underline underline-offset-2">Try again</button>
               </div>
@@ -228,7 +228,7 @@ export function PrecinctLookup({ precincts }: PrecinctLookupProps) {
               <p className="text-xs text-white/50 uppercase tracking-widest mb-3">Your Polling Place</p>
               <p className="text-white font-display text-lg font-bold leading-snug">{result.name}</p>
               {result.detail && (
-                <p className="text-gold text-sm font-medium mt-1">{result.detail}</p>
+                <p className="text-gold-dark text-sm font-medium mt-1">{result.detail}</p>
               )}
               <div className="flex items-start gap-2 mt-3">
                 <MapPin className="w-4 h-4 text-gold flex-shrink-0 mt-0.5" />
