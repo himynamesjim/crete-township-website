@@ -1,8 +1,15 @@
 import { NextRequest, NextResponse } from 'next/server'
+import { checkBotId } from 'botid/server'
 import { getPayload } from 'payload'
 import config from '@payload-config'
 
 export async function POST(request: NextRequest) {
+  // Reject automated submissions (Vercel BotID; always passes in local dev)
+  const verification = await checkBotId()
+  if (verification.isBot) {
+    return NextResponse.json({ error: 'Access denied' }, { status: 403 })
+  }
+
   try {
     const payload = await getPayload({ config })
     const data = await request.json()
