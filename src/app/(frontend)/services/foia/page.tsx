@@ -4,7 +4,7 @@ import React, { useState } from 'react'
 import { PageHero } from '@/components/PageHero'
 import { Card, CardContent } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
-import { AlertCircle, CheckCircle2, Loader2 } from 'lucide-react'
+import { AlertCircle, CheckCircle2, Loader2, Phone, Mail, MapPin, UserCircle2 } from 'lucide-react'
 
 export default function FOIARequestPage() {
   const [formData, setFormData] = useState({
@@ -169,6 +169,47 @@ export default function FOIARequestPage() {
                 You may inspect public records at no charge. Copy fees may apply per Illinois FOIA
                 law.
               </p>
+            </CardContent>
+          </Card>
+
+          {/* FOIA Officer — Illinois FOIA (5 ILCS 140/4) requires the officer's
+              name and contact information to be displayed where requests are made */}
+          <Card className="mb-8">
+            <CardContent className="p-6">
+              <div className="flex items-center gap-3 mb-4">
+                <UserCircle2 className="w-6 h-6 text-gold flex-shrink-0" />
+                <h2 className="text-xl font-display font-bold text-navy">FOIA Officer</h2>
+              </div>
+              <p className="text-gray-700 mb-4">
+                FOIA requests may be submitted using the form below, or directed by mail, email, or
+                phone to the Township&apos;s designated FOIA Officer:
+              </p>
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-8 gap-y-3">
+                <div>
+                  <p className="font-semibold text-navy">Jim Buiter</p>
+                  <p className="text-sm text-gray-600">Township Clerk &amp; FOIA Officer</p>
+                </div>
+                <div className="space-y-2">
+                  <a
+                    href="mailto:jim.buiter@cretetownship.com"
+                    className="flex items-center gap-2 text-sm text-gray-700 hover:text-gold transition-colors"
+                  >
+                    <Mail className="w-4 h-4 text-gold flex-shrink-0" />
+                    jim.buiter@cretetownship.com
+                  </a>
+                  <a
+                    href="tel:7086728279"
+                    className="flex items-center gap-2 text-sm text-gray-700 hover:text-gold transition-colors"
+                  >
+                    <Phone className="w-4 h-4 text-gold flex-shrink-0" />
+                    708-672-8279
+                  </a>
+                  <p className="flex items-start gap-2 text-sm text-gray-700">
+                    <MapPin className="w-4 h-4 text-gold flex-shrink-0 mt-0.5" />
+                    <span>Crete Township Office<br />1367 Wood Street, Crete, IL 60417</span>
+                  </p>
+                </div>
+              </div>
             </CardContent>
           </Card>
 
