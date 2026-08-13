@@ -106,8 +106,11 @@ export async function GET(request: Request) {
 
     const allEvents: any[] = []
 
-    // Fetch board agendas from Payload CMS
-    const startOfToday = new Date(now.getFullYear(), now.getMonth(), now.getDate())
+    // "Today" as a Chicago calendar day — the server runs in UTC, so building
+    // start-of-day from server time keeps yesterday's evening events (e.g. a
+    // 7 PM meeting = midnight UTC) in "upcoming" for a full extra day.
+    const chicagoToday = chicagoDay(now)
+    const startOfToday = new Date(`${chicagoToday}T00:00:00.000Z`)
 
     // For calendar view, include past 6 months. For upcoming events, only show future.
     const dateThreshold = includePast
@@ -224,10 +227,10 @@ export async function GET(request: Request) {
             /board\s*meeting/i.test(event.summary || '') &&
             boardMeetingDays.has(chicagoDay(occurrenceDate))
 
-          // Only include future occurrences
+          // Only include occurrences today (Chicago time) or later
           if (
             !isDuplicateBoardMeeting &&
-            occurrenceDate >= new Date(now.getFullYear(), now.getMonth(), now.getDate())
+            chicagoDay(occurrenceDate) >= chicagoToday
           ) {
             const duration = event.duration.toSeconds() * 1000 // Convert to milliseconds
             const occurrenceEndDate = new Date(occurrenceDate.getTime() + duration)
@@ -254,10 +257,10 @@ export async function GET(request: Request) {
           /board\s*meeting/i.test(event.summary || '') &&
           boardMeetingDays.has(chicagoDay(startDate))
 
-        // Only include future events or events happening today
+        // Only include events happening today (Chicago time) or later
         if (
           !isDuplicateBoardMeeting &&
-          startDate >= new Date(now.getFullYear(), now.getMonth(), now.getDate())
+          chicagoDay(startDate) >= chicagoToday
         ) {
           allEvents.push({
             title: event.summary || 'Untitled Event',
@@ -276,7 +279,7 @@ export async function GET(request: Request) {
     US_HOLIDAYS.forEach((h) => {
       // Parse at noon local time to avoid any UTC-midnight timezone shift
       const holidayDate = new Date(h.date + 'T12:00:00')
-      if (holidayDate >= startOfToday) {
+      if (h.date >= chicagoToday) {
         const nextDay = new Date(holidayDate)
         nextDay.setDate(nextDay.getDate() + 1)
         allEvents.push({
