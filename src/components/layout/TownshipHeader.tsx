@@ -73,7 +73,7 @@ const navigation: NavItem[] = [
     children: [
       { label: 'Road District Home', href: '/road-district' },
       { label: 'Environment & Storm Sewer', href: '/road-district/environment' },
-      { label: '2026 Branch Pickup', href: '/road-district/branch-pickup' },
+      { label: 'Branch Pickup', href: '/road-district/branch-pickup' },
       { label: 'Highway Commissioner Reports', href: '/documents/highway-commissioner' },
     ],
   },

@@ -1,24 +1,14 @@
 import React from 'react'
 import { PageHero } from '@/components/PageHero'
 import { Card, CardContent } from '@/components/ui/card'
-import { Phone, CheckCircle2, XCircle, Calendar, Flame, AlertTriangle } from 'lucide-react'
+import { Phone, CheckCircle2, XCircle, Flame, AlertTriangle } from 'lucide-react'
 import type { Metadata } from 'next'
 
 export const metadata: Metadata = {
-  title: '2026 Branch Pickup Guidelines | Crete Township Road District',
+  title: 'Branch Pickup Guidelines | Crete Township Road District',
   description:
-    'Branch pickup schedule and guidelines for residents in the unincorporated areas of Crete Township.',
+    'Branch pickup guidelines for residents in the unincorporated areas of Crete Township.',
 }
-
-const schedule = [
-  { date: 'April 6th', day: 'Monday' },
-  { date: 'May 4th', day: 'Monday' },
-  { date: 'June 1st', day: 'Monday' },
-  { date: 'July 6th', day: 'Monday' },
-  { date: 'August 3rd', day: 'Monday' },
-  { date: 'September 8th', day: 'Tuesday' },
-  { date: 'October 5th', day: 'Monday', note: 'Last Day' },
-]
 
 const allowed = [
   'Place cut ends facing the street in several small piles rather than one large one.',
@@ -39,7 +29,7 @@ export default function BranchPickupPage() {
   return (
     <>
       <PageHero
-        title="2026 Branch Pickup Guidelines"
+        title="Branch Pickup Guidelines"
         description="For residents in the unincorporated areas of Crete Township"
         breadcrumbs={[
           { label: 'Home', href: '/' },
@@ -127,36 +117,6 @@ export default function BranchPickupPage() {
 
               {/* Sidebar */}
               <div className="space-y-5">
-
-                {/* 2026 Schedule */}
-                <Card className="overflow-hidden">
-                  <div className="bg-navy px-5 py-4">
-                    <div className="flex items-center gap-2">
-                      <Calendar className="w-4 h-4 text-gold" />
-                      <h3 className="font-display text-sm font-bold text-white">2026 Pick-Up Schedule</h3>
-                    </div>
-                  </div>
-                  <CardContent className="p-0">
-                    {schedule.map((s, i) => (
-                      <div
-                        key={i}
-                        className={`flex items-center justify-between px-5 py-3 border-b border-gray-100 last:border-0 ${
-                          s.note ? 'bg-gold-pale' : ''
-                        }`}
-                      >
-                        <div>
-                          <p className="text-sm font-semibold text-navy">{s.date}</p>
-                          <p className="text-xs text-gray-500">{s.day}</p>
-                        </div>
-                        {s.note && (
-                          <span className="text-xs font-semibold text-gold bg-navy px-2 py-1 rounded">
-                            {s.note}
-                          </span>
-                        )}
-                      </div>
-                    ))}
-                  </CardContent>
-                </Card>
 
                 {/* Call to schedule */}
                 <Card>

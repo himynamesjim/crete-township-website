@@ -146,7 +146,7 @@ export const TownshipFooter: React.FC = () => {
                 { label: 'Homeowners Associations', href: '/assessor/hoa' },
                 { label: 'Will County Phone Numbers', href: '/assessor/will-county-phones' },
                 { label: 'Environment & Storm Sewer', href: '/road-district/environment' },
-                { label: '2026 Branch Pickup', href: '/road-district/branch-pickup' },
+                { label: 'Branch Pickup', href: '/road-district/branch-pickup' },
                 { label: 'Contact Us', href: '/contact' },
               ].map(({ label, href }) => (
                 <li key={href}>
