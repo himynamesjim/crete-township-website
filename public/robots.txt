@@ -1,0 +1,6 @@
+User-Agent: *
+Allow: /api/media/file/
+Disallow: /admin
+Disallow: /api/
+
+Sitemap: https://www.cretetownship.com/sitemap.xml

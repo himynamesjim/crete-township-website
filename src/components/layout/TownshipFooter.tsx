@@ -99,7 +99,7 @@ export const TownshipFooter: React.FC = () => {
                 { label: 'Community Center', href: '/community-center' },
               ].map(({ label, href }) => (
                 <li key={href}>
-                  <Link href={href} className="text-sm text-gray-300 hover:text-gold transition-colors">
+                  <Link href={href} prefetch={false} className="text-sm text-gray-300 hover:text-gold transition-colors">
                     {label}
                   </Link>
                 </li>
@@ -120,12 +120,12 @@ export const TownshipFooter: React.FC = () => {
                 { label: 'Annual Town Meetings', href: '/documents/annual-town-meetings' },
                 { label: 'Audited Financial Statements', href: '/documents/audited-financial-statements' },
                 { label: 'Cash Balance Reports', href: '/documents/cash-balance-reports' },
-                { label: 'Highway Commissioner Reports', href: '/documents/highway-commissioner-reports' },
+                { label: 'Highway Commissioner Reports', href: '/documents/highway-commissioner' },
                 { label: 'Town Fund & Levy Minutes', href: '/documents/town-fund-levy-minutes' },
                 { label: 'Newsletters', href: '/documents/newsletters' },
               ].map(({ label, href }) => (
                 <li key={href}>
-                  <Link href={href} className="text-sm text-gray-300 hover:text-gold transition-colors">
+                  <Link href={href} prefetch={false} className="text-sm text-gray-300 hover:text-gold transition-colors">
                     {label}
                   </Link>
                 </li>
@@ -150,7 +150,7 @@ export const TownshipFooter: React.FC = () => {
                 { label: 'Contact Us', href: '/contact' },
               ].map(({ label, href }) => (
                 <li key={href}>
-                  <Link href={href} className="text-sm text-gray-300 hover:text-gold transition-colors">
+                  <Link href={href} prefetch={false} className="text-sm text-gray-300 hover:text-gold transition-colors">
                     {label}
                   </Link>
                 </li>
@@ -177,13 +177,13 @@ export const TownshipFooter: React.FC = () => {
             </p>
           </div>
           <div className="flex gap-6">
-            <Link href="/privacy-policy" className="hover:text-gold transition-colors">
+            <Link href="/privacy-policy" prefetch={false} className="hover:text-gold transition-colors">
               Privacy Policy
             </Link>
-            <Link href="/accessibility" className="hover:text-gold transition-colors">
+            <Link href="/accessibility" prefetch={false} className="hover:text-gold transition-colors">
               Accessibility
             </Link>
-            <Link href="/sitemap" className="hover:text-gold transition-colors">
+            <Link href="/sitemap" prefetch={false} className="hover:text-gold transition-colors">
               Sitemap
             </Link>
           </div>

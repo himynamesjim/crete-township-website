@@ -113,7 +113,7 @@ export const TownshipHeader: React.FC = () => {
         <div className="max-w-[1400px] mx-auto px-8">
           <div className="flex items-center justify-between py-4">
             {/* Logo & Title */}
-            <Link href="/" className="flex items-center gap-4 hover:opacity-90 transition-opacity">
+            <Link href="/" prefetch={false} className="flex items-center gap-4 hover:opacity-90 transition-opacity">
               <div className="w-16 h-16 flex-shrink-0">
                 <img
                   src="/api/media/file/cropped-The-Great-Seal-of-Crete-Township-scaled-1.jpg"
@@ -213,7 +213,7 @@ export const TownshipHeader: React.FC = () => {
             <div className="flex items-center gap-8">
               {/* Logo (visible when scrolled) */}
               {isScrolled && (
-                <Link href="/" className="flex items-center gap-2 py-2 hover:opacity-90 transition-opacity duration-200">
+                <Link href="/" prefetch={false} className="flex items-center gap-2 py-2 hover:opacity-90 transition-opacity duration-200">
                   <div className="w-10 h-10 flex-shrink-0">
                     <img
                       src="/api/media/file/cropped-The-Great-Seal-of-Crete-Township-scaled-1.jpg"
@@ -253,6 +253,7 @@ export const TownshipHeader: React.FC = () => {
                           <li key={child.label}>
                             <Link
                               href={child.href}
+                              prefetch={false}
                               className="block px-4 py-3 text-sm text-gray-600 hover:text-navy hover:bg-gold-pale transition-colors"
                             >
                               {child.label}
@@ -264,6 +265,7 @@ export const TownshipHeader: React.FC = () => {
                   ) : (
                     <Link
                       href={item.href}
+                      prefetch={false}
                       className={cn(
                         "block px-4 py-4 text-[13.5px] transition-colors",
                         item.festive
@@ -320,6 +322,7 @@ export const TownshipHeader: React.FC = () => {
                 <li key={item.href}>
                   <Link
                     href={item.href}
+                    prefetch={false}
                     className={cn(
                       "block px-4 py-3 text-sm rounded transition-colors",
                       item.festive
@@ -336,6 +339,7 @@ export const TownshipHeader: React.FC = () => {
                         <li key={child.label}>
                           <Link
                             href={child.href}
+                            prefetch={false}
                             className="block px-3 py-2 text-xs text-gray-500 hover:text-navy hover:bg-white rounded transition-colors"
                             onClick={() => setMobileMenuOpen(false)}
                           >

@@ -6,7 +6,6 @@
   "type": "module",
   "scripts": {
     "build": "cross-env NODE_OPTIONS=--no-deprecation next build",
-    "postbuild": "next-sitemap --config next-sitemap.config.cjs",
     "dev": "kill -9 $(lsof -ti:3000) 2>/dev/null; cross-env NODE_OPTIONS=--no-deprecation next dev",
     "dev:prod": "cross-env NODE_OPTIONS=--no-deprecation rm -rf .next && pnpm build && pnpm start",
     "generate:importmap": "cross-env NODE_OPTIONS=--no-deprecation payload generate:importmap",
@@ -54,7 +53,6 @@
     "mammoth": "^1.12.1",
     "next": "16.2.6",
     "next-google-fonts": "^2.2.0",
-    "next-sitemap": "^4.2.3",
     "payload": "^3.0.0",
     "payload-totp": "^3.0.1",
     "prism-react-renderer": "^2.3.1",
