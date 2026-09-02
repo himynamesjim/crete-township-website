@@ -45,11 +45,11 @@ export const DocumentModal: React.FC<DocumentModalProps> = ({
       {/* Modal */}
       <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
         <div
-          className="bg-white rounded-lg shadow-2xl max-w-4xl w-full max-h-[90vh] overflow-hidden"
+          className="bg-white rounded-lg shadow-2xl max-w-4xl w-full max-h-[85dvh] flex flex-col overflow-hidden"
           onClick={(e) => e.stopPropagation()}
         >
           {/* Header */}
-          <div className="flex items-start justify-between p-6 border-b border-gray-200 bg-navy">
+          <div className="flex items-start justify-between p-4 sm:p-6 border-b border-gray-200 bg-navy shrink-0">
             <div className="flex-1">
               <div className="flex items-center gap-3 mb-2">
                 <div className="p-2 bg-gold-pale rounded-lg">
@@ -78,8 +78,9 @@ export const DocumentModal: React.FC<DocumentModalProps> = ({
             </button>
           </div>
 
-          {/* PDF Preview */}
-          <div className="bg-gray-100 h-[500px] overflow-hidden">
+          {/* PDF Preview — fixed height on desktop, shrinks on small screens so the
+              action bar always stays visible inside the viewport */}
+          <div className="bg-gray-100 h-[500px] min-h-[160px] overflow-hidden">
             <iframe
               src={`${fileUrl}#view=FitH`}
               className="w-full h-full border-0"
@@ -88,20 +89,20 @@ export const DocumentModal: React.FC<DocumentModalProps> = ({
           </div>
 
           {/* Actions */}
-          <div className="flex items-center justify-between p-6 border-t border-gray-200 bg-gray-50">
-            <p className="text-sm text-gray-600">
+          <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 p-4 sm:p-6 border-t border-gray-200 bg-gray-50 shrink-0">
+            <p className="hidden sm:block text-sm text-gray-600">
               Use the buttons below to view the full document or download a copy.
             </p>
-            <div className="flex items-center gap-3">
+            <div className="flex flex-col-reverse sm:flex-row sm:items-center gap-3">
               <Button
                 variant="outline"
                 onClick={handleDownload}
-                className="flex items-center gap-2"
+                className="w-full sm:w-auto flex items-center gap-2"
               >
                 <Download className="w-4 h-4" />
                 Download PDF
               </Button>
-              <Button onClick={handleViewFull} className="flex items-center gap-2">
+              <Button onClick={handleViewFull} className="w-full sm:w-auto flex items-center gap-2">
                 <ExternalLink className="w-4 h-4" />
                 View Full Document
               </Button>
