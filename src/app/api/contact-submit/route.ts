@@ -30,9 +30,16 @@ export async function POST(request: NextRequest) {
       return NextResponse.json({ error: 'Invalid topic selected' }, { status: 400 })
     }
 
-    const routedTo = 'administrator@cretetownship.com'
-    const ccRecipients = ['jim.buiter@cretetownship.com', 'michael.liccar@cretetownship.com']
     const topicLabel = topic.label as string
+
+    // Road District requests go to the Highway Commissioner; everything else to the administrator
+    const isRoadDistrict = /road district/i.test(topicLabel)
+    const routedTo = isRoadDistrict
+      ? 'arecupito@cretetownship.com'
+      : 'administrator@cretetownship.com'
+    const ccRecipients = isRoadDistrict
+      ? ['administrator@cretetownship.com']
+      : ['jim.buiter@cretetownship.com', 'michael.liccar@cretetownship.com']
 
     // Save inquiry to CMS
     const inquiry = await payload.create({
@@ -49,7 +56,7 @@ export async function POST(request: NextRequest) {
       },
     })
 
-    // Notify the township administrator (supervisor and clerk copied)
+    // Notify the routed department
     await payload.sendEmail({
       to: routedTo,
       cc: ccRecipients,
