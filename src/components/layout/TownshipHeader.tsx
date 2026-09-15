@@ -85,6 +85,7 @@ const navigation: NavItem[] = [
       { label: 'Community Center Home', href: '/community-center' },
       { label: 'Building Usage Application', href: '/community-center/application' },
       { label: 'Resident Survey', href: '/community-center/survey' },
+      { label: 'Friends of the Crete Township Community Center', href: '/community-center/friends' },
     ],
   },
   { label: 'Contact', href: '/contact' },
