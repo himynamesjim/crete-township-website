@@ -19,7 +19,7 @@ export default function BrickFundraiserPage() {
         breadcrumbs={[
           { label: 'Home', href: '/' },
           { label: 'Community Center', href: '/community-center' },
-          { label: 'Friends of the Community Center', href: '/community-center/friends' },
+          { label: 'Friends of the Crete Township Community Center', href: '/community-center/friends' },
           { label: 'Brick Fundraiser' },
         ]}
       />
@@ -34,7 +34,7 @@ export default function BrickFundraiserPage() {
                 <Card className="overflow-hidden">
                   <div className="bg-navy-dark px-5 py-4 rounded-t-lg">
                     <p className="text-xs font-semibold text-gold uppercase tracking-wide">Questions?</p>
-                    <p className="font-display text-base font-bold text-white mt-1">Contact the Community Center</p>
+                    <p className="font-display text-base font-bold text-white mt-1">Contact the Friends</p>
                   </div>
                   <CardContent className="p-5 space-y-3">
                     <a
@@ -53,11 +53,11 @@ export default function BrickFundraiserPage() {
                       <span>Mon – Fri: 8:00 AM – 4:00 PM</span>
                     </div>
                     <a
-                      href="mailto:communitycenter@cretetownship.com"
+                      href="mailto:friends@cretetownship.com"
                       className="flex items-start gap-3 text-sm text-gray-700 hover:text-gold transition-colors"
                     >
                       <Mail className="w-4 h-4 text-gold flex-shrink-0 mt-0.5" />
-                      <span>communitycenter@cretetownship.com</span>
+                      <span>friends@cretetownship.com</span>
                     </a>
                   </CardContent>
                 </Card>
@@ -67,7 +67,7 @@ export default function BrickFundraiserPage() {
                   className="flex items-center gap-2 text-sm text-navy font-semibold hover:text-gold transition-colors"
                 >
                   <ChevronRight className="w-4 h-4 text-gold rotate-180" />
-                  Back to Friends of the Community Center
+                  Back to Friends of the Crete Township Community Center
                 </Link>
               </div>
 
@@ -97,10 +97,10 @@ export default function BrickFundraiserPage() {
                   </div>
                   <p className="text-sm text-gray-700 leading-relaxed">
                     Pricing, engraving options, and order forms are being finalized. In the
-                    meantime, call the Community Center at{' '}
+                    meantime, email the Friends at{' '}
+                    <a href="mailto:friends@cretetownship.com" className="font-semibold text-navy hover:text-gold transition-colors">friends@cretetownship.com</a>{' '}
+                    or call the Community Center at{' '}
                     <a href="tel:7087221857" className="font-semibold text-navy hover:text-gold transition-colors">708-722-1857</a>{' '}
-                    or email{' '}
-                    <a href="mailto:communitycenter@cretetownship.com" className="font-semibold text-navy hover:text-gold transition-colors">communitycenter@cretetownship.com</a>{' '}
                     to learn more or reserve your brick.
                   </p>
                 </div>

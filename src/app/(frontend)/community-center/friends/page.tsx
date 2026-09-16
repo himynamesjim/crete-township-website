@@ -1,39 +1,30 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
 import { PageHero } from '@/components/PageHero'
-import { MapPin, Phone, Clock, Mail, ChevronRight, HeartHandshake, Users, Sparkles, Landmark } from 'lucide-react'
+import { MapPin, Phone, Clock, Mail, ChevronRight, HeartHandshake, Users, Landmark, Target } from 'lucide-react'
 import { Card, CardContent } from '@/components/ui/card'
 
 export const metadata: Metadata = {
-  title: 'Friends of the Community Center | Crete Township',
+  title: 'Friends of the Crete Township Community Center | Crete Township',
   description:
-    'Friends of the Crete Township Community Center — a community group dedicated to supporting and enhancing the Community Center through fundraising, volunteering, and special events.',
+    'Friends of the Crete Township Community Center — a 501(c)(3) not-for-profit organization dedicated to supporting, enhancing, and expanding programs, events, and facilities that bring people together and strengthen our community.',
 }
 
 const whatWeDo = [
   {
     icon: HeartHandshake,
-    title: 'Fundraising',
-    description:
-      'Organizing fundraisers — like the Brick Fundraiser — that directly support improvements, programs, and equipment at the Community Center.',
+    title: 'Support Programs',
+    description: 'Help fund innovative programs and community events.',
   },
   {
     icon: Users,
-    title: 'Volunteering',
-    description:
-      'Lending a hand at Community Center programs and Township-hosted events, from senior luncheons to community expos and celebrations.',
-  },
-  {
-    icon: Sparkles,
-    title: 'Enhancing the Center',
-    description:
-      'Championing projects that make the Community Center a more welcoming place for residents of all ages, now and for generations to come.',
+    title: 'Build Connections',
+    description: 'Bring residents, businesses, and organizations together.',
   },
   {
     icon: Landmark,
-    title: 'Community Advocacy',
-    description:
-      'Raising awareness of everything the Community Center offers and helping connect residents with its programs, events, and services.',
+    title: 'Invest in Our Community',
+    description: 'Contribute to the growth and sustainability of the Community Center.',
   },
 ]
 
@@ -50,12 +41,12 @@ export default function FriendsOfTheCommunityCenterPage() {
   return (
     <>
       <PageHero
-        title="Friends of the Community Center"
-        description="A community group dedicated to supporting and enhancing the Crete Township Community Center"
+        title="Friends of the Crete Township Community Center"
+        description="Support. Enhance. Build Community."
         breadcrumbs={[
           { label: 'Home', href: '/' },
           { label: 'Community Center', href: '/community-center' },
-          { label: 'Friends of the Community Center' },
+          { label: 'Friends of the Crete Township Community Center' },
         ]}
       />
 
@@ -71,9 +62,16 @@ export default function FriendsOfTheCommunityCenterPage() {
                 <Card className="overflow-hidden">
                   <div className="bg-navy-dark px-5 py-4 rounded-t-lg">
                     <p className="text-xs font-semibold text-gold uppercase tracking-wide">Get In Touch</p>
-                    <p className="font-display text-base font-bold text-white mt-1">Friends of the Community Center</p>
+                    <p className="font-display text-base font-bold text-white mt-1">Friends of the Crete Township Community Center</p>
                   </div>
                   <CardContent className="p-5 space-y-3">
+                    <a
+                      href="mailto:friends@cretetownship.com"
+                      className="flex items-start gap-3 text-sm text-gray-700 hover:text-gold transition-colors"
+                    >
+                      <Mail className="w-4 h-4 text-gold flex-shrink-0 mt-0.5" />
+                      <span>friends@cretetownship.com</span>
+                    </a>
                     <a
                       href="tel:7087221857"
                       className="flex items-center gap-3 text-sm text-gray-700 hover:text-gold transition-colors"
@@ -89,13 +87,6 @@ export default function FriendsOfTheCommunityCenterPage() {
                       <Clock className="w-4 h-4 text-gold flex-shrink-0 mt-0.5" />
                       <span>Mon – Fri: 8:00 AM – 4:00 PM</span>
                     </div>
-                    <a
-                      href="mailto:communitycenter@cretetownship.com"
-                      className="flex items-start gap-3 text-sm text-gray-700 hover:text-gold transition-colors"
-                    >
-                      <Mail className="w-4 h-4 text-gold flex-shrink-0 mt-0.5" />
-                      <span>communitycenter@cretetownship.com</span>
-                    </a>
                   </CardContent>
                 </Card>
 
@@ -132,18 +123,15 @@ export default function FriendsOfTheCommunityCenterPage() {
                   <h2 className="font-display text-2xl font-bold text-navy mb-2">Who We Are</h2>
                   <div className="w-16 h-[3px] bg-gold mb-6" />
                   <p className="text-gray-700 leading-relaxed mb-4">
-                    The Friends of the Crete Township Community Center is a group of neighbors,
-                    volunteers, and supporters who share one goal: helping the Community Center
-                    thrive as the heart of our Township. From senior programs and youth music
-                    lessons to fitness classes, expos, and community celebrations, the Center
-                    touches the lives of residents every day — and the Friends work to make sure
-                    it can keep doing so for years to come.
+                    The Friends of the Crete Township Community Center is a 501(c)(3) not-for-profit
+                    organization — a community-focused group dedicated to supporting, enhancing, and
+                    expanding programs, events, and facilities that bring people together and
+                    strengthen our community.
                   </p>
                   <p className="text-gray-700 leading-relaxed">
-                    Through fundraising, volunteering, and community outreach, the Friends support
-                    improvements and programs that go above and beyond what Township funds alone
-                    can provide. Whether you can give your time, make a contribution, or simply
-                    help spread the word, there is a place for you among the Friends.
+                    Whether you can give your time, make a contribution, or simply help spread the
+                    word, there is a place for you among the Friends. Together, we can make a
+                    lasting impact!
                   </p>
                 </div>
 
@@ -151,21 +139,32 @@ export default function FriendsOfTheCommunityCenterPage() {
                 <div>
                   <h2 className="font-display text-2xl font-bold text-navy mb-2">What We Do</h2>
                   <div className="w-16 h-[3px] bg-gold mb-6" />
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+                  <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
                     {whatWeDo.map((item) => (
                       <Card key={item.title}>
                         <CardContent className="p-5">
-                          <div className="flex items-center gap-3 mb-2">
-                            <div className="w-9 h-9 rounded-lg bg-gold-pale flex items-center justify-center flex-shrink-0">
-                              <item.icon className="w-5 h-5 text-gold" />
-                            </div>
-                            <h3 className="text-base font-semibold text-navy">{item.title}</h3>
+                          <div className="w-9 h-9 rounded-lg bg-gold-pale flex items-center justify-center flex-shrink-0 mb-3">
+                            <item.icon className="w-5 h-5 text-gold" />
                           </div>
+                          <h3 className="text-base font-semibold text-navy mb-2">{item.title}</h3>
                           <p className="text-sm text-gray-600 leading-relaxed">{item.description}</p>
                         </CardContent>
                       </Card>
                     ))}
                   </div>
+                </div>
+
+                {/* Our goal */}
+                <div className="bg-gold-pale border border-gold/40 rounded-lg p-6">
+                  <div className="flex items-center gap-2 mb-3">
+                    <Target className="w-5 h-5 text-gold flex-shrink-0" />
+                    <h2 className="font-display text-lg font-bold text-navy">Our Goal</h2>
+                  </div>
+                  <p className="text-sm text-gray-700 leading-relaxed">
+                    To work directly with the Crete Township and community members to bring
+                    innovative programming and events to the Crete Township Community Center and to
+                    support the future of our community.
+                  </p>
                 </div>
 
                 {/* Ways to support */}
@@ -190,7 +189,11 @@ export default function FriendsOfTheCommunityCenterPage() {
                     ))}
                   </div>
                   <p className="text-xs text-gray-500 mt-4 italic">
-                    More programs and ways to get involved are on the way — check back soon.
+                    More programs and ways to get involved are on the way — for additional
+                    information, email{' '}
+                    <a href="mailto:friends@cretetownship.com" className="text-navy font-semibold not-italic hover:text-gold transition-colors">
+                      friends@cretetownship.com
+                    </a>.
                   </p>
                 </div>
 

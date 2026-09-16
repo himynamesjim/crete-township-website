@@ -18,7 +18,7 @@ const SECTIONS: SiteSection[] = [
       { label: 'Home', href: '/' },
       { label: 'Upcoming Events', href: '/events' },
       { label: 'Community Center', href: '/community-center' },
-      { label: 'Friends of the Community Center', href: '/community-center/friends' },
+      { label: 'Friends of the Crete Township Community Center', href: '/community-center/friends' },
       { label: 'Contact Us', href: '/contact' },
     ],
   },
