@@ -49,7 +49,7 @@ const OFFICIALS: OfficialSeed[] = [
 
 As Highway Commissioner, Tony is responsible for the maintenance of over 80 miles of roads in the unincorporated areas of the Township, which is currently the largest Township Road System in Will County. He has been instrumental in securing millions of dollars in federal grants for road improvements and bridge replacements, which takes the burden off the Road District portion of local property tax that each property owner pays.
 
-Some of the duties that Tony and his crew are responsible for include road and ditch maintenance, culvert replacements, tree trimming and removal, branch pick-up, shoulder stone maintenance, roadside mowing and clean-up, sign maintenance, asphalt patching, bridge repair and replacement, snowplowing and salting. They also maintain most of their equipment in-house, in addition to maintaining the building and grounds.`,
+Some of the duties that Tony and his crew are responsible for include road and ditch maintenance, culvert replacements, tree trimming and removal, branch chipping, shoulder stone maintenance, roadside mowing and clean-up, sign maintenance, asphalt patching, bridge repair and replacement, snowplowing and salting. They also maintain most of their equipment in-house, in addition to maintaining the building and grounds.`,
   },
   {
     name: 'Cheryl Albrecht',

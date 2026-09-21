@@ -75,9 +75,9 @@ export default function DemoPage() {
     },
     {
       category: 'ROAD DISTRICT',
-      title: '2026 Branch Pickup Schedule Now Available',
+      title: '2026 Branch Chipping Schedule Now Available',
       description:
-        'Spring branch pickup begins the week of May 19th. Branches must be placed at the curb by 7 AM on your pickup day. Maximum pile size is 8 feet wide.',
+        'Spring branch chipping begins the week of May 19th. Branches must be placed at the curb by 7 AM on your scheduled chipping day. Maximum pile size is 8 feet wide.',
       date: 'May 5, 2026',
     },
     {
@@ -170,14 +170,14 @@ export default function DemoPage() {
                   </div>
                   <CardTitle className="text-lg mb-2">Road District</CardTitle>
                   <CardDescription className="mb-4 text-sm">
-                    Road maintenance, storm sewers, environmental compliance, and branch pickup.
+                    Road maintenance, storm sewers, environmental compliance, and branch chipping.
                   </CardDescription>
                   <div className="space-y-1">
                     <Link
                       href="/branch-pickup"
                       className="block text-sm text-gold hover:text-gold-light font-medium"
                     >
-                      Branch Pickup Guidelines →
+                      Branch Chipping Guidelines →
                     </Link>
                     <Link
                       href="/storm-sewer"

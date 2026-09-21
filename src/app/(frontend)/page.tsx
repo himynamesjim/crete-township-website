@@ -357,14 +357,14 @@ export default async function HomePage() {
                   </div>
                   <CardTitle className="text-lg mb-2">Road District</CardTitle>
                   <CardDescription className="mb-4 text-sm">
-                    Road maintenance, storm sewers, environmental compliance, and branch pickup.
+                    Road maintenance, storm sewers, environmental compliance, and branch chipping.
                   </CardDescription>
                   <div className="space-y-1">
                     <Link
                       href="/road-district/branch-pickup"
                       className="block text-sm text-gold hover:text-gold-light font-medium"
                     >
-                      Branch Pickup Guidelines →
+                      Branch Chipping Guidelines →
                     </Link>
                     <Link
                       href="/road-district/environment"

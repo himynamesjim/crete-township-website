@@ -5,36 +5,36 @@ import { Phone, CheckCircle2, XCircle, Flame, AlertTriangle } from 'lucide-react
 import type { Metadata } from 'next'
 
 export const metadata: Metadata = {
-  title: 'Branch Pickup Guidelines | Crete Township Road District',
+  title: 'Branch Chipping Guidelines | Crete Township Road District',
   description:
-    'Branch pickup guidelines for residents in the unincorporated areas of Crete Township.',
+    'Branch chipping guidelines for residents in the unincorporated areas of Crete Township.',
 }
 
 const allowed = [
   'Place cut ends facing the street in several small piles rather than one large one.',
   'Branches no larger than 6″ diameter, free of root balls, stumps, dirt, stone, metal, and construction material.',
-  'Call 672-7732 and leave your address — we will pick up on the first Monday of the month.',
-  'Call the weekend before your scheduled Monday pick-up day.',
+  'Call 672-7732 and leave your address — we will chip on the first Monday of the month.',
+  'Call the weekend before your scheduled Monday chipping day.',
 ]
 
 const notAllowed = [
-  'Complete trees will not be picked up.',
+  'Complete trees will not be chipped.',
   'Not for contractors or residents clearing lots for new construction, landscape renewal, or tree removal.',
   'If a landscaper or tree company does the cutting, disposal is their responsibility.',
   'No logs, leaves, stumps, or yard waste — branches only.',
   'Maximum of 10 minutes allowed at each location.',
 ]
 
-export default function BranchPickupPage() {
+export default function BranchChippingPage() {
   return (
     <>
       <PageHero
-        title="Branch Pickup Guidelines"
+        title="Branch Chipping Guidelines"
         description="For residents in the unincorporated areas of Crete Township"
         breadcrumbs={[
           { label: 'Home', href: '/' },
           { label: 'Road District', href: '/road-district' },
-          { label: 'Branch Pickup', href: '/road-district/branch-pickup' },
+          { label: 'Branch Chipping', href: '/road-district/branch-pickup' },
         ]}
       />
 
@@ -48,11 +48,11 @@ export default function BranchPickupPage() {
 
                 {/* Intro */}
                 <div>
-                  <h2 className="font-display text-2xl font-bold text-navy mb-2">Branch Pick Up Guidelines</h2>
+                  <h2 className="font-display text-2xl font-bold text-navy mb-2">Branch Chipping Guidelines</h2>
                   <div className="w-16 h-[3px] bg-gold mb-6" />
                   <div className="bg-navy/5 border border-navy/10 rounded-lg p-4 mb-6">
                     <p className="text-sm font-semibold text-navy">
-                      Branch pick up is performed <span className="text-gold">once per month</span> for
+                      Branch chipping is performed <span className="text-gold">once per month</span> for
                       residents in the unincorporated areas of the Township — for minor pruning and
                       maintenance only.
                     </p>
@@ -124,7 +124,7 @@ export default function BranchPickupPage() {
                     <div className="flex items-start gap-3 mb-3">
                       <AlertTriangle className="w-4 h-4 text-gold flex-shrink-0 mt-0.5" />
                       <p className="text-xs text-gray-600 leading-relaxed">
-                        Call the weekend before your scheduled pick-up day and leave your address on the voicemail.
+                        Call the weekend before your scheduled chipping day and leave your address on the voicemail.
                       </p>
                     </div>
                     <a

@@ -60,7 +60,7 @@ const SECTIONS: SiteSection[] = [
     links: [
       { label: 'Road District Home', href: '/road-district' },
       { label: 'Environment & Storm Sewer', href: '/road-district/environment' },
-      { label: '2026 Branch Pickup Guidelines', href: '/road-district/branch-pickup' },
+      { label: 'Branch Chipping Guidelines', href: '/road-district/branch-pickup' },
     ],
   },
   {

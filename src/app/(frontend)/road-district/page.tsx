@@ -24,7 +24,7 @@ const duties = [
   'Tree Trimming and Removal',
   'Maintain Fleet of Equipment and Vehicles',
   'Shoulder Stone Maintenance',
-  'Branch Pick Up',
+  'Branch Chipping',
 ]
 
 export default function RoadDistrictPage() {
