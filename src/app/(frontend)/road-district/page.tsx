@@ -84,22 +84,6 @@ export default function RoadDistrictPage() {
                   </CardContent>
                 </Card>
 
-                {/* Tim Miller card */}
-                <Card>
-                  <CardContent className="p-6">
-                    <p className="text-xs font-semibold text-navy uppercase tracking-wide mb-3">Staff</p>
-                    <p className="font-semibold text-navy text-sm">Tim Miller</p>
-                    <p className="text-xs text-gray-500 mb-3">Administrative Assistant / Project Mgr.</p>
-                    <a
-                      href="mailto:tmiller@cretetownship.com"
-                      className="flex items-center gap-3 text-sm text-gray-700 hover:text-gold transition-colors"
-                    >
-                      <Mail className="w-4 h-4 text-gold flex-shrink-0" />
-                      tmiller@cretetownship.com
-                    </a>
-                  </CardContent>
-                </Card>
-
                 {/* Overweight permit card */}
                 <Card>
                   <CardContent className="p-6">
